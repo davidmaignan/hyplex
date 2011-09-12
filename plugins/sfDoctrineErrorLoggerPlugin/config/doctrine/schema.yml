@@ -1,0 +1,57 @@
+sfErrorLog:
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    type:             
+      type: string(3)
+      notnull: true
+    class_name:       
+      type: string(255)
+      notnull: true
+    message:          
+      type: string(1000000)
+      notnull: true
+    module_name:      
+      type: string(255)
+      notnull: true
+    action_name:      
+      type: string(255)
+      notnull: true
+    exception_object: 
+      type: clob
+      notnull: true
+    request:          
+      type: clob
+      notnull: true
+    uri:              
+      type: string(255)
+      notnull: true
+
+plexErrorLog:
+  actAs: [Timestampable]
+  columns:
+    id:
+      type: integer(4)
+      primary: true
+      autoincrement: true
+    type:
+      type: string(3)
+      notnull: true
+    class_name:
+      type: string(255)
+      notnull: true
+    message:
+      type: string(1000000)
+      notnull: true
+    file:
+      type: string(255)
+      notnull: true
+    parameters:
+      type: clob
+      notnull: true
+    plex_response:
+      type: clob
+      notnull: true

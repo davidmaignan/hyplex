@@ -73,7 +73,7 @@
  * @method Hotel               setState()             Sets the current record's "State" value
  * @method Hotel               setHotelCities()       Sets the current record's "HotelCities" collection
  * 
- * @package    hypertech_booking
+ * @package    hyplexdemo
  * @subpackage model
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $

@@ -31,7 +31,7 @@
  * @method Country setStates()  Sets the current record's "States" value
  * @method Country setCities()  Sets the current record's "Cities" value
  * 
- * @package    hypertech_booking
+ * @package    hyplexdemo
  * @subpackage model
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $

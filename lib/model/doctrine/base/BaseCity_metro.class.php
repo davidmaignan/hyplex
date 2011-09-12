@@ -19,7 +19,7 @@
  * @method City_metro          setCities()              Sets the current record's "Cities" collection
  * @method City_metro          setCityMultipleAirport() Sets the current record's "CityMultipleAirport" collection
  * 
- * @package    hypertech_booking
+ * @package    hyplexdemo
  * @subpackage model
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $

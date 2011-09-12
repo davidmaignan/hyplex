@@ -21,8 +21,6 @@
  * @property Doctrine_Collection $sfGuardUserGroup
  * @property sfGuardRememberKey $RememberKeys
  * @property sfGuardForgotPassword $ForgotPassword
- * @property Doctrine_Collection $AssignedUsers
- * @property Doctrine_Collection $ToUsers
  * 
  * @method string                getFirstName()             Returns the current record's "first_name" value
  * @method string                getLastName()              Returns the current record's "last_name" value
@@ -40,8 +38,6 @@
  * @method Doctrine_Collection   getSfGuardUserGroup()      Returns the current record's "sfGuardUserGroup" collection
  * @method sfGuardRememberKey    getRememberKeys()          Returns the current record's "RememberKeys" value
  * @method sfGuardForgotPassword getForgotPassword()        Returns the current record's "ForgotPassword" value
- * @method Doctrine_Collection   getAssignedUsers()         Returns the current record's "AssignedUsers" collection
- * @method Doctrine_Collection   getToUsers()               Returns the current record's "ToUsers" collection
  * @method sfGuardUser           setFirstName()             Sets the current record's "first_name" value
  * @method sfGuardUser           setLastName()              Sets the current record's "last_name" value
  * @method sfGuardUser           setEmailAddress()          Sets the current record's "email_address" value
@@ -58,10 +54,8 @@
  * @method sfGuardUser           setSfGuardUserGroup()      Sets the current record's "sfGuardUserGroup" collection
  * @method sfGuardUser           setRememberKeys()          Sets the current record's "RememberKeys" value
  * @method sfGuardUser           setForgotPassword()        Sets the current record's "ForgotPassword" value
- * @method sfGuardUser           setAssignedUsers()         Sets the current record's "AssignedUsers" collection
- * @method sfGuardUser           setToUsers()               Sets the current record's "ToUsers" collection
  * 
- * @package    hypertech_booking
+ * @package    hyplexdemo
  * @subpackage model
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
@@ -154,14 +148,6 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasOne('sfGuardForgotPassword as ForgotPassword', array(
              'local' => 'id',
              'foreign' => 'user_id'));
-
-        $this->hasMany('pms_ticket as AssignedUsers', array(
-             'local' => 'id',
-             'foreign' => 'assigned_to_id'));
-
-        $this->hasMany('pms_clarification as ToUsers', array(
-             'local' => 'id',
-             'foreign' => 'to_user_id'));
 
         $timestampable0 = new Doctrine_Template_Timestampable(array(
              ));

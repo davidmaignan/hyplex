@@ -37,7 +37,7 @@
  * @method RequestInitPlex setResponseRaw()   Sets the current record's "response_raw" value
  * @method RequestInitPlex setStid()          Sets the current record's "stid" value
  * 
- * @package    hypertech_booking
+ * @package    hyplexdemo
  * @subpackage model
  * @author     Your name here
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
