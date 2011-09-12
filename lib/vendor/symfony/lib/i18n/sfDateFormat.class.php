@@ -356,6 +356,9 @@ class sfDateFormat
       case 'y':
         return 'yyyy MMMM';
         break;
+      case 'flight':
+          return 'MMM dd';
+          break;
       default :
         return $pattern;
     }

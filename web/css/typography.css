@@ -1,0 +1,796 @@
+/* 
+    Document   : typography
+    Created on : Sep 12, 2011, 11:17:38 AM
+    Author     : david
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* Default font settings.
+   The font-size percentage is of 16px. (0.75 * 16px = 12px) */
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+        width: 100%;
+}
+
+html { font-size:100.01%; }
+body {
+  font-size: 100%;
+  color: #343434;
+  abackground: white url('../images/generic/bg_site.png') repeat-x left top;
+  font-family: "Helvetica Neue", Arial, Helvetica, sans-serif;
+}
+
+
+/* Links */
+
+a{text-decoration: none; color:#0c4878;cursor: pointer;	cursor: hand;}
+a:hover{color: #f26522;}
+
+
+h1{
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+h2{
+    font-size: 108%;
+    font-weight: bold;
+    color: #0c4878;
+}
+
+h2.title{
+    border-bottom: 1px solid #cecece;
+    margin-bottom: 13px;
+    padding-bottom: 8px;
+}
+
+p{
+    font-size: 82%;
+    margin: 2px 0 10px 0;
+}
+
+.blue{
+    color: #0c4878;
+}
+
+.white{
+    color: white;
+}
+.color2{
+    color: #ed145b;
+}
+
+.hide{
+    display:none;
+}
+
+.show{
+    display: table-row;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+a.remove{
+    background: url('../sfDoctrinePlugin/images/delete.png') no-repeat left top;
+    padding-left: 18px;
+}
+
+a.remove-small{
+    background: url('../images/icons/12-em-cross.png') no-repeat 5px 5px;
+    padding-left: 15px;
+    background-color: white;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius: 10px; /* for old Konqueror browsers */
+    padding: 2px 0px 2px 22px;
+    font-size: 80%;
+    text-indent: -1000em;
+    overflow: hidden;
+}
+
+
+
+/* Paginator ------------------------------- */
+
+ul.paginator{
+    float: right;
+}
+
+ul.paginator li{
+    display: inline;
+}
+
+ul.paginator a{
+    background: url('../images/generic/paginator.png') no-repeat -8px top;
+    width: 8px;
+    height: 8px;
+    display: block;
+    float: left;
+    margin-right: 6px;
+    margin-top: 16px;
+}
+
+ul.paginator a.selected{
+    background-position: -8px -8px;
+}
+
+ul.paginator a.next, ul.paginator a.prev{
+    width: 24px;
+    height: 24px;
+    display: block;
+    float: left;
+    text-indent: -1000px;
+    overflow: hidden;
+    background-position: left top;
+    margin-top: 8px;
+    margin-right: 0px;
+}
+
+ul.paginator a.next{
+    background-position: left -40px;
+    margin-right: 4px;
+}
+
+ul.paginator a.prev{
+    background-position: left -16px;
+
+}
+
+ul.paginator a{
+    float: left;
+}
+
+/* pagination */
+
+ul.pagination {
+    height: 15px;
+    display: block;
+    font-size: 82%;
+}
+
+ul.pagination li{
+    display: inline;
+}
+
+ul.pagination li .page-link{
+
+    padding: 3px 3px 4px;
+
+    display: block;
+    float: right;
+    margin-right: 5px;
+    border: 1px solid white;
+}
+
+
+ul.pagination li span.page-link{
+    background-color: #efefef;
+}
+
+
+
+
+/* Forms ------------------------------------------------------------------*/
+
+
+/*
+	A special hack is included for IE8 since it does not apply padding
+	correctly on fieldsets
+*/
+label, .label       { font-weight: bold; font-size: 72%; color: #434343; }
+fieldset   { margin: 1em 1.2em; padding-bottom: 1em; border: 0px solid #ccc;}
+/*border-top: 3px solid #0c4878;*/
+legend      { font-weight: bold; font-size:1.2em; margin-top:-0.2em; margin-bottom:1em; }
+
+fieldset, #IE8#HACK { padding-top:.5em; }
+legend, #IE8#HACK { margin-top:0; margin-bottom:0; }
+
+/* Form fields
+-------------------------------------------------------------- */
+
+/*
+  Attribute selectors are used to differentiate the different types
+  of input elements, but to support old browsers, you will have to
+  add classes for each one. ".title" simply creates a large text
+  field, this is purely for looks.
+*/
+
+input[type=text]:focus, input[type=password]:focus,
+input.text:focus, input.title:focus,
+textarea:focus {
+    border-color:#666;
+}
+aselect { background-color:#fff; border-width:1px; border-style:solid; }
+
+input[type=text], input[type=password],
+input.text, input.title,
+textarea, select {
+    background-color:#fff;
+    border:1px solid #bbb;
+    padding:5px;
+    margin:0.35em 0;
+}
+
+input.text,
+input.title   { width: 300px; padding:5px; }
+input.title   { font-size:1.5em; }
+textarea      { width: 390px; height: 250px; padding:5px; }
+
+/*
+  This is to be used on forms where a variety of elements are
+  placed side-by-side. Use the p tag to denote a line.
+*/
+form.inline { line-height:3; }
+form.inline p { margin-bottom:0; }
+
+
+/* Success, info, notice and error/alert boxes
+-------------------------------------------------------------- */
+
+.error,
+.alert,
+.notice,
+.success,
+.info 			{ padding: 0.8em; margin-bottom: 1em; border: 2px solid #ddd; }
+
+.error, .alert { background: #fbe3e4; color: #8a1f11; border-color: #fbc2c4; }
+.notice     { background: #fff6bf; color: #514721; border-color: #ffd324; }
+.success    { background: #e6efc2; color: #264409; border-color: #c6d880; }
+.info 			{ background: #d5edf8; color: #205791; border-color: #92cae4; }
+.error a, .alert a { color: #8a1f11; }
+.notice a   { color: #514721; }
+.success a  { color: #264409; }
+.info a			{ color: #205791; }
+
+.error_list li{
+    color: #B10000;
+    font-size: 70%;
+    margin:4px 0;
+    border: 1px solid #f4c5c6;
+    background-color: #f8e4e5;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+ul.error-global{
+    border: 1px solid #f4c5c6;
+    background-color: #f8e4e5;
+    padding: 5px;
+    margin-right: 5px;
+    margin-bottom: 15px;
+    font-size: 80%;
+    color: #B10000;
+}
+
+
+/* Customization
+-------------------------------------------------------------- */
+
+/*Tabs for the Index page*/
+
+#form-index, #form-search{
+    border: 1px solid #97d1f4;
+    background-color: #eff7fd;
+}
+
+#tabs-form{
+    border:1px solid white;;
+    overflow: hidden;
+}
+
+#tabs-form li{
+    display: inline;
+}
+
+#tabs-form li a{
+    height: 32px;
+    width:86px;
+    display:block;
+    background-color: #3488c3;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    font-size: 87%;
+    letter-spacing: .01em;
+    margin-right: 1px;
+    color: white;
+}
+
+#tabs-form .form-tab-last{
+    margin: 0;
+    width:87px;
+}
+
+#tabs-form a.selected{
+    background-color: #0c4878;
+    color:white;
+}
+
+a.multiple-destination{
+    float: right;
+    font-size: 85%;
+    margin: 0;
+    padding: 0;
+}
+
+
+table.form-index tr.topPadding td{
+    padding-top: 8px;
+}
+
+table.form-index a.multidestination-popup{
+    display: block;
+    width: 30px;
+    height: 25px;
+    float: left;
+    margin-top: 8px;
+    margin-left: 10px;
+}
+
+/* -----------------  */
+
+fieldset{ margin: 10px; padding: 0;}
+
+ul.radio_list{
+    width: 100%;
+}
+
+ul.checkbox_list{
+    height: auto;
+}
+
+ul.radio_list{
+
+}
+
+.radio_list li{
+    display:inline;
+    width: 160px;
+}
+
+table.form-index{
+    margin-bottom: 10px;
+    width: 95%;
+}
+
+table.form-index td{
+    border: 1px solid #eff7fd;
+}
+
+table.form-error td{
+    padding-right: 2px;
+}
+
+select.medium{
+    border:1px solid #bbbbbb;
+    padding:5px;
+    margin-top:5px;
+    width: 90px;
+}
+
+select{
+    border:1px solid #bbbbbb;
+    padding:5px;
+    margin-top:5px;
+}
+
+
+h3.form-index{
+    font-size: 80%;
+    border-bottom: 1px dotted #0c4878;
+    padding-bottom:10px;
+    font-weight: bold;
+    color: #0c4878;
+    margin-bottom: 5px;
+}
+
+input[type=submit].search-small{
+
+    float: left;
+    border:0px solid red;
+
+    margin-right: 20px;
+    margin-top: 5px;
+    background-position: left 2px;
+    border:0px solid white;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; /* future proofing */
+    -khtml-border-radius:5px; /* for old Konqueror browsers */
+}
+
+input[type=submit], input[type=submit].search-small, input[type=submit].update{
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; /* future proofing */
+    background: url("../images/generic/bkg-btn-blue.gif") repeat-x scroll 0 top #3A8FCE;
+    border-color: #508FCD #4483BF #2F6EA7 #3F7EB9;
+    border-style: solid;
+    border-width: 1px;
+    color: #ffffff;
+    letter-spacing: .03em;
+    padding: 4px 10px;
+    text-align: center;
+    text-shadow: 0 -1px 2px #2063AB;
+    font-size: 90%;
+    width:105px;
+    height: 32px;
+    float: right;
+}
+
+input[type=submit].search-small{
+    width: 80px;
+    height: 23px;
+    font-size: 80%;
+    padding:0 0 4px 0;
+}
+
+input[type=submit].update{
+    width: 100px;
+    height: 25px;
+    font-size: 80%;
+    padding:0;
+    float: none;
+}
+
+input[type=submit]:hover{
+    background: url("../images/generic/bkg-btn-blue-hover.gif") repeat-x scroll 0 top #3A8FCE;
+}
+
+.search-small:hover{
+    color: white;
+    background: none;
+    background-color: #0c4878;
+}
+
+#child-age-container{
+    overflow: auto;
+    clear: left;
+}
+
+div.child-age{
+    float: left;
+    margin: 7px 4px 0 0;
+    width: 45px;
+    display: block;
+}
+
+div.child-age label{
+    display: block;
+}
+
+/* Edit form */
+
+#search-more-options{
+    font-size: 80%;
+    float: left;
+
+}
+
+ul.matches-list li{
+    font-size: 90%;
+    margin-bottom: 3px;
+}
+
+
+
+
+/* Flight form */
+
+
+
+/* Hotel */
+
+.hotel-form-table{
+    width: 100%;
+}
+
+
+/* Previous searches columns */
+
+table.prev-searches{
+    border-bottom: 1px solid #a3b9cb;
+    border-top: 1px solid white;
+}
+
+table.prev-searches td{
+    padding: 5px 4px 6px 0;
+    border-bottom: 0px solid red;
+    font-size: 82%;
+}
+
+
+/* pagination */
+
+ul.pagination {
+    height: 15px;
+    display: block;
+    font-size: 82%;
+}
+
+ul.pagination li{
+    display: inline;
+}
+
+ul.pagination li .page-link{
+
+    padding: 3px 3px 4px;
+
+    display: block;
+    float: right;
+    margin-right: 5px;
+    border: 1px solid white;
+}
+
+
+ul.pagination li span.page-link{
+    background-color: #efefef;
+}
+
+/* Tab viewing ------------------------------- */
+
+#tab-viewing{
+    border-bottom: 1px solid #cecece;
+    height: 35px;
+    line-height: 35px;
+    font-size: 80%;
+    width: 100%;
+
+}
+
+
+
+#tab-viewing span{
+    float: left;
+    width: 65px;
+    display:block;
+    margin:0;
+    padding:0;
+    margin-left: 10px;
+}
+
+#tab-viewing ul{
+    margin: 0;
+    padding: 0;
+    margin-left: 10px
+}
+
+#tab-viewing ul li{
+    display: inline;
+    margin:0;
+    padding:0;
+}
+
+#tab-viewing a{
+    float: left;
+    display: block;
+    border: 1px solid #cecece;
+    border-bottom: none;
+    height: 34px;
+    margin-right: 5px;
+    padding-left: 31px;
+    padding-right: 15px;
+}
+
+#tab-viewing a.view-chart{
+    background: url('../images/icons/chart_bar.png') no-repeat 7px 8px;
+}
+
+#tab-viewing a.view-list{
+    background: url('../images/icons/page_white_text.png') no-repeat 11px 11px;
+    abackground: url('../images/icons/text_align_justify.png') no-repeat 11px 09px;
+
+}
+#tab-viewing a.view-map{
+    background: url('../images/icons/map.png') no-repeat 11px 11px;
+}
+
+#tab-viewing a.view-hotel{
+    background: url('../images/icons/flag_blue.png') no-repeat 11px 11px;
+}
+
+#tab-viewing #backToResults{
+    background: url('../images/icons/arrow_left.png') no-repeat 11px 11px;
+    float: right;
+    border: none;
+    text-align: right;
+    padding: 0;
+    padding-left: 35px;
+    display: none;
+}
+
+
+#tab-viewing a.selected{
+    border-bottom: 1px solid white;
+}
+
+/* Sorting -----------------------------  */
+
+#sorting{
+    border: 1px solid #dddddd;
+    height: 25px;
+    background-color: #ededed;
+    padding: 5px 0;
+    font-size: 80%;
+    padding-right: 8px;
+}
+
+#sorting span{
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#sorting ul li,level-1{
+    display: inline;
+}
+
+#sorting li.level-1{
+    float: left;
+    margin-right: 20px;
+    margin-left: 10px;
+    padding: 0px 5px 0px 5px;
+    border: 1px solid #ededed;
+    height: 23px;
+}
+
+#sorting li.level-1:hover{
+    border: 1px solid #bbbbbb;
+}
+
+#sorting li.level-1.selected{
+    background-color: white;
+    border: 1px solid #bbbbbb;
+}
+
+#sorting div.level-2{
+    width:20px;
+    float: left;
+}
+
+#sorting div.level-2 a{
+    text-indent: -300px;
+    background: #efefef url('../images/icons/sorting-bullet3.png') no-repeat left top;
+    overflow: hidden;
+    display: block;
+    border: 0px solid red;
+    width: 7px;
+    height: 5px;
+    padding: 0;
+    margin:4px 0;
+}
+
+#sorting div.level-2 a.selected{
+    background-position: left -5px;
+}
+
+#sorting div.level-2 a.asc.selected{
+    background-position: left -10px;
+}
+
+#sorting div.level-2 a.asc{
+    background-position: left -15px;
+}
+
+#sorting div.level-2 a:hover{
+    background-position: left -5px;
+}
+#sorting div.level-2 a.asc:hover{
+    background-position: left -10px;
+}
+
+#sorting div.level-3{
+    float: right;
+    padding-top: 5px;
+}
+
+#sorting ul.level-2 li a{
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    display: block;
+}
+
+#sorting li a.page-link{
+    float: right;
+    padding:2px 3px;
+    margin-right: 4px;
+    border: 1px solid #ededed;
+    display: block;
+    margin-top: 3px;
+}
+
+#sorting a.page-link:hover{
+    border: 1px solid #bbbbbb;
+}
+
+/* Select button */
+
+.flight-box-price .select, .select{
+    background: url(../images/generic/search.png) no-repeat left -5px;
+    width:105px;
+    height: 22px;
+    display: block;
+    font-size: 90%;
+    color: white;
+    line-height: 20px;
+     -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin:8px auto 0 auto;
+    aborder:1px solid #489ce4;
+}
+
+a.select:hover{
+    background-position: left -15px;
+    color: white;
+}
+
+.hotel-list-box .select{
+    font-size: 100%;
+    text-align: center;
+}
+
+a.search-magnifier{
+    background: url(../images/icons/magnifier.png) no-repeat 3px 3px;
+    width: 25px;
+    height: 24px;
+    display: block;
+    float: left;
+    overflow: hidden;
+    border:0px solid red;
+    margin: 4px 0 0 8px;
+    text-indent: -200px;
+}
+
+a.search-magnifier:hover{
+   background-image: url('../images/icons/magnifier_go.png');
+}
