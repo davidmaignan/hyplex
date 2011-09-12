@@ -1,0 +1,52 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/11-App
+
+# default values
+all:
+  plex:
+    url: http://test.hypertechsolutions.com/ipm2/services/PlexConnect
+    transactionId: TRANS101
+    systemName: Test
+    companyId: STD
+    partnerId: STD
+    username: wstest
+    password: wstest01
+
+  plex2:
+    url: http://test.hypertechsolutions.com/ipm3/services/PlexConnect
+    transactionId: TRANS101
+    systemName: Test
+    companyId: PCS
+    partnerId: PCS
+    username: admin
+    password: travel
+    
+
+  sf_guard_plugin:
+    routes_register: false
+
+  languages:
+    available: [zh_CN, fr_FR , en_US]
+
+  currency:
+    available: [USD, GDB, EURO, CAD, CHF]
+
+  cookie:
+    duration: 260000
+
+  plexSession:
+    duration: 900
+
+  layout:
+    template: test
+
+  hotel:
+    numberAdults: 6
+    numberChildren: 6
+    thumb:
+      width: 150
+      height: 105
+
+  currency: USD
+
+  telephone: 1 800 123 4567

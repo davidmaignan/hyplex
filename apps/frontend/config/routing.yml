@@ -1,0 +1,140 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+session_renew:
+  url: /:sf_culture/session/renewStid/:time
+  param: { module: session, action: renewStid }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+hotel_compare:
+  url: /:sf_culture/hotel/compare
+  param: { module: hotel, action: compare }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+filter_hotel_form:
+  url: /:sf_culture/hotel/filterHotel/
+  param: {module: hotel, action: filterHotel}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+hotel_detail:
+  url: /:sf_culture/hotel-detail/:slug
+  param: { module: hotel, action: hotelDetail }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+hotel_simple:
+  url: /:sf_culture/hotel/:wherebox/:checkin_date/:checkout_date
+  param: { module: hotel, action: hotelResult }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_hotel_form:
+  url: /:sf_culture/search/hotel/invalid/
+  param: { module: searchHotel, action: create }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+multidestination:
+  url: /:sf_culture/multidestination/index
+  param: { module: multidestination, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+package:
+  url: /:sf_culture/package/
+  param: { module: package, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_hotel:
+  url: /:sf_culture/search/hotel/
+  param: { module: searchHotel, action: index }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
+hotel:
+  url: /:sf_culture/hotel/
+  param: { module: hotel, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+no_flight_found:
+  url: /:sf_culture/flight/no-flight-found
+  param: { module: flight, action: notFound }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+test:
+  url: /:sf_culture/test/:action.:sf_format
+  param:   { module: test, action: index }
+  requirements:
+    sf_format: (?:xml|json|yaml|iphone)
+
+flight_oneway:
+  url: /:sf_culture/flight-oneway/:origin/:destination/:depart_date
+  param: { module: flight, action: flightResult }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
+flight_return:
+  url: /:sf_culture/flight-return/:origin/:destination/:depart_date/:return_date
+  param: { module: flight, action: flightResult }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
+filter_flight_form_oneway:
+  url: /:sf_culture/flight/filterFlightOneway/
+  param: {module: flight, action: filterFlightOneway}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+filter_flight_form:
+  url: /:sf_culture/flight/filterFlight/
+  param: {module: flight, action: filterFlight}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_multidestination_form:
+  url: /:sf_culture/search/flight/error2/
+  param: { module: searchFlight, action: create2 }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+multipleDestination:
+  url: /:sf_culture/search/flight/multiple-destinations
+  param: { module: searchFlight, action: multipleDestination }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_flight_form:
+  url: /:sf_culture/search/flight/invalid/
+  param: { module: searchFlight, action: create }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_flight:
+  url: /:sf_culture/search/flight/
+  param: { module: searchFlight, action: index }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
+change_language:
+  url:   /:sf_culture/change_language
+  param: { module: language, action: changeLanguage }
+
+localized_homepage:
+  url:   /:sf_culture/
+  param: { module: main, action: index }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
+homepage:
+  url:   /
+  param: { module: main, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+sf_guard_signin:
+  url: /signin
+  param: { module: sfGuardAuth, action: signin }
+
+
+sf_guard_signout:
+  url: /signout
+  param: { module: sfGuardAuth, action: signout }
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:sf_culture/:module/:action/*

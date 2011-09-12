@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+    <file source-language="EN" target-language="zh" datatype="plaintext" original="messages" date="2011-05-04T14:43:27Z" product-name="messages">
+        <header/>
+        <body>
+            <trans-unit id="1">
+                <source>About Hypertech</source>
+                <target>关于Hypertech</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Multiple destinations</source>
+                <target>多个目的地</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Are you sure you want to remove this segment</source>
+                <target>您确定要删除此部分</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Segment</source>
+                <target>段</target>
+            </trans-unit>
+            <trans-unit>
+                <source>More legs</source>
+                <target>更多的腿</target>
+            </trans-unit>
+            <trans-unit>
+                <source>remove</source>
+                <target>删除</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Stops</source>
+                <target>停止</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Non stop</source>
+                <target>不停</target>
+            </trans-unit>
+            <trans-unit>
+                <source>1 stop</source>
+                <target>1个停止</target>
+            </trans-unit>
+            <trans-unit>
+                <source>2+ stops</source>
+                <target>2 +停止</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Operated by: </source>
+                <target>承办单位: </target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight Times</source>
+                <target>每小时</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Take-off</source>
+                <target>起飞的</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Depart flight</source>
+                <target>出发航班</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Return flight</source>
+                <target>回程航班</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Airlines</source>
+                <target>航空公司</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Airline</source>
+                <target>航线</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight quality</source>
+                <target>飞行品质</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Trip duration</source>
+                <target>旅行期间</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Price</source>
+                <target>价格</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Duration</source>
+                <target>时间</target>
+            </trans-unit>
+            <trans-unit>
+                <source>only</source>
+                <target>只</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Show Overnight flight</source>
+                <target>夜航</target>
+            </trans-unit>
+            <trans-unit>
+                <source>From</source>
+                <target>从</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Date</source>
+                <target>日期</target>
+            </trans-unit>
+            <trans-unit>
+                <source>To</source>
+                <target>要</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight</source>
+                <target>飞行</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight details</source>
+                <target>航班信息</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Details</source>
+                <target>详情</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Share</source>
+                <target>分享</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Save</source>
+                <target>保存</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Select</source>
+                <target>选择</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Depart/Arrive</source>
+                <target>离开/到达</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Time</source>
+                <target>时间</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Cabin</source>
+                <target>机舱</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Outbound</source>
+                <target>出站</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Inbound</source>
+                <target>入境</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Airport</source>
+                <target>机场</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>About us</source>
+                <target>关于我们</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>My bookings</source>
+                <target>我的预订</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Advertise</source>
+                <target>广告</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Privacy</source>
+                <target>隐私</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Feedback</source>
+                <target>反馈</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Mobile version</source>
+                <target>移动版本</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Agent login</source>
+                <target>代理商登录</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Your previous searches</source>
+                <target>您以前的搜索</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Booking infos</source>
+                <target>预订新闻电台</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Search Flight</source>
+                <target>搜寻航班</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Home</source>
+                <target>首页</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Log in</source>
+                <target>登录</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Flight</source>
+                <target>飞行</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Hotel</source>
+                <target>酒店</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Car</source>
+                <target>车</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>Package</source>
+                <target>包旅行</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Activities</source>
+                <target>活动</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Not yet implemented</source>
+                <target>尚未实施</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>An error has occured</source>
+                <target>发生了一个错误</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>We apologize for the inconvenience. Please try again.</source>
+                <target>带来的不便，我们深表歉意。请再试一次</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Session Expired</source>
+                <target>会话超时</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Call our travel advisor</source>
+                <target>呼叫我们的旅行顾问</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Top destinations</source>
+                <target>最热门的目的地</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Number</source>
+                <target>数</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Depart</source>
+                <target>离开</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Arrive</source>
+                <target>到达</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Stop</source>
+                <target>停止</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>Duration</source>
+                <target>时间</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>From</source>
+                <target>从</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>To</source>
+                <target>要</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Trip details</source>
+                <target>旅行细节</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Flight options</source>
+                <target>航班选择</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Passengers informations</source>
+                <target>乘客信息</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>search</source>
+                <target>搜索</target>
+            </trans-unit>
+            <trans-unit id="36">
+                <source>STEP 1: Select a type of flight</source>
+                <target>第1步：选择航班类型</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>STEP 2: Origin &amp; destination</source>
+                <target>第2步：始发地和目的地</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>STEP 3: Dates &amp; times</source>
+                <target>步骤3：日期和时间</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>STEP 4: Flight options</source>
+                <target>第4步：航班选择</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>STEP 5: Passengers information</source>
+                <target>第五步：乘客信息</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight search</source>
+                <target>航班查询</target>
+            </trans-unit>
+            <trans-unit id="41">
+                <source>Page not found</source>
+                <target>找不到网页</target>
+            </trans-unit>
+            <trans-unit id="42">
+                <source>We could not found the page requested.</source>
+                <target>我们无法找到页面请求。</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Sort by</source>
+                <target>排序方式</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Take off</source>
+                <target>起飞</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Landing</source>
+                <target>着陆</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Show matrix</source>
+                <target>显示矩阵</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Need help?</source>
+                <target>有问题吗？</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Call us tool-free at</source>
+                <target>打电话给我们工具免费</target>
+            </trans-unit>
+            <trans-unit>
+                <source>You have sent a request</source>
+                <target>您发送一个请求</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Your request has been sent. Please wait !</source>
+                <target>您的请求已发送。请稍候！</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>You can always change your mind. Click cancel</source>
+                <target>您可以随时改变主意。点击取消</target>
+            </trans-unit>
+            <trans-unit>
+                <source>More airlines</source>
+                <target>更多航空公司</target>
+            </trans-unit>
+            <trans-unit>
+                <source>[1] (+1day)|(1,+Inf] (+%count%day)</source>
+                <target>[1] (+1日)|(1,+Inf] (+%count%天)</target>
+            </trans-unit>
+            <trans-unit>
+                <source>[0]0 stop|[1] 1 stop|(1,+Inf]%count% stops</source>
+                <target>[0]0 停止|[1] 1 停止|(1,+Inf]%count% 停止</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Check availability</source>
+                <target>Check availability</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Search a flight</source>
+                <target>搜索航班</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Search a hotel</source>
+                <target>搜索酒店</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Search a car</source>
+                <target>搜索车</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Search a package</source>
+                <target>查找包</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>A short message like a phone number for call center or latest promotion or tweet</source>
+                <target>像最新的呼叫中心或电话号码宣传或鸣叫短消息</target>
+            </trans-unit>
+            <trans-unit>
+                <source>No flight found</source>
+                <target>发现号飞行</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Something is broken</source>
+                <target>东西坏了</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Please e-mail us at issues@hypertech.com and let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</source>
+                <target>请发送电子邮件至issues@hypertech.com我们，让我们知道你在做什么时，这个错误发生。我们将修复它尽快。很抱歉造成任何不便。</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Depart</source>
+                <target>终</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Return</source>
+                <target>返回</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Options</source>
+                <target>选项</target>
+            </trans-unit>
+            <trans-unit>
+                <source>h </source>
+                <target>点</target>
+            </trans-unit>
+            <trans-unit>
+                <source>min</source>
+                <target>分</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Layover for </source>
+                <target>拉约弗为 </target>
+            </trans-unit>
+            <trans-unit>
+                <source>multiple airlines</source>
+                <target>多家航空公司</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Show Overnight flight</source>
+                <target>显示夜航</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Log out</source>
+                <target>登出</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
