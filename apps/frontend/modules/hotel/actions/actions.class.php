@@ -179,6 +179,103 @@ class hotelActions extends sfActions
 
     }
 
+    public function executeTermsConditions(sfWebRequest $request){
+
+        $slug = $request->getParameter('slug');
+        $termsConditionId = $request->getParameter('termsConditionId');
+
+        //return $this->renderText($slug .' - '.$termsConditionId);
+
+        $prevSearches = $this->getUser()->getAttribute('prevSearch');
+        $prevSearche = $prevSearches[count($prevSearches) - 1];
+
+        $filename = $prevSearche['file'];
+
+        $this->parameters = Utils::retreiveParameters($filename);
+
+        $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
+
+        $handle = fopen($file , 'r');
+        while(!feof($handle)){
+
+            $content = fgets($handle);
+            if(strpos($content , '---') === false){
+                $hotel = unserialize($content);
+                if(Utils::slugify($hotel->name) == $slug){
+                    $this->hotel = $hotel;
+                    break;
+                }
+            }
+        }
+
+        //return $this->renderText($hotel->name);
+
+        $termsConditionsFile = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.DIRECTORY_SEPARATOR.$termsConditionId.'.raw';
+
+        if(!file_exists($termsConditionsFile)){
+
+            $plexRequest = new PlexHotelRateDetails($hotel, $filename, $termsConditionId, $this->getUser());
+            $plexRequest->buildXML();
+            $response = $plexRequest->executeRequest();
+
+            
+
+            //$finalResponse = new PlexHotelDetailsResponse($hotel, $response, $request, $filename);
+            //$finalResponse->checkResponseCode();
+            //$code = $finalResponse->responseCode;
+
+
+        }else{
+
+            $response = file_get_contents($termsConditionsFile);
+
+            //return $this->renderText('file exists');
+
+            
+        }
+
+        $finalResponse = new PlexHotelRateResponse($response);
+        $finalResponse->checkResponseCode();
+        $code = $finalResponse->responseCode;
+
+        switch ($code) {
+
+            case '0':
+                  $finalResponse->parseResponse();
+                  break;
+
+            default:
+                    /*
+                  $this->getUser()->setFlash('parameters', $parameters);
+                  $datas = array();
+                  $datas['type'] = $this->type;
+                  $datas['infosUser'] = Utils::retreiveUserInfos($request);
+                  $datas['header'] = Utils::getHeader($finalResponse->filename);
+                  $datas['code']= 3;
+                  $datas['userFolder'] = sfConfig::get('sf_user_folder');
+                  $datas['filename'] = $finalResponse->filename;
+                  $datas['params'] = $paramFactory;
+
+                  //Save info in db
+                  $event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
+                  sfContext::getInstance()->getEventDispatcher()->notify($event);
+
+                  //$this->redirect('hotel/notFound');
+                     * 
+                     */
+                  $this->forward('error', 'plexError');
+                  break;
+
+        }
+
+
+        $this->result = $finalResponse;
+        
+
+        //return sfView::NONE;
+        
+    }
+
     public function executeHotelDetail(sfWebRequest $request){
 
         $debug = false;
@@ -189,6 +286,7 @@ class hotelActions extends sfActions
         $prevSearche = $prevSearches[count($prevSearches) - 1];
 
         $filename = $prevSearche['file'];
+        $this->filename = $filename;
 
         $this->parameters = Utils::retreiveParameters($filename);
 
@@ -328,5 +426,38 @@ class hotelActions extends sfActions
 
     }
 
+
+    public function executeRoomSelection(sfWebRequest $request){
+
+        $filename = $request->getPostParameter('filename');
+        $slug = $request->getPostParameter('slug');
+        
+        $this->parameters = Utils::retreiveParameters($filename);
+
+        $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
+
+        $handle = fopen($file , 'r');
+        while(!feof($handle)){
+
+            $content = fgets($handle);
+            if(strpos($content , '---') === false){
+                $hotel = unserialize($content);
+                if(Utils::slugify($hotel->name) == $slug){
+                    $this->hotel = $hotel;
+                    break;
+                }
+            }
+        }
+
+        echo "<pre>";
+        print_r($this->hotel);
+
+        $postParameters = $request->getPostParameters();
+        var_dump($this->parameters);
+        var_dump($postParameters);
+        exit;
+
+
+    }
     
 }

@@ -5,30 +5,32 @@
  */
 
 /**
- * Description of PlexHotelDetailsRequest
- *
- *
+ * Description of PlexHotelRateDetails
+ * Request to get terms and conditions for a specific rate
  * @author david
  */
-class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterface{
+class PlexHotelRateDetails extends PlexRequest implements PlexRequestInterface{
+    //put your code here
 
 
-    //Variables
+    //<SessionTokenId>
+    //<TransactionId>
+    //<CallingSystemId>
+    //<HotelId>
+    //<UniqueReferenceId>
     private $filename;
     private $hotel;
     protected $uniqueReferenceId;
+    
 
+    public function  __construct(HotelSimpleObj $hotel, $filename, $termsConditionId, sfUser $user) {
 
-    public function  __construct(HotelSimpleObj $hotel, $filename, sfUser $user) {
-
-        ob_start();
-
-
+        
         $this->sTId = $user->getAttribute('sTId');
         $this->filename = $filename;
 
-        
-        $this->uniqueReferenceId = $filename.'_'. time();
+
+        $this->termsConditionId = $termsConditionId;
 
         $this->callingSystemId = 'Hypertech';
 
@@ -37,23 +39,24 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
         //build the xml
         $this->defineParams(1);
 
-    }
 
+
+    }
 
     public function buildXML()
     {
          $this->xml  = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\"
                             xmlns:plex=\"http://plexconnect.ipm.hypertechsolutions.com\">
                             <soapenv:Header/> <soapenv:Body>
-                            <plex:PLEXC_HotelDescriptiveInfoRQ>
+                            <plex:PLEXC_HotelRateDetailRQ>
                                 <plex:SessionTokenId>{$this->sTId}</plex:SessionTokenId>
                                 <plex:TransactionId>{$this->transactionId}</plex:TransactionId>
                                 <plex:CallingSystemId>{$this->callingSystemId}</plex:CallingSystemId>
                                 <plex:HotelId>{$this->hotel->id}</plex:HotelId>
-                             </plex:PLEXC_HotelDescriptiveInfoRQ>
+                                <plex:UniqueReferenceId>{$this->termsConditionId}</plex:UniqueReferenceId>
+                            </plex:PLEXC_HotelRateDetailRQ>
                             </soapenv:Body>
                             </soapenv:Envelope>";
-
 
 
          return $this->xml;
@@ -63,7 +66,7 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
     public function getXML(){
         return $this->xml;
     }
-
+    
     public function executeRequest() {
 
         //$timer = sfTimerManager::getTimer('PlexRequest');
@@ -82,15 +85,15 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
         //$timer->addTime();
 
         ini_restore('error_reporting');
-        
-        $pathname = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename;
-        
 
-        $filename = $pathname.DIRECTORY_SEPARATOR.$this->hotel->id.'.raw';
+        $pathname = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename;
+
+
+        $filename = $pathname.DIRECTORY_SEPARATOR.$this->termsConditionId.'.raw';
         file_put_contents($filename, $this->response);
 
         chmod($filename, 0777);
-        
+
 
         return $this->response;
 
@@ -100,8 +103,4 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
 
     }
     
-
-    
-
 }
-?>

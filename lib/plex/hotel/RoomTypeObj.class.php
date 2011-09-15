@@ -52,6 +52,7 @@ class RoomTypeObj {
 
     }
 
+    
 
     protected function renameXMLTag($name){
 
@@ -68,10 +69,16 @@ class RoomTypeObj {
 
         $tmp['RateDescription'] = (string)$data->{'RateDescription'};
 
+        $tmp['termsConditionId'];
+
         $tmp2 = array();
         foreach ($data->children() as $key => $value) {
 
             $tmp2[(string)$key] = Utils::lcfirst((string)$value);
+
+            if((string)$key == 'UniqueReferenceId'){
+                $tmp['termsConditionId'] = (string)$value;
+            }
         }
 
         unset($tmp2['RateType']);
