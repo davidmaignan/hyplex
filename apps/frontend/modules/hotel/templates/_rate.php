@@ -2,8 +2,19 @@
     <td class="room-rate-name">
         <ul>
             <li class="rate-name"><?php echo $k; ?></li>
-            <li class="rate-links"><a href="#" class="rate-description">View description</a> <a href="#">Terms & conditions</a></li>
+            <li class="rate-links"><a href="#" class="rate-description">View description</a>
+                <a class="termsConditions" onclick="return false;"
+                   href="<?php echo url_for('hotel_terms_conditions',
+                                            array('slug'=>  Utils::slugify($hotel->name, ''),
+                                                  'termsConditionId'=> $rate['termsConditionId'])) ?>">
+                    Terms & conditions</a></li>
         </ul>
+        <div class="rate-description-content hide prepend-top">
+            <?php echo $rate['RateDescription']; ?>
+        </div>
+        <div class="term-condition-content prepend-top">
+            
+        </div>
     </td>
 
     <?php foreach($hotel->getRoomIds() as $arRoomId): ?>
@@ -15,8 +26,8 @@
                     <input class="radio-room-price"
                    type="radio"
                    <?php //if($firstRate === true) echo 'checked="checked"' ?>
-                   id="<?php echo $hotel->id.'-'.$arRoomId ?>"
-                   name="<?php echo $hotel->id.'-'.$arRoomId ?>"
+                   id="<?php echo /*$hotel->id.'-'.*/$arRoomId ?>"
+                   name="<?php echo /*$hotel->id.'-'.*/$arRoomId ?>"
                    value="<?php echo $rate[$arRoomId]['UniqueReferenceId'] ?>" />
 
                     <span class="price-per-night">
@@ -28,8 +39,6 @@
                     Total: <span class="price-total"><?php echo $rate[$arRoomId]['TotalPrice'] ?></span>
                 </li>
             </ul>
-            
-            
 
         </td>
 

@@ -572,8 +572,8 @@ hr.space3 {
 }
 
 #filterForm label{
-   font-size: 90%;
-   font-weight: normal;
+    font-size: 90%;
+    font-weight: normal;
 }
 
 
@@ -739,320 +739,330 @@ h2.room-title{
 /* Hotel detail page ---------------------------------------- --------------------  */
 
 table.rates, table.hotel-info{
-        margin: 10px 0;
-        font-size: 90%;
-        width: 100%;
-    }
-
-    table.rates th{
-        font-weight: bold;
-        height: 25px;
-        vertical-align: middle;
-        text-align: left;
-        border-bottom: 1px solid #a3b9cb;
-    }
-
-    table.rates td{
-        padding: 5px 10px;
-        vertical-align: top;
-    }
-
-
-    table.rates tr.room-type, table.rates tfoot tr{
-        border-top:  0px solid #a3b9cb;
-    }
-
-    table.rates tr.room-type td{
-        padding-top:10px;
-        padding-bottom:10px;
-        font-weight: bold;
-        font-size: 120%;
-        border-top: 2px solid #c2dae9;
-
-    }
-
-    table.rates span.rates-available{
-        font-weight: normal;
-        font-size: 70%;
-    }
-
-    table.rates tr.room-rate{
-        border-top: 1px solid #c2dae9;
-        border-style: dotted;
-        border-left: none;
-        border-right: none;
-    }
-
-    .odd{
-        background-color: #eff7fd;
-    }
-
-    table.rates tr.room-rate li.rate-name{
-        margin: 2px 0 6px 0;
-        font-weight: bold;
-        color: #555555;
-    }
-
-    table.rates li.rate-links a{
-        font-size: 90%;
-        background: url('/images/icons/bullet_square.gif') no-repeat left 5px;
-        padding-left: 10px;
-        margin-right: 10px;
-    }
-
-    table.rates .price input{
-        padding-right: 20px;
-    }
-
-    tables.rates td.room-night-price{
-        text-align: right;
-    }
-
-    table.rates .price-per-night{
-        font-size: 103%;
-        color: #0c4878;
-        letter-spacing: 1px;
-        font-weight: bold;
-
-    }
-
-    table.rates .price-total{
-        font-size: 80%;
-        margin-top: 9px;
-        text-align: center;
-
-    }
-
-
-    table.rates tr.checked td{
-        background-color: #EFEDDA;
-    }
-
-    table.rates tbody td.room-rate-name{
-        color: #333333;
-        font-size: 90%;
-    }
-
-
-
-    table.rates .more-room-type{
-        background: url("/images/icons/bullet_add.png") no-repeat scroll left top transparent;
-        padding-left:21px;
-        font-size: 80%;
-        font-weight: normal;
-    }
-
-    table.rates .less-room-type{
-        background: url("/images/icons/bullet_delete.png") no-repeat scroll left top transparent;
-    }
-
-    table.rates .more-rates{
-        font-weight: bold;
-        abackground: url("/images/icons/bullet_toggle_plus.png") no-repeat scroll left top transparent;
-        apadding-left: 20px;
-        padding-right: 15px;
-        display:block;
-        float: left;
-        font-size: 90%;
-    }
-
-    table.rates .less-rate{
-        abackground: url("/images/icons/bullet_toggle_minus.png") no-repeat scroll left top transparent;
-    }
-
-    table.rates .borderLeft{
-        border-left: 1px solid #DAD8EE;
-    }
-
-    table.rates .type2{
-        display: none;
-    }
-
-    table.rates a.hotel-open-all{
-        font-size: 85%;
-        font-weight: normal;
-        float: right;
-        background: url("/images/icons/table_add.png") no-repeat scroll left top transparent;
-        padding-left: 20px;
-        height: 16px;
-        text-indent: -200px;
-        overflow: hidden;
-    }
-
-    table.rates .room-type-summary{
-        color: #5C5C5C;
-        font-size: 90%;
-        margin: 0px;
-        border: 1px solid #ece6c4;
-        background-color: #f6f3e2;
-        padding: 6px;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        border-radius: 10px; /* future proofing */
-        -khtml-border-radius:10px; /* for old Konqueror browsers */
-    }
-
-    table.rates span.blue{
-         color: #0c4878;
-
-    }
-
-    table.rates td.selected{
-        background-color: #f6f3e2;
-    }
-
-    /* Total boxes */
-    #hotel-total-top{
-        float: right;
-        padding:10px 7px;
-        border: 1px solid #dedecf;
-        background-color: #edede5;
-    }
-
-
-    /* Google map */
-
-    #tab-data-map{
-        display: none;
-    }
-
-    #map_canvas{
-        width: 100%;
-        height: 350px;
-        background-color: #eee;
-    }
-
-    #resetMap{
-        font-size: 80%;
-    }
-
-    .list-activities h6{
-        font-size: 80%;
-        font-weight: bold;
-
-        margin: 0 0 3px 0;
-
-    }
-    .list-activities ul{
-        margin: 0 0 8px 0;
-    }
-
-    .list-activities ul li{
-
-        font-size: 80%;
-        padding-bottom: 3px;
-
-
-    }
-
-    /* Hotel info */
-
-    #tab-data-info{
-        display: table-row;
-    }
-
-
-    #tabs{
-        height: 28px;
-        background-color: #eff6fb;
-        border:1px solid #a3b9cb;
-    }
-
-    #tabs li{
-        display: inline;
-        font-size: 85%;
-        line-height: 18px;
-    }
-
-    #tabs a{
-        padding: 0 18px;
-        height: 28px;
-        display: block;
-        float: left;
-        line-height: 28px;
-        min-width: 70px;
-        border-right: 1px solid #a3b9cb;
-        text-align: center;
-    }
-
-    #tabs a:hover{
-        background-color: #e0edf8;
-    }
-
-    #tabs a.selected{
-        background-color: #a3b9cb;
-        color: white;
-    }
-
-    #tabs a.selected:hover{
-        color: white;
-    }
-
-    #hotel-description{
-        font-size: 82%;
-    }
-
-    #hotel-description p{
-        font-size: 100%;
-        margin-bottom: 5px;
-    }
-
-    #hotel-description b, #hotel-description strong{
-        font-weight: bold
-    }
-
-    #images #main-image{
-        width: 300px;
-        height: 200px;
-        background-color: #ddd;
-        display: block;
-        float: left;
-        margin-right: 10px;
-    }
-
-    #list-thumbs{
-        float: left;
-        width: 370px;
-    }
-
-    #list-thumbs li{
-        display: inline;
-    }
-
-    #list-thumbs li a{
-        display: block;
-        float: left;
-        margin-right: 10px;
-        margin-bottom: 10px;
-    }
-
-    .hotel-detail p{
-
-        font-size: 82%;
-        line-height: 15.6px;
-        letter-spacing: normal;
-        font-weight: 400;
-    }
-
-
-
-    /* Hotel info */
-
-
-    table.hotel-info td{
-        font-size: 90%;
-        line-height: 17px;
-        padding: 5px 5px 10px 15px;
-    }
-
-    table.hotel-info td.first{
-        width: 100px;
-        color: #0c4878;
-        font-weight: bold;
-        background-color: #edede5;
-        border-bottom: 1px solid white;
-        padding: 5px 5px 10px 15px;
-    }
+    margin: 10px 0;
+    font-size: 90%;
+    width: 100%;
+}
+
+table.rates th{
+    font-weight: bold;
+    height: 25px;
+    vertical-align: middle;
+    text-align: left;
+    border-bottom: 1px solid #a3b9cb;
+}
+
+table.rates td{
+    padding: 5px 10px;
+    vertical-align: top;
+}
+
+
+table.rates tr.room-type, table.rates tfoot tr{
+    border-top:  0px solid #a3b9cb;
+}
+
+table.rates tr.room-type td{
+    padding-top:10px;
+    padding-bottom:10px;
+    font-weight: bold;
+    font-size: 120%;
+    border-top: 2px solid #c2dae9;
+
+}
+
+table.rates span.rates-available{
+    font-weight: normal;
+    font-size: 70%;
+}
+
+table.rates tr.room-rate{
+    border-top: 1px solid #c2dae9;
+    border-style: dotted;
+    border-left: none;
+    border-right: none;
+}
+
+.odd{
+    background-color: #eff7fd;
+}
+
+table.rates tr.room-rate li.rate-name{
+    margin: 2px 0 6px 0;
+    font-weight: bold;
+    color: #555555;
+}
+
+table.rates li.rate-links a{
+    font-size: 90%;
+    background: url('/images/icons/bullet_square.gif') no-repeat left 5px;
+    padding-left: 10px;
+    margin-right: 10px;
+}
+
+table.rates .price input{
+    padding-right: 20px;
+}
+
+tables.rates td.room-night-price{
+    text-align: right;
+}
+
+table.rates .price-per-night{
+    font-size: 103%;
+    color: #0c4878;
+    letter-spacing: 1px;
+    font-weight: bold;
+
+}
+
+table.rates .price-total{
+    font-size: 80%;
+    margin-top: 9px;
+    text-align: center;
+
+}
+
+
+table.rates tr.checked td{
+    background-color: #EFEDDA;
+}
+
+table.rates tbody td.room-rate-name{
+    color: #333333;
+    font-size: 90%;
+}
+
+
+
+table.rates .more-room-type{
+    background: url("/images/icons/bullet_add.png") no-repeat scroll left top transparent;
+    padding-left:21px;
+    font-size: 80%;
+    font-weight: normal;
+}
+
+table.rates .less-room-type{
+    background: url("/images/icons/bullet_delete.png") no-repeat scroll left top transparent;
+}
+
+table.rates .more-rates{
+    font-weight: bold;
+    abackground: url("/images/icons/bullet_toggle_plus.png") no-repeat scroll left top transparent;
+    apadding-left: 20px;
+    padding-right: 15px;
+    display:block;
+    float: left;
+    font-size: 90%;
+}
+
+table.rates .less-rate{
+    abackground: url("/images/icons/bullet_toggle_minus.png") no-repeat scroll left top transparent;
+}
+
+table.rates .borderLeft{
+    border-left: 1px solid #DAD8EE;
+}
+
+table.rates .type2{
+    display: none;
+}
+
+table.rates a.hotel-open-all{
+    font-size: 85%;
+    font-weight: normal;
+    float: right;
+    background: url("/images/icons/table_add.png") no-repeat scroll left top transparent;
+    padding-left: 20px;
+    height: 16px;
+    text-indent: -200px;
+    overflow: hidden;
+}
+
+table.rates .room-type-summary{
+    color: #5C5C5C;
+    font-size: 90%;
+    margin: 0px;
+    border: 1px solid #ece6c4;
+    background-color: #f6f3e2;
+    padding: 6px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius:10px; /* for old Konqueror browsers */
+}
+
+table.rates span.blue{
+    color: #0c4878;
+
+}
+
+table.rates td.selected{
+    background-color: #f6f3e2;
+}
+
+
+.term-condition-content{
+    line-height: 15px;
+}
+
+span.term-condition-title{
+    font-weight: bold;
+    display: block;
+    margin: 4px 0 2px;
+}
+/* Total boxes */
+#hotel-total-top{
+    float: right;
+    padding:10px 7px;
+    border: 1px solid #dedecf;
+    background-color: #edede5;
+}
+
+
+/* Google map */
+
+#tab-data-map{
+    display: none;
+}
+
+#map_canvas{
+    width: 100%;
+    height: 350px;
+    background-color: #eee;
+}
+
+#resetMap{
+    font-size: 80%;
+}
+
+.list-activities h6{
+    font-size: 80%;
+    font-weight: bold;
+
+    margin: 0 0 3px 0;
+
+}
+.list-activities ul{
+    margin: 0 0 8px 0;
+}
+
+.list-activities ul li{
+
+    font-size: 80%;
+    padding-bottom: 3px;
+
+
+}
+
+/* Hotel info */
+
+#tab-data-info{
+    display: table-row;
+}
+
+
+#tabs{
+    height: 28px;
+    background-color: #eff6fb;
+    border:1px solid #a3b9cb;
+}
+
+#tabs li{
+    display: inline;
+    font-size: 85%;
+    line-height: 18px;
+}
+
+#tabs a{
+    padding: 0 18px;
+    height: 28px;
+    display: block;
+    float: left;
+    line-height: 28px;
+    min-width: 70px;
+    border-right: 1px solid #a3b9cb;
+    text-align: center;
+}
+
+#tabs a:hover{
+    background-color: #e0edf8;
+}
+
+#tabs a.selected{
+    background-color: #a3b9cb;
+    color: white;
+}
+
+#tabs a.selected:hover{
+    color: white;
+}
+
+#hotel-description{
+    font-size: 82%;
+}
+
+#hotel-description p{
+    font-size: 100%;
+    margin-bottom: 5px;
+}
+
+#hotel-description b, #hotel-description strong{
+    font-weight: bold
+}
+
+#images #main-image{
+    width: 300px;
+    height: 200px;
+    background-color: #ddd;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+#list-thumbs{
+    float: left;
+    width: 370px;
+}
+
+#list-thumbs li{
+    display: inline;
+}
+
+#list-thumbs li a{
+    display: block;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.hotel-detail p{
+
+    font-size: 82%;
+    line-height: 15.6px;
+    letter-spacing: normal;
+    font-weight: 400;
+}
+
+
+
+/* Hotel info */
+
+
+table.hotel-info td{
+    font-size: 90%;
+    line-height: 17px;
+    padding: 5px 5px 10px 15px;
+}
+
+table.hotel-info td.first{
+    width: 100px;
+    color: #0c4878;
+    font-weight: bold;
+    background-color: #edede5;
+    border-bottom: 1px solid white;
+    padding: 5px 5px 10px 15px;
+}
 
 
 
@@ -1360,11 +1370,11 @@ table.rates, table.hotel-info{
 /* Gritter notification ---------------------------------------------------  */
 
 #gritter-notice-wrapper {
-	position:fixed;
-	top:20px;
-	right:20px;
-	width:301px;
-	z-index:9999;
+    position:fixed;
+    top:20px;
+    right:20px;
+    width:301px;
+    z-index:9999;
 }
 #gritter-notice-wrapper.top-left {
     left: 20px;
@@ -1383,67 +1393,67 @@ table.rates, table.hotel-info{
     left: 20px;
 }
 .gritter-item-wrapper {
-	position:relative;
-	margin:0 0 10px 0;
-	background:url('../images/gritter/ie-spacer.gif'); /* ie7/8 fix */
+    position:relative;
+    margin:0 0 10px 0;
+    background:url('../images/gritter/ie-spacer.gif'); /* ie7/8 fix */
 }
 .gritter-top {
-	background:url(../images/gritter/gritter.png) no-repeat left -30px;
-	height:10px;
+    background:url(../images/gritter/gritter.png) no-repeat left -30px;
+    height:10px;
 }
 .hover .gritter-top {
-	background-position:right -30px;
+    background-position:right -30px;
 }
 .gritter-bottom {
-	background:url(../images/gritter/gritter.png) no-repeat left bottom;
-	height:8px;
-	margin:0;
+    background:url(../images/gritter/gritter.png) no-repeat left bottom;
+    height:8px;
+    margin:0;
 }
 .hover .gritter-bottom {
-	background-position: bottom right;
+    background-position: bottom right;
 }
 .gritter-item {
-	display:block;
-	background:url(../images/gritter/gritter.png) no-repeat left -40px;
-	color:#eee;
-	padding:2px 11px 8px 11px;
-	font-size: 11px;
-	font-family:verdana;
+    display:block;
+    background:url(../images/gritter/gritter.png) no-repeat left -40px;
+    color:#eee;
+    padding:2px 11px 8px 11px;
+    font-size: 11px;
+    font-family:verdana;
 }
 .hover .gritter-item {
-	background-position:right -40px;
+    background-position:right -40px;
 }
 .gritter-item p {
-	padding:0;
-	margin:0;
+    padding:0;
+    margin:0;
 }
 .gritter-close {
-	display:none;
-	position:absolute;
-	top:5px;
-	left:3px;
-	background:url(../images/gritter/gritter.png) no-repeat left top;
-	cursor:pointer;
-	width:30px;
-	height:30px;
+    display:none;
+    position:absolute;
+    top:5px;
+    left:3px;
+    background:url(../images/gritter/gritter.png) no-repeat left top;
+    cursor:pointer;
+    width:30px;
+    height:30px;
 }
 .gritter-title {
-	font-size:14px;
-	font-weight:bold;
-	padding:0 0 7px 0;
-	display:block;
-	text-shadow:1px 1px #000; /* Not supported by IE :( */
+    font-size:14px;
+    font-weight:bold;
+    padding:0 0 7px 0;
+    display:block;
+    text-shadow:1px 1px #000; /* Not supported by IE :( */
 }
 .gritter-image {
-	width:48px;
-	height:48px;
-	float:left;
+    width:48px;
+    height:48px;
+    float:left;
 }
 .gritter-with-image,
 .gritter-without-image {
-	padding:0 0 5px 0;
+    padding:0 0 5px 0;
 }
 .gritter-with-image {
-	width:220px;
-	float:right;
+    width:220px;
+    float:right;
 }

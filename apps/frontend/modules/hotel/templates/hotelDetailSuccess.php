@@ -1,6 +1,13 @@
 <?php use_helper('Date', 'Number', 'I18n', 'Text'); ?>
 <?php echo "<script> var slugName = '".$slugName."'; </script>"; ?>
 <?php echo "<script> var hotelThumbName = '#hotel-thumb-".$hotel->id."'; </script>"; ?>
+
+
+<form id="hotel-detail-form" method="post" action="<?php echo url_for('hotel_detail_form') ?>">
+
+    <input type="hidden" name="slug" value="<?php echo Utils::slugify($hotel->name) ?>" />
+    <input type="hidden" name="filename" value="<?php echo $filename ?>" />
+
 <div class="span-18 shadow bg-white prepend-top append-bottom hotel-detail">
 
     <div class="span-18 last ">
@@ -212,11 +219,13 @@
 
 </div>
 
+</form>
+
 <hr class="space3" />
 
 <?php
-
-//var_dump($hotel->getFullFacilities());
+echo "<pre>";
+print_r($hotel);
 
 ?>
 
@@ -395,6 +404,7 @@
         }
 
         activateRadioRoomPrice();
+        activateTermsConditions();
 
 
   });

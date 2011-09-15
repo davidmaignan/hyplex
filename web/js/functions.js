@@ -9,6 +9,8 @@ var markerFiltered;
 
 var hotelViewediterator = 0;
 
+var termsConditionsTarget;
+
 var ajaxRequest;
 
 var sTID_time;
@@ -682,9 +684,7 @@ function in_array (needle, haystack, argStrict) {
 
 function activateHotelTabulation(){
 
-    $('.hotelResult-tabs').click(function(){
-
-            
+    $('.hotelResult-tabs').click(function(){            
 
             var value = $(this).attr('id');
 
@@ -1348,10 +1348,58 @@ function addHotelThumb(hotelThumbName, hotelThumb){
         */
     }
 
-    
 
-    
+}
 
+
+function activateTermsConditions(){
+
+    $('a.rate-description').toggle(function(){
+        $(this).closest('.room-rate-name').children('.rate-description-content').show();
+    }, function(){
+        $(this).closest('.room-rate-name').children('.rate-description-content').hide();
+    });
+
+
+    $('a.termsConditions').toggle(function(){
+        executeRequestTermsConditions($(this));
+    }, function(){
+        $(this).closest('.room-rate-name').children('.term-condition-content').hide();
+    });
+
+   
+}
+
+
+function executeRequestTermsConditions(target){
+
+    var preLoader = new Image();
+    preLoader.src = '/images/arrowLoader.gif';
+
+    termsConditionsTarget = target.closest('.room-rate-name').children('.term-condition-content');
+    termsConditionsTarget.append(preLoader);
+    
+    var url = target.attr('href');
+
+    $.ajax({
+            type: "post",
+            url: url,
+            success: onTermsConditionsSuccess,
+            error: onTermsConditionsFailure
+    });
+    
+    return false;
+
+}
+
+function onTermsConditionsSuccess(msg){
+    //alert(msg);
+    termsConditionsTarget.show();
+    termsConditionsTarget.html(msg);
+}
+
+function onTermsConditionsFailure(){
+    
 }
 
 
@@ -1420,6 +1468,8 @@ function onCompareRequestSuccess(msg){
 function onCompareRequestFailure(msg){
     alert('onCompareRequestFailure');
 }
+
+
 /* Hotel detail page functions -------------------------------------------- */
 
 function activateRadioRoomPrice(){
@@ -1523,6 +1573,6 @@ function onStidRequestSuccess(msg){
 
 function onStidRequestFailure(){
 
-    
+    alert('Your session has expired');
 
 }

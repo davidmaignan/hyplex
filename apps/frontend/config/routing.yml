@@ -6,6 +6,16 @@ session_renew:
   param: { module: session, action: renewStid }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
+hotel_detail_form:
+  url: /:sf_culture/hotel/selectRoom/
+  param: { module: hotel, action: roomSelection }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+hotel_terms_conditions:
+  url: /:sf_culture/hotel/TermsConditions/:slug/:termsConditionId
+  param: { module: hotel, action: termsConditions }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 hotel_compare:
   url: /:sf_culture/hotel/compare
   param: { module: hotel, action: compare }

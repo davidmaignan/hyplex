@@ -15,9 +15,7 @@
 <!-- for gmap -->
 <?php use_javascript('gmap/infobubble-compiled'); ?>
 <?php use_javascript('gmap/markerclusterer_packed'); ?>
-
 <?php include_partial('include/dialog_message'); ?>
-
 <?php use_helper('Date','Number','I18n','Text'); ?>
 
 <script type="text/javascript">
@@ -25,24 +23,15 @@
     var gMapHotels = <?php echo $sf_data->get('gMapHotels',ESC_RAW); ?>;
 </script>
 
-<div class="span-26">
-    <?php 
-    //print_r($sf_data->get('filterValues',ESC_RAW)); ?>
-</div>
-
 <div class="span-26 last summary">
     <?php include_partial('summary',array('parameters'=>$parameters,'nbrHotels'=>$filterResponse->nbrTotalHotels)); ?>
 </div>
-
-
 
 <div class="span-7">
     <?php echo html_entity_decode($filterFormFinal); ?>
 </div>
 
 <div class="span-18 last" style="width: 715px;">
-
-    <?php //echo image_tag('tmp/hotel.jpg'); ?>
 
     <div class="span-18 append-bottom" id="tab-viewing">
         <ul>
@@ -54,50 +43,28 @@
     </div>
     <hr class="space2" />
 
-
-
     <div id="hotelListResult">
-
-    <?php include_partial('sorting'); ?>
-    <hr class="space2" />
-
-    <div id="Results">
-    <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
-    <?php foreach($results as $key=>$result): ?>
-        <?php include_partial('hotel',array('key'=>$key,'result'=>$result,'parameters'=>$parameters)); ?>
-    <?php endforeach; ?>
-    <hr />
-    <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
-    </div>
-        
-        <?php if(!$sf_request->getParameter('true')):?>
-
-        <!--<table class="table-debug">-->
-        <?php foreach($results as $key=>$result): ?>
-        <?php //include_partial('hotel', array('hotel'=>$result)); ?>
-        <?php //include_partial('hotel2',array('hotel'=>$result)); ?>
-        <?php //echo html_entity_decode($result); ?>
-        <?php endforeach; ?>
-        <!--</table>-->
-        <?php else: ?>
-
-        <?php include_partial('debug',array('results'=>$results)); ?>
-
-
-        <?php endif; ?>
-
+        <?php include_partial('sorting'); ?>
+        <hr class="space2" />
+        <div id="Results">
+            <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
+            <?php foreach($results as $key=>$result): ?>
+                <?php include_partial('hotel',array('key'=>$key,'result'=>$result,'parameters'=>$parameters)); ?>
+            <?php endforeach; ?>
+            <hr />
+            <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
+        </div>
     </div>
     
     <div id="gMapHotels">
-
         <div id="gMapHotels_canvas"></div>
         <hr class="space"/>
         <ul id="gMapIcons-legend">
-                <li>Filtered</li>
-                <li class="off">Unfiltered</li>
-                <li class="viewed">Viewed</li>
-                <li class="viewedoff">Unfiltered viewed</li>
-                <li class="last"><a class="resetGmap">Reset map</a></li>
+            <li>Filtered</li>
+            <li class="off">Unfiltered</li>
+            <li class="viewed">Viewed</li>
+            <li class="viewedoff">Unfiltered viewed</li>
+            <li class="last"><a class="resetGmap">Reset map</a></li>
         </ul>
         <hr />
         <ul id="gMapTips">
@@ -105,42 +72,27 @@
             <li class="gMapTip tip-1">Zoom in</li>
             <li class="gMapTip tip-2">Center map on icon + zoom in.</li>
             <li class="gMapTip tip-3">Go to hotel<br /> detailed page</li>
-            
-            
         </ul>
-        
-        <hr class="space3"/>
     </div>
-    
+    <hr class="space3"/>
 
     <div id="viewedHotels" class="span-18">
         <h2 class="title"><?php echo __('My viewed hotels'); ?></h2>
-        
-        <div id="viewedHotelsContainer">
-           
-        </div>
-
+        <div id="viewedHotelsContainer"></div>
         <hr />
         <a class="select center" id="viewedHotelsCompare" href="<?php echo url_for('hotel_compare'); ?>"><?php echo ucfirst(__('compare')); ?></a>
     </div>
 
-    <div id="compareHotels" class="span-18">
-        
-   </div>
+    <div id="compareHotels" class="span-18"></div>
 
 </div>
 <hr class="space3" />
-
 
 </div>
 
 <?php include_component('basket', 'index', array()); ?>
 
-
-
 <script>
-
-
 
 $('document').ready(function(){
        
@@ -176,7 +128,7 @@ $('document').ready(function(){
 
         activateHotelTabulation();
 
-        showHideHotelDivs(2);
+        //showHideHotelDivs(2);
 
         activateShowHideLocationChain();
 
@@ -277,8 +229,6 @@ $('document').ready(function(){
     });
     
 
-
-
 function timeTotalPopup(){
     timerTotalPopup = setTimeout("hideTotalPopup()",5000);
 };
@@ -332,7 +282,6 @@ function activateHotelGallery(){
         $(this).children('a.hotel-gallery').hide();
     });
 };
-
 
 
 </script>
