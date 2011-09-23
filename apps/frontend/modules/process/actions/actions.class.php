@@ -33,9 +33,7 @@ class processActions extends sfActions
           $type = 'hotelSimple';
       }
 
-      //var_dump($parameters);
-      //break;
-
+      
 
       //Temporary redirection to notImplemented page
       switch ($type) {
@@ -56,24 +54,30 @@ class processActions extends sfActions
               break;
       }
 
-      //var_dump($type);
       //var_dump($parameters);
+      //var_dump($type);
+      //exit;
 
       $paramFactory = PlexParametersFactory::factory($type, $parameters, $this->getUser()->getCulture());
 
       //echo "<pre>";
       //print_r($paramFactory);
-      //break;
+      //exit;
 
       $searchParametersArray = $paramFactory->getParametersArray($this->getUser()->getCulture());
       //var_dump($searchParametersArray);
         
       //If error in parameter class
+
+
+
+
       if($paramFactory->problemWithCode === true)
       {
           $this->forward('searchFlight', 'index');
       }
 
+     
       if($debug === false){
       
           //Create PlexRequest Object - Generate a sessionTokenId or reuse cached one
@@ -96,6 +100,9 @@ class processActions extends sfActions
           //echo htmlentities($plexRequest->getXML());
           //echo "<hr />";
           //break;
+
+          
+
 
           $response = $plexRequest->executeRequest();
 

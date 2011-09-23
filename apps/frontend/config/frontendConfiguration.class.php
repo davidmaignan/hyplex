@@ -5,13 +5,14 @@ class frontendConfiguration extends sfApplicationConfiguration {
     public function configure() {
         $this->dispatcher->connect('request.filter_parameters', array($this, 'filterRequestParameters'));
         $this->dispatcher->connect('user.cache_folder', array('myUser', 'createFolder'));
-        $this->dispatcher->connect('request.filter_parameters', array($this, 'filterRequestParameters'));
+        //$this->dispatcher->connect('user.new_request',array('myUser','addNewRequest'));
+        //$this->dispatcher->connect('request.filter_parameters', array($this, 'filterRequestParameters'));
         $this->dispatcher->connect('plex.airline_array', array('Utils', 'createAirlineArray'));
         $this->dispatcher->connect('php.throw_error', array('sfErrorLogger','phpError'));
         $this->dispatcher->connect('plex.responsexml_error', array('sfErrorLogger','plexError'));
         $this->dispatcher->connect('plex.response_success', array('PlexLogger','logResponse'));
 
-        }
+    }
 
     public function filterRequestParameters(sfEvent $event, $parameters) {
         $request = $event->getSubject();

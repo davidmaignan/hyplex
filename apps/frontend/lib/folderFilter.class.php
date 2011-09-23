@@ -53,9 +53,8 @@ class folderFilter extends sfFilter {
                     $log->warning('folder exists and cookie too. PERFECT');
                     $user->setAttribute('folder', $cookie);
                     sfConfig::set('sf_user_folder', $folder );
-
-                    //Retreive the previous searches saved in the request file in the sf_user_folder
-                    Utils::retreivePrevSearch($user);
+                    //Utils::retreivePrevSearch($user);
+                    
 
                 }else{
                     $log->alert('folder Filter has detected the cookie but the folder does not exist anymore');
@@ -88,7 +87,7 @@ class folderFilter extends sfFilter {
                 }
  
                 $user->setCulture($culture);
-                $user->isFirstRequest(false);
+                
             } else {
                 $culture = $user->getCulture();
             }
@@ -96,6 +95,28 @@ class folderFilter extends sfFilter {
             $controller->redirect('localized_homepage');
         }
 
+        //Load basket from file or create a new one
+        $basketFile = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'basket';
+        if(file_exists($basketFile)){
+            $basketContent = file_get_contents($basketFile);
+            $plexBasket = unserialize($basketContent);
+            if($plexBasket === false){
+                $plexBasket = PlexBasket::getInstance();
+            }
+            $plexBasket->setInstance($plexBasket);
+
+        }else{
+            $plexBasket = PlexBasket::getInstance();
+        }
+
+
+        //If first request - move all the previous saved items to an historic state / array
+        if($user->isFirstRequest()){
+            $user->isFirstRequest(false);
+            $plexBasket->setAllItemsToHistoric();
+            //Retreive the previous searches saved in the request file in the sf_user_folder
+            //Utils::retreivePrevSearch($user);
+        }
         
         // Execute the next filter
         $filterChain->execute();

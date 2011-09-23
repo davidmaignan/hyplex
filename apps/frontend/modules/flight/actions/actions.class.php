@@ -27,36 +27,91 @@ class flightActions extends sfActions {
         parent::preExecute();
     }
 
+    public function executeFlightModified(sfWebRequest $request){
+
+        $filename = $request->getParameter('filename');
+        $parameters = PlexParsing::retreiveParameters($filename);
+        $type = ($parameters->oneway == 0)? 'flightReturn': 'flightOneway';
+
+         switch ($type) {
+              case 'flightOneway':
+                  $url = $this->generateUrl('flight_oneway', array(
+                      'origin'=>$parameters->getOrigin(),
+                      'destination'=>$parameters->getDestination(),
+                      'depart_date'=>$parameters->depart_date
+                  ));
+                  break;
+
+              case 'flightReturn':
+                  $url = $this->generateUrl('flight_return', array(
+                      'origin'=>$parameters->getOrigin(),
+                      'destination'=>$parameters->getDestination(),
+                      'depart_date'=>$parameters->depart_date,
+                      'return_date'=>$parameters->return_date
+                  ));
+              break;
+         }
+
+        PlexParsing::moveSearchToTheEnd($this->getUser(), $filename);
+
+        $this->redirect($url);
+
+
+
+    }
+
     /*
      * Return Flight section
      */
-
     public function executeFlightResult(sfWebRequest $request) {
 
-        //$filename = $this->getUser()->getFlash('filename');
-        //$filename = '/Users/david/Sites/Hypertech/cache/4d9877dce4a9c/flightReturn-6WFj4N';
-        //Get the last filename
-        $prevSearches = $this->getUser()->getAttribute('prevSearch');
-        //var_dump($prevSearches);
 
-        $prevSearche = $prevSearches[count($prevSearches) - 1];
-        $filename = $prevSearche['file'];
+        //var_dump($this->getUser()->hasFlash('filename'));
+        //var_dump($this->getUser()->getFlash('filename'));
+        //exit;
 
-        //echo $filename;
-        //break;
 
+        switch (true) {
+              case  $this->getUser()->hasFlash('filename'):
+                  $this->filename = $this->getUser()->getFlash('filename');
+                  break;
+
+              case $request->hasParameter('filename'):
+                  $this->filename = $request->getParameter('filename');
+
+              default:
+                  $prevSearches = $this->getUser()->getAttribute('prevSearch');
+                  $prevSearche = end($prevSearches);
+                  $this->filename = $prevSearche['filename'];
+                  break;
+          }
+
+        //var_dump($this->filename);
+
+          /*
+
+        if(!$request->hasParameter('filename')){
+            $prevSearches = $this->getUser()->getAttribute('prevSearch');
+            $prevSearche = $prevSearches[count($prevSearches) - 1];
+            $this->filename = $prevSearche['file'];
+        }else{
+            $this->filename = $request->getParameter('filename');
+        }
+        */
+
+          
         $this->page = 1;
 
-
         //Retrieve the search parameters.
-        $this->parameters = Utils::retreiveParameters($filename);
+        $this->parameters = Utils::retreiveParameters($this->filename);
 
         //var_dump($this->parameters);
+        //exit;
         //echo $this->parameters->getType();
         //break;
 
         $filteredResponse = PlexFilterResponseFactory::factory(
-                        $this->parameters->getType(), $filename, $this->page, array()
+                        $this->parameters->getType(), $this->filename, $this->page, array()
         );
 
         $this->filterResponse = $filteredResponse;
@@ -113,9 +168,9 @@ class flightActions extends sfActions {
         $this->parameters = $request->getPostParameters();
 
         $type = $request->getPostParameter('type');
-        $filename = $request->getPostParameter('filename');
+        $this->filename = $request->getPostParameter('filename');
         $filteredResponse = PlexFilterResponseFactory::factory(
-                        $type, $filename, 1, $this->parameters
+                        $type, $this->filename, 1, $this->parameters
         );
 
         $this->results = $filteredResponse->filteredObjs;
@@ -134,8 +189,29 @@ class flightActions extends sfActions {
             $this->setLayout('layout');
         }
 
-
         $this->parameters = $this->getUser()->getFlash('parameters');
+    }
+
+    public function executeSelected(sfWebRequest $request){
+
+        $filename = $request->getParameter('filename');
+        $uniqueReferenceId = $request->getParameter('uniqueReferenceId');
+
+        $flight = PlexParsing::retreiveFlight($filename, $uniqueReferenceId);
+
+        if($flight){
+            $plexBasket = PlexBasket::getInstance();
+            $plexBasket->addFlight($filename, $uniqueReferenceId);
+            $this->redirect('basket/index');
+        }
+
+        $this->redirect('error/missingFlight');
+    }
+
+    public function executeModifyFlight(sfWebRequest $request){
+
+
+
     }
 
 }

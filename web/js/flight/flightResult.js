@@ -131,5 +131,11 @@ $('document').ready(function(){
         //For reset filter btn
         activateResetFilter();
 
+        //Show / hide flight form
 
+         $('#changeSearch').toggle(function(){
+            $('#form').show();
+        }, function(){
+            $('#form').hide();
+        });
 });

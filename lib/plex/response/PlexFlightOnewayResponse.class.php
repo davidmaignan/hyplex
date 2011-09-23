@@ -160,18 +160,14 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
         fclose($handle);
         chmod($this->getFilename() . '.plex', 0777);
 
+        
+
         //Create and/or add info request / might have to modify it to save some extra info (min price, max price, airlines ...) -> to define by tomi
-        $file = sfConfig::get('sf_user_folder') . '/request';
-        $handle = fopen($file, 'ab');
-        //fwrite($handle, date('Y-m-d H:i:s') . '|' . $this->filename . '|' . $this->type . '|' . serialize($this->request->getPostParameters()) . "\r\n");
-        fwrite($handle, "\r\n". date('Y-m-d H:i:s') . '|' . $this->filename . '|' . $this->type . '|' . serialize($this->paramFactory));
-        fclose($handle);
-        chmod($file, 0777);
+        PlexParsing::addNewRequest($this->filename, $this->type, $this->paramFactory);
 
         //Delete the xml file
         //unlink($this->getFilename().'.xml');
-        //Retreive the previous searches and add them to user object attribute prevSearches.
-        Utils::retreivePrevSearch(sfContext::getInstance()->getUser());
+        
 
         $datas = array();
         $datas['type'] = $this->type;

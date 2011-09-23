@@ -89,6 +89,12 @@ div.append-bottom, .append-bottom {
     line-height: 25px;
 }
 
+#top-header span{
+    color: white;
+    margin-right: 20px;
+    line-height: 25px;
+}
+
 #top-header a:hover{
     color: white;
 }
@@ -1072,6 +1078,8 @@ table.hotel-info td.first{
     display: none;
 }
 
+
+
 .hotel-thumb{
     border: 1px solid #97d1f4;
     overflow: visible;
@@ -1088,8 +1096,32 @@ table.hotel-info td.first{
     border-color: #C6D880;
     cursor: pointer;
     cursor: hand;
-
 }
+
+#viewedHotelsContainer .hotel-thumb-off, #viewedHotelsContainer .hotel-thumb-on, #viewedHotelsContainer .hotel-thumb-remove{
+    background: url('../images/generic/bg_compare_off.png') no-repeat left top;
+    width: 150px;
+    height: 62px;
+    display: block;
+    position: absolute;
+    text-align: center;
+    top:7px;
+    left: 7px;
+    padding:43px 0 0 0px;
+    font-size: 110%;
+    display: none;
+}
+
+#viewedHotelsContainer .hotel-thumb-on{
+    background-image: url('../images/generic/bg_compare_on.png');
+    display: none;
+}
+
+#viewedHotelsContainer .hotel-thumb-remove{
+    background-image: url('../images/generic/bg_compare_remove.png');
+    display: none;
+}
+
 
 .hotel-thumb.last{
     margin-right: 0px;
@@ -1366,6 +1398,77 @@ table.hotel-info td.first{
     text-align: right;
 }
 
+/* Hotel compare */
+
+#hotelComparison td{
+    padding:10px 5px;
+    border: 0px solid #aaa;
+    font-size: 80%;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 18px;
+    border-right: 1px dotted #a3b9cb;
+}
+
+
+#hotelComparison a{
+    font-weight: bold;
+}
+
+#hotelComparison table.prices td.style1{
+    width: 30px;
+    font-size: 70%;
+}
+
+#hotelComparison table.prices td.style2{
+    font-size: 130%;
+    color:#0c4878;
+    letter-spacing: .2px;
+}
+
+#hotelComparison .style2{
+    font-size: 130%;
+    color:#0c4878;
+}
+
+#hotelComparison .style3{
+    font-size: 110%;
+    font-weight: bold;
+    color:#4c4c4c;
+}
+
+
+#hotelComparison .style4{
+    font-size: 90%;
+    color:#4c4c4c;
+}
+
+#hotelComparison td.bordered{
+    border-top: 1px dotted #a3b9cb;
+}
+
+
+#hotelComparison table.prices td{
+    font-size: 100%;
+    padding:10px 5px;
+    border: none;
+    border-collapse: collapse;
+    border-top: 1px dotted #a3b9cb;
+}
+
+.facilities.hover{
+    background-color: #f2bad3;
+}
+
+.facilites.green{
+
+}
+
+#hotelComparison tr td ul li.green{
+    color: #ed145b;
+    font-weight: bold;
+}
+
 
 /* Gritter notification ---------------------------------------------------  */
 
@@ -1456,4 +1559,164 @@ table.hotel-info td.first{
 .gritter-with-image {
     width:220px;
     float:right;
+}
+
+
+/* Basket ------------------------------------------------------------------*/
+
+#basket-summary td{
+    padding:6px;
+}
+
+#basket-summary td.icon{
+    width: 26px;
+}
+
+tr.basket-list-header, tr.basket-list{
+    background-color: #beddf8;
+}
+
+tr.basket-list-header.active{
+    cursor: pointer;
+    cursor: hand;
+}
+
+tr.basket-list-header:hover{
+    background-color: #aec9de;
+}
+
+#basket-summary tr.basket-list td{
+    background-color: #eff7fd;
+    font-size: 80%;
+
+}
+
+tr.basket-list-header td{
+    vertical-align: middle;
+}
+
+tr.basket-list-total{
+    border-bottom: 1px solid #a3b9cb;
+    border-top: 1px solid #a3b9cb;
+    background-color: #E0EDF8;
+}
+
+tr.basket-list-total .sub-person{
+    font-size: 80%;
+    padding-top: 10px;
+}
+
+tr.basket-list td.sub-total{
+    font-weight: normal;
+}
+
+td.sub-total{
+    text-align: right;
+    color: #0c4878;
+    font-weight: bold;
+    font-size: 92%;
+    letter-spacing: .02em;
+}
+
+tr.basket-list-header.non-active{
+    background-color: #f8f8f6;
+    height: 30px;
+    border-bottom: 1px solid white;
+}
+
+#basket-summary ul.sub-list li{
+    padding: 2px 0;
+}
+
+a.add{
+    background: white url('/images/icons/add-transparent.png') no-repeat 4px 3px;
+    padding:2px 8px 4px 25px;
+    line-height: 29px;
+    font-size: 90%;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px; /* future proofing */
+    -khtml-border-radius:10px; /* for old Konqueror browsers */
+    font-weight: normal;
+}
+
+a.add:hover{
+    background-image: url('/images/icons/add.png');
+}
+
+
+table.basket-flight{
+    font-size: 85%;
+    border: 0px solid #97d1f4;
+    background-color: #eff7fd;
+}
+
+table.basket-flight td{
+    padding:8px 6px;
+    border-bottom: 1px solid #a3b9cb;
+    border-color: #97d1f4;
+}
+
+table.basket-flight td.first{
+    font-size: 90%;
+    font-weight: bold;
+}
+
+#basket-total td{
+    padding:5px;
+}
+
+#basket-summary td.total{
+    font-size: 100%;
+    padding:15px 5px;
+    text-align: right;
+    font-weight: bold;
+    color:#0c4878;
+}
+
+#flight-list-link li{
+    display: inline;
+    background-color: red;
+    border: 1px solid red;
+    width: 120px;
+}
+
+a.basket-flight-link{
+    margin-left: 10px;
+}
+
+.basket-view-flight, .basket-view-hotel, .basket-view-extras, .basket-view-car, .basket-view-excursions{
+    background: url('../images/mobico/icons_all_off.png') no-repeat 3px 7px;
+}
+
+.basket-view-flight:hover,
+.basket-view-hotel:hover,
+.basket-view-extras:hover,
+.basket-view-car:hover,
+.basket-view-excursions:hover{
+    background-image: url('../images/mobico/icons_all_hover.png');
+}
+
+.basket-view-flight.selected,
+.basket-view-hotel.selected,
+.basket-view-extras.selected,
+.basket-view-car.selected,
+.basket-view-excursions.selected{
+    background-image: url('../images/mobico/icons_all_on.png');
+}
+
+.basket-view-hotel{
+    background-position: 3px -28px
+}
+
+.basket-view-extras{
+    background-position: 3px -58px
+}
+
+.basket-view-car{
+    background-position: 3px -88px
+}
+
+.basket-view-excursions{
+    background-position: 3px -120px
 }

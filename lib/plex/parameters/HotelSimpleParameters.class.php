@@ -103,6 +103,15 @@ class HotelSimpleParameters extends PlexHotelParameters {
         return $string;
     }
    
-
+    public function getWhereBoxBasketPage($culture = 'en_US'){
+        $string = '';
+        //$string = $this->arWhere['code'];
+        //$string .= (isset($this->arWhere['airport']) && $this->arWhere['airport'] != '')? ' ('.$this->arWhere['airport'].')': '';
+        $string .= $this->arWhere[$culture]['name'];
+        $string .= ' ('.$this->arWhere['code'].')';
+        $string .= isset($this->arWhere[$culture]['state'])? ' ['.$this->arWhere[$culture]['state']['code'].'] ': '';
+        $string .= ', '.$this->arWhere[$culture]['country'];
+        return $string;
+    }
     
 }

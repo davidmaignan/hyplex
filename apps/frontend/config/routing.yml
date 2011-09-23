@@ -1,18 +1,38 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+basket_remove:
+  url: /:sf_culture/basket/remove/:type
+  param: { module: basket, action: remove }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+basket:
+  url: /:sf_culture/basket
+  param: { module: basket, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 session_renew:
   url: /:sf_culture/session/renewStid/:time
   param: { module: session, action: renewStid }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
+hotel_modified_search:
+  url: /:sf_culture/hotel-modified-search/:filename
+  param: { module: searchHotel, action: modifySearch }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+hotel_modified:
+  url: /:sf_culture/hotel-modified/:filename
+  param: { module: hotel, action: hotelModified }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 hotel_detail_form:
-  url: /:sf_culture/hotel/selectRoom/
-  param: { module: hotel, action: roomSelection }
+  url: /:sf_culture/hotel/selectHotel/
+  param: { module: hotel, action: selected }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 hotel_terms_conditions:
-  url: /:sf_culture/hotel/TermsConditions/:slug/:termsConditionId
+  url: /:sf_culture/hotel/TermsConditions/:slug/:termsConditionId/*
   param: { module: hotel, action: termsConditions }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
@@ -51,6 +71,12 @@ package:
   param: { module: package, action: index }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
+search_hotel_complementary:
+  url: /:sf_culture/search/hotel/complementary
+  param: { module: searchHotel, action: searchComplementary }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
 search_hotel:
   url: /:sf_culture/search/hotel/
   param: { module: searchHotel, action: index }
@@ -72,6 +98,21 @@ test:
   param:   { module: test, action: index }
   requirements:
     sf_format: (?:xml|json|yaml|iphone)
+
+flight_modified_search:
+  url: /:sf_culture/flight-modified-search/:filename
+  param: { module: searchFlight, action: modifySearch }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+flight_modified:
+  url: /:sf_culture/flight-modified/:filename
+  param: { module: flight, action: flightModified }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+flight_selected:
+  url: /:sf_culture/fligth-selected/:filename/:uniqueReferenceId
+  param: { module: flight, action: selected }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 flight_oneway:
   url: /:sf_culture/flight-oneway/:origin/:destination/:depart_date
@@ -135,13 +176,18 @@ sf_guard_signin:
   url: /signin
   param: { module: sfGuardAuth, action: signin }
 
-
 sf_guard_signout:
   url: /signout
   param: { module: sfGuardAuth, action: signout }
 
 # generic rules
 # please, remove them by adding more specific rules
+
+reset:
+  url: /:sf_culture/reset
+  param: { module: main , action: reset }
+
+
 default_index:
   url:   /:module
   param: { action: index }

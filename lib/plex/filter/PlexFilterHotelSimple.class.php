@@ -112,7 +112,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
         //Price slider  -------------------------------------------------------------------------------------
 
-        $arPrices = split('-', $filters['average_nigthlyRate']);
+        $arPrices = explode('-', $filters['average_nigthlyRate']);
 
         $filterMinPrice = trim($arPrices[0]);
         $filterMaxPrice = trim($arPrices[1]);

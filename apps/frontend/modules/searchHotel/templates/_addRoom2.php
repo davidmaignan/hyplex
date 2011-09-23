@@ -14,7 +14,7 @@
                     <li><?php echo $form['newRooms'][$num]['number_children']; ?></li>
                 </ul>
             </td>
-            <td style="width: 200px;">
+            <td style="width: 250px;">
                 <div id="child-container-<?php echo $num; ?>"></div>
             </td>
             <td style="vertical-align: top; padding-top: 35px; width: 50px;">

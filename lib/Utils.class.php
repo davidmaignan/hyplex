@@ -178,6 +178,7 @@ class Utils {
 
         //Add to the previous one
         $prevSear = $user->getAttribute('prevSearch');
+        
         //var_dump($prevSear);
         if (is_array($prevSear)) {
             $searches = array_merge($prevSear, $searches);
@@ -194,7 +195,6 @@ class Utils {
      * Open file request, look for the lines where it is saved and unserialize the object
      * @return paramFactory object containing the parameters
      */
-
     static public function retreiveParameters($filename) {
         $array = explode('/', $filename);
 

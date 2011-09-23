@@ -20,21 +20,92 @@ class hotelActions extends sfActions
     //$this->forward('default', 'module');
   }
 
-  public function executeHotelResult(sfWebRequest $request)
-  {
-      $prevSearches = $this->getUser()->getAttribute('prevSearch');
-        //var_dump($prevSearches);
+  public function executeHotelModified(sfWebRequest $request){
 
-      $prevSearche = $prevSearches[count($prevSearches) - 1];
-      $filename = $prevSearche['file'];
+        $filename = $request->getParameter('filename');
+        $parameters = PlexParsing::retreiveParameters($filename);
+
+        $url = $this->generateUrl('hotel_simple',array(
+                  'wherebox'=>$parameters->getWhereBox(),
+                  'checkin_date'=>$parameters->getCheckinDate(),
+                  'checkout_date'=>$parameters->getCheckoutDate()
+        ));
+
+        //Need to move position to the last one in $this->getUser()->getAttribute('prevSearch') array
+
+        PlexParsing::moveSearchToTheEnd($this->getUser(), $filename);
+
+        $this->redirect($url);
+
+  }
+
+
+
+
+  public function executeHotelResult(sfWebRequest $request){
+
+
+      //var_dump($this->getUser()->getFlash('filename'));
+      //exit;
+
+      
+      switch (true) {
+          case  $this->getUser()->hasFlash('filename'):
+              $this->filename = $this->getUser()->getFlash('filename');
+              break;
+
+          case $request->hasParameter('filename'):
+              $this->filename = $request->getParameter('filename');
+
+          default:
+              $prevSearches = $this->getUser()->getAttribute('prevSearch');
+              $prevSearche = end($prevSearches);
+              $this->filename = $prevSearche['filename'];
+              break;
+      }
+
+      /*
+      if(!$request->hasParameter('filename')){
+            $prevSearches = $this->getUser()->getAttribute('prevSearch');
+            $prevSearche = $prevSearches[count($prevSearches) - 1];
+            $this->filename = $prevSearche['file'];
+      }else{
+            
+      }
+      */
+
+      
+      $filename = $this->filename;
 
       $this->page = 1;
 
       //Retrieve the search parameters.
-      $this->parameters = Utils::retreiveParameters($filename);
+      $this->parameters = PlexParsing::retreiveParameters($filename);
 
       //Generate the form for modifying the search
+      //$this->form = new SearchHotelForm($this->parameters->getParametersArray($this->getUser()->getCulture()));
+
+      $values = $this->parameters->getParametersArray($this->getUser()->getCulture());
+        //var_dump($values);
       $this->form = new SearchHotelForm($this->parameters->getParametersArray($this->getUser()->getCulture()));
+
+      $rooms = $values['newRooms'];
+
+      foreach($rooms as $key=>$value){
+        $this->form->addRoomEdit($key, $value);
+      }
+
+      if(isset($values['childrenAge'])){
+
+        $childrenAges = $values['childrenAge'];
+        foreach($childrenAges as $key=>$child){
+            $datas = explode('_', $key);
+            $this->form->addChildrenAgeEdit($datas[0], $datas[1], $child);
+        }
+
+      }
+
+
 
       //Create Filter object
       $filteredResponse = PlexFilterResponseFactory::factory(
@@ -184,12 +255,19 @@ class hotelActions extends sfActions
         $slug = $request->getParameter('slug');
         $termsConditionId = $request->getParameter('termsConditionId');
 
+        if($request->hasParameter('filename')){
+            $filename = $request->getParameter('filename');
+        }else{
+            $prevSearches = $this->getUser()->getAttribute('prevSearch');
+            $prevSearche = end($prevSearches);
+            $filename = $prevSearche['filename'];
+        }
+
+
+
         //return $this->renderText($slug .' - '.$termsConditionId);
 
-        $prevSearches = $this->getUser()->getAttribute('prevSearch');
-        $prevSearche = $prevSearches[count($prevSearches) - 1];
-
-        $filename = $prevSearche['file'];
+        
 
         $this->parameters = Utils::retreiveParameters($filename);
 
@@ -283,10 +361,13 @@ class hotelActions extends sfActions
         $slug = $request->getParameter('slug');
 
         $prevSearches = $this->getUser()->getAttribute('prevSearch');
-        $prevSearche = $prevSearches[count($prevSearches) - 1];
+        $prevSearche = end($prevSearches);
+        
+        $filename = $prevSearche['filename'];
 
-        $filename = $prevSearche['file'];
         $this->filename = $filename;
+
+        //return $this->renderText($filename);
 
         $this->parameters = Utils::retreiveParameters($filename);
 
@@ -397,7 +478,7 @@ class hotelActions extends sfActions
         $prevSearches = $this->getUser()->getAttribute('prevSearch');
         $prevSearche = $prevSearches[count($prevSearches) - 1];
 
-        $filename = $prevSearche['file'];
+        $filename = $prevSearche['filename'];
 
         $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
 
@@ -427,36 +508,59 @@ class hotelActions extends sfActions
     }
 
 
-    public function executeRoomSelection(sfWebRequest $request){
+    public function executeSelected(sfWebRequest $request){
 
         $filename = $request->getPostParameter('filename');
         $slug = $request->getPostParameter('slug');
+        //var_dump($request->getPostParameters());
+
+        //Check number of rooms selected / in case javascript didn't work
+
+        $hotel = PlexParsing::retreiveHotel($filename, $slug);
+
+        //$hotel = new HotelSimpleObj();
+        $parameters = $request->getPostParameters();
+        $roomsPosted = array_keys($parameters);
+
+
+        //var_dump($roomsPosted);
+
+        $roomIds = $hotel->getRoomIds();
+
+        //var_dump($roomIds);
         
-        $this->parameters = Utils::retreiveParameters($filename);
+        if(!array_intersect($roomIds, $roomsPosted)==$roomIds){
 
-        $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
+            return $this->redirect('error/missingHotelRoom');
 
-        $handle = fopen($file , 'r');
-        while(!feof($handle)){
+            $url = $this->generateUrl('hotel_simple',array(
+                  'wherebox'=>$paramFactory->getWhereBox(),
+                  'checkin_date'=>$paramFactory->getCheckinDate(),
+                  'checkout_date'=>$paramFactory->getCheckoutDate()
+              ));
 
-            $content = fgets($handle);
-            if(strpos($content , '---') === false){
-                $hotel = unserialize($content);
-                if(Utils::slugify($hotel->name) == $slug){
-                    $this->hotel = $hotel;
-                    break;
-                }
-            }
+            $this->forward($url);
         }
 
-        echo "<pre>";
-        print_r($this->hotel);
+        //Remove filename & slug from parameters
+        unset($parameters['filename']);
+        unset($parameters['slug']);
 
-        $postParameters = $request->getPostParameters();
-        var_dump($this->parameters);
-        var_dump($postParameters);
-        exit;
+        $plexBasket = PlexBasket::getInstance();
+        $plexBasket->addHotel($filename, $slug, $parameters, $roomIds);
 
+        //var_dump('all good');
+        
+       
+        $this->redirect('basket/index');
+
+    }
+
+
+    public function executeErrorSelected(){
+
+        //var_dump('errorSeleted');
+        //exit;
 
     }
     

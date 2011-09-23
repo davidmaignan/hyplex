@@ -7,74 +7,7 @@ ini_set('display_errors', '1');
 <h1><?php ucfirst(__('Hotel Comparison')) ?></h1>
 
 <style>
-    #hotelComparison td{
-        padding:10px 5px;
-        border: 0px solid #aaa;
-        font-size: 80%;
-        text-align: center;
-        vertical-align: middle;
-        line-height: 18px;
-        border-right: 1px dotted #a3b9cb;
-    }
     
-
-    #hotelComparison a{
-        font-weight: bold;
-    }
-
-    #hotelComparison table.prices td.style1{
-        width: 30px;
-        font-size: 70%;
-    }
-
-    #hotelComparison table.prices td.style2{
-        font-size: 130%;
-        color:#0c4878;
-        letter-spacing: .2px;
-    }
-
-    #hotelComparison .style2{
-        font-size: 130%;
-        color:#0c4878;
-    }
-
-    #hotelComparison .style3{
-        font-size: 110%;
-        font-weight: bold;
-        color:#4c4c4c;
-    }
-
-
-    #hotelComparison .style4{
-        font-size: 90%;
-        color:#4c4c4c;
-    }
-
-    #hotelComparison td.bordered{
-        border-top: 1px dotted #a3b9cb;
-    }
-
-
-    #hotelComparison table.prices td{
-        font-size: 100%;
-        padding:10px 5px;
-        border: none;
-        border-collapse: collapse;
-        border-top: 1px dotted #a3b9cb;
-    }
-
-    .facilities.hover{
-        background-color: #f2bad3;
-    }
-
-    .facilites.green{
-        
-    }
-
-    #hotelComparison tr td ul li.green{
-        color: #ed145b;
-        font-weight: bold;
-    }
 
 </style>
 
@@ -189,9 +122,30 @@ ini_set('display_errors', '1');
             <td class="style4"><?php echo rand(555, 855); ?> reviews</td>
         <?php endforeach; ?>
         </tr>
+
+
+        <?php
+            //Create array to hold alphabet so we display amenities in front of each other
+            // so rollover for amenities gets improved.
+            $arAlphabet = array();
+            $arHotelsFacilities = array();
+            foreach ($arHotels as $hotel){
+                foreach($hotel->getFullFacilitiesListSorted() as $facility){
+                    array_push($arAlphabet, $facility[0]);
+                }
+                array_push($arHotelsFacilities, $hotel->getFullFacilitiesListSorted());
+            }
+
+            $arAlphabet = array_unique($arAlphabet);
+            sort($arAlphabet);
+
+        ?>
+
         <tr class="<?php echo (fmod($jeton, 2) == 0)? 'odd': ''; $jeton++;?>">
             <td style="vertical-align: top;">Hotel facilities</td>
+
             <?php foreach ($arHotels as $hotel): ?>
+
             <td style="text-align: left; vertical-align: top;">
 
                 <ul>

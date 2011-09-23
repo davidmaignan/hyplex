@@ -209,7 +209,7 @@ abstract class PlexFlightParameters extends PlexParameters {
         if (!isset($this->number_adults)) {
             throw new Exception('PlexFlightParameters: you must define a number of adults');
         }
-        return $this->number_adults;
+        return (int)$this->number_adults;
     }
 
     /*
@@ -219,13 +219,15 @@ abstract class PlexFlightParameters extends PlexParameters {
 
     public function getChildren() {
 
+
+
         if (!isset($this->number_children)) {
             throw new Exception('PlexFlightParameters: you must define a number of children');
         }
 
         $numChildren = $this->number_children;
 
-        return $this->number_children;
+        return (int)$this->number_children;
 
 
         $array = array();
@@ -252,7 +254,7 @@ abstract class PlexFlightParameters extends PlexParameters {
             throw new Exception('PlexFlightParameters: you must define a number of children');
         }
 
-        return $this->number_infants;
+        return (int)$this->number_infants;
 
     }
 

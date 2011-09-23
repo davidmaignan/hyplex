@@ -289,6 +289,7 @@ form.inline p { margin-bottom:0; }
 .success a  { color: #264409; }
 .info a			{ color: #205791; }
 
+
 .error_list li{
     color: #B10000;
     font-size: 70%;
@@ -297,6 +298,7 @@ form.inline p { margin-bottom:0; }
     background-color: #f8e4e5;
     padding: 5px;
     margin-right: 5px;
+    overflow: visible;
 }
 
 ul.error-global{
@@ -498,7 +500,7 @@ input[type=submit]:hover{
 div.child-age{
     float: left;
     margin: 7px 4px 0 0;
-    width: 45px;
+    width: 65px;
     display: block;
 }
 
@@ -754,14 +756,14 @@ ul.pagination li span.page-link{
 
 /* Select button */
 
-.flight-box-price .select, .select{
+.flight-box-price .select, .select, .delete{
     background: url(../images/generic/search.png) no-repeat left -5px;
     width:105px;
     height: 22px;
     display: block;
     font-size: 90%;
     color: white;
-    line-height: 20px;
+    line-height: 22px;
      -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
     border-radius: 5px;
@@ -769,9 +771,28 @@ ul.pagination li span.page-link{
     aborder:1px solid #489ce4;
 }
 
-a.select:hover{
+a.delete{
+    background-image:    url('../images/generic/delete.png');
+}
+
+a.change{
+    border: 0px solid white;
+    padding: 3px 8px;
+    font-weight: bold;
+}
+
+a.change:hover{
+    text-decoration: underline;
+}
+
+a.select:hover, a.delete:hover{
     background-position: left -15px;
     color: white;
+}
+
+a.delete:hover{
+    background: none;
+    background-color: #790000;
 }
 
 .hotel-list-box .select{

@@ -24,25 +24,9 @@
 <?php use_javascript('search/airport_list_'.$sf_user->getCulture().'.js'); ?>
 <?php use_javascript('search/datepicker_'.$sf_user->getCulture().'.js'); ?>
 
-<style type="text/css">
-    #dialog-message{
-        display: none;
-        text-align: center;
-    }
-
-
-
-</style>
-
-<div id="dialog-message" title="<?php echo __('You have sent a request') ?>">
-    <p style="text-align: center;"><?php echo image_tag('generic/ajax-loader.gif', array('alt' => '')) ?></p>
-    <br />
-    <p><?php echo __('Your request has been sent. Please wait !'); ?></p>
-    <p><?php //echo __('You can always change your mind. Click cancel');       ?></p>
-</div>
-
-
+<?php include_partial('include/dialog_message'); ?>
 <div class="span-26">
+    
     <div class="span-15">
         <?php if ($sf_request->hasParameter('origin')): ?>
         <h2><?php echo __('More information required for origin'); ?></h2>
@@ -75,7 +59,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>2 adults, 1 infant</td>
+                    <td colspan="2">2 adults, 1 infant</td>
                 </tr>
             </table>
             <?php endfor; ?>

@@ -57,14 +57,14 @@
 </div>
 
 <div class="span-20 last">
-    <div class="span-15 append-bottom hide">
-        <div id="form-search">
-            <?php //include_partial('searchFlight/editForm', array('form' => $form, 'parameters' => $parameters)); ?>
+    <div class="span-15 append-bottom ">
+        <div id="form" class="hide">
+            <?php include_partial('searchFlight/form', array('form' => $form, 'parameters' => $parameters)); ?>
             </div>
         </div>
 
     <div class="span-20 shadow append-bottom" id="tab-viewing">
-        <span>View as: </span>
+       
         <ul>
             <li><a href="#" class="view-list selected">List</a></li>
             <li><a href="#" class="view-chart">Chart</a></li>
@@ -91,7 +91,7 @@
     <hr class="space3" />
     <div id="Results">
         <?php foreach ($results as $result): ?>
-        <?php include_partial('flightReturn', array('result' => $result)); ?>
+        <?php include_partial('flightReturn', array('result' => $result, 'filename'=>$filename)); ?>
         <?php endforeach; ?>
     </div>
 

@@ -32,7 +32,12 @@
             <li class="hotel-price-total">
                 <?php echo  ucfirst(__('total price')). ': '.format_currency($result->minTotalPrice, sfConfig::get('app_currency')) ?>
             </li>
-            <li class="right"><a href="#" class="select"><?php echo __('Select') ?></a></li>
+            <li class="right">
+                <?php
+                echo link_to2(__('select'), 'hotel_detail',
+                        array('slug' => Utils::slugify($result->getName())),
+                        array('class' => 'hotelNameDetailAjaxLink select'));
+                ?>
         </ul>
     </div>
     
