@@ -204,15 +204,6 @@
             $(this).addClass('selected');
         });
 
-
-        //ADS.log.header('Autocomplete');
-        //var test = airports[1];
-        //for(var i in test){
-        //    ADS.log.write(i+': '+test[i]);
-        //}
-
-       
-
     });
 
 </script>

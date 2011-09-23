@@ -36,7 +36,17 @@
 
 <div class="span-26">
 
+
+
     <div class="span-15">
+
+        <?php if($sf_user->hasFlash('children_age')): ?>
+            <div class="span-14 notice" style="font-size: 80%; padding-right: 25px;">
+                <?php echo __('Please provide children ages to get the best available price') ?>
+            </div>
+        <?php endif; ?>
+
+
         <?php if ($sf_request->hasParameter('wherebox')): ?>
             <h2><?php echo __('More information required for Wherebox'); ?></h2>
         <?php include_partial('searchFlight/matches', array('datas' => $sf_request->getParameter('wherebox'))); ?>

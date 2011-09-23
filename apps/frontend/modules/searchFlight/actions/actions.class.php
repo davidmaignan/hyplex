@@ -23,6 +23,19 @@ class searchFlightActions extends sfActions {
         }
     }
 
+    public function executeModifySearch(sfWebRequest $request){
+
+        $filename = $request->getParameter('filename');
+
+        $parameters = PlexParsing::retreiveParameters($filename);
+
+        $this->form = new SearchFlightForm($parameters->getParametersArray($this->getUser()->getCulture()));
+
+        $this->setTemplate('index');
+
+
+    }
+
     public function executeIndex(sfWebRequest $request) {
 
         if($request->hasParameter('search_flight')){

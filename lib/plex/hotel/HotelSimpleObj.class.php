@@ -134,6 +134,61 @@ class HotelSimpleObj extends HotelGenericObj {
         return $numRates;
     }
 
+    /**
+     * Funtion to keep rates selected by user when hotel is added in basket
+     * @param array('room1'=>'uniqueReferenceId', room2'=> ...
+     *
+     */
+     public function cleanRates($values){
+
+         //var_dump($values);
+         //echo "<pre>";
+
+         foreach($this->arRoomsType as $roomType){
+
+            $roomType->cleanRates($values);
+         }
+
+         foreach($this->arRoomsType as $key=>$roomType){
+
+            if(!isset($roomType->arRates)){
+                unset($this->arRoomsType[$key]);
+            }
+
+        }
+        //var_dump($values);
+        //var_dump($this->arRooms);
+        //exit;
+
+        foreach ($this->arRooms as $key=>$room) {
+
+            foreach($room as $k=>$r){
+  
+                $r->cleanRates($values[$key]);
+
+                if(!isset($r->arRates)){
+                    unset($this->arRooms[$key][$k]);
+                }
+            }
+            //echo $key;
+            //print_r($room);
+            //echo "<hr />";
+        }
+
+        //exit;
+
+        foreach($this->arRooms as $key=>$value){
+            if(empty($value)){
+                unset($this->arRooms[$key]);
+            }
+        }
+
+     }
+
+
+    /*
+     * Function to remove rates outside filter price range
+     */
     public function filterRates($filterPrices){
 
         foreach($this->arRoomsType as $roomType){
@@ -269,5 +324,42 @@ class HotelSimpleObj extends HotelGenericObj {
 
         return $this->targetPath . substr($this->baseImageLink, $filename+1);
     }
+
+    /**
+     * Funtion to return the price total or per night for a specific room selected for the hotel in basket
+     * @param int $key
+     * @param boolean $total
+     * @return float
+     */
+    public function getPrice($key,$total = true){
+
+        $room = 'room'.($key+1);
+
+       
+        
+        $hotelRoomObj = reset($this->arRooms[$room]);
+        $rate = reset($hotelRoomObj->arRates);
+
+        if($total){
+            return (float)$rate['TotalPrice'];
+        }else{
+            return (float)$rate['AvgPricePerNight'];
+        }
+
+    }
+
+
+    public function getTotalPrice(){
+
+        $total = 0;
+
+        foreach($this->numRooms as $key=>$room){
+            $total += $this->getPrice($key,true);
+        }
+
+        return $total;
+
+    }
+
 }
 

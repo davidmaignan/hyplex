@@ -27,11 +27,19 @@
     <?php include_partial('summary',array('parameters'=>$parameters,'nbrHotels'=>$filterResponse->nbrTotalHotels)); ?>
 </div>
 
+
+
+
 <div class="span-7">
     <?php echo html_entity_decode($filterFormFinal); ?>
 </div>
 
 <div class="span-18 last" style="width: 715px;">
+
+    <div id="form" class="span-18 last hide">
+        <?php include_partial('searchHotel/form', array('form'=>$form)); ?>
+        <hr class="space3" />
+    </div>
 
     <div class="span-18 append-bottom" id="tab-viewing">
         <ul>
@@ -78,7 +86,7 @@
 
     <div id="viewedHotels" class="span-18">
         <h2 class="title"><?php echo __('My viewed hotels'); ?></h2>
-        <div id="viewedHotelsContainer"></div>
+        <div id="viewedHotelsContainer"> </div>
         <hr />
         <a class="select center" id="viewedHotelsCompare" href="<?php echo url_for('hotel_compare'); ?>"><?php echo ucfirst(__('compare')); ?></a>
     </div>
@@ -142,93 +150,17 @@ $('document').ready(function(){
         ActivateCompareHotelBtn();
 
         //activateHotelThumb();
+        activateHotelThumbHover();
 
-        /*
-        $('.radio-room-price').change(function(){
-                //alert('radio clicked');
-                var position = $(this).position();
-
-                //Add class selected to td containing the radio
-                var name = '.'+ this.id;    
-                $(name).removeClass('selected');
-                $(this).parent('td').addClass('selected');
-
-                //If timer to hide totalpopup is on -> delete it
-                if(undefined !== window.timerTotalPopup){
-                    clearTimeout(timerTotalPopup);
-                }
-
-                //Retreive total price
-                var totalPrice = $(this).siblings('span').html();
-
-                //Retreive other selected radio in the form
-                var formId = $(this).closest('form').attr('id');
-
-                 
-                var formIdChecked = '#'+formId+' input:checked';
-
-                var radioChecked = $(formIdChecked);
-                var numberRooms = radioChecked.length;
-                //alert(numberRooms);
-
-                var totalRooms = 0;
-
-                for(var i = 0; i<numberRooms; i++){
-
-                    //alert(radioChecked[i].id);
-                    //var val = radioChecked[i].value;
-                    var val = $(radioChecked[i]).siblings('span').html();
-                    var radioName = radioChecked[i].id;
-                    //alert(radioName);
-                    var index = radioName.indexOf('-');
-                    var roomName = radioName.substr(index, radioName.length);
-                    roomName = '#totalPopUp'+roomName;
-                    //alert(val);
-
-                    $(roomName).html(val);
-                    totalRooms += parseFloat(val);
-                }
-
-                //Add total in total div's
-                totalRooms = (Math.round(totalRooms*100)/100)
-                $('#total .total').html(totalRooms);
-                $(this).closest('form').find('td.hotel-total-price').html(totalRooms);
-                //$(this).parent('.hotel-total-price').html(totalRooms);
-
-               
-                $( "#total" ).animate({
-                  top:position.top,
-                  opacity: 1
-                }, 1000, "circEaseOut", function(){
-                    timeTotalPopup();
-                });
+        $('#changeSearch').toggle(function(){
+            $('#form').show();
+        }, function(){
+            $('#form').hide();
         });
-
-        */
-        
-        //Filter ---------------------------------------------------------------------------------
-
-        //Bind all sliders checkbox with click event
-         /*$( ".ui-slider" ).bind( "slidestop", function(event, ui) {
-            alert('here');
-            $('#average_nightly_rate').next('a.remove-small').show();
-            sendFilterRequest($(this));
-        });*/
-
-
-        
-        /*
-        $( "#slider_average_nigthlyRate").slider({
-           stop: function(event, ui) {
-                $('#average_nightly_rate').next('a.remove-small').show();
-                sendFilterRequest($(this));
-            }
-        });
-        */
 
     });
     
-
+/*
 function timeTotalPopup(){
     timerTotalPopup = setTimeout("hideTotalPopup()",5000);
 };
@@ -241,7 +173,7 @@ function hideTotalPopup(){
     },300);
 
 };
-
+*/
 function activateHotelRateType(){
     $('a.more-rates').click(function(){
         if($(this).hasClass('less-rate')){

@@ -166,5 +166,33 @@ class RoomTypeObj {
 
     }
 
+    public function cleanRates($values){
+
+
+        foreach($this->arRates as $key=>$rates){
+
+            foreach ($rates as $k=>$value) {
+                if(is_array($value) && !in_array($value['UniqueReferenceId'], $values))
+                {
+                    unset($this->arRates[$key][$k]);
+                }
+            }
+            
+        }
+
+        foreach($this->arRates as $k=>$rate){
+            if(count($rate) == 2){
+                unset($this->arRates[$k]);
+            }
+        }
+
+        if(empty($this->arRates)){
+            unset($this->arRates);
+        }
+
+
+        
+    }
+
 }
 

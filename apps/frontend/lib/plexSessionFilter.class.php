@@ -24,7 +24,7 @@ class plexSessionFilter extends sfFilter {
         //$user->setAttribute('sTId', null);
         //$user->setAttribute('sTId_time', null);
 
-        if($user->getAttribute('sTId') != null && $user->getAttribute('sTId_time')){
+        if($user->getAttribute('sTId') != null && $user->getAttribute('sTId_time') && $user->hasAttribute('sTId')){
 
              //How much time before renewing sTId
              $restTime = $user->getAttribute('sTId_time') - time();

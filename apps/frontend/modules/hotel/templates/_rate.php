@@ -25,7 +25,7 @@
                 <li>
                     <input class="radio-room-price"
                    type="radio"
-                   <?php //if($firstRate === true) echo 'checked="checked"' ?>
+                   <?php if($firstRate === true) echo 'checked="checked"' ?>
                    id="<?php echo /*$hotel->id.'-'.*/$arRoomId ?>"
                    name="<?php echo /*$hotel->id.'-'.*/$arRoomId ?>"
                    value="<?php echo $rate[$arRoomId]['UniqueReferenceId'] ?>" />

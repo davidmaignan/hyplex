@@ -28,6 +28,74 @@ class searchHotelActions extends sfActions {
         //$this->forward('default', 'module');
     }
 
+    public function executeSearchComplementary(sfWebRequest $request){
+
+        $plexBasket = PlexBasket::getInstance();
+        $flightFilame = $plexBasket->getFlightFilename();
+
+        if(is_null($flightFilame)){
+            $this->redirect('searchHotel/index');
+        }
+
+        $flight = $plexBasket->getFlight();
+
+        //Create parameters for hotelForm
+        $hotelParameters = $plexBasket->getHotelComplementaryParameters();
+
+
+        $this->form = new SearchHotelForm();
+        
+        $this->form->bind($hotelParameters);
+
+
+        //var_dump($this->form->isValid());
+
+        if($this->form->isValid()){
+            //Form is valid - add parameters to the request and proceed
+            $request->setParameter('search_hotel', $hotelParameters);
+            $this->forward('process', 'index');
+            
+        }else{
+            $this->getUser()->setFlash('children_age', 'lorem');
+        }
+
+        //exit;
+        $this->setTemplate('index');
+
+    }
+
+    public function executeModifySearch(sfWebRequest $request){
+
+        $filename = $request->getParameter('filename');
+
+        $parameters = PlexParsing::retreiveParameters($filename);
+
+        $values = $parameters->getParametersArray($this->getUser()->getCulture());
+        //var_dump($values);
+
+
+        $this->form = new SearchHotelForm($parameters->getParametersArray($this->getUser()->getCulture()));
+
+        $rooms = $values['newRooms'];
+
+        foreach($rooms as $key=>$value){
+            $this->form->addRoomEdit($key, $value);
+        }
+
+        if(isset($values['childrenAge'])){
+
+            $childrenAges = $values['childrenAge'];
+            foreach($childrenAges as $key=>$child){
+                $datas = explode('_', $key);
+                $this->form->addChildrenAgeEdit($datas[0], $datas[1], $child);
+            }
+
+        }
+        
+        $this->setTemplate('index');
+
+    }
+
     public function executeCreate(sfWebRequest $request) {
 
         //$this->forward404Unless($request->isMethod(sfRequest::POST));
@@ -53,7 +121,6 @@ class searchHotelActions extends sfActions {
         $origin = $parameters['search_hotel']['wherebox'];
         $originValidation = MyValidation::validateOriginDest($origin,$this->getRequest(),'wherebox', $this->getUser()->getCulture());
 
-
         
         if ($form->isValid() && $originValidation === true) {
             $this->forward('process', 'index');
@@ -75,7 +142,7 @@ class searchHotelActions extends sfActions {
         return $this->renderPartial('addRoom', array('form' => $form, 'num' => $number));
     }
 
-        public function executeAddRoomForm2(sfWebRequest $request){
+    public function executeAddRoomForm2(sfWebRequest $request){
 
         $this->forward404unless($request->isXmlHttpRequest());
         $number = intval($request->getParameter("num"));

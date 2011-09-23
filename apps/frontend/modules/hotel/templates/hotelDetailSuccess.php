@@ -224,8 +224,8 @@
 <hr class="space3" />
 
 <?php
-echo "<pre>";
-print_r($hotel);
+//echo "<pre>";
+//print_r($hotel);
 
 ?>
 
@@ -246,6 +246,15 @@ print_r($hotel);
         </li>
 
     </ul>
+    <div class="hotel-thumb-off">
+        <p class="white"><?php echo ucfirst(__('add to compare')); ?></p>
+    </div>
+    <div class="hotel-thumb-on">
+        <p class="white"><?php echo ucfirst(__('added')); ?></p>
+    </div>
+    <div class="hotel-thumb-remove">
+        <p class="white"><?php echo ucfirst(__('remove')); ?></p>
+    </div>
 </div>
 
 <style>
@@ -405,7 +414,7 @@ print_r($hotel);
 
         activateRadioRoomPrice();
         activateTermsConditions();
-
+        activateHotelThumbHover();
 
   });
 

@@ -7,13 +7,13 @@ default:
 
   metas:
     title:        Hypertech Solutions - Demo site
-    description:  This is a demo site for Plex reservation 
+    description:  This is a demo site for Plex travel API
     #keywords:     symfony, project
     #language:     en
     #robots:       index, follow
 
   #stylesheets:    [main.css, frontend_temp.css, typography.css]
-  stylesheets:    []
+  stylesheets:    [grid, typography]
 
   javascripts:    []
 

@@ -77,14 +77,16 @@ class PlexFlightReturnRequest extends PlexRequest implements PlexRequestInterfac
 
         if($nbrChildren >0 || $nbrInfants > 0){
 
-            $this->xml .= "<plex:NumberOfChildren>" . $nbrChildren+$nbrInfants . "</plex:NumberOfChildren>";
+            $this->xml .= "<plex:NumberOfChildren>" . ($nbrChildren+$nbrInfants) . "</plex:NumberOfChildren>";
 
             $this->xml .= "<plex:ChildrenAges>";
+
+            
 
              //Children
             if ($nbrChildren >0) {
 
-                foreach ($paramFactory->getChildren() as $value) {
+                for($i=0;$i<$nbrChildren;$i++){
                     $this->xml .= "<plex:Age>10</plex:Age>";
                 }
             }
@@ -107,6 +109,7 @@ class PlexFlightReturnRequest extends PlexRequest implements PlexRequestInterfac
         $timer->addTime();
         
         //print_r(htmlentities($this->xml));
+        //exit;
         //break;
         return $this->xml;
     }

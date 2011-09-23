@@ -20,6 +20,6 @@
         '[0]|[1]1 child | |(1,+Inf]%1% children | ', array('%1%' => $parameters->getChildren()), $parameters->getChildren()) ?>
     <?php echo format_number_choice(
         '[0]|[1]1 infant | |(1,+Inf]%1% infants | ', array('%1%' => $parameters->getInfants()), $parameters->getInfants()) ?>
-    <a href="#" id="changeSearch"><?php echo __('Change search') ?></a>
+    <a href="#" class="change" id="changeSearch"><?php echo __('Change search') ?></a>
 </p>
 

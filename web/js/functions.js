@@ -63,7 +63,7 @@ function preg_quote( str ) {
 
 
 function highlight2( data, search ){
-    return data.replace( new RegExp( preg_quote( search ), 'gi' ), "<span style='font-weight:bold;color:#ED145B;'>" + search + "</span>" );
+    //return data.replace( new RegExp( preg_quote( search ), 'gi' ), "<span style='font-weight:bold;color:#ED145B;'>" + search + "</span>" );
 
 }
 
@@ -116,7 +116,7 @@ function secondsToTime(secs, bool)
 
     return result;
 
-};
+}
 
 function getTimeInSeconds(hour, min, sec)
 {
@@ -346,7 +346,7 @@ function activateFilterBox(){
         var value = $(this).attr('class');
 
         switch (true) {
-            case value.search(/(Star)/) > -1:
+            case value.search(/(Star)/) > -switch1:
                 $('.reset-star').hide();
                 $('input.starRatingCheckbox').attr('checked', 'checked');
                 break;
@@ -1324,23 +1324,50 @@ function addHotelThumb(hotelThumbName, hotelThumb){
         $.gritter.add({
             title: 'Hotel viewed',
             text: 'Hotel added to your viewed list',
-            time: 2000,
+            time: 500,
             position: 'bottom-right'
         });
 
-        hotelThumb.click(function(){
-            if($(this).hasClass('selected')){
-                $(this).removeClass('selected');
-            }else{
-                $(this).addClass('selected');
+        if(hotelViewediterator%4 == 0 && hotelViewediterator !=0){
+            $('#viewedHotelsContainer').append('<hr class="space2" />')
+        }
+
+        hotelThumb.click(function(event){
+
+            //alert(event.target.nodeName);
+
+                if(event.target.nodeName == 'DIV'){
+                    if($(this).hasClass('selected')){
+                    $(this).children('.hotel-thumb-on').hide();
+                    $(this).children('.hotel-thumb-remove').hide();
+                    $(this).removeClass('selected');
+
+                }else{
+                    $(this).children('.hotel-thumb-on').show();
+                    //$(this).children('hotel-thumb-off').hide();
+                    //this.children('hotel-thumb-on').show();
+                    $(this).addClass('selected');
+                }
+            }else if(event.target.nodeName == 'A'){
+
+                 //alert(name);
+
+                 var link = name + ' .hotelNameDetailAjaxLink2';
+                 sendFilterRequest($(link));
+                 return false;
             }
+
+            //alert(e.target.nodeName);
+
+
+            
 
         });
 
 
 
 
-        var link = name + ' .hotelNameDetailAjaxLink2';
+        
         /*$(link).click(function(){
             sendFilterRequest($(this));
             return false;
@@ -1351,6 +1378,20 @@ function addHotelThumb(hotelThumbName, hotelThumb){
 
 }
 
+
+function activateHotelThumbHover(){
+    $('.hotel-thumb').hover(function(){
+        if($(this).hasClass('selected')){
+            $(this).children('.hotel-thumb-remove').show();
+        }else{
+            $(this).children('.hotel-thumb-off').show();
+        }
+        
+    }, function(){
+        $(this).children('.hotel-thumb-off').hide();
+        $(this).children('.hotel-thumb-remove').hide();
+    });
+}
 
 function activateTermsConditions(){
 
@@ -1412,10 +1453,10 @@ function ActivateCompareHotelBtn(){
 
         var hotels = $('.hotel-thumb.selected');
 
-        if(hotels.length <2){
+        if(hotels.length <2 || hotels.lenght >5){
             $.gritter.add({
                 title: 'Hotels to compare',
-                text: 'You need to select at least 2 hotels!',
+                text: 'You can compare a minimum of 2 hotels and a maximum of 4 hotels!',
                 time: 2000,
                 position: 'bottom-right'
             });
@@ -1458,7 +1499,7 @@ function ActivateCompareHotelBtn(){
 
 function onCompareRequestSuccess(msg){
 
-
+    $("#dialog-message").dialog( "destroy" );
     showHideHotelDivs(3);
     $('#compareHotels').append(msg);
     //alert(msg);
@@ -1466,6 +1507,7 @@ function onCompareRequestSuccess(msg){
 }
 
 function onCompareRequestFailure(msg){
+    $("#dialog-message").dialog( "destroy" );
     alert('onCompareRequestFailure');
 }
 
@@ -1575,4 +1617,59 @@ function onStidRequestFailure(){
 
     alert('Your session has expired');
 
+}
+
+/* Basket functions */
+
+
+function activateBasketTabs(){
+
+    $('#basket-summary tr.basket-list-header.active').click(function(){
+        var classes = $(this).attr('class');
+        basketTabulation(classes)
+        
+    });
+
+    $('.hotelResult-tabs').click(function(){
+        var id = $(this).attr('id');
+        basketTabulation(id)
+    });
+
+
+}
+
+function basketTabulation(value){
+
+    $('.basket-data-container').hide();
+    $('.hotelResult-tabs').removeClass('selected');
+
+    switch(true){
+
+            case value.search(/flight/) > -1:
+                $('#flight').show();
+                $('#tab-basket-flight').addClass('selected');
+                break;
+            case value.search(/hotel/) > -1:
+                $('#hotel').show();
+                $('#tab-basket-hotel').addClass('selected');
+                break;
+            case value.search(/extras/) > -1:
+                $('#extras').show();
+                $('#tab-basket-extras').addClass('selected');
+                break;
+            case value.search(/car/) > -1:
+                $('#car').show();
+                $('#tab-basket-car').addClass('selected');
+                break;
+            case value.search(/excursions/) > -1:
+                $('#excursions').show();
+                $('#tab-basket-excursions').addClass('selected');
+                break;
+            default:
+                $('#flight').show();
+                $('#tab-basket-flight').addClass('selected');
+                break;
+        }
+
+    
 }

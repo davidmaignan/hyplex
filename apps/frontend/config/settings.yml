@@ -42,7 +42,7 @@ all:
     use_database:           true
 
 
-    enabled_modules:      [default]
+    enabled_modules:      [default, sfGuardAuth]
 
     #, sfGuardAuth, sfGuardGroup, sfGuardPermission
     #secure_module:          sfGuardAuth

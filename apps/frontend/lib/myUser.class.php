@@ -11,10 +11,7 @@ class myUser extends sfGuardSecurityUser
         //$this->dispatcher->notify(new sfEvent($this, 'user.cache_folder'));
 
         //First request - create attribute to keep the searches
-        if(!$this->hasAttribute('prevSearch'))
-        {
-            $this->setAttribute('prevSearch', array());
-        }
+       
 
 
     }
@@ -23,6 +20,9 @@ class myUser extends sfGuardSecurityUser
     {
       if (is_null($boolean))
       {
+        //$this->setAttribute('sTId', null);
+        //$this->setAttribute('sTId_time', null);
+        //$this->setAttribute('prevSearch', array());
         return $this->getAttribute('first_request', true);
       }
       else

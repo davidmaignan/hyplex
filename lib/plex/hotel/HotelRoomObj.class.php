@@ -135,5 +135,30 @@ class HotelRoomObj {
     }
 
 
+    public function cleanRates($v){
+
+       //echo $v;
+       //echo " : ";
+       
+
+        foreach($this->arRates as $key=>$value){
+            //echo $value['UniqueReferenceId'];
+            if($value['UniqueReferenceId'] != $v){
+                unset($this->arRates[$key]);
+            }
+
+        }
+
+        if(empty($this->arRates)){
+            unset($this->arRates);
+            unset($this->arSimpleKeys);
+            unset($this->arMinMaxPrice);
+            unset($this->type);
+            unset($this->description);
+        }
+        //echo "<br />";
+
+    }
+
 }
 ?>

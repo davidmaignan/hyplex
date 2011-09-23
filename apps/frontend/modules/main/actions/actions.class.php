@@ -51,4 +51,16 @@ class mainActions extends sfActions {
         return $this->redirect('@homepage');
     }
 
+    public function executeReset(sfWebRequest $request){
+
+        $this->getUser()->setAttribute('prevSearch', null);
+        $this->getUser()->setAttribute('sTId', null);
+        $this->getUser()->setAttribute('sTId_time', null);
+        $this->getUser()->setAttribute('first_request', null);
+
+        $this->redirect('main/index');
+
+
+    }
+
 }

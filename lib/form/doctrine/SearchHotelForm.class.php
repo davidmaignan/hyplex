@@ -22,11 +22,7 @@ class SearchHotelForm extends sfForm {
 
         $subForm = new sfForm();
         for ($i = 1; $i < 2; $i++) {
-            //$productPhoto = new ProductPhoto();
-            //$productPhoto->Product = $this->getObject();
-
             $form = new HotelRoomForm();
-
             $subForm->embedForm($i, $form);
         }
 
@@ -235,6 +231,17 @@ class SearchHotelForm extends sfForm {
         $this->embedForm('newRooms', $this->embeddedForms['newRooms']);
     }
 
+    public function addRoomEdit($num, $value) {
+        //$pic = new Picture();
+        //$pic->setCard($this->getObject());
+        $newRoom = new HotelRoomForm($value);
+
+        //Embedding the new picture in the container
+        $this->embeddedForms['newRooms']->embedForm($num, $newRoom);
+        //Re-embedding the container
+        $this->embedForm('newRooms', $this->embeddedForms['newRooms']);
+    }
+
     public function addChildrenAgeBindding($num){
         $childAge = new ChildAgeForm();
         $this->embeddedForms['childrenAge']->embedForm($num,$childAge);
@@ -245,6 +252,15 @@ class SearchHotelForm extends sfForm {
 
         for($i=1;$i<=$number;$i++){
             $childAge = new ChildAgeForm();
+            $this->embeddedForms['childrenAge']->embedForm($roomNumber.'_'.$i, $childAge);
+        }
+        $this->embedForm('childrenAge', $this->embeddedForms['childrenAge']);
+    }
+
+    public function addChildrenAgeEdit($roomNumber, $number, $value){
+
+        for($i=1;$i<=$number;$i++){
+            $childAge = new ChildAgeForm($value);
             $this->embeddedForms['childrenAge']->embedForm($roomNumber.'_'.$i, $childAge);
         }
         $this->embedForm('childrenAge', $this->embeddedForms['childrenAge']);

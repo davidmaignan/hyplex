@@ -4,9 +4,6 @@
 <?php use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
 <?php use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
 
-
-
-
 <?php
 if ($form->hasGlobalErrors()) {
     //echo $form->renderGlobalErrors();
@@ -173,8 +170,5 @@ if ($form->hasGlobalErrors()) {
 
 
 <script>
-
     var flightSearchType = 'simple';
-
-
 </script>

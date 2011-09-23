@@ -8,12 +8,21 @@ var myHeight = 0;
 
 $('document').ready(function(){
 
-    $('input.search').click(function(){
-        $( "#dialog-message" ).dialog({
-            modal: true
+    $('input.search, a.search, a.add, a.select').click(function(){
+         $( "#dialog-message" ).dialog({
+            modal: true,
+            buttons: {
+                Cancel: function() {
+                    $( this ).dialog( "close" );
+                    //Cancel the request sent
+                    //ajaxRequest.abort();
+                }
+            }
         });
     });
 
+
+    
 
 });
 

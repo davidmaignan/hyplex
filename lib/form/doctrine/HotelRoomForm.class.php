@@ -39,6 +39,10 @@ class HotelRoomForm extends sfForm {
         $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('hotel_form');
 
         $this->validatorSchema->setOption('allow_extra_fields', true);
+
+        $this->disableLocalCSRFProtection();
+        
+
     }
 
 }
