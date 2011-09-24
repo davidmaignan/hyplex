@@ -322,7 +322,7 @@ abstract class PlexFlightParameters extends PlexParameters {
         switch($this->type){
 
             case 'flightReturn':
-                return 'Round trip';
+                return 'round trip';
                 break;
             case 'flightOneway':
                 return 'one way';
@@ -333,9 +333,19 @@ abstract class PlexFlightParameters extends PlexParameters {
                 break;
         }
 
-        
+    }
 
+
+    public function getOriginDestination(){
+
+        return $this->getOrigin() . ' - '.$this->getDestination();
+
+        
+    }
+
+    public function getPassengers(){
+        return null;
     }
 
 }
-?>
+

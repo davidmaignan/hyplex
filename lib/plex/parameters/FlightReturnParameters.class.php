@@ -37,4 +37,13 @@ class FlightReturnParameters extends PlexFlightParameters implements ParametersI
         return $string;
     }
 
+    public function getDates(){
+
+        $string = format_date($this->getDepartDate(), 'flight');
+        $string .= ' - ';
+        $string .= format_date($this->getReturnDate(), 'flight');
+
+        return $string;
+    }
+
 }

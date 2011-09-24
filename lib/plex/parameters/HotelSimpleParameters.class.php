@@ -113,5 +113,18 @@ class HotelSimpleParameters extends PlexHotelParameters {
         $string .= ', '.$this->arWhere[$culture]['country'];
         return $string;
     }
-    
+
+    public function getOriginDestination(){
+
+        return $this->getWhereBox();
+
+    }
+
+    public function getPassengers(){
+
+
+
+        return null;
+        
+    }
 }

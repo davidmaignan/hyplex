@@ -220,7 +220,8 @@ class PlexParsing {
                     $tmp = array();
                     $tmp['date'] = $content[0];
                     $tmp['file'] = $content[1];
-                    $tmp['parameters'] = $content[2];
+                    $tmp['type'] = $content[2];
+                    $tmp['parameters'] = unserialize($content[3]);
                     array_push($searches, $tmp);
                 }
             }
@@ -228,7 +229,8 @@ class PlexParsing {
 
 
         //Filter by type
-        return $searches;
+        
+        return array_reverse($searches);
 
 
     }
