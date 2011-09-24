@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+    <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2011-05-04T14:43:24Z" product-name="messages">
+        <header/>
+        <body>
+            <trans-unit id="1">
+                <source>About Hypertech</source>
+                <target>A propos de Hypertech</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Multiple destinations</source>
+                <target>Multi-destinations</target>
+            </trans-unit>
+            <trans-unit>
+                <source>More legs</source>
+                <target>Ajouter un segment</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Segment</source>
+                <target>Segment</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Are you sure you want to remove this segment</source>
+                <target>Êtes-vous sûr de vouloir supprimer ce segment</target>
+            </trans-unit>
+            <trans-unit>
+                <source>remove</source>
+                <target>supprimer</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Operated by: </source>
+                <target>Exploité par: </target>
+            </trans-unit>
+            <trans-unit>
+                <source>Stops</source>
+                <target>Arrêts</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Non stop</source>
+                <target>Direct</target>
+            </trans-unit>
+            <trans-unit>
+                <source>1 stop</source>
+                <target>1 Arrêt</target>
+            </trans-unit>
+            <trans-unit>
+                <source>2+ stops</source>
+                <target>2+ arrêts</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight Times</source>
+                <target>Horaires</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Take-off</source>
+                <target>Départ</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Depart flight</source>
+                <target>Vol aller</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Return flight</source>
+                <target>Vol retour</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Airlines</source>
+                <target>Compagnies aériennes</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Airline</source>
+                <target>Compagnie</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight quality</source>
+                <target>Qualité du vol</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Trip duration</source>
+                <target>Durée de vol</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Price</source>
+                <target>Prix</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Duration</source>
+                <target>Durée</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Take-off (Depart Flight)</source>
+                <target>Départ (Vol aller)</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Take-off (Return Flight)</source>
+                <target>Départ (Vol retour)</target>
+            </trans-unit>
+            <trans-unit>
+                <source>only</source>
+                <target>Seult.</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Show Overnight flight</source>
+                <target>Vol de nuit</target>
+            </trans-unit>
+            <trans-unit>
+                <source>From</source>
+                <target>De</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Date</source>
+                <target>Date</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Stops</source>
+                <target>Arrêts</target>
+            </trans-unit>
+            <trans-unit>
+                <source>To</source>
+                <target>Vers</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight</source>
+                <target>Vol</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight details</source>
+                <target>Détails du vol</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Details</source>
+                <target>Détails</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Share</source>
+                <target>Partager</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Save</source>
+                <target>Sauvegarder</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Select</source>
+                <target>Choisir</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Depart/Arrive</source>
+                <target>Départ/Arrivée</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Time</source>
+                <target>Heure</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Cabin</source>
+                <target>Classe</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Outbound</source>
+                <target>Aller</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Inbound</source>
+                <target>Retour</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Airport</source>
+                <target>Aéroport</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Agent login</source>
+                <target>Agent connection</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Your previous searches</source>
+                <target>Vos recherches précédentes</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Booking infos</source>
+                <target>Infos réservations</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Search Flight</source>
+                <target>Recherche vol</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Home</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>About us</source>
+                <target>Qui sommes nous</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Log in</source>
+                <target>S'identifier</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Not yet implemented</source>
+                <target>Cette fontionalité n'est pas encore disponible</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>An error has occured</source>
+                <target>Une erreur est survenue</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>We apologize for the inconvenience. Please try again.</source>
+                <target>Veuillez nous excuser pour le désagrement occasionné. Merci</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Session Expired</source>
+                <target>Session invalide</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Trip details</source>
+                <target>Détails du vol</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Flight options</source>
+                <target>Options de vol</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Passengers informations</source>
+                <target>Information passagers</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>STEP 1: Select a type of flight</source>
+                <target>ETAPE 1: Sélectionner un type de vol</target>
+            </trans-unit>
+            <trans-unit id="17">
+                <source>STEP 2: Origin &amp; destination</source>
+                <target>ETAPE 2: Origine &amp; destination</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>STEP 3: Dates &amp; times</source>
+                <target>ETAPE 3: Dates &amp; heures</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>STEP 4: Flight options</source>
+                <target>ETAPE 4: Options de vol</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>STEP 5: Passengers information</source>
+                <target>ETAPE 5: Informations passagers</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Flight search</source>
+                <target>Recherche de vols</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>search</source>
+                <target>rechercher</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>My bookings</source>
+                <target>Mes réservations</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Advertise</source>
+                <target>Publicité</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Privacy</source>
+                <target>Confidentialité</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Feedback</source>
+                <target>Votre avis</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Mobile version</source>
+                <target>Version mobile</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Hotel</source>
+                <target>Hôtel</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Car</source>
+                <target>Voiture</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Package</source>
+                <target>Forfaits</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Call our travel advisor</source>
+                <target>Appeller nos voyagistes</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Top destinations</source>
+                <target>Destinations favorites</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Number</source>
+                <target>Numéro</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Depart</source>
+                <target>Départ</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Arrive</source>
+                <target>Arrivée</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Stop</source>
+                <target>Arrêt</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Activities</source>
+                <target>Activités</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Page not found</source>
+                <target>Page introuvable</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>We could not found the page requested.</source>
+                <target>Nous ne trouvons pas la page recherchée</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Sort by</source>
+                <target>Trié par</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Take off</source>
+                <target>Départ</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Landing</source>
+                <target>Arrivée</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Show matrix</source>
+                <target>Montre grille</target>
+            </trans-unit>
+            <trans-unit id="7">
+                <source>Need help?</source>
+                <target>Une question ?</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Call us tool-free at</source>
+                <target>Appeller au numéro sans frais</target>
+            </trans-unit>
+            <trans-unit>
+                <source>You have sent a request</source>
+                <target>Requête envoyée.</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Your request has been sent. Please wait !</source>
+                <target>Votre requête a été envoyée. Merci de patienter</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>You can always change your mind. Click cancel</source>
+                <target>Vous pouvez changer d'avis en cliquant annuler.</target>
+            </trans-unit>
+            <trans-unit>
+                <source>More airlines</source>
+                <target>Autres compagnies</target>
+            </trans-unit>
+            <trans-unit>
+                <source>[1] (+1day)|(1,+Inf] (+%count%day)</source>
+                <target>[1] (+1jour)|(1,+Inf] (+%count%jours)</target>
+            </trans-unit>
+            <trans-unit>
+                <source>[0]0 stop|[1] 1 stop|(1,+Inf]%count% stops</source>
+                <target>[0]0 arrêt|[1] 1 arrêt|(1,+Inf]%count% arrêts</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Check availability</source>
+                <target>Verifie disponibilité</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Search a flight</source>
+                <target>Rechercher un vol</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>Search a hotel</source>
+                <target>Rechercher un hôtel</target>
+            </trans-unit>
+            <trans-unit id="2">
+                <source>Search a car</source>
+                <target>Rechercher une voiture</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Search a package</source>
+                <target>Rechercher un forfait</target>
+            </trans-unit>
+            <trans-unit id="1">
+                <source>A short message like a phone number for call center or latest promotion or tweet</source>
+                <target>Un court message promotionel, dernier tweet ou un numero service client</target>
+            </trans-unit>
+            <trans-unit>
+                <source>No flight found</source>
+                <target>Aucun vol trouvé</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Something is broken</source>
+                <target>Quelque chose est cassé</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Please e-mail us at issues@hypertech.com and let us know what you were doing when this error occurred. We will fix it as soon as possible. Sorry for any inconvenience caused.</source>
+                <target>Vous pouvez nous ecrire et donner une breve description a issues@hypertech.com de ce qui a engendrer cette erreur. Nos equipes s'efforcent de fixer ce probleme rapidement.</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Options</source>
+                <target>Options</target>
+            </trans-unit>
+            <trans-unit>
+                <source>multiple airlines</source>
+                <target>Plusieures compagnies</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Show Overnight flight</source>
+                <target>Montre vols de nuit</target>
+            </trans-unit>
+            <trans-unit>
+                <source>Log out</source>
+                <target>Deconnexion</target>
+            </trans-unit>
+            <trans-unit>
+                <source>flightReturn</source>
+                <target>billet aller-retour</target>
+            </trans-unit>
+            <trans-unit>
+              <source>[0]|[1]1 adult | |(1,+Inf]%1% adults | </source>
+              <target>[0]|[1]1 adulte | |(1,+Inf]%1% adultes | </target>
+            </trans-unit>
+            <trans-unit>
+              <source>[0]|[1]1 child | |(1,+Inf]%1% children | </source>
+              <target>[0]|[1]1 enfant | |(1,+Inf]%1% enfants | </target>
+            </trans-unit>
+            <trans-unit>
+              <source>[0]|[1]1 infant | |(1,+Inf]%1% infants | </source>
+              <target>[0]|[1]1 bébé | |(1,+Inf]%1% bébés | </target>
+            </trans-unit>
+            <trans-unit>
+              <source>[0]Hotel found in %2%|[1]%1% Hotel found in %2%|(1,+Inf] %1% Hotels found in %2%</source>
+              <target>[0]Hôtel trouvé à %2%|[1]%1% Hôtel trouvé à %2%|(1,+Inf] %1% Hôtels trouvés à %2%</target>
+            </trans-unit>
+            <trans-unit>
+              <source>[0]|[1]1 night | |(1,+Inf]%1% nights | </source>
+              <target>[0]|[1]1 nuits | |(1,+Inf]%1% nuits | </target>
+            </trans-unit>
+            <trans-unit>
+              <source>[0]|[1]1 room | |(1,+Inf]%1% rooms | </source>
+              <target>[0]|[1]1 chambre | |(1,+Inf]%1% chambres | </target>
+            </trans-unit>
+
+
+        </body>
+    </file>
+</xliff>

@@ -1,0 +1,293 @@
+options:
+  collate: utf8_unicode_ci
+  charset: utf8
+  type: INNODB
+
+RequestInitPlex:
+  actAs:                    { Timestampable: ~ }
+  columns:
+    date:                   { type: timestamp, notnull: true }
+    user_culture:           { type: string(10), notnull: true }
+    user_ip:                { type: string (20), notnull: true }
+    user_agent:             { type: string(255), notnull: true }
+    user_folder:            { type: string (255), notnull: true }
+    elapsed_time:           { type: decimal, notnull: true, scale: 14 }
+    header:                 { type: string(4000), notnull: true }
+    response_code:          { type: int, notnull: true }
+    response_raw:           { type: clob }
+    stid:                   { type: string(255) }
+
+RequestPlex:
+  actAs:                        { Timestampable: ~ }
+  columns:
+    date:                       { type: timestamp, notnull: true }
+    type:                       { type: string(255), notnull: true }
+    search_infos:               { type: string(4000), notnull: true }
+    user_culture:               { type: string(10), notnull: true }
+    user_ip:                    { type: string (20), notnull: true }
+    user_agent:                 { type: string(255) }
+    user_folder:                { type: string (255), notnull: true }
+    filename:                   { type: string (255), notnull: true }
+    user_info:                  { type: string(1000) }
+    header:                     { type: string(4000), notnull: true }
+    header_raw:                 { type: string(4000) }
+    response_raw:               { type: clob }
+    response_code:              { type: int, notnull: true }
+    response_processed:         { type: clob }
+    elapsed_plex_request:       { type: decimal, notnull: true, scale: 14 }
+    elapsed_process_response:   { type: decimal, notnull: true, scale: 14 }
+
+PromotionalBanner:
+  actAs:
+    Timestampable: ~
+    I18n:
+      fields: [message]
+  columns:
+    filename:                { type: string(255), notnull: true }
+    message:                 { type: string(4000), notnull: true }
+    color_bg:                { type: string(10), default: '#FFFFFF' }
+    position:                { type: enum, values: [left, right] }
+    rank:                    { type: integer, notnull: true }
+    start_at:                { type: timestamp }
+    expires_at:              { type: timestamp }
+    published:               { type: boolean, default: 0 }
+    archived:                { type: boolean, default: 0 }
+    link:                    { type: string(255) }
+
+TopDestination:
+  actAs:
+    Timestampable: ~
+    I18n:
+      fields: [name]
+  columns:
+    name:                    { type: string(255), notnull: true }
+    filename:                { type: string(255), notnull: true }
+    rank:                    { type: integer, notnull: true }
+    start_at:                { type: timestamp }
+    expires_at:              { type: timestamp }
+    published:               { type: boolean, default: 0 }
+    archived:                { type: boolean, default: 0 }
+
+Airline:
+  actAs:
+    Sluggable:
+      fields: [name]
+      unique: true
+  columns:
+    tag:                     { type: string(2), unique: true }
+    name:                    { type: string(255) }
+
+Area:
+  actAs:
+    I18n:
+      fields: [name]
+      actAs:
+        Sluggable:
+          fields: [name]
+          unique: false
+  columns:
+    id:                      { type: integer, primary: true, autoincrement: true }
+    code:                    { type: string(4), unique: true, notnull: true }
+    name:                    { type: string(255), notnull: true }
+
+Country:
+  actAs:
+    I18n:
+      fields: [name]
+      actAs:
+        Sluggable:
+          fields: [name]
+          unique: false
+  columns:
+    id:                 { type: integer, primary: true, autoincrement: true }
+    code:               { type: string(2), notnull: true }
+    name:               { type: string(255), notnull: true }
+    area_id:            { type: integer, notnull: true }
+    state:              { type: boolean, default: 0 }
+  indexes:
+    area_id_index:
+      fields: [area_id]
+  relations:
+    Area:
+      local: area_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: CASCADE
+      foreignAlias: Countries
+
+State:
+  actAs:
+    I18n:
+      fields: [name]
+      actAs:
+        Sluggable:
+          fields: [name]
+          unique: false
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    code:             { type: string(3), notnull: true, unique: true }
+    name:             { type: string(255), notnull: true }
+    country_id:       { type: integer, notnull: true }
+  indexes:
+    country_id_index:
+      fields: [country_id]
+  relations:
+    Country:
+      local: country_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: CASCADE
+      foreignAlias: States
+
+
+City:
+  actAs:
+    CustomGeographical: ~
+    I18n:
+      fields: [name]
+      actAs:
+        Sluggable:
+          fields: [name]
+          unique: false
+  columns:
+    id:              { type: integer, primary: true, autoincrement: true }
+    code:            { type: string(3), notnull: true, unique: true }
+    name:            { type: string(255), notnull: true }
+    airport:         { type: string(255) }
+    country_id:      { type: integer, notnull: true }
+    state_id:        { type: integer }
+    cache:           { type: boolean, default: 0 }
+    archived:        { type: boolean, default: 0 }
+    metropolitan:    { type: boolean, default: 0 }
+  indexes:
+    code_index:
+      fields: [code]
+      type: unique
+    airport_index:
+      fields: [airport]
+    country_id_index:
+      fields: [country_id]
+    state_id_index:
+      fields: [state_id]
+  relations:
+    Country:
+      local: country_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: CASCADE
+      foreignAlias: Cities
+    State:
+      local: state_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: CASCADE
+      foreignAlias: Cities
+
+City_metro:
+  columns:
+    city_metro_id:  { type: integer, unique: true, notnull: true }
+  relations:
+    City:
+      local: city_metro_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: CASCADE
+    Cities:
+      class: City
+      refClass: CityMultipleAirport
+      foreignAlias: Cities
+
+CityMultipleAirport:
+  columns:
+    city_id:
+      type: integer
+      primary: true
+    city_metro_id:
+      type: integer
+      primary: true
+  relations:
+    City:
+      onDelete: CASCADE
+    City_metro:
+      onDelete: CASCADE
+
+
+Hotel:
+  actAs:
+    Geographical: ~
+    Timestampable: ~
+    I18n:
+      fields: [short_description, long_description]
+  columns:
+    hotel_id: { type: string(255), notnull: true, unique: true }
+    name: {type: string(255), notnull: true }
+    BaseImageLink: {type: string(255) }
+    star_rating: { type: string(10) }
+    address1: { type: string(255) }
+    address2: { type: string(255) }
+    postalCode: { type: string(20) }
+    city: { type: string(255) }
+    state_id: { type: integer, notnull: true }
+    country_id: { type: integer, notnull: true }
+    location_id: { type: integer, notnull: true }
+    short_description: { type: string(4000) }
+    long_description: { type: clob }
+    parking: { type: boolean }
+    restaurant: { type: boolean }
+    internet: { type: boolean }
+    pool: { type: boolean }
+    fitness: { type: boolean }
+  indexes:
+    hotel_id_index:
+      fields: [hotel_id]
+      type: unique
+    hotel_index:
+      fields: [name, city]
+    country_id_index:
+      fields: [country_id]
+      type: unique
+  relations:
+    Cities:
+      class: City
+      refClass: HotelCities
+      foreignAlias: Hotels
+    Country:
+      local: country_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: CASCADE
+      foreignAlias: Cities
+    State:
+      local: state_id
+      foreign: id
+      type: one
+      foreignType: one
+      onDelete: CASCADE
+      foreignAlias: Cities
+
+HotelCities:
+  columns:
+    hotel_id:
+      type: integer
+      primary: true
+    city_id:
+      type: integer
+      primary: true
+  relations:
+    Hotel:
+      onDelete: CASCADE
+    City:
+      onDelete: CASCADE
+
+HotelFacility:
+  actAs:
+    I18n:
+      fields: [name]
+  columns:
+    name: { type: string(255), unique: true, notnull: true }

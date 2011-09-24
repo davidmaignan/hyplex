@@ -1,0 +1,7 @@
+all:
+  doctrine:
+    class: sfDoctrineDatabase
+    param:
+      dsn: 'mysql:host=localhost;dbname=hyplexdemo;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock'
+      username: david
+      password: camper

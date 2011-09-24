@@ -1,0 +1,3 @@
+= sfDoctrineErrorLoggerPlugin plugin =
+
+Quick port of sfErrorLoggerPlugin to Doctrine.

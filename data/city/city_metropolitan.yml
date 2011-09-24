@@ -1,0 +1,115 @@
+## YAML Template.
+---
+
+BJS:
+ - PEK
+ - NAY
+
+OSA:
+ - KIX
+ - ITM
+
+SPK:
+ - CTS
+ - OKD
+
+SEL:
+ - ICN
+ - GMP
+
+TYO:
+ - NRT
+ - HND
+
+BER:
+ - TXL
+ - SXF
+
+BUH:
+ - OTP
+ - BBU
+
+LON:
+ - BQH
+ - LCY
+ - LGW
+ - LTN
+ - LHR
+ - ZLS
+ - QQP
+ - QQS
+ - SEN
+ - STN
+ - ZEP
+ - QQW
+
+MIL:
+ - MXP
+ - LIN
+
+MOW:
+ - SVO
+ - DME
+ - VKO
+
+PAR:
+ - CDG
+ - ORY
+ - LBG
+
+ROM:
+ - FCO
+ - CIA
+
+STO:
+ - ARN
+ - NYO
+ - BMA
+
+CHI:
+ - ORD
+ - MDW
+
+QDF:
+ - DAL
+ - DFW
+
+DTT:
+ - DTW
+ - DET
+ - YIP
+
+YEA:
+ - YEG
+ - YXD
+
+YMQ:
+ - YUL
+ - YMY
+
+NYC:
+ - JFK
+ - EWR
+ - LGA
+ - HPN
+
+YTO:
+ - YYZ
+ - YTZ
+
+WAS:
+ - IAD
+ - DCA
+ - BWI
+
+BUE:
+ - EZE
+ - AEP
+
+RIO:
+ - GIG
+ - SDU
+
+SAO:
+ - GRU
+ - CGH
