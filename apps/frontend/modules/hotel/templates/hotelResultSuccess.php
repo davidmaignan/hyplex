@@ -98,7 +98,7 @@
 
 </div>
 
-<?php include_component('basket', 'index', array()); ?>
+<?php //include_component('basket', 'index', array()); ?>
 
 <script>
 

@@ -469,14 +469,17 @@ class hotelActions extends sfActions
 
 
         $hotels = split(',', $parameters);
+        array_pop($hotels);
+        //var_dump($hotels);
+        //return $this->renderText($hotels);
 
-        unset($hotels[count($hotels)-1]);
+        
 
         $this->arHotels = array();
 
 
         $prevSearches = $this->getUser()->getAttribute('prevSearch');
-        $prevSearche = $prevSearches[count($prevSearches) - 1];
+        $prevSearche = end($prevSearches);
 
         $filename = $prevSearche['filename'];
 
@@ -501,6 +504,10 @@ class hotelActions extends sfActions
             }
         }
         fclose($handle);
+
+        //var_dump($this->arHotels);
+
+        //return $this->renderText($this->arHotels);
 
         //return $this->renderText($hotels);
 

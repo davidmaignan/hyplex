@@ -65,6 +65,9 @@
     </div>
     <hr class="space3" />
     <div class="span-9 prepend-top border">
+
+        
+
         <h2 class="title"><?php echo __('Previous searches'); ?></h2>
         <div class=" span-9">
             <?php for($i=0;$i<5;$i++): ?>
