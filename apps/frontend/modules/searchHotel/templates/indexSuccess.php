@@ -55,31 +55,7 @@
     </div>
 
     <div class="span-10 last">
-        <div class="span-10 last">
-        <h2 class="title"><?php echo __('Previous searches'); ?></h2>
-        <?php for($i=0;$i<5;$i++): ?>
-            <table class="prev-searches">
-                <tr>
-                    <td style="font-weight: bold;">
-                        Los Angeles
-                    </td>
-                    <td colspan="2">
-                        	Sep 15 - Sep 17
-                    </td>
-                    <td rowspan="2"style="width: 80px; text-align: center;">
-                        <a>Modify</a><br />
-                        <a class="select">Search</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>1 room</td>
-                    <td>2 adults, 1 infant</td>
-                </tr>
-            </table>
-            <?php endfor; ?>
-    </div>
-
+        <?php include_component('prevSearch', 'hotel'); ?>
     </div>
 
 </div>

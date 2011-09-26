@@ -222,7 +222,14 @@ class PlexParsing {
                     $tmp['file'] = $content[1];
                     $tmp['type'] = $content[2];
                     $tmp['parameters'] = unserialize($content[3]);
-                    array_push($searches, $tmp);
+
+
+                    if($type !== false && preg_match('#'.$type.'#', $tmp['type'])> 0){
+                        array_push($searches, $tmp);
+                    }else if($type === false){
+                        array_push($searches, $tmp);
+                    }
+                    
                 }
             }
         fclose($handle);

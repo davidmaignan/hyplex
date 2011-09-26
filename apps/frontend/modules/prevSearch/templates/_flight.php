@@ -1,4 +1,3 @@
-<?php use_helper('Date','Number','I18n','Text'); ?>
 <h2 class="title"><?php echo __('Previous searches'); ?></h2>
 <div>
     <table class="prev-searches">

@@ -1720,3 +1720,11 @@ a.basket-flight-link{
 .basket-view-excursions{
     background-position: 3px -120px
 }
+
+
+/* Previous search box */
+
+
+ul.prevSearch-list-index li{
+    margin-bottom: 4px;
+}

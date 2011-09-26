@@ -104,6 +104,14 @@ p{
     color: #ed145b;
 }
 
+.grey1{
+    color: #757575;
+}
+
+.grey2{
+    color: #aaaaaa;
+}
+
 .hide{
     display:none;
 }
@@ -114,6 +122,10 @@ p{
 
 .bold{
     font-weight: bold;
+}
+
+.italic{
+    font-style: italic;
 }
 
 a.remove{
@@ -542,9 +554,14 @@ table.prev-searches{
     border-top: 1px solid white;
 }
 
+table.prev-searches tr{
+    border-bottom: 1px solid #a3b9cb;
+    border-top: 1px solid white;
+}
+
 table.prev-searches td{
-    padding: 5px 4px 6px 0;
-    border-bottom: 0px solid red;
+    padding: 5px 4px 6px 8px;
+    border-bottom: 1px solid #cecece;
     font-size: 82%;
 }
 

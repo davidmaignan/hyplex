@@ -20,4 +20,31 @@ class prevSearchComponents extends sfComponents
     //$this->forward('default', 'module');
     $this->prevSearches = PlexParsing::retreivePrevSearches();
   }
+
+  /**
+  * Executes flight action
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeFlight(sfWebRequest $request)
+  {
+    //$this->forward('default', 'module');
+    $this->prevSearches = PlexParsing::retreivePrevSearches('flight');
+
+  }
+
+
+  /**
+  * Executes hotel action
+  *
+  * @param sfRequest $request A request object
+  */
+  public function executeHotel(sfWebRequest $request)
+  {
+    //$this->forward('default', 'module');
+    $this->prevSearches = PlexParsing::retreivePrevSearches('hotel');
+
+  }
+
+
 }

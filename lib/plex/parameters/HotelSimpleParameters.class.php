@@ -114,9 +114,16 @@ class HotelSimpleParameters extends PlexHotelParameters {
         return $string;
     }
 
-    public function getOriginDestination(){
+    public function getOriginDestination($culture = 'en_US'){
 
-        return $this->getWhereBox();
+        //$string = $this->arWhere['code'];
+        //$string .= (isset($this->arWhere['airport']) && $this->arWhere['airport'] != '')? ' ('.$this->arWhere['airport'].')': '';
+        $string = $this->arWhere[$culture]['name'];
+        $string .= isset($this->arWhere[$culture]['state'])? ' ['.$this->arWhere[$culture]['state']['code'].'] ': '';
+        $string .= ', '.$this->arWhere[$culture]['country'];
+        return $string;
+
+        //return $this->getWhereBox();
 
     }
 
