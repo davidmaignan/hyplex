@@ -19,11 +19,8 @@ class processActions extends sfActions
     
   public function executeIndex(sfWebRequest $request)
   {
-
-      //$this->getUser()->setAttribute('sTId', null);
-
       //Debuggind mode
-      $debug = false;
+      $debug = true;
 
       if($request->hasParameter('search_flight')){
           $parameters = $request->getParameter('search_flight');
@@ -229,7 +226,25 @@ class processActions extends sfActions
           Utils::createAirlineArray();
       }
 
-      //break;
+      //Check hotelChain and add new ones
+      $hotelChains = Utils::createHotelchainArray();
+      
+      $listChains = $finalResponse->listChains;
+
+      //Remove key 00 for independant hotel
+      $key = array_search('00', $listChains);
+      if($key !== false){
+          unset($listChains[$key]);
+      }
+
+      $newHotelChain = array_diff($listChains, array_keys($hotelChains));
+
+      if(!empty($newHotelChain)){
+          unset($GLOBALS['hotelchain']);
+          $q = Doctrine::getTable('hotelchain')->savelist($newHotelChain);
+          unlink($fileHotelchain = sfConfig::get('sf_data_dir') . '/hotel/hotelChains.yml');
+          Utils::createHotelchainArray();
+      }
 
       //Redirection 
       switch ($type) {

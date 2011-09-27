@@ -291,3 +291,13 @@ HotelFacility:
       fields: [name]
   columns:
     name: { type: string(255), unique: true, notnull: true }
+
+
+HotelChain:
+  actAs:
+    Sluggable:
+      fields: [name]
+      unique: true
+  columns:
+    tag:      { type: string(2), unique: true }
+    name:     { type: string(255) }

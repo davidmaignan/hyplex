@@ -377,13 +377,11 @@ class Utils {
                     "<a href='#{$data[1]}' class='matrix-anchor' >".format_currency($data[0],'USD')."</a>";
     }
 
-    /*
+    /**
      * Create a global array for the airlines
      * Check if global array exist if not check if cache file airlines.yml exits
      * if not query the db to create the file and then the global array
-     * @return image if file exist or the 2 keys if no airline image
      */
-
     static public function createAirlineArray() {
 
         //Avoid recreating this array for each sergment save it in global array to fast access
@@ -420,6 +418,49 @@ class Utils {
             return $airlines;
         }
     }
+
+
+    static public function createHotelchainArray(){
+
+        if(isset($GLOBALS['hotelchain'])){
+            return $GLOBALS['hotelchain'];
+        }
+
+        $fileHotelChains = sfConfig::get('sf_data_dir') . '/hotel/hotelChains.yml';
+
+        if (file_exists($fileHotelChains)) {
+
+            $hotelChains = sfYaml::load($fileHotelChains);
+            $GLOBALS['hotelchain'] = $hotelChains;
+            return $hotelChains;
+
+        } else {
+            //Create file, query db
+            $hotelChains = Doctrine::getTable('HotelChain')->findAll()->toArray();
+            $data = '';
+
+            //var_dump($hotelChains);
+
+            foreach ($hotelChains as $chain) {
+                $data .= $chain['tag'] . ': [ ' . $chain['name'] . ", ".$chain['slug'] ."]\r\n";
+            }
+
+            file_put_contents($fileHotelChains, $data);
+            chmod($fileHotelChains, 0777);
+            
+
+            $hotelChains = sfYaml::load($fileHotelChains);
+            if (is_null($hotelChains)) {
+                $hotelChains = array();
+            }
+
+            $GLOBALS['hotelchain'] = $hotelChains;
+            return $hotelChains;
+        }
+
+
+    }
+
 
     /*
      * Create a javascript file with an array containing the airport info for the autocomplete
