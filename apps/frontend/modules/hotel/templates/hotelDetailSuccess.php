@@ -36,13 +36,15 @@
     <hr class="space3" />
     <div class="" style="padding:0px;">
 
-        <ul id="tabs">
-            <li><a href="#" class="selected hotel-tab" id="tab-info"><?php echo __('Information') ?></a></li>
-            <li><a href="#" class="hotel-tab" id="tab-rate"><?php echo __('Rooms & Rates') ?></a></li>
-            <li><a href="#" class="hotel-tab" onclick="return false;" id="tab-map"><?php echo __('Map') ?></a></li>
-            <li><a href="#" class="hotel-tab" onclick="return false;" id="tab-review"><?php echo __('Reviews') ?></a></li>
-        </ul>
-
+        <div class="span-18 append-bottom" id="tab-viewing">
+            <ul>
+                <li><a id="tab-info" class="view-information hotel-tab selected"><?php echo __('Information') ?></a></li>
+                <li><a id="tab-rate" class="view-rates hotel-tab"><?php echo __('Rooms & Rates') ?></a></li>
+                <li><a onclick="return false;" id="tab-map" class="view-map hotel-tab"><?php echo __('Map') ?></a></li>
+                <li><a onclick="return false;" id="tab-review" class="hotel-tab view-reviews"><?php echo __('Reviews'); ?></a></li>
+            </ul>
+        </div>
+       
         <hr class="space2" />
         <div id="tab-data-info" class="hotel-tab-data">
             <h2 class="title"><?php echo __('Information') ?></h2>

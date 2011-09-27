@@ -38,6 +38,7 @@ class PlexFilterFlightOneway extends PlexFilterFlight implements PlexFilterInter
 
         //$this->paginate($page);
     }
+    
 
     public function getDatasForFilterForm() {
         $keys = $this->arFormSlidersInfo;

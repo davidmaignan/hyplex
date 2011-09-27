@@ -12,7 +12,10 @@
                 <td>
                     <ul class="prevSearch-list-index">
                         <li>
-                            <a href="#"><?php echo $parameters->getOriginDestination($sf_user->getCulture()); ?></a>
+                            <?php echo link_to2($parameters->getOriginDestination($sf_user->getCulture()),
+                                                'previous_search',
+                                                array('filename'=>$prevSearches[$i]['file'])); ?>
+                            <a href="#"><?php //echo $parameters->getOriginDestination($sf_user->getCulture()); ?></a>
                         </li>
                         <li class="italic grey1"><?php echo $parameters->getDates(); ?><?php echo $parameters->getPassengers(); ?></li>
                         <li>
@@ -26,8 +29,18 @@
 
                 </td>
                 <td style="width: 20px; text-align: center;">
-                    <a>Modify</a><br />
-                    <a class="select" style="width: 72px;">search</a><br />
+                    <?php $route = ($prevSearches[$i]['type'] == 'flightReturn')? 'flight_modified_search':'hotel_modified_search'?>
+                    <a href="<?php echo url_for($route,array('filename'=>$prevSearches[$i]['file'])) ?>"
+                        class="">
+                        <?php echo ucfirst(__('modify')) ?>
+                    </a>
+
+                    <?php $route = ($prevSearches[$i]['type'] == 'flightReturn')? 'search_flight_again':'search_hotel_again'?>
+                    <a href="<?php echo url_for($route,array('filename'=>$prevSearches[$i]['file'])) ?>"
+                       class="select">
+                            <?php echo ucfirst(__('search')) ?>
+                    </a>
+                    
 
                 </td>
             </tr>
@@ -43,6 +56,5 @@
 <hr class="space3" />
 
 <?php
-
 
 

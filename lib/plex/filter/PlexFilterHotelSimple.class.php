@@ -36,8 +36,10 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
         //$this->nbrHotels = count($this->arObjs);
 
+        if(!is_null($page)){
+            $this->paginate($page);
+        }
         
-        $this->paginate($page);
     }
 
 

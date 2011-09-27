@@ -13,6 +13,7 @@
 class HotelSimpleObj extends HotelGenericObj {
 
     private $filename;
+    public $class = 'bg-1';
 
     private $arListFacilities = array(  'general'=>array('desk','disabled','elevator','storage','smoking'),
                                         'services'=>array('service','cleaning','breakfast','concierge','ticket','room'),
@@ -26,13 +27,35 @@ class HotelSimpleObj extends HotelGenericObj {
         
     }
 
+    public function getToStringHeader(){
+        $string = '<thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Rating</th>
+                            <th>minPrice</th>
+                            <th>maxPrice</th>
+                            <th>location</th>
+                            <th>Chain</th>
+                        </tr>
+                    </thead>
+                    ';
+
+        return $string;
+    }
+
     public function  __toString() {
 
-        $string = '<tr><td>'. $this->name . '</td><td>'.
-                $this->starRating. '</td><td>'.
-                $this->location .'</td><td>'.
-                $this->chain.'</td></tr>';
+        $string =   '<tr class="'.$this->class.'">';
+        $string .=  '<td>'. image_tag($this->getImageFullPath(),array('width'=>'60px')).'</td>';
+        $string .=  '<td>'. $this->name . '</td><td>'.
+                    HotelGenericObj::getStarRating($this->starRating). '</td><td>'.
+                    format_currency($this->minPrice, sfConfig::get('app_currency')).'</td><td>'.
+                    format_currency($this->maxPrice, sfConfig::get('app_currency')).'</td><td>'.
+                    $this->location .'</td><td>'.
+                    $this->chain.'</td></tr>';
 
+        /*
         $string .= '<tr>';
 
         foreach ($this->arRoomsType as $key => $value) {
@@ -48,7 +71,7 @@ class HotelSimpleObj extends HotelGenericObj {
         }
 
         $string .= '<tr>';
-
+        */
 
         //echo "<pre>";
         //print_r($this->arRoomsType);

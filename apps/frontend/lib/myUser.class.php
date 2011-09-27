@@ -98,6 +98,20 @@ class myUser extends sfGuardSecurityUser
         // combine the credential and the permission check
         return (parent::hasCredential($credential, $useAnd) || parent::hasPermission($credential));
     }
-    
 
+    public function getCSRFToken($class){
+        $secret = sfConfig::get('sf_csrf_secret');
+        $csrf_token = md5($secret.session_id().get_class($class));
+        return $csrf_token;
+    }
+
+
+    public function getLastFilename(){
+
+        $prevSearch = $this->getAttribute('prevSearch');
+
+        return end($prevSearch);
+
+
+    }
 }
