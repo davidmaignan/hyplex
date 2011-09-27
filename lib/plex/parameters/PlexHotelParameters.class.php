@@ -128,6 +128,50 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
         
     }
 
+    public function getTypeRenamed(){
+
+
+        return 'hotel';
+
+        switch($this->type){
+
+            case 'flightReturn':
+                return 'round trip';
+                break;
+            case 'flightOneway':
+                return 'one way';
+                break;
+
+            case 'flightMulti':
+                return 'multiple destination itinary';
+                break;
+        }
+
+    }
+
+     public function displayParamsIphone() {
+        $string = $this->getOrigin();
+        $string .= __(' to ');
+        $string .= $this->getDestination();
+        $string .= ' - ';
+        $string .= format_date($this->getCheckinDate(), 'p');
+        $string .= ' - ';
+        $string .= format_date($this->getReturnDate(), 'p');
+
+        return $string;
+    }
+
+
+    public function getDates(){
+
+        $string = format_date($this->getCheckinDate(), 'flight');
+        $string .= ' - ';
+        $string .= format_date($this->getCheckoutDate(), 'flight');
+
+        return $string;
+    }
+
+    
 
 }
 

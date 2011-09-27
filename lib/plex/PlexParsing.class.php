@@ -220,15 +220,24 @@ class PlexParsing {
                     $tmp = array();
                     $tmp['date'] = $content[0];
                     $tmp['file'] = $content[1];
-                    $tmp['parameters'] = $content[2];
-                    array_push($searches, $tmp);
+                    $tmp['type'] = $content[2];
+                    $tmp['parameters'] = unserialize($content[3]);
+
+
+                    if($type !== false && preg_match('#'.$type.'#', $tmp['type'])> 0){
+                        array_push($searches, $tmp);
+                    }else if($type === false){
+                        array_push($searches, $tmp);
+                    }
+                    
                 }
             }
         fclose($handle);
 
 
         //Filter by type
-        return $searches;
+        
+        return array_reverse($searches);
 
 
     }

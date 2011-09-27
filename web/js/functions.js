@@ -346,7 +346,7 @@ function activateFilterBox(){
         var value = $(this).attr('class');
 
         switch (true) {
-            case value.search(/(Star)/) > -switch1:
+            case value.search(/(Star)/) > -1:
                 $('.reset-star').hide();
                 $('input.starRatingCheckbox').attr('checked', 'checked');
                 break;

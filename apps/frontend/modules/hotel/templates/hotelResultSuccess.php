@@ -34,7 +34,7 @@
     <?php echo html_entity_decode($filterFormFinal); ?>
 </div>
 
-<div class="span-18 last" style="width: 715px;">
+<div class="span-18 last">
 
     <div id="form" class="span-18 last hide">
         <?php include_partial('searchHotel/form', array('form'=>$form)); ?>

@@ -1,6 +1,16 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+previous_hotel:
+  url: /:sf_culture/previous-hotel-search/:wherebox/:checkin_date/:checkout_date
+  param: { module: prevSearch, action: previousHotelSearch }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+previous_search:
+  url: /:sf_culture/previous-search/:filename
+  param: { module: prevSearch, action: previousSearch }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 basket_remove:
   url: /:sf_culture/basket/remove/:type
   param: { module: basket, action: remove }
@@ -147,9 +157,25 @@ multipleDestination:
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 search_flight_form:
-  url: /:sf_culture/search/flight/invalid/
+  url: /:sf_culture/search/flight/invalid/*
   param: { module: searchFlight, action: create }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_hotel_again:
+  url: /:sf_culture/search-hotel-again/:filename
+  param: { module: searchHotel, action: searchAgain }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_flight_again:
+  url: /:sf_culture/search-flight-again/:filename
+  param: { module: searchFlight, action: searchAgain }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+#research_flight:
+#  url: /:sf_culture/research/flight/:filename
+#  param: { module: searchFlight, action: index }
+#  requirements:
+#    sf_culture: (?:en_US|fr_FR|zh_CN)
 
 search_flight:
   url: /:sf_culture/search/flight/

@@ -65,30 +65,8 @@
     </div>
     <hr class="space3" />
     <div class="span-9 prepend-top border">
-        <h2 class="title"><?php echo __('Previous searches'); ?></h2>
-        <div class=" span-9">
-            <?php for($i=0;$i<5;$i++): ?>
-            <table class="prev-searches">
-                <tr class="<?php echo (fmod($i, 2) == 0)? 'bg-1': 'bg-2' ?>">
-                    <td rowspan="2" style="font-weight: bold;">
-                        Flight return
-                    </td>
-
-                    <td><a href="#">LAX - JFK</a>
-
-                    <td>&bull; Sep 15 - Sep 17
-                    </td>
-                    <td rowspan="2" style="width: 60px; text-align: center;">
-                        <a>Modify</a><br />
-                        
-                    </td>
-                </tr>
-                <tr class="<?php echo (fmod($i, 2) == 0)? 'bg-1': 'bg-2' ?>">
-                    <td colspan="2">2 adults, 1 infant</td>
-                </tr>
-            </table>
-            <?php endfor; ?>
-        </div>
+        <?php include_component('prevSearch', 'index', array()); ?>
+        
     </div>
 
 </div>

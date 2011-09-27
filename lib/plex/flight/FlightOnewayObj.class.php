@@ -30,6 +30,7 @@ class FlightOnewayObj extends FlightGenericObj {
     public $arAirlines = array();
     public $arAirportKeys = array();
     public $arAirport = array();
+    public $class = 'bg-1';
 
 
     public function __construct() {
@@ -38,6 +39,25 @@ class FlightOnewayObj extends FlightGenericObj {
 
      public function setClass($value) {
         $this->class = $value;
+    }
+
+    public function  __toString() {
+
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag', 'Date'));
+
+
+        $string =   '<tr>';
+        $string .=  '<td>'. html_entity_decode($this->getAirlineIcon()).'</td>';
+        $string .=  '<td>'. $this->SegmentOutbound->DepartureFrom . '</td><td>'.
+                    $this->SegmentOutbound->ArrivalTo. '</td><td>'.
+                    format_date($this->SegmentOutbound->Departs, 'flight').'</td><td>'.
+                    format_date($this->SegmentOutbound->Departs, 't').'</td><td>'.
+                    format_date($this->SegmentOutbound->Arrives, 'flight') .'</td><td>'.
+                    format_date($this->SegmentOutbound->Arrives, 't').'</td><td>';
+        $string .= $this->SegmentOutbound->NumberStops .'</td><td rowspan="2">';
+        $string .= format_currency($this->TotalPrice,sfConfig::get('app_currency')).'</td></tr>';
+
+        return $string;
     }
 
     public function analyseSegmentInfos() {

@@ -13,6 +13,9 @@ folder:
 
 plexSession:
   class: plexSessionFilter
+
+historic:
+  class: historicFilter
   
 #error:
 #  class: errorFilter

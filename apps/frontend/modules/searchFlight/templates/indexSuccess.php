@@ -1,3 +1,5 @@
+<?php use_helper('Date','I18n','Text'); ?>
+
 <?php use_javascript('jquery-1.5.1.min.js'); ?>
 <?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
 <?php use_javascript('myScript'); ?>
@@ -39,31 +41,7 @@
         <?php include_partial('form', array('form' => $form)) ?>
     </div>
     <div class="span-10 last">
-        <h2 class="title"><?php echo __('Previous searches'); ?></h2>
-        <div class=" span-10 ">
-            <?php for($i=0;$i<5;$i++): ?>
-            <table class="prev-searches">
-                <tr>
-                    <td rowspan="2" style="font-weight: bold;">
-                        Flight return
-                    </td>
-                    
-                    <td>LAX - JFK
-                   
-                    <td>
-                        	Sep 15 - Sep 17 
-                    </td>
-                    <td rowspan="2" style="width: 80px; text-align: center;">
-                        <a>Modify</a><br />
-                        <a class="select">Search</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">2 adults, 1 infant</td>
-                </tr>
-            </table>
-            <?php endfor; ?>
-        </div>
+        <?php include_component('prevSearch', 'flight'); ?>
     </div>
 </div>
 

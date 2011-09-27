@@ -49,6 +49,38 @@ class FlightReturnObj extends FlightGenericObj {
         $this->class = $value;
     }
 
+    public function  __toString() {
+
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag', 'Date'));
+
+
+        $string =   '<tr>';
+        $string .=  '<td>'. html_entity_decode($this->getAirlineIcon()).'</td>';
+        $string .=  '<td>Inbound</td>';
+        $string .=  '<td>'. $this->SegmentOutbound->DepartureFrom . '</td><td>'.
+                    $this->SegmentOutbound->ArrivalTo. '</td><td>'.
+                    format_date($this->SegmentOutbound->Departs, 'flight').'</td><td>'.
+                    format_date($this->SegmentOutbound->Departs, 't').'</td><td>'.
+                    format_date($this->SegmentOutbound->Arrives, 'flight') .'</td><td>'.
+                    format_date($this->SegmentOutbound->Arrives, 't').'</td><td>';
+        $string .= $this->SegmentOutbound->NumberStops .'</td><td>';
+        $string .= format_currency($this->TotalPrice,sfConfig::get('app_currency')).'</td></tr>';
+
+        $string  .=  '<tr>';
+        $string .= '<td></td>';
+        $string .= '<td>Outbound</td>';
+        $string  .=  '<td>'. $this->SegmentInbound->DepartureFrom . '</td><td>'.
+                    $this->SegmentInbound->ArrivalTo. '</td><td>'.
+                    format_date($this->SegmentInbound->Departs, 'flight').'</td><td>'.
+                    format_date($this->SegmentInbound->Departs, 't').'</td><td>'.
+                    format_date($this->SegmentInbound->Arrives, 'flight') .'</td><td>'.
+                    format_date($this->SegmentInbound->Arrives, 't').'</td><td></td><td></td></tr>';
+        
+        
+
+        return $string;
+    }
+
     public function analyseSegmentInfos() {
 
         $array = $this->SegmentInfos;

@@ -12,6 +12,27 @@
 class FlightGenericObj {
 
 
+    public function getToStringHeader(){
+        $string = '<thead>
+                        <tr>
+                            <th>Compagnie</th>
+                            <th></th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Leaves</th>
+                            <th>at</th>
+                            <th>Arrives</th>
+                            <th>at</th>
+                            <th>stops</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    ';
+
+        return $string;
+    }
+
+    
     
     /*
      * Calculate the number of stops in inbound and outbound

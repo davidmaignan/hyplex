@@ -51,8 +51,6 @@ class basketComponents extends sfComponents {
 
         $fligthParameters = unserialize($arContent[3]);
         $this->flightDatas = $fligthParameters->getParametersArray($this->getUser()->getCulture());
-        
-
 
     }
 
