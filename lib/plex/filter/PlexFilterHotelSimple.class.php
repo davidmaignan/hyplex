@@ -56,7 +56,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         
         //var_dump($filters);
 
-        $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename.'.filters';
+        $filename = $this->getFilameFullPath('filters');
         //Check filters and filename.filters
         if(file_exists($filename)){
             $content = file_get_contents($filename);
@@ -552,10 +552,6 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         return $tmp;
     }
 
-
-
-
-
     private function loadFilterFile(){
 
 
@@ -565,7 +561,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
     public function displayFilterForm(){
 
         //Load datas 
-        $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename.'.filters';
+        $filename = $this->getFilameFullPath('filters');
 
         if(file_exists($filename)){
             $content = file_get_contents($filename);
@@ -779,8 +775,8 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
     private function getGmapImageStatic(){
 
-        $filename = $this->getFilameFullPath();
-        $content = file_get_contents($filename.'.markers');
+        $filename = $this->getFilameFullPath('markers');
+        $content = file_get_contents($filename);
         $arMarkers = unserialize($content);
 
 

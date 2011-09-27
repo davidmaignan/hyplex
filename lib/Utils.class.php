@@ -79,7 +79,7 @@ class Utils {
 
     static public function getArrayTimeFromSegments($string) {
         //2011-04-01 06:30 -> // mktime is as follows (hour, minute, second, month, day, year)
-        
+
         $data = explode(' ', $string);
         $d = explode(':', $data[1]);
         $keys = array('hour', 'min');

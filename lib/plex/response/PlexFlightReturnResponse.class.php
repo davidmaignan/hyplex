@@ -55,7 +55,7 @@ class PlexFlightReturnResponse extends PlexResponse implements PlexResponseInter
         $body = trim(substr($responseData, $start, $end - $start + 11));
 
         $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
-        $filename = $this->getFilename() . '.xml';
+        $filename = $this->getFilename('xml');
         file_put_contents($filename, $data);
         chmod($filename, 0777);
 
@@ -70,7 +70,7 @@ class PlexFlightReturnResponse extends PlexResponse implements PlexResponseInter
         $timer = sfTimerManager::getTimer('AnalyseResponse');
 
         //Create the file to save search parameters and the list of serialize flightReturnObjects.
-        $file = $this->getFilename() . '.xml';
+        $file = $this->getFilename('xml');
         $content = file_get_contents($file);
 
         //Retreive the xml file from the plex request
@@ -80,7 +80,7 @@ class PlexFlightReturnResponse extends PlexResponse implements PlexResponseInter
             $infos = array();
             $infos['message'] = 'Error while building xml';
             $infos['filename'] = $this->getFilename();
-            $infos['plexResponse'] = file_get_contents($this->getFilename());
+            $infos['plexResponse'] = file_get_contents($this->getFilename('raw'));
             $infos['parameters'] = $this->request->getPostParameters();
 
             $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
@@ -89,8 +89,6 @@ class PlexFlightReturnResponse extends PlexResponse implements PlexResponseInter
             
         }
 
-
-        
 
         //Loop through the xml for each flight
         foreach ($xml->children() as $value) {
@@ -172,13 +170,13 @@ class PlexFlightReturnResponse extends PlexResponse implements PlexResponseInter
         $listAirports = Doctrine::getTable('City')->getListAirportByCode($this->listKeysAirports);
 
         // Save the FlightReturnObjects in plex file
-        $handle = fopen($this->getFilename() . '.plex', 'wb');
+        $handle = fopen($this->getFilename('plex'), 'wb');
         foreach($this->arObjs as $flightReturn){
             $flightReturn->setAirportInfo($listAirports);
             fwrite($handle, serialize($flightReturn) . "\r\n --- " . "\r\n");
         }
         fclose($handle);
-        chmod($this->getFilename() . '.plex', 0777);
+        chmod($this->getFilename('plex'), 0777);
 
 
         //Add new request to request file 
@@ -195,7 +193,7 @@ class PlexFlightReturnResponse extends PlexResponse implements PlexResponseInter
         $datas['header'] = $this->getHeader();
         $datas['code']= $this->responseCode;
         $datas['userFolder'] = sfConfig::get('sf_user_folder');
-        $datas['filename'] = $this->filename;
+        $datas['filename'] = $this->getFilename();
         $datas['params'] = $this->paramFactory;
 
         //Save info in db

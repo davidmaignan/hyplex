@@ -127,7 +127,7 @@ class hotelActions extends sfActions
       $this->filterValues = json_encode($this->filterValues);
       
       //Google map
-      $fileMarkers = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.markers';
+      $fileMarkers = $filteredResponse->getFilameFullPath('markers');
 
       if(file_exists($fileMarkers)){
 
@@ -264,14 +264,9 @@ class hotelActions extends sfActions
         }
 
 
-
-        //return $this->renderText($slug .' - '.$termsConditionId);
-
-        
-
         $this->parameters = Utils::retreiveParameters($filename);
 
-        $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
+        $file = PlexParsing::getFullPathToFolder('hotel', $filename, 'plex');
 
         $handle = fopen($file , 'r');
         while(!feof($handle)){
@@ -288,7 +283,7 @@ class hotelActions extends sfActions
 
         //return $this->renderText($hotel->name);
 
-        $termsConditionsFile = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.DIRECTORY_SEPARATOR.$termsConditionId.'.raw';
+        $termsConditionsFile = PlexParsing::getFullPathToFolder('hotel', $filename).$termsConditionId.'.raw';
 
         if(!file_exists($termsConditionsFile)){
 
@@ -362,7 +357,6 @@ class hotelActions extends sfActions
 
         $prevSearches = $this->getUser()->getAttribute('prevSearch');
         $prevSearche = end($prevSearches);
-        
         $filename = $prevSearche['filename'];
 
         $this->filename = $filename;
@@ -371,7 +365,9 @@ class hotelActions extends sfActions
 
         $this->parameters = Utils::retreiveParameters($filename);
 
-        $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
+        $file = PlexParsing::getFullPathToFolder('hotel', $filename, 'plex');
+
+        
         
         $handle = fopen($file , 'r');
         while(!feof($handle)){
@@ -386,16 +382,17 @@ class hotelActions extends sfActions
             }
         }
 
-        //Hotel detail file name path
-        $hotelDetailFile = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.DIRECTORY_SEPARATOR.$hotel->id.'.raw';
+ 
 
-        if(!file_exists($hotelDetailFile)){            
+        //Hotel detail file name path
+        $hotelDetailFile = PlexParsing::getFullPathToFolder('hotel', $filename).$hotel->id.'.raw';
+
+        if(!file_exists($hotelDetailFile)){
 
             //Hotel detail request
             $plexRequest = new PlexHotelDetailsRequest($hotel, $filename, $this->getUser());
             $plexRequest->buildXML();
             $response = $plexRequest->executeRequest();
-
 
             $finalResponse = new PlexHotelDetailsResponse($hotel, $response, $request, $filename);
             $finalResponse->checkResponseCode();
@@ -429,6 +426,7 @@ class hotelActions extends sfActions
                 }
 
                 $this->hotel = $finalResponse->getHotel();
+
                 //Rewrite the file to get the hotel object with the data received from the plex request.
                 $content = file_get_contents($file);
                 $newContent = '';
@@ -452,9 +450,7 @@ class hotelActions extends sfActions
                 file_put_contents($file, $newContent);
 
         }
-        
-
-
+  
         $this->hotelCoordinates = json_encode($this->hotel->arCoordinates);
         $this->slugName = Utils::slugify($this->hotel->getName());
         
@@ -476,11 +472,13 @@ class hotelActions extends sfActions
 
 
         $prevSearches = $this->getUser()->getAttribute('prevSearch');
-        $prevSearche = $prevSearches[count($prevSearches) - 1];
-
+        $prevSearche = end($prevSearches);
         $filename = $prevSearche['filename'];
 
-        $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
+
+        $file = PlexParsing::getFullPathToFolder('hotel', $filename, 'plex');
+
+        //return $this->renderText($prevSearche);
 
         $handle = fopen($file , 'r');
         while(!feof($handle)){
@@ -504,16 +502,17 @@ class hotelActions extends sfActions
 
         //return $this->renderText($hotels);
 
-
     }
 
 
     public function executeSelected(sfWebRequest $request){
 
+        
+
         $filename = $request->getPostParameter('filename');
         $slug = $request->getPostParameter('slug');
         //var_dump($request->getPostParameters());
-
+        
         //Check number of rooms selected / in case javascript didn't work
 
         $hotel = PlexParsing::retreiveHotel($filename, $slug);
@@ -528,8 +527,9 @@ class hotelActions extends sfActions
         $roomIds = $hotel->getRoomIds();
 
         //var_dump($roomIds);
-        
-        if(!array_intersect($roomIds, $roomsPosted)==$roomIds){
+        //var_dump(array_intersect($roomIds, $roomsPosted));
+        //exit;
+        if(!array_intersect($roomIds, $roomsPosted) == $roomIds){
 
             return $this->redirect('error/missingHotelRoom');
 

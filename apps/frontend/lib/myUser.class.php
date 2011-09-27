@@ -110,7 +110,7 @@ class myUser extends sfGuardSecurityUser
 
         $prevSearch = $this->getAttribute('prevSearch');
 
-        return end($prevSearch);
+        return is_array($prevSearch)? end($prevSearch):null;
 
 
     }

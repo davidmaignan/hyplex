@@ -272,10 +272,11 @@ class HotelSimpleObj extends HotelGenericObj {
     }
 
     public function setFullFacilities($data){
+        
         foreach ($data->children() as $value) {
             array_push($this->hotelFullFacilities, trim((string)$value));
         }
-        
+
         $this->arFacilitiesList = $this->hotelFullFacilities;
         sort($this->arFacilitiesList);
 
@@ -283,7 +284,6 @@ class HotelSimpleObj extends HotelGenericObj {
         $this->hotelFullFacilities = array_unique($this->hotelFullFacilities);
 
         //Analysing the array
-
         $keys = array_keys($this->arListFacilities);
         $tmp = array();
 
@@ -311,10 +311,7 @@ class HotelSimpleObj extends HotelGenericObj {
        }
 
        array_multisort($tmp);
-
        $this->hotelFullFacilities = $tmp;
-
-
     }
 
     public function getFullFacilities() {

@@ -48,7 +48,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
         $body = trim(substr($responseData, $start, $end - $start + 13));
 
         $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
-        $filename = $this->getFilename() . '.xml';
+        $filename = $this->getFilename('xml');
         file_put_contents($filename, $data);
         chmod($filename, 0777);
 
@@ -120,7 +120,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
 
         //var_dump($arMarkers);
         
-        $filename = $this->getFilename() . '.markers';
+        $filename = $this->getFilename('markers');
         file_put_contents($filename, serialize($arMarkers));
         chmod($filename, 0777);
         //break;
@@ -132,7 +132,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
         $timer = sfTimerManager::getTimer('AnalyseResponse');
 
         //Create the file to save search parameters and the list of serialize flightReturnObjects.
-        $file = $this->getFilename() . '.xml';
+        $file = $this->getFilename('xml');
         $content = file_get_contents($file);
 
         //Retreive the xml file from the plex request
@@ -141,7 +141,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
         if (!$xml) {
             $infos = array();
             $infos['message'] = 'Error while building xml';
-            $infos['filename'] = $this->getFilename();
+            $infos['filename'] = $this->getFilename('xml');
             $infos['plexResponse'] = file_get_contents($this->getFilename());
             $infos['parameters'] = $this->request->getPostParameters();
 
@@ -160,7 +160,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
 
 
         //Retreive array with lat/long
-        $filename = $this->getFilename() . '.markers';
+        $filename = $this->getFilename('markers');
         $fileContent = file_get_contents($filename);   
         $arMarkers = unserialize($fileContent);
         //var_dump($arMarkers);
@@ -237,13 +237,13 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
         
 
         // Save the HotelSimpleObjects in plex file
-        $handle = fopen($this->getFilename() . '.plex', 'wb');
+        $handle = fopen($this->getFilename('plex'), 'wb');
         foreach($this->arObjs as $hotelSimple){
             //$hotelSimple->setAirportInfo($listAirports);
             fwrite($handle, serialize($hotelSimple) . "\r\n --- " . "\r\n");
         }
         fclose($handle);
-        chmod($this->getFilename() . '.plex', 0777);
+        chmod($this->getFilename('plex'), 0777);
 
         //Create and/or add info request / might have to modify it to save some extra info (min price, max price, airlines ...) -> to define by tomi
         PlexParsing::addNewRequest($this->filename, $this->type, $this->paramFactory);
@@ -424,7 +424,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
         $arFilters['prices'] = $arPrices;
         
         //Save filters in file
-        file_put_contents($this->getFilename().'.filters', serialize($arFilters));
+        file_put_contents($this->getFilename('filters'), serialize($arFilters));
         chmod($this->getFilename().'.filters', 0777);
         
     }

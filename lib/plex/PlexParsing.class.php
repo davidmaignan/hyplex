@@ -57,7 +57,7 @@ class PlexParsing {
      */
     static function retreiveFlights($filename){
 
-        $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.$filename;
+        $filename = PlexParsing::getFullPathToFolder('flight', $filename, 'plex');
         
         if ($filename === null || !file_exists($filename)) {
             throw new Exception('You must provide a file in the FilterClass');
@@ -89,8 +89,8 @@ class PlexParsing {
      */
     static function retreiveFlight($filename, $uniqueReferenceId){
 
-        $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.$filename.'.plex';
-
+        $filename = PlexParsing::getFullPathToFolder('flight', $filename, 'plex');
+        
         if ($filename === null || !file_exists($filename)) {
             throw new Exception('You must provide a file in the FilterClass');
         }
@@ -122,7 +122,7 @@ class PlexParsing {
      */
     static function retreiveHotel($filename, $slug){
 
-        $file = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$filename.'.plex';
+        $file = PlexParsing::getFullPathToFolder('hotel', $filename, 'plex');
 
         $handle = fopen($file , 'r');
         while(!feof($handle)){
@@ -239,6 +239,58 @@ class PlexParsing {
         
         return array_reverse($searches);
 
+
+    }
+
+    /**
+     * Function to return the appropriate path depending on the type of search (hotel, flight ....)
+     * @param <type> $type
+     * @param <type> $filename
+     *
+     * @return string
+     */
+    public static function getFullPathToFolder($type, $filename, $file = ''){
+
+        $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.
+        $type.DIRECTORY_SEPARATOR.$filename.
+        DIRECTORY_SEPARATOR;
+
+        switch ($file) {
+            case 'plex':
+                $file = 'plexResponse.plex';
+                break;
+
+            case 'raw':
+                $file = 'plexResponse.raw';
+                break;
+
+            case 'xml':
+                $file = 'plexResponse.xml';
+                break;
+
+            case 'filters':
+                $file = 'plexResponse.filters';
+                break;
+
+            case 'markers':
+                $file = 'plexResponse.markers';
+                break;
+
+
+            default:
+                $file = null;
+                break;
+        }
+
+        $path .= $file;
+
+        
+
+        if(!file_exists($path)){
+            throw new Exception('PlexParsing getFullPathToFolder function. File not exist: '.$path , 500);
+        }
+
+        return $path;
 
     }
 
