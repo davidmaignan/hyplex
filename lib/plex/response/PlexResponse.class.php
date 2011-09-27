@@ -72,22 +72,50 @@ class PlexResponse {
                     $path = sfConfig::get('sf_user_folder').'/hotel';
                     break;
 
+                case preg_match('#flight#', $type)>0:
+                    if(!file_exists(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'flight')){
+                        mkdir(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'flight', 0777);
+                    }
+                    $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'flight';
+                    break;
+
+                case preg_match('#package#', $type)>0:
+                    if(!file_exists(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'package')){
+                        mkdir(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'package', 0777);
+                    }
+                    $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'package';
+                    break;
+
+                case preg_match('#car#', $type)>0:
+                    if(!file_exists(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'car')){
+                        mkdir(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'car', 0777);
+                    }
+                    $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'car';
+                    break;
+
+                case preg_match('#excursion#', $type)>0:
+                    if(!file_exists(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'excursion')){
+                        mkdir(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'excursion', 0777);
+                    }
+                    $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'excursion';
+                    break;
+
                 default:
                     $path = sfConfig::get('sf_user_folder');
                     break;
             }
 
             $filename = tempnam($path, $type . '-');
+            unlink($filename);
+            mkdir($filename, 0777);
+            
             $tmp = explode('/', $filename);
             $this->filename = $tmp[count($tmp)-1];
-            
-            chmod($filename, 0777);
-            file_put_contents($filename.'.raw', $this->response);
-            chmod($filename.'.raw', 0777);
 
-            unlink($filename);
-            
-            mkdir($filename, 0777);
+            $fullFilename = $this->getFilename('raw');
+
+            file_put_contents($fullFilename, $this->response);
+            chmod($fullFilename, 0777);
             
             $timer->addTime();
            
@@ -130,7 +158,7 @@ class PlexResponse {
 
         //Check the header response and choose the action depending on the status of the response.
         //Temp ---------------------------------
-        $filename = $this->getFilename().'.raw';
+        $filename = $this->getFilename('raw');
         $this->response = file_get_contents($filename);
         //--------------------------------------
 
@@ -154,12 +182,27 @@ class PlexResponse {
      * @return string the fullpath to the raw request saved
      */
 
-    public function getFilename() {
+    public function getFilename($type = '') {
 
-        switch ($this->type) {
-            case 'hotelSimple':
-                $path = sfConfig::get('sf_user_folder').'/hotel';
+        switch (true) {
+            case preg_match('#hotel#', $this->type)>0:
+                $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel';
+                break;
 
+            case preg_match('#flight#', $this->type)>0:
+                 $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'flight';
+                break;
+
+            case preg_match('#car#', $this->type)>0:
+                 $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'car';
+                break;
+
+            case preg_match('#excursion#', $this->type)>0:
+                 $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'excursion';
+                break;
+
+            case preg_match('#package#', $this->type)>0:
+                 $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'package';
                 break;
 
             default:
@@ -167,7 +210,35 @@ class PlexResponse {
                 break;
         }
 
-        return $path.'/'.$this->filename;
+
+
+        switch ($type) {
+            case 'raw':
+                $file = 'plexResponse.raw';
+                break;
+
+            case 'xml':
+                $file = 'plexResponse.xml';
+                break;
+
+            case 'plex':
+                $file = 'plexResponse.plex';
+                break;
+
+            case 'markers':
+                $file = 'plexResponse.markers';
+                break;
+
+            case 'filters':
+                $file = 'plexResponse.filters';
+                break;
+
+            default:
+                $file = null;
+                break;
+        }
+
+        return $path.DIRECTORY_SEPARATOR.$this->filename.DIRECTORY_SEPARATOR.$file;
         //return $this->filename;
     }
 
@@ -175,8 +246,8 @@ class PlexResponse {
         
         ini_set('error_reporting', E_ERROR);
 
-        $response = file_get_contents($this->getFilename().'.raw');
-       
+        $response = file_get_contents($this->getFilename('raw'));
+
         $pattern = '#charset=utf-8#';
         $responseSplit = preg_split($pattern, $response);
 
@@ -215,19 +286,6 @@ class PlexResponse {
         $times = sfTimerManager::getTimers();
         $t = $times['PlexRequest'];
 
-        //Calculate validity of sTId depending on the code
-        /*
-        switch ($code) {
-            case 0:
-                sfContext::getInstance()->getUser()->setAttribute('sTId_time', (time() + sfConfig::get('app_plexSession_duration')));
-                break;
-
-            default:
-                break;
-        }
-         * 
-         */
-        
 
     }
 

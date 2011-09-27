@@ -161,7 +161,6 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
         chmod($this->getFilename() . '.plex', 0777);
 
         
-
         //Create and/or add info request / might have to modify it to save some extra info (min price, max price, airlines ...) -> to define by tomi
         PlexParsing::addNewRequest($this->filename, $this->type, $this->paramFactory);
 

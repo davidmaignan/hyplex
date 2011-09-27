@@ -147,17 +147,13 @@ ini_set('display_errors', '1');
             <?php foreach ($arHotels as $hotel): ?>
 
             <td style="text-align: left; vertical-align: top;">
-
                 <ul>
-                    <?php foreach($hotel->getFullFacilitiesListSorted() as $facility): ?>
-                        
-                    <li class="facilities <?php echo (preg_match('#free#i', $facility)>0)?'green':''; ?>">&bull; <?php echo $facility; ?></li>
-                       
+                    <?php foreach($hotel->getFullFacilitiesListSorted() as $facility): ?>  
+                        <li class="facilities <?php echo (preg_match('#free#i', $facility)>0)?'green':''; ?>">&bull; <?php echo $facility; ?></li>
                     <?php endforeach; ?>
                 </ul>
 
                 <?php //var_dump($hotel->getFullFacilitiesListSorted()); ?>
-
             </td>
         <?php endforeach; ?>
         </tr>

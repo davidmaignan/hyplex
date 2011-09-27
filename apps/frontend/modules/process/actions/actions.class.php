@@ -101,14 +101,11 @@ class processActions extends sfActions
           //echo "<hr />";
           //break;
 
-          
-
-
           $response = $plexRequest->executeRequest();
 
       }else{
           
-          $filename = sfConfig::get('sf_data_dir').'/hotel_datas_tmp/hotelSimple-AEvx8C';
+          $filename = sfConfig::get('sf_data_dir').'/rawplexresponse/hotelSimple.raw';
           $response = file_get_contents($filename);
       }
 

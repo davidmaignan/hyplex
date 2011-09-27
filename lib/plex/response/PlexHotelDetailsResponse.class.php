@@ -33,15 +33,66 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
 
     public function getFilename() {
 
-        $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename;
 
-        return $path.DIRECTORY_SEPARATOR.$this->hotel->id;
+        $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.
+                'hotel'.DIRECTORY_SEPARATOR.
+                $this->filename;
+
+        return $path.DIRECTORY_SEPARATOR.$this->hotel->id.'.raw';
         //return $this->filename;
     }
 
     public function  analyseResponse() {
 
     }
+
+    public function checkResponseCode() {
+
+        ini_set('error_reporting', E_ERROR);
+
+        $response = file_get_contents($this->getFilename());
+
+        $pattern = '#charset=utf-8#';
+        $responseSplit = preg_split($pattern, $response);
+
+        $this->responseData = $responseSplit[1];
+
+        //Retreive response code
+        $pattern = '#<ResponseCode>.+</ResponseCode>#';
+        preg_match_all($pattern, $responseSplit[1], $matchArray);
+
+        if(empty($matchArray)){
+            $infos = array();
+            $infos['message'] = 'Error while building xml: cannot find response code';
+            $infos['filename'] = $this->getFilename();
+            $infos['plexResponse'] = file_get_contents($this->getFilename());
+            $infos['parameters'] = $this->request->getPostParameters();
+
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+            sfContext::getInstance()->getController()->forward('error', 'plexError');
+            //exit;
+        }
+
+        $code = $matchArray[0][0];
+
+        $start = strpos($code, '>');
+        $code = substr($code, $start + 1);
+
+        $end = strpos($code, '<');
+        $code = substr($code, 0, $end);
+
+        $this->responseCode = $code;
+
+        $infosUser = $this->retreiveUserInfos($this->request);
+        $header = $this->getHeader();
+
+        $times = sfTimerManager::getTimers();
+        $t = $times['PlexRequest'];
+
+
+    }
+
 
 
     public function  parseResponse() {
@@ -122,9 +173,9 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
         $body = trim(substr($responseData, $start , $end - $start + strlen('</AllHotelFacilities>')));
 
         $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
+
         $xmlFacilities = simplexml_load_string($data);
         $this->hotel->setFullFacilities(($xmlFacilities));
-
 
         //Images
         $start = strpos($responseData, '<AllHotelImageLinks>');

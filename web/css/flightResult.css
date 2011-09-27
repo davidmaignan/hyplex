@@ -192,9 +192,6 @@ a.flight-link-share{
     border:1px solid white;
     background-color: #1c4879;
     background-color: #eff7fd;
-    -moz-box-shadow: 0px 0px 2px #333;
-    -webkit-box-shadow: 0px 0px 2px #333;
-    box-shadow: 0px 0px 2px #333;
     border:1px solid white;
     position: relative;
     display:none;

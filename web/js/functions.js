@@ -1501,7 +1501,7 @@ function onCompareRequestSuccess(msg){
 
     $("#dialog-message").dialog( "destroy" );
     showHideHotelDivs(3);
-    $('#compareHotels').append(msg);
+    $('#compareHotels').html(msg);
     //alert(msg);
 
 }
