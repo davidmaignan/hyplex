@@ -18,6 +18,8 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
     public function  __construct($type, $filename, $page, $filters) {
 
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date','I18n','Text'));
+
         parent::__construct($type, $filename, $page, $filters);
 
         $this->filters = $filters;
@@ -721,11 +723,16 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
                     </thead>';
         $frmStr .= '<tbody>';
         $jeton = 0;
+
+
+        
+
+
         foreach($arFilterDatas['chain'] as $key=>$value){
             $frmStr .= '<tr class="'.(($jeton > 10)?'chain2':'').' chain_tr" id="chain_'.$key.'_tr" >';
             $frmStr .= '<td>';
             $frmStr .= $frm->addInput('checkbox', 'chain['.$key.']', 1, array('checked' => 'checked', 'class' => 'filterHotelCheckbox chainCheckbox', 'id' => 'chain_'.$key));
-            $frmStr .= '<label for=location_' . $key . '>'.str_replace('_', ' ', $key).'</label></td>';
+            $frmStr .= '<label for=location_' . $key . '>'.$this->getChainName($key).'</label></td>';
             $frmStr .= '<td  style="font-size: 90%; "><a href="'.  url_for1('filter_hotel_form').'" id="filter-chain-link-'.$key.'" class="filter-chain-link" >'.count($value['list']).'</a></td>';
             $frmStr .= '<td  style="text-align: right;font-size: 90%; ">'.
                         $this->getLinkAccordingToNumberOfResponse($value['min']).
@@ -770,6 +777,18 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         $frmStr .= '</form>';
 
         return $frmStr;
+
+    }
+
+    private function getChainName($key){
+        $hotelChains = Utils::createHotelchainArray();
+
+        if($key == '00'){
+            return 'independant';
+        }else{
+            return truncate_text($hotelChains[$key][0], 20);
+        }
+
 
     }
 

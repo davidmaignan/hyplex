@@ -13,6 +13,8 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
 
     //put your code here
     public $arObjs = array();
+    public $listChains = array();
+
 
     public function  parseResponse() {
         
@@ -179,7 +181,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
 
                     case (in_array($key , $arSimpleFields)):
                          $keyModified = $this->renameXMLTag($key);
-                         $hotelSimple->$keyModified = ((string)$value == '')?'independant':(string)$value;
+                         $hotelSimple->$keyModified = ((string)$value == '')?'00':(string)$value;
                          break;
 
                     case 'StarRating':
@@ -230,7 +232,9 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
             //Create array with min/max price
             $hotelSimple->getMinMaxPrice();
 
-
+            array_push($this->listChains, $hotelSimple->chain);
+            $this->listChains = array_unique($this->listChains);
+            
             array_push($this->arObjs, $hotelSimple);
 
         }
