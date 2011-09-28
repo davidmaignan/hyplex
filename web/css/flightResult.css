@@ -5,10 +5,10 @@
 
 /* BOX FLIGHT ---------------------------------------------- */
 .flight-box{
-    abackground: white url('../images/generic/bg_flight_box.png') no-repeat scroll 480px 5px;
     background-color: #eff7fd;
     border: 1px solid #ddd;
     padding: 5px 0;
+    height: 83px;
 }
 
 .box-airline{
@@ -32,14 +32,21 @@
 .flight table{
     width:460px;
     border:0px solid red;
-    margin-top: 10px;
+    
 }
 
 .flight-data{
-    width: 480px;
+    width: 450px;
     border:0px solid red;
     float:left;
     font-size: 88%;
+}
+
+.flight-data th{
+    text-align: left;
+    font-size: 80%;
+    font-weight: bold;
+    padding-bottom: 6px;
 }
 
 span.small{
@@ -52,13 +59,14 @@ span.small{
 .flight td{
     font-size: 90%;
     vertical-align: text-bottom;
-    border: 0px solid green;
-    padding-bottom:8px;
+    padding-bottom: 8px;
+
 }
 
 .flight td.airport{
     width: 30px;
-    abackground-color: red;
+    padding: 0;
+    margin: 0;
     text-align: right;
 }
 
@@ -87,10 +95,6 @@ span.small{
     abackground-color: yellow;
 }
 
-.flight-data td.arrow{
-    padding:0 5px 0 8px;
-    width: 17px;
-}
 
 .flight-data a.flight-link{
     font-size: 90%;
@@ -132,6 +136,7 @@ a.flight-link-share{
     height: 70px;
     background-color: #dae6ef;
     padding: 5px;
+    height: 70px;
 }
 
 .flight-box-price .select{
@@ -428,3 +433,7 @@ a.only{
 }
 
 
+
+#filterForm table td{
+    padding:0;
+}

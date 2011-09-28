@@ -1,4 +1,4 @@
-<ul id="main-nav">
+<ul id="main-nav" class="append-bottom">
     <li><a href="<?php echo url_for('@homepage') ?>"><?php echo __('Home'); ?></a></li>
     <li><a href="<?php echo url_for('search_flight') ?>"><?php echo __('Flight'); ?></a></li>
     <li><a href="<?php echo url_for('search_hotel') ?>"><?php echo __('Hotel'); ?></a></li>

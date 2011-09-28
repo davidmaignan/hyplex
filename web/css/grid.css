@@ -349,7 +349,6 @@ div.append-bottom, .append-bottom {
 
 #specialInterest ul li{
     display: inline;
-
 }
 
 #specialInterest ul li a{
@@ -360,7 +359,6 @@ div.append-bottom, .append-bottom {
     padding-left: 20px;
     display: block;
     float: left;
-
 }
 
 #newsletter-signup{
@@ -481,7 +479,9 @@ hr.space2 {
     background: #fff;
     color: #fff;
     visibility: hidden;
-    margin:4px;
+    margin: 4px 0 !important;
+    margin: 0px;
+    padding: 0;
 }
 
 
@@ -509,13 +509,24 @@ hr.space3 {
 /* Regular clearing
    apply to column that should drop below previous ones. */
 
-.clear { clear:both; }
-
+.clear {clear:both;}
 
 /* Generic rules */
 
 .right{
     float:right;
+}
+
+td.right, th.right{
+    text-align: right;
+}
+
+td.left, th.left{
+    text-align: left;
+}
+
+td.center, th.center{
+    text-align: center;
 }
 
 .left{
@@ -673,6 +684,9 @@ a.only{
     font-size: 170%;
     font-weight: bold;
     float: right;
+    display:block;
+    width: 150px;
+    text-align: right;
 }
 
 .hotel-price-total{
@@ -680,6 +694,7 @@ a.only{
     color: #888888;
     float: right;
     margin: 6px 0;
+    display:block;
 }
 
 .hotel-temptation{

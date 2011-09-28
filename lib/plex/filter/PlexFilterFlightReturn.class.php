@@ -14,6 +14,8 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
 
     public function __construct($type, $filename, $page, $filters) {
 
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date','I18n','Text'));
+
         parent::__construct($type, $filename, $page, $filters);
 
         //Need to know the cheapest price per number of stops
@@ -325,35 +327,67 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
         //Add stop checkboxes
         $frmStr .= "<h4>" . __("Stops") . "</h4></div>";
         $frmStr .= '<div class="box-2">';
-        //var_dump($this->stopsFields);
+        $frmStr .= '<table>';
+        $frmStr .= '<thead><tr>
+                    <th></th>
+                    <th></th>
+                    <th class="right">min</th>
+                    </thead>';
+        $frmStr .= '<tbody>';
         foreach ($this->stopsFields as $key => $value) {
             if (!isset($value['price'])) {
                 continue;
             }
+            $frmStr .= '<tr>';
+            $frmStr .= '<td style="width: 20px;">';
             $frmStr .= $frm->addInput($value[0], $key, 1, array('checked' => 'checked', 'class' => 'FilterCheckbox', 'id' => $key));
+            $frmStr .= '</td><td>';
             $frmStr .= '<label for="' . $key . '">' . __($value[1]) . '</label>';
-            $frmStr .= '<span class=" price right blue" >' . format_currency($value['price'], 'USD') . '</span><br />';
+            $frmStr .= '</td><td class="price blue right small">';
+            $frmStr .= format_currency($value['price'], sfConfig::get('app_currency'));
+            $frmStr .= '</td></tr>';
         }
+        $frmStr     .= '</tbody></table>';
 
         $frmStr .= "</div>";
         $frmStr .= '<div class="box-11">';
         $frmStr .= "<h4>" . __("Flight Times") . "</h4></div>";
         $frmStr .= '<div class="box-2">';
-        $frmStr .= '<h3>' . __("Take-off") . '<span class="small right">' . __("Depart flight") . '</span></h3>';
+        $frmStr .= '<table>';
+        $frmStr .= '<thead><tr>
+                    <th class="bold">' . __("Take-off") . '</th>
+                    <th class="right small" >' . __("Depart flight") . '</th>
+                    </thead>';
+        //$frmStr .= '<h3>' . __("Take-off") . '<span class="small right">' . __("Depart flight") . '</span></h3>';
+        $frmStr .= '<tbody><tr>';
         foreach ($this->flightTimeFields as $key => $value) {
 
-            $frmStr .= "<div id=slider_$key ></div>";
-            $frmStr .= "<div id=info_$key class=slider_info ></div>";
+            $frmStr .= "<td colspan=2 ><div id=slider_$key ></div></td>";
+            $frmStr .= '</tr>';
+            $frmStr .= "<td colspan=2  ><div id=info_$key class=slider_info ></div></td>";
+            $frmStr .= '</tr><td>';
             $frmStr .= $frm->addInput('hidden', $key, '', array('id' => $key));
+            $frmStr .= '<td>';
         }
+        $frmStr .= '</tr><tbody></table>';
 
-        $frmStr .= '<h3>' . __("Take-off") . '<span class="small right">' . __("Return flight") . '</span></h3>';
+        $frmStr .= '<table>';
+        $frmStr .= '<thead><tr>
+                    <th class="bold">' . __("Take-off") . '</th>
+                    <th class="right smaller" >' . __("Return flight") . '</th>
+                    </thead>';
+        //$frmStr .= '<h3>' . __("Take-off") . '<span class="small right">' . __("Depart flight") . '</span></h3>';
+        $frmStr .= '<tbody><tr>';
         foreach ($this->flightTimeFields2 as $key => $value) {
 
-            $frmStr .= "<div id=slider_$key ></div>";
-            $frmStr .= "<div id=info_$key class=slider_info ></div>";
+            $frmStr .= "<td colspan=2 ><div id=slider_$key ></div></td>";
+            $frmStr .= '</tr>';
+            $frmStr .= "<td colspan=2  ><div id=info_$key class=slider_info ></div></td>";
+            $frmStr .= '</tr><td>';
             $frmStr .= $frm->addInput('hidden', $key, '', array('id' => $key));
+            $frmStr .= '<td>';
         }
+        $frmStr .= '</tr><tbody></table>';
 
         $frmStr .= "</div>";
         $frmStr .= '<div class="box-11">';
@@ -362,17 +396,28 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
         $frmStr .= '<div class="box-2">';
         $frmStr .= "<ul>";
 
+        $frmStr .= '<table>';
+        $frmStr .= '<thead><tr>
+                    <th></th><th></th>
+                    <th class="small">' . __("stop") . '</th>
+                    <th class="right blue small" >' . __("min") . '</th>
+                    </thead>';
+        $frmStr .= '<tbody>';
+
+        $arAirlines = Utils::createAirlineArray();
+        //var_dump(($arAirlines));
+
         foreach ($this->arAirlines as $key => $value) {
             $tmp = $this->retreiveOnlyOne($value);
-            $frmStr .= "<li>";
+            $frmStr .= "<tr><td>";
             $frmStr .= $frm->addInput('checkbox', $key, 1, array('checked' => 'checked', 'class' => 'FilterCheckbox', 'id' => $key));
-            $frmStr .= '<label for=' . $key . '>' . $key . '</label>';
+            $frmStr .= '</td><td><label for=' . $key . '>' . truncate_text($arAirlines[$key][0], 20) . '</label></td>';
             //$frmStr .= '<a href=3 class="only">'.__("only").'</a>';
-            $frmStr .= '<span class="price blue">' . format_currency($tmp['price'], 'USD') . '</span>';
-            $frmStr .= '<span class="stop">' . $tmp['stops'] . ' stop</span>';
-            $frmStr .= "</li>";
+            $frmStr .= '<td class="center small" >' . $tmp['stops'] . '</td>';
+            $frmStr .= '<td class="price blue right small">' . format_currency($tmp['price'], sfConfig::get('app_currency')) . '</td>';
+            $frmStr .= "</tr>";
         }
-        $frmStr .= "</ul></div>";
+        $frmStr .= "</tbody></table></div>";
 
 
         $frmStr .= '<div class="box-11">';
@@ -380,30 +425,39 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
         $frmStr .= "<h4>" . __("Flight quality") . "</h4>";
         $frmStr .= '</div>';
         $frmStr .= '<div class="box-2">';
-
+        $frmStr .= '<table><tr><td>';
         foreach ($this->flightQuality as $key => $value) {
             $frmStr .= $frm->addInput($value[0], $key, $key, array('checked' => 'checked', 'id' => $key));
+            $frmStr .= '</td><td>';
             $frmStr .= '<label for=' . $key . '>' . __($value[1]) . '</label>';
+            $frmStr .= '</td></tr>';
         }
-        $frmStr .= '</div>';
+        $frmStr .= '</table></div>';
+
+
         $frmStr .= '<div class="box-11">';
         $frmStr .= "<h4>" . __("Trip duration") . "</h4></div>";
         $frmStr .= '<div class="box-2">';
+
+        $frmStr .= '<table><tr><td>';
+
         foreach ($this->tripDurationFields as $key => $value) {
-            $frmStr .= "<div id=slider_$key ></div>";
-            $frmStr .= "<div id=info_$key class=slider_info></div>";
+            $frmStr .= "<div id=slider_$key ></div></td></tr><tr><td>";
+            $frmStr .= "<div id=info_$key class=slider_info></div></td></tr><tr><td>";
             $frmStr .= $frm->addInput('hidden', $key, '', array('id' => $key));
         }
-        $frmStr .= '</div>';
+        $frmStr .= '</td></tr></table></div>';
         $frmStr .= '<div class="box-11">';
         $frmStr .= "<h4>" . __("Price") . "</h4></div>";
         $frmStr .= '<div class="box-2">';
+
+        $frmStr .= '<table><tr><td>';
         foreach ($this->tripPrice as $key => $value) {
-            $frmStr .= "<div id=slider_$key ></div>";
-            $frmStr .= "<div id=info_$key class=slider_info></div>";
+            $frmStr .= "<div id=slider_$key ></div></td></tr><tr><td>";
+            $frmStr .= "<div id=info_$key class=slider_info></div></td></tr><tr><td>";
             $frmStr .= $frm->addInput('hidden', $key, '', array('id' => $key));
         }
-
+        $frmStr .= '</td></tr></table>';
         $frm->endForm();
 
         $frmStr .= '</form></div>';
