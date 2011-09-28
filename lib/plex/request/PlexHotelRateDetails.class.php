@@ -37,7 +37,7 @@ class PlexHotelRateDetails extends PlexRequest implements PlexRequestInterface{
         $this->hotel = $hotel;
 
         //build the xml
-        $this->defineParams(1);
+        $this->defineParams();
 
 
 

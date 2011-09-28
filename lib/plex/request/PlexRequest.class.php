@@ -50,7 +50,7 @@ abstract class PlexRequest{
 
             //sfContext::getInstance()->getLogger()->alert('Generate a sessionTokenId');
             //Retreive the parameters to login
-            $this->defineParams(1);
+            $this->defineParams();
 
             //build the xml
             $this->xml = $this->buildXML();
@@ -118,6 +118,9 @@ abstract class PlexRequest{
 
     protected function defineParams($i = 0)
     {
+
+        $i = sfConfig::get('plex_ipm');
+
         if($i == 0){
             $this->url = sfConfig::get('app_plex_url');
             $this->username = sfConfig::get('app_plex_username');

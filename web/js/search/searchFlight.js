@@ -28,7 +28,7 @@ $(document).ready(function(){
             dates.not(this).datepicker("option", option, date);
         }
     });
-
+    /*
     $("#search_flight_origin").focus().autocomplete(airports, {
         minChars: 2,
         width: 300,
@@ -64,9 +64,9 @@ $(document).ready(function(){
             return formatAirportString(row);
         }
     });
-    
+    */
 
-    $("#search_flight_destination").autocomplete(airports, {
+    $("#search_flight_destination, #search_flight_origin").autocomplete(airports, {
         minChars: 0,
         width: 300,
         matchContains: "word",
