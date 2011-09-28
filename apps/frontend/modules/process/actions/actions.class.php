@@ -20,7 +20,7 @@ class processActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
       //Debuggind mode
-      $debug = false;
+      $debug = true;
 
       if($request->hasParameter('search_flight')){
           $parameters = $request->getParameter('search_flight');
@@ -102,7 +102,7 @@ class processActions extends sfActions
 
       }else{
           
-          $filename = sfConfig::get('sf_data_dir').'/rawplexresponse/hotelSimple.raw';
+          $filename = sfConfig::get('sf_data_dir').'/rawplexresponse/flightReturn.raw';
           $response = file_get_contents($filename);
       }
 

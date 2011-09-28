@@ -27,9 +27,6 @@
     <?php include_partial('summary',array('parameters'=>$parameters,'nbrHotels'=>$filterResponse->nbrTotalHotels)); ?>
 </div>
 
-
-
-
 <div class="span-7">
     <?php echo html_entity_decode($filterFormFinal); ?>
 </div>
@@ -49,9 +46,8 @@
             <li><a id="backToResults" class="hotelResult-tabs"><?php echo __('Back to results'); ?></a></li>
         </ul>
     </div>
-    <hr class="space2" />
-
-    <div id="hotelListResult">
+    <div style="clear: both;"></div>
+    <div id="hotelListResult" class="prepend-top">
         <?php include_partial('sorting'); ?>
         <hr class="space2" />
         <div id="Results">
@@ -72,7 +68,7 @@
             <li class="off">Unfiltered</li>
             <li class="viewed">Viewed</li>
             <li class="viewedoff">Unfiltered viewed</li>
-            <li class="last"><a class="resetGmap">Reset map</a></li>
+            <li class="last"><a class="resetGmap remove right">Reset map</a></li>
         </ul>
         <hr />
         <ul id="gMapTips">
@@ -98,7 +94,6 @@
 
 </div>
 
-<?php include_component('basket', 'index', array()); ?>
 
 <script>
 

@@ -606,7 +606,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         $frmStr .= '<h4 style="float: left;" id="star_rating">' . __("Star rating") . '</h4>';
         $frmStr .= '<a href="" class="remove-small right reset-star hide">reset</a></div>';
         $frmStr .= '<div class="box-2">';
-        $frmStr .= '<table style="width: 100%;">';
+        $frmStr .= '<table>';
         $frmStr .= '<thead><tr>
                     <th></th>
                     <th></th>

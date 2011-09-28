@@ -16,7 +16,6 @@
             <div style="clear:both; "></div>
             <?php //if($sf_user->isAuthenticated()): ?>
             <?php include_partial('global/navigation'); ?>
-                <hr class="space3" />
             <?php //endif; ?>
             <?php echo $sf_content ?>
         </div>
