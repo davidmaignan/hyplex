@@ -3,9 +3,9 @@
 <?php use_javascript('myScript'); ?>
 <?php use_javascript('functions.js'); ?>
 
-<?php use_javascript('jquery.bigframe.min.js'); ?>
-<?php use_javascript('thickbox-compressed.js'); ?>
-<?php use_javascript('jquery.autocomplete.min.js'); ?>
+<?php //use_javascript('jquery.bigframe.min.js'); ?>
+<?php //use_javascript('thickbox-compressed.js'); ?>
+<?php //use_javascript('jquery.autocomplete.min.js'); ?>
 
 <?php use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
 <?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
@@ -16,13 +16,13 @@
 <?php use_javascript('search/datepicker_'.$sf_user->getCulture().'.js'); ?>
 
 <?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-<?php use_stylesheet('jquery.autocomplete.css'); ?>
-<?php use_stylesheet('thickbox.css'); ?>
+<?php //use_stylesheet('jquery.autocomplete.css'); ?>
+<?php //use_stylesheet('thickbox.css'); ?>
 
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
+<?php //use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
 
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
+<?php //use_stylesheet('grid'); ?>
+<?php //use_stylesheet('typography'); ?>
 <?php use_stylesheet('form'); ?>
 
 <?php use_javascript('debugger/ADS-final-verbose.js'); ?>
@@ -42,7 +42,7 @@
     <p style="text-align: center;"><?php echo image_tag('generic/ajax-loader.gif', array('alt' => '')) ?></p>
     <br />
     <p><?php echo __('Your request has been sent. Please wait !'); ?></p>
-    <p><?php //echo __('You can always change your mind. Click cancel');     ?></p>
+    <p><?php //echo __('You can always change your mind. Click cancel'); ?></p>
 </div>
 
 

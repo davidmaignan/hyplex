@@ -69,6 +69,10 @@ body {
 a{text-decoration: none; color:#0c4878;cursor: pointer;	cursor: hand;}
 a:hover{color: #f26522;}
 
+strong{
+    font-weight: bold;
+    color: #ed145b;
+}
 
 h1{
     font-size: 120%;

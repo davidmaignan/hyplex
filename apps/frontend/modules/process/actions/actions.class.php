@@ -20,7 +20,7 @@ class processActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
       //Debuggind mode
-      $debug = true;
+      $debug = false;
 
       if($request->hasParameter('search_flight')){
           $parameters = $request->getParameter('search_flight');

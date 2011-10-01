@@ -20,7 +20,7 @@
 <?php //use_stylesheet('jquery.autocomplete.css'); ?>
 <?php //use_stylesheet('thickbox.css'); ?>
 
-<?php use_stylesheet('ui-lightness/jquery-ui-1.8.16.custom.css'); ?>
+<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
 
 <?php use_stylesheet('grid'); ?>
 <?php use_stylesheet('typography'); ?>
@@ -140,7 +140,7 @@
 </style>
 
 <script>
-
+/*
 (function( $ ) {
 		$.widget( "ui.combobox", {
 			_create: function() {
@@ -250,7 +250,7 @@
 		});
 	});
 
-
+*/
 </script>
 
 
