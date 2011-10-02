@@ -19,6 +19,11 @@ class processActions extends sfActions
     
   public function executeIndex(sfWebRequest $request)
   {
+      //$arRank = array('LAX','NYC');
+      //var_dump($arRank);
+      //$q = Doctrine::getTable('city')->addRank($arRank);
+      //exit;
+
       //Debuggind mode
       $debug = false;
 
@@ -246,6 +251,9 @@ class processActions extends sfActions
           Utils::createHotelchainArray();
       }
 
+      //Array to get searched city (codes) to increase their rank / popularity
+      $arRank = array();
+
       //Redirection 
       switch ($type) {
           case 'flightOneway':
@@ -254,6 +262,10 @@ class processActions extends sfActions
                   'destination'=>$paramFactory->getDestination(),
                   'depart_date'=>$paramFactory->depart_date
               ));
+
+              array_push($arRank, $paramFactory->getOrigin());
+              array_push($arRank, $paramFactory->getDestination());
+
               break;
 
           case 'flightReturn':
@@ -262,7 +274,11 @@ class processActions extends sfActions
                   'destination'=>$paramFactory->getDestination(),
                   'depart_date'=>$paramFactory->depart_date,
                   'return_date'=>$paramFactory->return_date
-              ));   
+              ));
+
+              array_push($arRank, $paramFactory->getOrigin());
+              array_push($arRank, $paramFactory->getDestination());
+
               break;
 
           case 'hotelSimple':
@@ -271,6 +287,8 @@ class processActions extends sfActions
                   'checkin_date'=>$paramFactory->getCheckinDate(),
                   'checkout_date'=>$paramFactory->getCheckoutDate()
               ));
+
+              array_push($arRank, $paramFactory->getWhereBox());
               break;
 
           default:
@@ -278,6 +296,7 @@ class processActions extends sfActions
       }
       
       $this->getUser()->setFlash('filename', $finalResponse->filename,true);
+      $q = Doctrine::getTable('city')->addRank($arRank);
 
       $this->redirect($url);
 

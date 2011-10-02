@@ -31,7 +31,7 @@ $(document).ready(function(){
         }
     });
 
-
+    
     
     /*
     $("#search_flight_origin").focus().autocomplete(airports, {
@@ -166,9 +166,11 @@ $(document).ready(function(){
     }
 
 
-		
+    
 
+    
     $( "#search_flight_destination" ).autocomplete({
+            autoFocus: true,
             source: function( request, response ) {
                     $.ajax({
                             url: "test/searchAirportComplete2",
@@ -219,10 +221,12 @@ $(document).ready(function(){
 
 
     $( "#search_flight_origin" ).autocomplete({
+            autoFocus: true,
             source: function( request, response ) {
                     $.ajax({
                             url: "test/searchAirportComplete2",
                             dataType: "json",
+                            autoFocus: true,
                             delay: 600,
                             data: {
                                     featureClass: "P",
@@ -267,7 +271,6 @@ $(document).ready(function(){
             .appendTo( ul );
     };
 
-   
 
 });
 

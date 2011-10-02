@@ -22,6 +22,21 @@ class CityTable extends Doctrine_Table {
                 ->addWhere('t.name like \'%' . $value['text'] . '%\'');
     }
 
+    public function addRank($values){
+
+        foreach($values as $value){
+
+            $q = Doctrine_Query::create()
+                    ->update('city')
+                    ->set('rank','rank + 1')
+                    ->where('code = ?', $value)
+                    ->execute();
+
+
+        }
+
+    }
+
     public function getAllByCulture($culture) {
         $q = Doctrine::getTable('City')
                         ->createQuery('a')

@@ -49,6 +49,7 @@ $('document').ready(function(){
     */
 
     $( "#search_hotel_wherebox" ).autocomplete({
+        autoFocus: true,
         source: function( request, response ) {
                 $.ajax({
                         url: "test/searchAirportComplete2",
