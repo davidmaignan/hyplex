@@ -30,7 +30,7 @@ $('document').ready(function(){
         $(target).val(value);
         return false;
     });
-
+    /*
     $("#search_hotel_wherebox").autocomplete(airports, {
         minChars: 0,
         width: 300,
@@ -46,6 +46,57 @@ $('document').ready(function(){
             return formatAirportString(row);
         }
     });
+    */
+
+    $( "#search_hotel_wherebox" ).autocomplete({
+        autoFocus: true,
+        source: function( request, response ) {
+                $.ajax({
+                        url: "test/searchAirportComplete2",
+                        dataType: "json",
+                        delay: 600,
+                        data: {
+                                featureClass: "P",
+                                style: "full",
+                                maxRows: 12,
+                                name_startsWith: request.term
+                        },
+                        success: function( data ) {
+                                response( $.map( data.results, function( item ) {
+
+                                        var value = data.values[0];
+                                        //$('#log2').append(value);
+
+                                        var string = item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')';
+                                        string = highlight2(string, request.term);
+
+
+                                        return {
+                                                label: string,
+                                                value: item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')'
+                                        }
+                                }));
+                        }
+                });
+        },
+        minLength: 2,
+        select: function( event, ui ) {
+                //log( ui.item ?
+                 //       "Selected: " + ui.item.label :
+                 //       "Nothing selected, input was " + this.value);
+        },
+        open: function() {
+                $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+        },
+        close: function() {
+                $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+        }
+    }).data('autocomplete')._renderItem = function( ul, item ) {
+        return $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( '<a>' + item.label + '</a>' )
+            .appendTo( ul );
+    };
 
 });
 

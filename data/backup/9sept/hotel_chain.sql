@@ -284,3 +284,4 @@ INSERT INTO `hotel_chain` VALUES(283, 'YR', 'Raffles Int Hotels And Resorts', 'r
 INSERT INTO `hotel_chain` VALUES(284, 'YX', 'SynXis', 'synxis');
 INSERT INTO `hotel_chain` VALUES(285, 'YZ', 'Staybridge Suites', 'staybridge-suites');
 INSERT INTO `hotel_chain` VALUES(286, 'ZX', 'MI Independent Property', 'mi-independent-property');
+INSERT INTO `hotel_chain` VALUES(287, '00', 'independant', 'independant');

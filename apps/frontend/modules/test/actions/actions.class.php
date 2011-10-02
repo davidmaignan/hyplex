@@ -138,26 +138,78 @@ class testActions extends sfActions
 
     public function executeSearchAirportComplete(sfWebRequest $request){
 
-        $q = $request->getParameter('q');
-        //var_dump($q);
 
-        //Analyse the request parameter
+        //Retreive the parameter
+        $search = $request->getParameter('name_startsWith');
+        $culture = $this->getUser()->getCulture();
 
-        
+        //Assume it's on field even for mulitple words (like New York, or Charles de Gaulle)
+        $value1 = '%'. $search.'%';
+
+        //Two arrays to hold the query and the values
+        $valeurs = array();
+        $arQuery = array();
+
+        //Code
+        //$tmpQuery = '(a.code LIKE ?) OR (a.airport LIKE ?) OR (t.name LIKE ?) OR (u.name LIKE ?)';
+        $tmpQuery = '(a.code LIKE ?) OR (a.airport LIKE ?) OR (t.name LIKE ?)';
+        array_push($arQuery, $tmpQuery);
+        array_push($valeurs, $value1);
+        array_push($valeurs, $value1);
+        array_push($valeurs, $value1);
+        //array_push($valeurs, $value1);
+
+        $query = implode(' OR ', $arQuery);
+
+        $this->datas = Doctrine::getTable('City')
+                        ->createQuery('a')
+                        ->select('a.code, a.airport AS airport, t.name AS name, b.id,  u.name AS country')
+                        ->leftJoin('a.Translation t')
+                        ->leftJoin('a.Country b')
+                        ->leftJoin('b.Translation u')
+                        ->andWhere('t.lang = ?',$culture)
+                        ->andWhere('u.lang = ?',$culture)
+                        //->andWhere($string,$values)
+                        ->andWhere($query,$valeurs)
+                        ->andWhere('a.cache = ?', true)
+                        ->andWhere('a.archived = ?', false)
+                        ->limit(25)
+                        ->addOrderBy('name')
+                        ->execute()
+                        ->toArray();
+
+        $results = array();
+
+        foreach($this->datas as &$data){
+            unset($data['Translation']);
+            unset($data['Country']);
+            unset($data['country_id']);
+            unset($data['cache']);
+            unset($data['state_id']);
+            unset($data['metropolitan']);
+            unset($data['archived']);
+            $tmp = array(   'airport'=>$data['airport'],
+                            'name'=>$data['name'],
+                            'country'=>$data['country'],
+                            'code'=>$data['code']);
+            //$string  = $data['name'].', '.$data['country'].' ('.$data['code'].') '. $data['airport'];
+            array_push($results, $tmp);
+        }
+
+        $resultJSON = json_encode(array('values'=>array($search),'results'=>$results));
+
+        return $this->renderText($resultJSON);
 
 
-        $stringSearch = '%'.$q.'%';
-        $stringSearch = '%Lon%';
+        //$stringSearch = '%Lon%';
         //var_dump($request->getParameter('q'));
         //var_dump($q);
         //exit;
 
-        $string = '(a.code LIKE ?) OR (a.airport like ? AND a.airport LIKE ?) OR (t.name LIKE ? AND t.name LIKE ?)';
+        //$string = '(a.code LIKE ?) OR (a.airport like ? AND a.airport LIKE ?) OR (t.name LIKE ? AND t.name LIKE ?)';
 
-        $values = array('%Lon%','%Lond%','%Hea%', '%Lond%', '%Hea%');
+        //$values = array('%Lon%','%Lond%','%Hea%', '%Lond%', '%Hea%');
 
-
-        $culture = $this->getUser()->getCulture();
 
         /*
         $this->datas = Doctrine::getTable('City')
@@ -176,22 +228,28 @@ class testActions extends sfActions
          * 
          */
 
-        $case = 2;
+        //$case = 2;
 
 
-
+        /*
         $value1 = '%lh%';
         $value2 = '%l%';
         $this->q1 = substr($value1 , 1, -1);
         $this->q2 = substr($value2 , 1, -1);
+         * 
+         */
         $valeurs = array();
         $arQuery = array();
 
-        $q = trim($request->getParameter('text'));
+        //$q = trim($request->getParameter('text'));
+        //$arValues = explode(' ', $q);
 
-        $arValues = explode(' ', $q);
+        $arValues = explode(' ', $search);
 
         $case = count($arValues);
+
+        //var_dump($case);
+        //exit;
 
         if($case == 1){
 
@@ -347,7 +405,7 @@ class testActions extends sfActions
                         ->execute()
                         ->toArray();
 
-
+        $results = array();
         
         foreach($this->datas as &$data){
             unset($data['Translation']);
@@ -357,12 +415,17 @@ class testActions extends sfActions
             unset($data['state_id']);
             unset($data['metropolitan']);
             unset($data['archived']);
-            $string  = $data['name'].', '.$data['country'].' ('.$data['code'].') '. $data['airport'];
-            $results[] = array($data['code'] => $string);
+            $tmp = array(   'airport'=>$data['airport'],
+                            'name'=>$data['name'],
+                            'country'=>$data['country'],
+                            'code'=>$data['code']);
+            //$string  = $data['name'].', '.$data['country'].' ('.$data['code'].') '. $data['airport'];
+            array_push($results, $tmp);
         }
 
-        return $this->renderText(json_encode($results));
+        $resultJSON = json_encode(array('values'=>$arValues,'results'=>$results));
 
+        return $this->renderText($resultJSON);
 
         if(!$request->isXmlHttpRequest()){
             $this->setTemplate('tmpAutoComplete');
@@ -377,6 +440,19 @@ class testActions extends sfActions
 
         //$datas =
 
+    }
+
+    public function executeSearchAirportComplete2(sfWebRequest $request){
+
+        $search = $request->getParameter('name_startsWith');
+
+        $q = Doctrine::getTable('city')->searchAutoComplete($search);
+
+        $resultJSON = json_encode(array('values'=>$search,'results'=>$q));
+
+        return $this->renderText($resultJSON);
+
+        
     }
 
 }

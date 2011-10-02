@@ -1,15 +1,15 @@
 <?php use_helper('I18n'); ?>
 <?php use_stylesheet('form'); ?>
 
-<?php use_javascript('jquery.autocomplete.min.js'); ?>
-<?php use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
-<?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
+<?php //use_javascript('jquery.autocomplete.min.js'); ?>
+<?php //use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
+<?php //use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
 
-<?php use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
-<?php use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
+<?php //use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
+<?php //use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
 
-<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-<?php use_stylesheet('jquery.autocomplete.css'); ?>
+<?php //use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
+<?php //use_stylesheet('jquery.autocomplete.css'); ?>
 
 <?php use_javascript('search/searchHotel'); ?>
 

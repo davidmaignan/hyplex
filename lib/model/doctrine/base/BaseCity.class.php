@@ -13,6 +13,7 @@
  * @property integer $state_id
  * @property boolean $cache
  * @property boolean $archived
+ * @property integer $rank
  * @property boolean $metropolitan
  * @property Country $Country
  * @property State $State
@@ -30,6 +31,7 @@
  * @method integer             getStateId()             Returns the current record's "state_id" value
  * @method boolean             getCache()               Returns the current record's "cache" value
  * @method boolean             getArchived()            Returns the current record's "archived" value
+ * @method integer             getRank()                Returns the current record's "rank" value
  * @method boolean             getMetropolitan()        Returns the current record's "metropolitan" value
  * @method Country             getCountry()             Returns the current record's "Country" value
  * @method State               getState()               Returns the current record's "State" value
@@ -46,6 +48,7 @@
  * @method City                setStateId()             Sets the current record's "state_id" value
  * @method City                setCache()               Sets the current record's "cache" value
  * @method City                setArchived()            Sets the current record's "archived" value
+ * @method City                setRank()                Sets the current record's "rank" value
  * @method City                setMetropolitan()        Sets the current record's "metropolitan" value
  * @method City                setCountry()             Sets the current record's "Country" value
  * @method City                setState()               Sets the current record's "State" value
@@ -98,6 +101,10 @@ abstract class BaseCity extends sfDoctrineRecord
              ));
         $this->hasColumn('archived', 'boolean', null, array(
              'type' => 'boolean',
+             'default' => 0,
+             ));
+        $this->hasColumn('rank', 'integer', null, array(
+             'type' => 'integer',
              'default' => 0,
              ));
         $this->hasColumn('metropolitan', 'boolean', null, array(

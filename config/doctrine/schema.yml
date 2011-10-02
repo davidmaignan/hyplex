@@ -160,6 +160,7 @@ City:
     state_id:        { type: integer }
     cache:           { type: boolean, default: 0 }
     archived:        { type: boolean, default: 0 }
+    rank:            { type: integer, default: 0 }
     metropolitan:    { type: boolean, default: 0 }
   indexes:
     code_index:

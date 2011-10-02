@@ -22,6 +22,21 @@ class CityTable extends Doctrine_Table {
                 ->addWhere('t.name like \'%' . $value['text'] . '%\'');
     }
 
+    public function addRank($values){
+
+        foreach($values as $value){
+
+            $q = Doctrine_Query::create()
+                    ->update('city')
+                    ->set('rank','rank + 1')
+                    ->where('code = ?', $value)
+                    ->execute();
+
+
+        }
+
+    }
+
     public function getAllByCulture($culture) {
         $q = Doctrine::getTable('City')
                         ->createQuery('a')
@@ -317,6 +332,199 @@ class CityTable extends Doctrine_Table {
         return $string;
 
         return Utils::toBoldString($string, $value);
+
+    }
+
+    public function searchAutoComplete($search = 'new york jfk'){
+
+        $culture = sfContext::getInstance()->getUser()->getCulture();
+
+        $valeurs = array();
+        $arQuery = array();
+
+        $arSearch = explode(' ',$search);
+
+
+
+        if(count($arSearch) <=1){
+
+            $value = $arSearch[0];
+
+            //Code
+            $tmpQuery = '(a.code LIKE ?) OR (a.airport LIKE ?) OR (t.name LIKE ?) OR (u.name LIKE ?)';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, "$value%");
+            array_push($valeurs, "$value%");
+            array_push($valeurs, "$value%");
+            array_push($valeurs, "$value%");
+        }else if(count($arSearch) == 2){
+
+            $value1 = $arSearch[0].'%';
+            $value2 = $arSearch[1].'%';
+
+            $tmpQuery = '((a.code LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value2);
+
+            $tmpQuery = '((a.code LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            //without code
+
+            $tmpQuery = '((a.airport LIKE ?) AND (t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            $tmpQuery = '((t.name LIKE ?) AND (a.airport LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            $tmpQuery = '((u.name LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            $tmpQuery = '(a.code LIKE ?) OR (a.airport LIKE ?) OR (t.name LIKE ?) OR (u.name LIKE ?)';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, "%$search%");
+            array_push($valeurs, "%$search%");
+            array_push($valeurs, "%$search%");
+            array_push($valeurs, "%$search%");
+
+        }else if(count($arSearch >= 3)){
+
+            $value1 = $arSearch[0].' '.$arSearch[1].'%';
+            $value2 = $arSearch[2].'%';
+
+            //code
+            $tmpQuery = '((a.code LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value2);
+
+            $tmpQuery = '((a.code LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            //without code
+
+            $tmpQuery = '((a.airport LIKE ?) AND (t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            $tmpQuery = '((t.name LIKE ?) AND (a.airport LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            $tmpQuery = '((u.name LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+
+            $value1 = $arSearch[0].'%';
+            $value2 = $arSearch[1]. ' ' .$arSearch[2].'%';
+
+            //code
+            $tmpQuery = '((a.code LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value2);
+
+            $tmpQuery = '((a.code LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            //without code
+
+            $tmpQuery = '((a.airport LIKE ?) AND (t.name LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            $tmpQuery = '((t.name LIKE ?) AND (a.airport LIKE ? OR u.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+            $tmpQuery = '((u.name LIKE ?) AND (a.airport LIKE ? OR t.name LIKE ?))';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, $value2);
+            array_push($valeurs, $value1);
+            array_push($valeurs, $value1);
+
+        }
+        
+        /*
+        foreach ($arSearch as $value) {
+            $tmpQuery = '(a.CODE LIKE ? OR a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?)';
+            array_push($arQuery, $tmpQuery);
+            array_push($valeurs, "%$value%");
+            array_push($valeurs, "%$value%");
+            array_push($valeurs, "%$value%");
+            array_push($valeurs, "%$value%");
+        }
+         * 
+         */
+        
+        /*
+        $tmpQuery = '(a.CODE LIKE ? OR a.airport LIKE ? OR t.name LIKE ? OR u.name LIKE ?)';
+        array_push($arQuery, $tmpQuery);
+        array_push($valeurs, $value1);
+        array_push($valeurs, $value1);
+        array_push($valeurs, $value1);
+        array_push($valeurs, $value1);
+        */
+
+        $query = implode(' OR ', $arQuery);
+
+        $q = Doctrine::getTable('city')
+                ->createQuery('a')
+                ->select('a.code as code, a.airport AS airport, t.name AS name, u.name AS country')
+                ->leftJoin('a.Translation t')
+                ->leftJoin('a.Country b')
+                ->leftJoin('b.Translation u')
+                ->andWhere('t.lang = ?', $culture)
+                ->andWhere('u.lang = ?', $culture)
+                ->andWhere($query,$valeurs)
+                ->andWhere('a.cache = ?', true)
+                ->andWhere('a.archived = ?', false)
+                ->orderBy('a.rank DESC, t.name ASC')
+                ->limit(20)
+                ->execute(array(), Doctrine_Core::HYDRATE_SCALAR);
+                //->toArray();
+        
+        return $q;
+
 
     }
 
