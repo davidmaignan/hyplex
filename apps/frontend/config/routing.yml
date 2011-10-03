@@ -1,6 +1,26 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+
+booking_check_address:
+  url: /:sf_culture/booking/check-address-and-payement
+  param: { module: booking, action: getAddress }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+booking_address:
+  url: /:sf_culture/booking/get-address-and-payement
+  param: { module: booking, action: setAddress }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+booking_passenger:
+  url: /:sf_culture/booking/check-passenger
+  param: { module: booking, action: setPassenger }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+booking:
+  url: /:sf_culture/booking/get-passenger
+  param: { module: booking, action: passenger }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 previous_hotel:
   url: /:sf_culture/previous-hotel-search/:wherebox/:checkin_date/:checkout_date
   param: { module: prevSearch, action: previousHotelSearch }

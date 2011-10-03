@@ -50,3 +50,12 @@ all:
   currency: USD
 
   telephone: 1 800 123 4567
+
+  meals:
+    available: [ '' ,Asian vegetarian meal, Asian vegetarian meal, Bland meal, Child meal, Diabetic meal, Fruit platter, Gluten-free meal]
+    
+  special:
+    assistance: [ '' ,Can walk to seat, Can walk up stairs, Dry Cell Battery, Manual Power, Must be carried, On Board, Wet Cell Battery]
+
+  creditcard:
+    accepted: [ '' , Mastercard, Visa, American Express, Diners club international, Discover Network]

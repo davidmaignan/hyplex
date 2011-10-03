@@ -302,3 +302,69 @@ HotelChain:
   columns:
     tag:      { type: string(2), unique: true }
     name:     { type: string(255) }
+
+Address:
+  columns:
+    id: { type: integer, primary: true }
+    address_1: { type: string(255), notnull: true }
+    address_2: { type: string(255) }
+    city: { type: string(255), notnull: true }
+    state: { type: string(255) }
+    country: { type: integer, notnull: true }
+    postcode: { type: string(10), notnull: true }
+    phone: { type: integer }
+    cellphone: { type: integer }
+    email: { type: string(255) }
+
+Booking:
+  actAs: { Timestampable: ~ }
+  columns:
+    title: { type: string(255) }
+    cover: { type: string(255) }
+    director: { type: string(255) }
+    address_id: integer
+  relations:
+    Actor:
+      class: Passenger
+      refClass: BookingPassenger
+      foreignAlias: Bookings
+    Address:
+      local: address_id
+      foreign: id
+      type: one
+      foreignType: one
+
+Passenger:
+  columns:
+    id: { type: integer, primary: true }
+    salutation:
+      type: enum
+      values: [Mr, Ms, Mrs]
+    first_name: { type: string(50), notnull: true }
+    last_name: { type: string(50), notnull: true }
+    gender:
+      type: enum
+      values: [M, F]
+    dob: { type: string(10), notnull: true }
+    p_type:
+      type: enum
+      values: [ADT, CHD]
+    frequent_flyer_number: {type: string(20) }
+    airline_code: { type: string(255) }
+    meal_preference: { type: string(255) }
+    special_assistance: { type: string(255) }
+
+
+BookingPassenger:
+  columns:
+    booking_id:
+      type: integer
+      primary: true
+    passenger_id:
+      type: integer
+      primary: true
+  relations:
+    Booking:
+      onDelete: CASCADE
+    Passenger:
+      onDelete: CASCADE

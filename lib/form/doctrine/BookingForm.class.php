@@ -1,14 +1,14 @@
 <?php
 
 /**
- * pms_milestone form.
+ * Booking form.
  *
- * @package    hypertech_booking
+ * @package    hyplexdemo
  * @subpackage form
- * @author     Your name here
+ * @author     David Maignan
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class pms_milestoneForm extends Basepms_milestoneForm
+class BookingForm extends BaseBookingForm
 {
   public function configure()
   {

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * pms_email_log form.
+ * BookingPassenger form.
  *
- * @package    hypertech_booking
+ * @package    hyplexdemo
  * @subpackage form
- * @author     Your name here
+ * @author     David Maignan
  * @version    SVN: $Id: sfDoctrineFormTemplate.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class pms_email_logForm extends Basepms_email_logForm
+class BookingPassengerForm extends BaseBookingPassengerForm
 {
   public function configure()
   {

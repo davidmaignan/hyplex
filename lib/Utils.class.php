@@ -516,6 +516,38 @@ class Utils {
 
     }
 
+    static public function createAirlineJavascriptFile($file){
+
+
+        $airlines = sfYaml::load(sfConfig::get('sf_data_dir').DIRECTORY_SEPARATOR.'airline'.DIRECTORY_SEPARATOR.'airlines.yml');
+
+        //var_dump($airlines);
+
+        //exit;
+
+        $string = 'var airlines = [';
+        foreach($airlines as $key=>$airline)
+        {
+            $string .= '{';
+            $string .= 'value: "'. $key .'", ';
+            $string .= 'label: "'. $airline[0] .'", ';
+            $string .= 'desc: "'. $airline[0] .'", ';
+            $string .= 'icon: "'. $airline[0] .'", ';
+            $string .= 'country: "'. $airline[0] .'", ';
+            $string .= 'state: "'. $airline[0] .'", ';
+            $string .= 'region: "'. $airline[0] .'"}';
+            $string .= ',';
+        }
+
+        $string .= '];';
+
+        //echo $string;
+        //exit;
+
+        file_put_contents($file, $string);
+        chmod($file, 0777);
+    }
+
     /*
      * Create a global array for the airlines
      * Check if global array exist if not check if cache file airlines.yml exits
