@@ -97,6 +97,7 @@ class folderFilter extends sfFilter {
 
         //Load basket from file or create a new one
         $basketFile = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'basket';
+        
         if(file_exists($basketFile)){
             $basketContent = file_get_contents($basketFile);
             $plexBasket = unserialize($basketContent);
@@ -113,7 +114,8 @@ class folderFilter extends sfFilter {
         //If first request - move all the previous saved items to an historic state / array
         if($user->isFirstRequest()){
             $user->isFirstRequest(false);
-            $plexBasket->setAllItemsToHistoric();
+
+            //$plexBasket->setAllItemsToHistoric();
             //Retreive the previous searches saved in the request file in the sf_user_folder
             //Utils::retreivePrevSearch($user);
         }

@@ -10,35 +10,38 @@
  * @property string $address_2
  * @property string $city
  * @property string $state
- * @property integer $country
+ * @property integer $country_id
  * @property string $postcode
  * @property integer $phone
  * @property integer $cellphone
  * @property string $email
+ * @property Country $Country
  * @property Booking $Booking
  * 
- * @method integer getId()        Returns the current record's "id" value
- * @method string  getAddress1()  Returns the current record's "address_1" value
- * @method string  getAddress2()  Returns the current record's "address_2" value
- * @method string  getCity()      Returns the current record's "city" value
- * @method string  getState()     Returns the current record's "state" value
- * @method integer getCountry()   Returns the current record's "country" value
- * @method string  getPostcode()  Returns the current record's "postcode" value
- * @method integer getPhone()     Returns the current record's "phone" value
- * @method integer getCellphone() Returns the current record's "cellphone" value
- * @method string  getEmail()     Returns the current record's "email" value
- * @method Booking getBooking()   Returns the current record's "Booking" value
- * @method Address setId()        Sets the current record's "id" value
- * @method Address setAddress1()  Sets the current record's "address_1" value
- * @method Address setAddress2()  Sets the current record's "address_2" value
- * @method Address setCity()      Sets the current record's "city" value
- * @method Address setState()     Sets the current record's "state" value
- * @method Address setCountry()   Sets the current record's "country" value
- * @method Address setPostcode()  Sets the current record's "postcode" value
- * @method Address setPhone()     Sets the current record's "phone" value
- * @method Address setCellphone() Sets the current record's "cellphone" value
- * @method Address setEmail()     Sets the current record's "email" value
- * @method Address setBooking()   Sets the current record's "Booking" value
+ * @method integer getId()         Returns the current record's "id" value
+ * @method string  getAddress1()   Returns the current record's "address_1" value
+ * @method string  getAddress2()   Returns the current record's "address_2" value
+ * @method string  getCity()       Returns the current record's "city" value
+ * @method string  getState()      Returns the current record's "state" value
+ * @method integer getCountryId()  Returns the current record's "country_id" value
+ * @method string  getPostcode()   Returns the current record's "postcode" value
+ * @method integer getPhone()      Returns the current record's "phone" value
+ * @method integer getCellphone()  Returns the current record's "cellphone" value
+ * @method string  getEmail()      Returns the current record's "email" value
+ * @method Country getCountry()    Returns the current record's "Country" value
+ * @method Booking getBooking()    Returns the current record's "Booking" value
+ * @method Address setId()         Sets the current record's "id" value
+ * @method Address setAddress1()   Sets the current record's "address_1" value
+ * @method Address setAddress2()   Sets the current record's "address_2" value
+ * @method Address setCity()       Sets the current record's "city" value
+ * @method Address setState()      Sets the current record's "state" value
+ * @method Address setCountryId()  Sets the current record's "country_id" value
+ * @method Address setPostcode()   Sets the current record's "postcode" value
+ * @method Address setPhone()      Sets the current record's "phone" value
+ * @method Address setCellphone()  Sets the current record's "cellphone" value
+ * @method Address setEmail()      Sets the current record's "email" value
+ * @method Address setCountry()    Sets the current record's "Country" value
+ * @method Address setBooking()    Sets the current record's "Booking" value
  * 
  * @package    hyplexdemo
  * @subpackage model
@@ -72,7 +75,7 @@ abstract class BaseAddress extends sfDoctrineRecord
              'type' => 'string',
              'length' => 255,
              ));
-        $this->hasColumn('country', 'integer', null, array(
+        $this->hasColumn('country_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              ));
@@ -100,6 +103,10 @@ abstract class BaseAddress extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasOne('Country', array(
+             'local' => 'country_id',
+             'foreign' => 'id'));
+
         $this->hasOne('Booking', array(
              'local' => 'id',
              'foreign' => 'address_id'));

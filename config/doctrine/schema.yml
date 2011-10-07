@@ -310,11 +310,17 @@ Address:
     address_2: { type: string(255) }
     city: { type: string(255), notnull: true }
     state: { type: string(255) }
-    country: { type: integer, notnull: true }
+    country_id: { type: integer, notnull: true }
     postcode: { type: string(10), notnull: true }
     phone: { type: integer }
     cellphone: { type: integer }
     email: { type: string(255) }
+  relations:
+    Country:
+      local: country_id
+      foreign: id
+      type: one
+      foreignType: one
 
 Booking:
   actAs: { Timestampable: ~ }
@@ -339,12 +345,13 @@ Passenger:
     id: { type: integer, primary: true }
     salutation:
       type: enum
-      values: [Mr, Ms, Mrs]
-    first_name: { type: string(50), notnull: true }
-    last_name: { type: string(50), notnull: true }
+      values: [Mr, Ms, Mrs, Dr]
+    first_name: { type: string(100), notnull: true }
+    middle_name: { type: string(100) }
+    last_name: { type: string(100), notnull: true }
     gender:
       type: enum
-      values: [M, F]
+      values: [male, female]
     dob: { type: string(10), notnull: true }
     p_type:
       type: enum

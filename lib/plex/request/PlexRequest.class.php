@@ -137,6 +137,14 @@ abstract class PlexRequest{
             $this->systemName = sfConfig::get('app_plex2_systemName');
             $this->companyId = sfConfig::get('app_plex2_companyId');
             $this->partnerId = sfConfig::get('app_plex2_partnerId');
+        }else if($i==2){
+            $this->url = sfConfig::get('app_plex3_url');
+            $this->username = sfConfig::get('app_plex3_username');
+            $this->password = sfConfig::get('app_plex3_password');
+            $this->transactionId = sfConfig::get('app_plex3_transactionId');
+            $this->systemName = sfConfig::get('app_plex3_systemName');
+            $this->companyId = sfConfig::get('app_plex3_companyId');
+            $this->partnerId = sfConfig::get('app_plex3_partnerId');
         }
         
     }

@@ -175,7 +175,7 @@ $(document).ready(function(){
                     $.ajax({
                             url: "test/searchAirportComplete2",
                             dataType: "json",
-                            delay: 600,
+                            delay: 200,
                             data: {
                                     featureClass: "P",
                                     style: "full",
@@ -227,7 +227,7 @@ $(document).ready(function(){
                             url: "test/searchAirportComplete2",
                             dataType: "json",
                             autoFocus: true,
-                            delay: 600,
+                            delay: 200,
                             data: {
                                     featureClass: "P",
                                     style: "full",

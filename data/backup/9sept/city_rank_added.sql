@@ -1,54 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 3.2.5
--- http://www.phpmyadmin.net
---
--- Host: localhost
--- Generation Time: Sep 30, 2011 at 09:53 AM
--- Server version: 5.1.44
--- PHP Version: 5.2.13
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-
---
--- Database: `hyplexdemo`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `city`
---
-
-CREATE TABLE `city` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `code` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
-  `airport` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `country_id` bigint(20) NOT NULL,
-  `state_id` bigint(20) DEFAULT NULL,
-  `cache` tinyint(1) DEFAULT '0',
-  `archived` tinyint(1) DEFAULT '0',
-  `rank` bigint(20) NOT NULL DEFAULT '0',
-  `metropolitan` tinyint(1) DEFAULT '0',
-  `latitude` decimal(18,15) DEFAULT NULL,
-  `longitude` decimal(18,15) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `code` (`code`),
-  UNIQUE KEY `code_index_idx` (`code`),
-  KEY `airport_index_idx` (`airport`),
-  KEY `country_id_index_idx` (`country_id`),
-  KEY `state_id_index_idx` (`state_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=12326 ;
-
---
--- Dumping data for table `city`
---
-
 INSERT INTO `city` VALUES(1, 'AZZ', '', 1, NULL, 1, 0, 0, 0, -7.883330000000000, 13.150000000000000);
 INSERT INTO `city` VALUES(2, 'ANL', '', 1, NULL, 1, 0, 0, 0, -11.473833000000000, 16.710932900000000);
 INSERT INTO `city` VALUES(3, 'BUG', 'Gen V Deslandes', 1, NULL, 1, 0, 0, 0, -12.609000000000000, 13.403806000000000);
@@ -10532,14 +10481,3 @@ INSERT INTO `city` VALUES(12322, 'ZTM', 'Shamattawa', 232, 207, 1, 0, 0, 0, 55.8
 INSERT INTO `city` VALUES(12323, 'ZTZ', 'Chemnitz Railway Station', 99, NULL, 0, 0, 0, 0, NULL, NULL);
 INSERT INTO `city` VALUES(12324, 'ICN', 'Incheon International Airport', 39, NULL, 1, 0, 0, 0, 37.440582300000000, 126.461376800000000);
 INSERT INTO `city` VALUES(12325, 'GMP', 'Gimpo International Airport', 39, NULL, 1, 0, 0, 0, 37.558865200000000, 126.802930500000000);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `city`
---
-ALTER TABLE `city`
-  ADD CONSTRAINT `city_country_id_country_id` FOREIGN KEY (`country_id`) REFERENCES `country` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `city_state_id_state_id` FOREIGN KEY (`state_id`) REFERENCES `state` (`id`) ON DELETE CASCADE;

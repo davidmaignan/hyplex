@@ -8,6 +8,7 @@
  * @property integer $id
  * @property enum $salutation
  * @property string $first_name
+ * @property string $middle_name
  * @property string $last_name
  * @property enum $gender
  * @property string $dob
@@ -22,6 +23,7 @@
  * @method integer             getId()                    Returns the current record's "id" value
  * @method enum                getSalutation()            Returns the current record's "salutation" value
  * @method string              getFirstName()             Returns the current record's "first_name" value
+ * @method string              getMiddleName()            Returns the current record's "middle_name" value
  * @method string              getLastName()              Returns the current record's "last_name" value
  * @method enum                getGender()                Returns the current record's "gender" value
  * @method string              getDob()                   Returns the current record's "dob" value
@@ -35,6 +37,7 @@
  * @method Passenger           setId()                    Sets the current record's "id" value
  * @method Passenger           setSalutation()            Sets the current record's "salutation" value
  * @method Passenger           setFirstName()             Sets the current record's "first_name" value
+ * @method Passenger           setMiddleName()            Sets the current record's "middle_name" value
  * @method Passenger           setLastName()              Sets the current record's "last_name" value
  * @method Passenger           setGender()                Sets the current record's "gender" value
  * @method Passenger           setDob()                   Sets the current record's "dob" value
@@ -67,24 +70,29 @@ abstract class BasePassenger extends sfDoctrineRecord
               0 => 'Mr',
               1 => 'Ms',
               2 => 'Mrs',
+              3 => 'Dr',
              ),
              ));
-        $this->hasColumn('first_name', 'string', 50, array(
+        $this->hasColumn('first_name', 'string', 100, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 50,
+             'length' => 100,
              ));
-        $this->hasColumn('last_name', 'string', 50, array(
+        $this->hasColumn('middle_name', 'string', 100, array(
+             'type' => 'string',
+             'length' => 100,
+             ));
+        $this->hasColumn('last_name', 'string', 100, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 50,
+             'length' => 100,
              ));
         $this->hasColumn('gender', 'enum', null, array(
              'type' => 'enum',
              'values' => 
              array(
-              0 => 'M',
-              1 => 'F',
+              0 => 'male',
+              1 => 'female',
              ),
              ));
         $this->hasColumn('dob', 'string', 10, array(

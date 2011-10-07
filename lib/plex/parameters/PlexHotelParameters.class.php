@@ -123,9 +123,7 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
             if (!empty($aDays)){
                 return count($aDays);
             }
-                
         }
-        
     }
 
     public function getTypeRenamed(){

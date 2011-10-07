@@ -22,6 +22,8 @@
 <?php use_stylesheet('grid'); ?>
 <?php use_stylesheet('typography'); ?>
 <?php use_stylesheet('form'); ?>
+<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
+<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
 
 <?php //use_javascript('search/airport_list_'.$sf_user->getCulture().'.js'); ?>
 <?php //use_javascript('search/datepicker_'.$sf_user->getCulture().'.js'); ?>

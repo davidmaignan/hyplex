@@ -54,6 +54,10 @@
 .span-25 {width:990px; margin-right:0;}
 
 
+.medium{
+    width: 225px;
+}
+
 /* In case you need to add a gutter above/below an element */
 div.prepend-top, .prepend-top {
     margin-top:10px;
@@ -1579,6 +1583,110 @@ table.hotel-info td.first{
 
 /* Basket ------------------------------------------------------------------*/
 
+
+#basket{
+    position: absolute;
+    bottom: -310px;
+    abottom: 0px;
+    background-color: white;
+    z-index: auto;
+    width: 100%;
+    height: 350px;
+    display: block;
+    -moz-box-shadow: -2px 0px 0px #000;
+    -webkit-box-shadow: 0px 0px 0px #333;
+    box-shadow: 0px 0px 0px #333;
+    position: fixed;
+    border-top: 2px solid #aaa;
+    padding:0;
+    display: none;
+}
+
+#basket h2{
+    color:#0c4878;
+}
+
+#basket h3{
+    color: #0c4878;
+    margin-bottom: 5px;
+    padding-bottom: 7px;
+
+    background: url('/images/generic/bg_line.gif') repeat-x left bottom;
+}
+
+#basket li.basket-list{
+    height: 32px;
+    display: block;
+    background-color: #f8f8f6;
+    padding: 5px;
+    padding-left: 35px;
+    line-height: 30px;
+    border-bottom: 1px solid white;
+}
+
+li.link-flight{
+    background: url('/images/icons/flight.png') no-repeat 10px 10px;
+}
+
+li.link-hotel{
+    background: url('/images/icons/hotel.png') no-repeat 10px 10px;
+}
+
+li.link-car{
+    background: url('/images/icons/car.png') no-repeat 10px 10px;
+}
+
+li.link-excursion{
+    background: url('/images/icons/excursion.png') no-repeat 10px 10px;
+}
+
+#basket li.selected{
+    background-color: #beddf8;
+}
+
+#basket li.active{
+    background-color: #deded0;
+}
+
+
+#list-icon{
+    margin:0;
+    margin-left: 30px;
+    padding:0;
+}
+
+#list-icon li{
+    display: block;
+    float: left;
+    margin-right: 40px;
+}
+
+#data-container{
+    background-color: #e0edf8;
+    display: block;
+
+}
+
+#data-container table{
+    width: 100%;
+    line-height: 20px;
+    font-size: 90%;
+}
+
+#data-container  th, #data-container td{
+    text-align: left;
+
+    padding: 3px 0px;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+#data-container td{
+    background: none;
+    font-weight: normal;
+}
+
+
 #basket-summary td{
     padding:6px;
 }
@@ -1587,8 +1695,12 @@ table.hotel-info td.first{
     width: 26px;
 }
 
-tr.basket-list-header, tr.basket-list{
+tr.basket-list-header{
     background-color: #beddf8;
+}
+
+tr.basket-list{
+    background-color: #eff7fd;
 }
 
 tr.basket-list-header.active{
@@ -1603,7 +1715,6 @@ tr.basket-list-header:hover{
 #basket-summary tr.basket-list td{
     background-color: #eff7fd;
     font-size: 80%;
-
 }
 
 tr.basket-list-header td{
@@ -1621,16 +1732,17 @@ tr.basket-list-total .sub-person{
     padding-top: 10px;
 }
 
-tr.basket-list td.sub-total{
-    font-weight: normal;
-}
-
-td.sub-total{
+#basket-summary td.sub-total{
     text-align: right;
     color: #0c4878;
     font-weight: bold;
     font-size: 92%;
     letter-spacing: .02em;
+    width: 50px;
+}
+
+#basket-summary tr.basket-list td.sub-total{
+    font-weight: normal;
 }
 
 tr.basket-list-header.non-active{
@@ -1640,7 +1752,7 @@ tr.basket-list-header.non-active{
 }
 
 #basket-summary ul.sub-list li{
-    padding: 2px 0;
+    padding-bottom: 6px;
 }
 
 a.add{
@@ -1658,6 +1770,7 @@ a.add{
 a.add:hover{
     background-image: url('/images/icons/add.png');
 }
+
 
 
 table.basket-flight{
@@ -1743,3 +1856,104 @@ a.basket-flight-link{
 ul.prevSearch-list-index li{
     margin-bottom: 4px;
 }
+
+    #basket{
+        position: absolute;
+        bottom: -310px;
+        abottom: 0px;
+        background-color: white;
+        z-index: auto;
+        width: 100%;
+        height: 350px;
+        display: block;
+        -moz-box-shadow: -2px 0px 0px #000;
+        -webkit-box-shadow: 0px 0px 0px #333;
+        box-shadow: 0px 0px 0px #333;
+        position: fixed;
+        border-top: 2px solid #aaa;
+        padding:0;
+        display: none;
+    }
+
+    #basket h2{
+        color:#0c4878;
+    }
+
+    #basket h3{
+        color: #0c4878;
+        margin-bottom: 5px;
+        padding-bottom: 7px;
+
+        background: url('/images/generic/bg_line.gif') repeat-x left bottom;
+    }
+
+    #basket li.basket-list{
+        height: 32px;
+        display: block;
+        background-color: #f8f8f6;
+        padding: 5px;
+        padding-left: 35px;
+        line-height: 30px;
+        border-bottom: 1px solid white;
+    }
+
+    li.link-flight{
+        background: url('/images/icons/flight.png') no-repeat 10px 10px;
+    }
+
+    li.link-hotel{
+        background: url('/images/icons/hotel.png') no-repeat 10px 10px;
+    }
+
+    li.link-car{
+        background: url('/images/icons/car.png') no-repeat 10px 10px;
+    }
+
+    li.link-excursion{
+        background: url('/images/icons/excursion.png') no-repeat 10px 10px;
+    }
+
+    #basket li.selected{
+        background-color: #beddf8;
+    }
+
+    #basket li.active{
+        background-color: #deded0;
+    }
+
+
+    #list-icon{
+        margin:0;
+        margin-left: 30px;
+        padding:0;
+    }
+
+    #list-icon li{
+        display: block;
+        float: left;
+        margin-right: 40px;
+    }
+
+    #data-container{
+        background-color: #e0edf8;
+        display: block;
+    }
+    
+    #data-container table{
+        width: 100%;
+        line-height: 20px;
+        font-size: 90%;
+    }
+
+    #data-container  th, #data-container td{
+        text-align: left;
+
+        padding: 3px 0px;
+        font-size: 90%;
+        font-weight: bold;
+    }
+
+    #data-container td{
+        background: none;
+        font-weight: normal;
+    }

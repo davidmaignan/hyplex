@@ -16,10 +16,11 @@ abstract class BasePassengerForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                    => new sfWidgetFormInputHidden(),
-      'salutation'            => new sfWidgetFormChoice(array('choices' => array('Mr' => 'Mr', 'Ms' => 'Ms', 'Mrs' => 'Mrs'))),
+      'salutation'            => new sfWidgetFormChoice(array('choices' => array('Mr' => 'Mr', 'Ms' => 'Ms', 'Mrs' => 'Mrs', 'Dr' => 'Dr'))),
       'first_name'            => new sfWidgetFormInputText(),
+      'middle_name'           => new sfWidgetFormInputText(),
       'last_name'             => new sfWidgetFormInputText(),
-      'gender'                => new sfWidgetFormChoice(array('choices' => array('M' => 'M', 'F' => 'F'))),
+      'gender'                => new sfWidgetFormChoice(array('choices' => array('male' => 'male', 'female' => 'female'))),
       'dob'                   => new sfWidgetFormInputText(),
       'p_type'                => new sfWidgetFormChoice(array('choices' => array('ADT' => 'ADT', 'CHD' => 'CHD'))),
       'frequent_flyer_number' => new sfWidgetFormInputText(),
@@ -31,10 +32,11 @@ abstract class BasePassengerForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'salutation'            => new sfValidatorChoice(array('choices' => array(0 => 'Mr', 1 => 'Ms', 2 => 'Mrs'), 'required' => false)),
-      'first_name'            => new sfValidatorString(array('max_length' => 50)),
-      'last_name'             => new sfValidatorString(array('max_length' => 50)),
-      'gender'                => new sfValidatorChoice(array('choices' => array(0 => 'M', 1 => 'F'), 'required' => false)),
+      'salutation'            => new sfValidatorChoice(array('choices' => array(0 => 'Mr', 1 => 'Ms', 2 => 'Mrs', 3 => 'Dr'), 'required' => false)),
+      'first_name'            => new sfValidatorString(array('max_length' => 100)),
+      'middle_name'           => new sfValidatorString(array('max_length' => 100, 'required' => false)),
+      'last_name'             => new sfValidatorString(array('max_length' => 100)),
+      'gender'                => new sfValidatorChoice(array('choices' => array(0 => 'male', 1 => 'female'), 'required' => false)),
       'dob'                   => new sfValidatorString(array('max_length' => 10)),
       'p_type'                => new sfValidatorChoice(array('choices' => array(0 => 'ADT', 1 => 'CHD'), 'required' => false)),
       'frequent_flyer_number' => new sfValidatorString(array('max_length' => 20, 'required' => false)),

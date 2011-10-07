@@ -28,7 +28,7 @@ all:
     # Form security secret (CSRF protection)
     csrf_secret:            c2488590ea0a9250aa3304c237c1e369503119b6
 
-    timeout:     3600           # Session lifetime in seconds
+    timeout:     3600       # Session lifetime in seconds
 
     default_timezone:       America/New_York
 
@@ -42,7 +42,7 @@ all:
     use_database:           true
 
 
-    enabled_modules:      [default, sfGuardAuth]
+    enabled_modules:      [default, sfGuardAuth, sfGuardGroup, sfGuardPermission, sfGuardUser]
 
     #, sfGuardAuth, sfGuardGroup, sfGuardPermission
     #secure_module:          sfGuardAuth

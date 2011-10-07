@@ -3,22 +3,23 @@
 
 
 booking_check_address:
-  url: /:sf_culture/booking/check-address-and-payement
-  param: { module: booking, action: getAddress }
-  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
-booking_address:
-  url: /:sf_culture/booking/get-address-and-payement
+  url: /:sf_culture/check-out/check-address-and-payement-information
   param: { module: booking, action: setAddress }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+booking_address:
+  url: /:sf_culture/check-out/address-and-payement-information
+  param: { module: booking, action: getAddress }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 booking_passenger:
-  url: /:sf_culture/booking/check-passenger
+  url: /:sf_culture/check-out/check-passenger-informations
   param: { module: booking, action: setPassenger }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
-booking:
-  url: /:sf_culture/booking/get-passenger
-  param: { module: booking, action: passenger }
+checkout:
+  url: /:sf_culture/check-out/passengers-informations
+  param: { module: booking, action: getPassenger }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 previous_hotel:

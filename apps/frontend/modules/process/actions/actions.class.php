@@ -72,7 +72,7 @@ class processActions extends sfActions
       //If error in parameter class
 
 
-
+      
 
       if($paramFactory->problemWithCode === true)
       {
@@ -148,6 +148,8 @@ class processActions extends sfActions
         10  Data not found
       */      
 
+      
+
       switch ($code) {
           case '0':
               $finalResponse->parseResponse();
@@ -220,6 +222,8 @@ class processActions extends sfActions
       $finalResponse->analyseResponse();
 
 
+      
+
       //Check airlines and add new ones.
       $airlines = Utils::createAirlineArray();
       $newAirlines = array_diff_key($finalResponse->listAirlines, $airlines);
@@ -230,6 +234,8 @@ class processActions extends sfActions
           unlink($fileAirline = sfConfig::get('sf_data_dir') . '/airline/airlines.yml');
           Utils::createAirlineArray();
       }
+
+      
 
       //Check hotelChain and add new ones
       $hotelChains = Utils::createHotelchainArray();
@@ -243,6 +249,8 @@ class processActions extends sfActions
       }
 
       $newHotelChain = array_diff($listChains, array_keys($hotelChains));
+
+      
 
       if(!empty($newHotelChain)){
           unset($GLOBALS['hotelchain']);
@@ -294,6 +302,8 @@ class processActions extends sfActions
           default:
               break;
       }
+
+      
       
       $this->getUser()->setFlash('filename', $finalResponse->filename,true);
       $q = Doctrine::getTable('city')->addRank($arRank);

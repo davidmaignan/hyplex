@@ -34,6 +34,12 @@ class HotelGenericObj {
     public $numRooms = array();
     public $arCoordinates = array();
 
+
+
+    public function getId(){
+        return $this->id;
+    }
+
     public function getAddress(){
 
         $string = $this->hotelAddress['Street1'];

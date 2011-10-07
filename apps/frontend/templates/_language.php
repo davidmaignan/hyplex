@@ -1,6 +1,5 @@
 <?php use_helper('I18nUrl') ?>
 
-
 <div id="language">
     <ul>
         <li class="selected"><?php echo image_tag('icons/' . $sf_user->getCulture() . '.png') . ' '. Utils::$language[$sf_user->getCulture()]; ?></li>
@@ -17,33 +16,14 @@
 
 &emsp;
 
-    
-
 <script>
 
     $('#language').hover(function(){
-
-        //alert('here');
         $('#language li.selected').addClass('hover');
         $('.other-language').show();
-
     }, function(){
         $('#language li.selected').removeClass('hover');
         $('.other-language').hide();
-        
-
-    });
-
-    $('#currency').hover(function(){
-
-        //alert('here');
-        //$('.other-currency').show();
-
-    }, function(){
-
-        //$('.other-currency').hide();
-
-
     });
 
 

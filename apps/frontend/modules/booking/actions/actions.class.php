@@ -10,71 +10,71 @@
  */
 class bookingActions extends sfActions
 {
+    
  /**
   * Executes index action
   *
   * @param sfRequest $request A request object
   */
-  public function executePassenger(sfWebRequest $request)
+  public function executeGetPassenger(sfWebRequest $request)
   {
-    //$this->forward('default', 'module');
+
+    $plexBasket = PlexBasket::getInstance();
+    $numbPassengers = $plexBasket->getTotalPassengers();
+
+    $numbAdults = $plexBasket->getAdults();
+    $numbChildren = $plexBasket->getChildren();
+
     $this->form = new BookingPassengersForm();
+    
+    for($i=0;$i<$numbAdults;$i++){
+        $this->form->addAdult($i);
+    }
 
-
-    $this->form->addPassenger(0, 'adult');
-    $this->form->addPassenger(1, 'adult');
-
-
+    for($i=0;$i<$numbChildren;$i++){
+        $this->form->addChild($i);
+    }
+    
   }
 
   public function executeSetPassenger(sfWebRequest $request){
 
       $this->form = new BookingPassengersForm();
       $this->processForm($request, $this->form);
-      $this->setTemplate('passenger');
+      $this->setTemplate('getPassenger');
 
 
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form) {
 
-     
-
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         $parameters = $request->getPostParameters();
 
-        //echo "<pre>";
-        //print_r($parameters);
-        //exit;
-
-        //$origin = $parameters['search_hotel']['wherebox'];
-        //$originValidation = MyValidation::validateOriginDest($origin,$this->getRequest(),'wherebox', $this->getUser()->getCulture());
-
-
-
         if ($form->isValid()) {
+
+            unset($parameters['booking_passengers']['_csrf_token']);
+
+            $plexBasket = PlexBasket::getInstance();
+            $plexBasket->addBookingPassengers($parameters['booking_passengers']);
+
             $url = $this->generateUrl('booking_address');
             $this->redirect($url);
         }
-
-        //exit;
-
-
-    }
-
-    public function executeSetAddress(sfWebRequest $request){
-
-        $this->form = new AddressForm();
-        
-
 
     }
 
     public function executeGetAddress(sfWebRequest $request){
 
         $this->form = new AddressForm();
+
+    }
+
+    public function executeSetAddress(sfWebRequest $request){
+
+        $this->form = new AddressForm();
         $this->processForm2($request, $this->form);
-        $this->setTemplate('passenger');
+        $this->setTemplate('getAddress');
     }
 
     protected function processForm2(sfWebRequest $request, sfForm $form) {
@@ -82,23 +82,85 @@ class bookingActions extends sfActions
         $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
         $parameters = $request->getPostParameters();
 
-        echo "<pre>";
-        print_r($parameters);
-        exit;
-
-        //$origin = $parameters['search_hotel']['wherebox'];
-        //$originValidation = MyValidation::validateOriginDest($origin,$this->getRequest(),'wherebox', $this->getUser()->getCulture());
-
-
-
         if ($form->isValid()) {
-            $url = $this->generateUrl('booking_address');
-            $this->redirect($url);
+            //var_dump('form is valid');
+
+            $plexBasket = PlexBasket::getInstance();
+            $plexBasket->addBookingAddress($parameters['address']);
+
+            $this->redirect('booking/process');
         }
 
-        //exit;
+    }
+
+    public function executeConfirmation(sfWebRequest $request){
+
+
 
 
     }
+
+    public function executeProcess(sfWebRequest $request){
+
+        $parameters = $request->getPostParameters();
+
+        $plexRequest = new PlexBookingRequest('booking', $request, $parameters['address']);
+        $plexRequest->buildXML();
+        $filename = $plexRequest->executeRequest();
+        
+        //$filename = sfConfig::get('sf_user_folder').'/booking-rFW7Zi.raw';
+        //var_dump($response);
+        //exit;
+
+        $finalResponse = new PlexBookingResponse($filename);
+        $finalResponse->checkResponseCode();
+        $code = $finalResponse->responseCode;
+
+
+
+        switch ($code) {
+          case '0':
+              $finalResponse->parseResponse();
+              break;
+
+          case '3':
+              $this->forward('error', 'SessionExpired');
+              break;
+
+          case '6':
+              $this->forward('error', 'SessionExpired');
+              break;
+
+          case '9':
+              $this->forward('error', 'SessionExpired');
+              break;
+
+          case '10':
+             $this->forward('error', 'SessionExpired');
+              break;
+
+          default:
+             $this->redirect('error/plexError');
+             break;
+      }
+
+      //Let's continue - object creation.
+      $bookingId = $finalResponse->analyseResponse();
+
+      $this->getUser()->addBookingId($bookingId);
+
+
+      $this->redirect('booking/confirmed');
+
+
+    }
+
+    public function executeConfirmed(sfWebRequest $request){
+
+        $this->bookingId = $this->getUser()->getLastBookingId();
+
+    }
+
+    
 
 }

@@ -111,8 +111,6 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
         //If can't find tags AirInfos. xml empty or badly formatted
         if($start == -1 || $end == -1 || $star === false || $end === false)
         {
-
-
             $infos = array();
             $infos['message'] = 'Error while building xml: cannot find tags hotelDescription for '.$this->getFilename();
             $infos['filename'] = $this->getFilename();
@@ -123,33 +121,12 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
             sfContext::getInstance()->getEventDispatcher()->notify($event);
             sfContext::getInstance()->getController()->forward('error', 'plexError');
             exit;
+        }else{
+
+            $body = trim(substr($responseData, $start +  strlen('<HotelDescription>'), $end - $start -strlen('</HotelDescription>')));
+            $body = html_entity_decode($body);
+            $this->hotel->setFullDescription(($body));
         }
-
-        $body = trim(substr($responseData, $start +  strlen('<HotelDescription>'), $end - $start -strlen('</HotelDescription>')));
-
-        //$body = strip_tags(html_entity_decode($body),'<p><b>');
-        //echo ($body);
-
-        $body = html_entity_decode($body);
-
-       
-        //echo $body[0];
-
-
-        //$body = htmlspecialchars_decode($body);
-
-        
-        //$body = html_entity_decode($body);
-        //$pattern = '#<b>[a-zA-Z ]+</b>#';
-        //preg_match_all($pattern, $body, $matchesarray);
-
-
-        //var_dump($matchesarray);
-        //exit;
-        
-        $this->hotel->setFullDescription(($body));
-
-
 
         //Facilities
         $start = strpos($responseData, '<AllHotelFacilities>');
@@ -166,16 +143,17 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
 
             $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
             sfContext::getInstance()->getEventDispatcher()->notify($event);
-            sfContext::getInstance()->getController()->forward('error', 'plexError');
-            exit;
+            //sfContext::getInstance()->getController()->forward('error', 'plexError');
+            //exit;
+        }else{
+
+            $body = trim(substr($responseData, $start , $end - $start + strlen('</AllHotelFacilities>')));
+
+            $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
+
+            $xmlFacilities = simplexml_load_string($data);
+            $this->hotel->setFullFacilities(($xmlFacilities));
         }
-
-        $body = trim(substr($responseData, $start , $end - $start + strlen('</AllHotelFacilities>')));
-
-        $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
-
-        $xmlFacilities = simplexml_load_string($data);
-        $this->hotel->setFullFacilities(($xmlFacilities));
 
         //Images
         $start = strpos($responseData, '<AllHotelImageLinks>');
@@ -193,6 +171,9 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
             sfContext::getInstance()->getEventDispatcher()->notify($event);
             //sfContext::getInstance()->getController()->forward('error', 'plexError');
             //exit;
+        }else{
+
+
         }
 
 
@@ -212,15 +193,16 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
             sfContext::getInstance()->getEventDispatcher()->notify($event);
             //sfContext::getInstance()->getController()->forward('error', 'plexError');
             //exit;
+        }else{
+
+            $body = trim(substr($responseData, $start , $end - $start + strlen('</MapLatLon>')));
+
+            //echo htmlentities($body);
+
+            $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
+            $xmlCoordinates = simplexml_load_string($data);
+            $this->hotel->setCoordinates(($xmlCoordinates));
         }
-
-        $body = trim(substr($responseData, $start , $end - $start + strlen('</MapLatLon>')));
-
-        //echo htmlentities($body);
-
-        $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
-        $xmlCoordinates = simplexml_load_string($data);
-        $this->hotel->setCoordinates(($xmlCoordinates));
 
         
     }

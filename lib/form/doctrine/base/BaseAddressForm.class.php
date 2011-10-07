@@ -15,29 +15,29 @@ abstract class BaseAddressForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'        => new sfWidgetFormInputHidden(),
-      'address_1' => new sfWidgetFormInputText(),
-      'address_2' => new sfWidgetFormInputText(),
-      'city'      => new sfWidgetFormInputText(),
-      'state'     => new sfWidgetFormInputText(),
-      'country'   => new sfWidgetFormInputText(),
-      'postcode'  => new sfWidgetFormInputText(),
-      'phone'     => new sfWidgetFormInputText(),
-      'cellphone' => new sfWidgetFormInputText(),
-      'email'     => new sfWidgetFormInputText(),
+      'id'         => new sfWidgetFormInputHidden(),
+      'address_1'  => new sfWidgetFormInputText(),
+      'address_2'  => new sfWidgetFormInputText(),
+      'city'       => new sfWidgetFormInputText(),
+      'state'      => new sfWidgetFormInputText(),
+      'country_id' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Country'), 'add_empty' => false)),
+      'postcode'   => new sfWidgetFormInputText(),
+      'phone'      => new sfWidgetFormInputText(),
+      'cellphone'  => new sfWidgetFormInputText(),
+      'email'      => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
-      'id'        => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'address_1' => new sfValidatorString(array('max_length' => 255)),
-      'address_2' => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'city'      => new sfValidatorString(array('max_length' => 255)),
-      'state'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'country'   => new sfValidatorInteger(),
-      'postcode'  => new sfValidatorString(array('max_length' => 10)),
-      'phone'     => new sfValidatorInteger(array('required' => false)),
-      'cellphone' => new sfValidatorInteger(array('required' => false)),
-      'email'     => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'id'         => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'address_1'  => new sfValidatorString(array('max_length' => 255)),
+      'address_2'  => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'city'       => new sfValidatorString(array('max_length' => 255)),
+      'state'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
+      'country_id' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Country'))),
+      'postcode'   => new sfValidatorString(array('max_length' => 10)),
+      'phone'      => new sfValidatorInteger(array('required' => false)),
+      'cellphone'  => new sfValidatorInteger(array('required' => false)),
+      'email'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('address[%s]');

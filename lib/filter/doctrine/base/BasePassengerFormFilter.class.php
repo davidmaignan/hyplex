@@ -13,10 +13,11 @@ abstract class BasePassengerFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'salutation'            => new sfWidgetFormChoice(array('choices' => array('' => '', 'Mr' => 'Mr', 'Ms' => 'Ms', 'Mrs' => 'Mrs'))),
+      'salutation'            => new sfWidgetFormChoice(array('choices' => array('' => '', 'Mr' => 'Mr', 'Ms' => 'Ms', 'Mrs' => 'Mrs', 'Dr' => 'Dr'))),
       'first_name'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'middle_name'           => new sfWidgetFormFilterInput(),
       'last_name'             => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'gender'                => new sfWidgetFormChoice(array('choices' => array('' => '', 'M' => 'M', 'F' => 'F'))),
+      'gender'                => new sfWidgetFormChoice(array('choices' => array('' => '', 'male' => 'male', 'female' => 'female'))),
       'dob'                   => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'p_type'                => new sfWidgetFormChoice(array('choices' => array('' => '', 'ADT' => 'ADT', 'CHD' => 'CHD'))),
       'frequent_flyer_number' => new sfWidgetFormFilterInput(),
@@ -27,10 +28,11 @@ abstract class BasePassengerFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'salutation'            => new sfValidatorChoice(array('required' => false, 'choices' => array('Mr' => 'Mr', 'Ms' => 'Ms', 'Mrs' => 'Mrs'))),
+      'salutation'            => new sfValidatorChoice(array('required' => false, 'choices' => array('Mr' => 'Mr', 'Ms' => 'Ms', 'Mrs' => 'Mrs', 'Dr' => 'Dr'))),
       'first_name'            => new sfValidatorPass(array('required' => false)),
+      'middle_name'           => new sfValidatorPass(array('required' => false)),
       'last_name'             => new sfValidatorPass(array('required' => false)),
-      'gender'                => new sfValidatorChoice(array('required' => false, 'choices' => array('M' => 'M', 'F' => 'F'))),
+      'gender'                => new sfValidatorChoice(array('required' => false, 'choices' => array('male' => 'male', 'female' => 'female'))),
       'dob'                   => new sfValidatorPass(array('required' => false)),
       'p_type'                => new sfValidatorChoice(array('required' => false, 'choices' => array('ADT' => 'ADT', 'CHD' => 'CHD'))),
       'frequent_flyer_number' => new sfValidatorPass(array('required' => false)),
@@ -78,6 +80,7 @@ abstract class BasePassengerFormFilter extends BaseFormFilterDoctrine
       'id'                    => 'Number',
       'salutation'            => 'Enum',
       'first_name'            => 'Text',
+      'middle_name'           => 'Text',
       'last_name'             => 'Text',
       'gender'                => 'Enum',
       'dob'                   => 'Text',
