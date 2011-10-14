@@ -164,16 +164,12 @@ $(document).ready(function(){
         $('.return-date').css('display','none');
         $('.return-time').css('display','none');
     }
-
-
-    
-
     
     $( "#search_flight_destination" ).autocomplete({
             autoFocus: true,
             source: function( request, response ) {
                     $.ajax({
-                            url: "test/searchAirportComplete2",
+                            url: autoCompleteURL,
                             dataType: "json",
                             delay: 200,
                             data: {
@@ -224,10 +220,10 @@ $(document).ready(function(){
             autoFocus: true,
             source: function( request, response ) {
                     $.ajax({
-                            url: "test/searchAirportComplete2",
+                            url: autoCompleteURL,
                             dataType: "json",
                             autoFocus: true,
-                            delay: 200,
+                            delay: 400,
                             data: {
                                     featureClass: "P",
                                     style: "full",
@@ -238,12 +234,8 @@ $(document).ready(function(){
                                     response( $.map( data.results, function( item ) {
 
                                             var value = data.values[0];
-                                            //$('#log2').append(value);
-
                                             var string = item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')';
                                             string = highlight2(string, request.term);
-
-
                                             return {
                                                     label: string,
                                                     value: item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')'
@@ -254,9 +246,7 @@ $(document).ready(function(){
             },
             minLength: 2,
             select: function( event, ui ) {
-                    //log( ui.item ?
-                     //       "Selected: " + ui.item.label :
-                     //       "Nothing selected, input was " + this.value);
+
             },
             open: function() {
                     $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );

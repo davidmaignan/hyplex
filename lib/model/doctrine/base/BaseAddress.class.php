@@ -16,7 +16,6 @@
  * @property integer $cellphone
  * @property string $email
  * @property Country $Country
- * @property Booking $Booking
  * 
  * @method integer getId()         Returns the current record's "id" value
  * @method string  getAddress1()   Returns the current record's "address_1" value
@@ -29,7 +28,6 @@
  * @method integer getCellphone()  Returns the current record's "cellphone" value
  * @method string  getEmail()      Returns the current record's "email" value
  * @method Country getCountry()    Returns the current record's "Country" value
- * @method Booking getBooking()    Returns the current record's "Booking" value
  * @method Address setId()         Sets the current record's "id" value
  * @method Address setAddress1()   Sets the current record's "address_1" value
  * @method Address setAddress2()   Sets the current record's "address_2" value
@@ -41,7 +39,6 @@
  * @method Address setCellphone()  Sets the current record's "cellphone" value
  * @method Address setEmail()      Sets the current record's "email" value
  * @method Address setCountry()    Sets the current record's "Country" value
- * @method Address setBooking()    Sets the current record's "Booking" value
  * 
  * @package    hyplexdemo
  * @subpackage model
@@ -106,9 +103,5 @@ abstract class BaseAddress extends sfDoctrineRecord
         $this->hasOne('Country', array(
              'local' => 'country_id',
              'foreign' => 'id'));
-
-        $this->hasOne('Booking', array(
-             'local' => 'id',
-             'foreign' => 'address_id'));
     }
 }

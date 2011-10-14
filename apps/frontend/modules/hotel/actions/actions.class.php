@@ -422,7 +422,7 @@ class hotelActions extends sfActions
                       sfContext::getInstance()->getEventDispatcher()->notify($event);
 
                       //$this->redirect('hotel/notFound');
-                      $this->forward('error', 'SessionExpired');
+                      //$this->forward('error', 'SessionExpired');
                       break;
 
                 }

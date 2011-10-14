@@ -42,7 +42,7 @@ class FlightReturnObj extends FlightGenericObj {
 
     public function __construct() {
 
-        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date'));
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag', 'Date'));
     }
 
     public function setClass($value) {
@@ -131,7 +131,7 @@ class FlightReturnObj extends FlightGenericObj {
 
     }
 
-    /*
+    /**
      * Create the SegmentOutbound array and Segment Inbound array
      * to display summurize information of the FlightReturnObject
      *
@@ -175,10 +175,39 @@ class FlightReturnObj extends FlightGenericObj {
         //$this->nbrStopsInbound = count($this->Segments['inbound']) - 1;
     }
 
-    
+
+   
+
+    public function displayConfirmationTitle($culture = 'en_US'){
 
 
-    /*
+        $codeFrom = $this->SegmentOutbound->DepartureFrom;
+        $codeTo = $this->SegmentOutbound->ArrivalTo;
+
+        //var_dump($this->arAirport);
+
+        $from = $this->arAirport[$codeFrom][$culture]['name'] .' ('.$codeFrom.'),  ' .
+                    $this->arAirport[$codeFrom][$culture]['city_name']. ' ';
+        $from .= isset($this->arAirport[$codeFrom]['state'])? ' ['.$this->arAirport[$codeFrom]['state'].'], ': '';
+
+        $from .= $this->arAirport[$codeFrom][$culture]['country'];
+
+        $to = $this->arAirport[$codeTo][$culture]['name'] .' ('.$codeTo.'),  ' .
+                    $this->arAirport[$codeTo][$culture]['city_name']. ' ';
+        $to .= isset($this->arAirport[$codeTo]['state'])? ' ['.$this->arAirport[$codeTo]['state'].'], ': '';
+
+        $to .= $this->arAirport[$codeTo][$culture]['country'];
+
+
+        
+        return __('Round trip from %1% to %2%',array('%1%'=> $from,'%2%'=> $to));
+
+
+        
+    }
+
+
+    /**
      * Return a string representation of the object summurized flight.
      *
      * @return string 

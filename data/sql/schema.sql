@@ -2,7 +2,7 @@ CREATE TABLE address (id BIGINT, address_1 VARCHAR(255) NOT NULL, address_2 VARC
 CREATE TABLE airline (id BIGINT AUTO_INCREMENT, tag VARCHAR(2) UNIQUE, name VARCHAR(255), slug VARCHAR(255), UNIQUE INDEX airline_sluggable_idx (slug), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE area_translation (id BIGINT, name VARCHAR(255) NOT NULL, lang CHAR(5), slug VARCHAR(255), PRIMARY KEY(id, lang)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE area (id BIGINT AUTO_INCREMENT, code VARCHAR(4) NOT NULL UNIQUE, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
-CREATE TABLE booking (id BIGINT AUTO_INCREMENT, title VARCHAR(255), cover VARCHAR(255), director VARCHAR(255), address_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX address_id_idx (address_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
+CREATE TABLE booking (id BIGINT AUTO_INCREMENT, booking_id VARCHAR(255) UNIQUE, object LONGTEXT, user_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, INDEX user_id_idx (user_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE booking_passenger (booking_id BIGINT, passenger_id BIGINT, PRIMARY KEY(booking_id, passenger_id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE city_translation (id BIGINT, name VARCHAR(255) NOT NULL, lang CHAR(5), slug VARCHAR(255), PRIMARY KEY(id, lang)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
 CREATE TABLE city (id BIGINT AUTO_INCREMENT, code VARCHAR(3) NOT NULL UNIQUE, airport VARCHAR(255), country_id BIGINT NOT NULL, state_id BIGINT, cache TINYINT(1) DEFAULT '0', archived TINYINT(1) DEFAULT '0', rank BIGINT DEFAULT 0, metropolitan TINYINT(1) DEFAULT '0', latitude DECIMAL(18, 15), longitude DECIMAL(18, 15), UNIQUE INDEX code_index_idx (code), INDEX airport_index_idx (airport), INDEX country_id_index_idx (country_id), INDEX state_id_index_idx (state_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE = INNODB;
@@ -37,7 +37,7 @@ CREATE TABLE sf_guard_user_group (user_id BIGINT, group_id BIGINT, created_at DA
 CREATE TABLE sf_guard_user_permission (user_id BIGINT, permission_id BIGINT, created_at DATETIME NOT NULL, updated_at DATETIME NOT NULL, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 ALTER TABLE address ADD CONSTRAINT address_country_id_country_id FOREIGN KEY (country_id) REFERENCES country(id);
 ALTER TABLE area_translation ADD CONSTRAINT area_translation_id_area_id FOREIGN KEY (id) REFERENCES area(id) ON UPDATE CASCADE ON DELETE CASCADE;
-ALTER TABLE booking ADD CONSTRAINT booking_address_id_address_id FOREIGN KEY (address_id) REFERENCES address(id);
+ALTER TABLE booking ADD CONSTRAINT booking_user_id_sf_guard_user_id FOREIGN KEY (user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE booking_passenger ADD CONSTRAINT booking_passenger_passenger_id_passenger_id FOREIGN KEY (passenger_id) REFERENCES passenger(id) ON DELETE CASCADE;
 ALTER TABLE booking_passenger ADD CONSTRAINT booking_passenger_booking_id_booking_id FOREIGN KEY (booking_id) REFERENCES booking(id) ON DELETE CASCADE;
 ALTER TABLE city_translation ADD CONSTRAINT city_translation_id_city_id FOREIGN KEY (id) REFERENCES city(id) ON UPDATE CASCADE ON DELETE CASCADE;

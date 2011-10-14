@@ -868,5 +868,20 @@ class Utils {
         return true;
     }
 
+    /**
+     * Calculate the age of passenger depending on a specific date
+     * @param <string> $age dob of the passenger (Y-m-d format)
+     * @param <string> $date traveling date (Y-m-d format)
+     * @return <int> age of the passenger
+     */
+    static public function getAge($age, $date){
+
+        list($y1,$m1,$d1) = explode('-', $age);
+        list($y2,$m2, $d2) = explode('-',$date);
+
+        return ($m2.$d2< $m1.$d1)? ($y2-$y1)-1 : ($y2-$y1);
+        
+    }
+
 }
 

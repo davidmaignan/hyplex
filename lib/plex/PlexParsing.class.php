@@ -294,5 +294,20 @@ class PlexParsing {
 
     }
 
+
+    public static function getBookingData($bookingId){
+        $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'booking-'.$bookingId.'.plex';
+
+        if(file_exists($filename)){
+            $content = file_get_contents($filename);
+        }else{
+            throw new Exception($bookingId.' file not found in PlexParsing getBookingData function');
+        }
+
+        return unserialize($content);
+
+
+    }
+
 }
 

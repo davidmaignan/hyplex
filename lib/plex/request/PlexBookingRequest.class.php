@@ -17,30 +17,30 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
 
     public function buildXML() {
 
+        $timer = sfTimerManager::getTimer('buildXML');
+
+        //Hack to modify url
         $this->url = $this->url.'_v1';
 
         $plexBasket = PlexBasket::getInstance();
-        
 
-        $rooms = $plexBasket->getArBookingRooms();
-        //var_dump($plexBasket->getBookingPassengers());
-        //var_dump($rooms);
+        //Flight
+        //$flightReference = $plexBasket->getFlightUniqueReferenceId();
+        //Hotel
+        //$hotelId = $plexBasket->getHotelId();
 
-        $flightReference = $plexBasket->getFlightUniqueReferenceId();
-        $hotelId = $plexBasket->getHotelId();
-        $passengers = $plexBasket->getBookingPassengers();
-        $bookingAddress = $plexBasket->getBookingAddress();
+        //Use parameter 2 to keep only the numeric keys
+        //$passengers = $plexBasket->getBookingPassengers(2);
 
-        //var_dump($bookingAddress);
-        //exit;
+        //Use parameter 1 to get the passenger ID 
+        //$passengerKeys = $plexBasket->getBookingPassengers(1);
 
-        $timer = sfTimerManager::getTimer('buildXML');
+        //Retrieve sTId and the connection parameters
         $sessionTokenId = sfContext::getInstance()->getUser()->getAttribute('sTId');
-
-        //Retrieve the connection parameters
         $this->defineParams();
 
-
+        //var_dump($passengers);
+        //exit;
         //$bookingAddress = $this->paramFactory;
         
         $xml = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:v1="http://plexconnect.ipm.hypertechsolutions.com/v1">
@@ -48,38 +48,90 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
 
         $xml .= "<v1:SessionTokenId>$sessionTokenId</v1:SessionTokenId>";
         $xml .= "<v1:TransactionId>{$this->transactionId}</v1:TransactionId>";
+
+
+        //Flight
+        $flightDatas = $plexBasket->getArBookingFlight();
+        
+        if(!is_null($flightDatas)){
+            foreach($flightDatas as $key=>$value){
+                $xml .= "<v1:AirBookingInfo>
+                        <v1:UniqueReferenceId>{$key}</v1:UniqueReferenceId>
+                        <v1:PaxIds>";
+                        foreach($value as $id){
+                            $xml .= "<v1:PaxId>{$id}</v1:PaxId>";
+                        }
+                $xml .= "</v1:PaxIds>";
+                $xml .= "</v1:AirBookingInfo>";
+            }
+        }
+
+        /*
         $xml .= "<v1:AirBookingInfo>
                     <v1:UniqueReferenceId>{$flightReference}</v1:UniqueReferenceId>
-                    <v1:PaxIds>
-                       <v1:PaxId>1</v1:PaxId>
-                    </v1:PaxIds>
-                 </v1:AirBookingInfo>";
+                    <v1:PaxIds>";
+                    foreach($passengerKeys as $key){
+                        $xml .= "<v1:PaxId>{$key}</v1:PaxId>";
+                    }
+        $xml .= "</v1:PaxIds>";
+        $xml .= "</v1:AirBookingInfo>";         
+        */
 
-         
 
-        $xml .=    "<v1:PassengersInfo>
-                    <!--Zero or more repetitions:-->
-                        <v1:PassengerInfo>
-                           <v1:PaxId>1</v1:PaxId>
-                           <v1:Salutation>Mr</v1:Salutation>
-                           <v1:PaxFirstName>John</v1:PaxFirstName>
-                           <v1:PaxMiddleName>David</v1:PaxMiddleName>
-                           <v1:PaxLastName>Smith</v1:PaxLastName>
-                           <v1:Gender>M</v1:Gender>
-                           <v1:DateOfBirth>1970-01-01</v1:DateOfBirth>
-                           <v1:PaxType>ADT</v1:PaxType>
-                           <v1:FrequentFlyerNumber>123456789</v1:FrequentFlyerNumber>
-                           <v1:MealPreference>SFML</v1:MealPreference>
-                           <v1:SpecialAssistance>WCHR</v1:SpecialAssistance>
-                        </v1:PassengerInfo>
-                    </v1:PassengersInfo>";
+        //Hotel
+        $hotelDatas = $plexBasket->getArBookingHotel();
+        //var_dump($hotelDatas);
+        
+        
+        $xml .= " <v1:HotelBookingInfo><v1:HotelId>{$hotelDatas['hotelID']}</v1:HotelId>";
 
+        foreach($hotelDatas['rooms'] as $key_room=> $room){
+
+            $xml .= "<v1:UniqueRateIdInfo>
+                       <v1:UniqueReferenceId>".$key_room."</v1:UniqueReferenceId>
+                       <v1:PaxIds>";
+
+            foreach($room as $person){
+                $xml .= "<v1:PaxId>". $person ."</v1:PaxId>";
+            }
+                          
+            $xml .= "</v1:PaxIds></v1:UniqueRateIdInfo>";
+
+        }
+                    
+        $xml  .= "</v1:HotelBookingInfo>";        
+        $xml .=    "<v1:PassengersInfo>";
+
+        $passengers = $plexBasket->getBookingPassengers(2);
+        foreach ($passengers as $key=>$passenger) {
+
+            $xml .= "<v1:PassengerInfo>
+                           <v1:PaxId>{$key}</v1:PaxId>
+                           <v1:Salutation>{$passenger['salutation']}</v1:Salutation>
+                           <v1:PaxFirstName>{$passenger['first_name']}</v1:PaxFirstName>
+                           <v1:PaxMiddleName>{$passenger['middle_name']}</v1:PaxMiddleName>
+                           <v1:PaxLastName>{$passenger['last_name']}</v1:PaxLastName>
+                           <v1:Gender>{$passenger['gender']}</v1:Gender>
+                           <v1:DateOfBirth>{$passenger['dob']}</v1:DateOfBirth>
+                           <v1:PaxType>{$passenger['type']}</v1:PaxType>
+                           <v1:FrequentFlyerNumber>{$passenger['frequent_flyer_number']}</v1:FrequentFlyerNumber>
+                           <v1:MealPreference>{$passenger['meal_preference']}</v1:MealPreference>
+                           <v1:SpecialAssistance>{$passenger['special_assistance']}</v1:SpecialAssistance>
+                        </v1:PassengerInfo>";
+        }
+
+
+        $xml .= "</v1:PassengersInfo>";
+
+        //Get Booking address array
+        $bookingAddress = $plexBasket->getBookingAddress();
+        
         $xml .=    "<v1:PaymentInfos>
                             <!--Zero or more repetitions:-->
                             <v1:PaymentInfo>
                                <v1:PaymentType>CreditCard</v1:PaymentType>
                                <v1:CreditCardType>VisaCard</v1:CreditCardType>
-                               <v1:Amount>740.73</v1:Amount>
+                               <v1:Amount>" . $plexBasket->getTotalPrice() . "</v1:Amount>
                             </v1:PaymentInfo>
                          </v1:PaymentInfos>
                          <v1:ShippingInfo>
@@ -106,6 +158,8 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
                 </soapenv:Envelope>";
 
         $this->xml = $xml;
+
+        
     }
 
 
@@ -126,6 +180,9 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
 
         //$timer->addTime();
 
+        //echo "<pre>";
+        //print_r($this->response);
+
         ini_restore('error_reporting');
 
         $pathname = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename;
@@ -139,12 +196,12 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
 
         return $fullFilename;
 
-        //Save the response in a tmp file
-
-
-
     }
 
+    public function getXML(){
+
+        return htmlentities(str_replace("/\>", "/\>\n", $this->xml));
+    }
 
 }
 

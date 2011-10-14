@@ -17,37 +17,31 @@
  * @property string $airline_code
  * @property string $meal_preference
  * @property string $special_assistance
- * @property Doctrine_Collection $Bookings
- * @property Doctrine_Collection $BookingPassenger
  * 
- * @method integer             getId()                    Returns the current record's "id" value
- * @method enum                getSalutation()            Returns the current record's "salutation" value
- * @method string              getFirstName()             Returns the current record's "first_name" value
- * @method string              getMiddleName()            Returns the current record's "middle_name" value
- * @method string              getLastName()              Returns the current record's "last_name" value
- * @method enum                getGender()                Returns the current record's "gender" value
- * @method string              getDob()                   Returns the current record's "dob" value
- * @method enum                getPType()                 Returns the current record's "p_type" value
- * @method string              getFrequentFlyerNumber()   Returns the current record's "frequent_flyer_number" value
- * @method string              getAirlineCode()           Returns the current record's "airline_code" value
- * @method string              getMealPreference()        Returns the current record's "meal_preference" value
- * @method string              getSpecialAssistance()     Returns the current record's "special_assistance" value
- * @method Doctrine_Collection getBookings()              Returns the current record's "Bookings" collection
- * @method Doctrine_Collection getBookingPassenger()      Returns the current record's "BookingPassenger" collection
- * @method Passenger           setId()                    Sets the current record's "id" value
- * @method Passenger           setSalutation()            Sets the current record's "salutation" value
- * @method Passenger           setFirstName()             Sets the current record's "first_name" value
- * @method Passenger           setMiddleName()            Sets the current record's "middle_name" value
- * @method Passenger           setLastName()              Sets the current record's "last_name" value
- * @method Passenger           setGender()                Sets the current record's "gender" value
- * @method Passenger           setDob()                   Sets the current record's "dob" value
- * @method Passenger           setPType()                 Sets the current record's "p_type" value
- * @method Passenger           setFrequentFlyerNumber()   Sets the current record's "frequent_flyer_number" value
- * @method Passenger           setAirlineCode()           Sets the current record's "airline_code" value
- * @method Passenger           setMealPreference()        Sets the current record's "meal_preference" value
- * @method Passenger           setSpecialAssistance()     Sets the current record's "special_assistance" value
- * @method Passenger           setBookings()              Sets the current record's "Bookings" collection
- * @method Passenger           setBookingPassenger()      Sets the current record's "BookingPassenger" collection
+ * @method integer   getId()                    Returns the current record's "id" value
+ * @method enum      getSalutation()            Returns the current record's "salutation" value
+ * @method string    getFirstName()             Returns the current record's "first_name" value
+ * @method string    getMiddleName()            Returns the current record's "middle_name" value
+ * @method string    getLastName()              Returns the current record's "last_name" value
+ * @method enum      getGender()                Returns the current record's "gender" value
+ * @method string    getDob()                   Returns the current record's "dob" value
+ * @method enum      getPType()                 Returns the current record's "p_type" value
+ * @method string    getFrequentFlyerNumber()   Returns the current record's "frequent_flyer_number" value
+ * @method string    getAirlineCode()           Returns the current record's "airline_code" value
+ * @method string    getMealPreference()        Returns the current record's "meal_preference" value
+ * @method string    getSpecialAssistance()     Returns the current record's "special_assistance" value
+ * @method Passenger setId()                    Sets the current record's "id" value
+ * @method Passenger setSalutation()            Sets the current record's "salutation" value
+ * @method Passenger setFirstName()             Sets the current record's "first_name" value
+ * @method Passenger setMiddleName()            Sets the current record's "middle_name" value
+ * @method Passenger setLastName()              Sets the current record's "last_name" value
+ * @method Passenger setGender()                Sets the current record's "gender" value
+ * @method Passenger setDob()                   Sets the current record's "dob" value
+ * @method Passenger setPType()                 Sets the current record's "p_type" value
+ * @method Passenger setFrequentFlyerNumber()   Sets the current record's "frequent_flyer_number" value
+ * @method Passenger setAirlineCode()           Sets the current record's "airline_code" value
+ * @method Passenger setMealPreference()        Sets the current record's "meal_preference" value
+ * @method Passenger setSpecialAssistance()     Sets the current record's "special_assistance" value
  * 
  * @package    hyplexdemo
  * @subpackage model
@@ -133,13 +127,6 @@ abstract class BasePassenger extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Booking as Bookings', array(
-             'refClass' => 'BookingPassenger',
-             'local' => 'passenger_id',
-             'foreign' => 'booking_id'));
-
-        $this->hasMany('BookingPassenger', array(
-             'local' => 'id',
-             'foreign' => 'passenger_id'));
+        
     }
 }

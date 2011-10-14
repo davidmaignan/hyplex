@@ -114,7 +114,9 @@ class myUser extends sfGuardSecurityUser
 
     public function addBookingId($bookingId){
 
-        $prevBooking = $this->getAttribute('prevBooking');
+        $prevBooking = $this->setAttribute('prevBooking', $bookingId);
+
+        return true;
 
         if(is_null($prevBooking)){
 
@@ -133,6 +135,8 @@ class myUser extends sfGuardSecurityUser
     public function getLastBookingId(){
 
         $prevBooking = $this->getAttribute('prevBooking');
+
+        return $prevBooking;
 
         if(is_array($prevBooking)){
             return end($prevBooking);

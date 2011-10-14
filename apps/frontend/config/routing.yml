@@ -1,6 +1,8 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
-
+autocomplete:
+  url: /:sf_culture/autocomplete/searchAirportComplete2
+  param: { module: autocomplete, action: searchAirportComplete2 }
 
 booking_check_address:
   url: /:sf_culture/check-out/check-address-and-payement-information

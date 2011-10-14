@@ -94,16 +94,14 @@
 
 
 </style>
+
 <hr class="space3" />
+
 <div class="span-7">
-
    <?php include_component('basket', 'checkOut'); ?>
-
 </div>
 
 <div class="span-18 last">
-
-    
 
     <h2 class="title"><?php echo ucfirst(__('Details of your trip')) ?></h2>
 
@@ -267,7 +265,13 @@
 
 </div>
 
+<h2 class="title">Flight</h2>
 
+<?php
+
+$flight = $booking->getFlight();
+var_dump($flight);
+?>
 
 
 

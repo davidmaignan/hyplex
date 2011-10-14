@@ -10,9 +10,8 @@
  */
 class PassengerChildForm extends PassengerAdultForm
 {
-    protected  static $title = array('','Mstr'=>'Mstr','Miss'=>'Miss');
+    protected  static $title = array('Mstr'=>'Mstr','Miss'=>'Miss');
     protected static $titleValidation = array('Mstr'=>'Mstr','Miss'=>'Miss');
-
 
     public function  configure() {
 
@@ -26,6 +25,21 @@ class PassengerChildForm extends PassengerAdultForm
         $this->setValidator('salutation', new sfValidatorChoice(array(
                 'choices' => array_keys(self::$titleValidation)), array(
                 'required' => 'Choose a gender')));
+
+        $this->setWidget('dob', new sfWidgetFormInputText(array(),array('class'=>'dob span-3')));
+
+
+        $this->setValidator('dob', new sfValidatorAnd(array(
+             new sfValidatorDate(array(
+                 'date_format' => '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/',
+                 'date_output' => 'Y-m-d',
+             ), array(
+                 'bad_format' => 'Return date %value% does not match the format (yyyy-mm-dd)'
+             ))
+             ),array(),array(
+         )));
+
+
     }
 
 

@@ -188,6 +188,7 @@ class FlightGenericObj {
 
     }
 
+
     public function getAirline(){
         if (count($this->arAirlines) > 1) {
             return 'Multiple airlines';
@@ -261,5 +262,32 @@ class FlightGenericObj {
         return $string;
     }
 
+
+    /**
+     * Function to retreive the search parameters
+     * @param string $filename
+     * @return flightparameter object
+     */
+    public function getPassengerInfo($filename){
+        $parameters = PlexParsing::retreiveParameters($filename);
+        
+        $passengersString =  format_number_choice(
+                '[0]|[1]1 adult|(1,+Inf]%1% adults',
+                array('%1%' => $parameters->getAdults()), $parameters->getAdults());
+
+        if($parameters->getChildren() || $parameters->getInfants()) $passengersString.= ', ';
+
+        $passengersString .= format_number_choice(
+                '[0]|[1]1 child|(1,+Inf]%1% children',
+                array('%1%' => $parameters->getChildren()), $parameters->getChildren());
+
+        if($parameters->getInfants()) $passengersString.= ', ';
+        
+        $passengersString .= format_number_choice(
+                '[0]|[1]1 infant (travel on laps)|(1,+Inf]%1% infants (travel on laps)',
+                array('%1%' => $parameters->getInfants()), $parameters->getInfants());
+
+        return $passengersString;
+    }
+
 }
-?>

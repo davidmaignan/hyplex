@@ -27,7 +27,6 @@ abstract class BasePassengerForm extends BaseFormDoctrine
       'airline_code'          => new sfWidgetFormInputText(),
       'meal_preference'       => new sfWidgetFormInputText(),
       'special_assistance'    => new sfWidgetFormInputText(),
-      'bookings_list'         => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Booking')),
     ));
 
     $this->setValidators(array(
@@ -43,7 +42,6 @@ abstract class BasePassengerForm extends BaseFormDoctrine
       'airline_code'          => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'meal_preference'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'special_assistance'    => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'bookings_list'         => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Booking', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('passenger[%s]');
@@ -58,62 +56,6 @@ abstract class BasePassengerForm extends BaseFormDoctrine
   public function getModelName()
   {
     return 'Passenger';
-  }
-
-  public function updateDefaultsFromObject()
-  {
-    parent::updateDefaultsFromObject();
-
-    if (isset($this->widgetSchema['bookings_list']))
-    {
-      $this->setDefault('bookings_list', $this->object->Bookings->getPrimaryKeys());
-    }
-
-  }
-
-  protected function doSave($con = null)
-  {
-    $this->saveBookingsList($con);
-
-    parent::doSave($con);
-  }
-
-  public function saveBookingsList($con = null)
-  {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
-    if (!isset($this->widgetSchema['bookings_list']))
-    {
-      // somebody has unset this widget
-      return;
-    }
-
-    if (null === $con)
-    {
-      $con = $this->getConnection();
-    }
-
-    $existing = $this->object->Bookings->getPrimaryKeys();
-    $values = $this->getValue('bookings_list');
-    if (!is_array($values))
-    {
-      $values = array();
-    }
-
-    $unlink = array_diff($existing, $values);
-    if (count($unlink))
-    {
-      $this->object->unlink('Bookings', array_values($unlink));
-    }
-
-    $link = array_diff($values, $existing);
-    if (count($link))
-    {
-      $this->object->link('Bookings', array_values($link));
-    }
   }
 
 }

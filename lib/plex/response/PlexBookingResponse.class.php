@@ -13,11 +13,11 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
     //put your code here
 
     public function  __construct($filename) {
+        
+
 
         $this->response = file_get_contents($filename);
         //$tmp = explode('/', $filename);
-        
-
     }
 
     public function checkResponseCode() {
@@ -84,7 +84,6 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
         //If can't find tags AirInfos. xml empty or badly formatted
         if($start === false || $end === false)
         {
-            
             $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
             sfContext::getInstance()->getEventDispatcher()->notify($event);
             sfContext::getInstance()->getController()->forward('error', 'plexError');
@@ -102,7 +101,7 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
         $arBooking['date'] = date('Y-m-d H:m:i');
         $arBooking['bookingId'] = $bookingId;
         $arBooking['sf_user_folder'] = sfConfig::get('sf_user_folder');
-        $arBooking['rooms'] = $plexBasket->getArBookingRooms();
+        $arBooking['rooms'] = $plexBasket->getArBookingHotel();
         $arBooking['address'] = $plexBasket->getBookingAddress();
         $arBooking['passengers'] = $plexBasket->getBookingPassengers();
         $arBooking['flightFilename'] = $plexBasket->getFlightFilename();
@@ -112,17 +111,18 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
 
         $finalFilename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'booking-'.$bookingId.'.plex';
 
-        //echo $finalFilename;
-
+        //Create plexBooking Object
+        $plexBooking = new PlexBooking($arBooking);
 
         //Delete the raw response - to uncomment for production
-        /*
-        if(file_put_contents($finalFilename, serialize($arBooking)) !== false){
-            
-        }
-         *
-         */
+        if(file_put_contents($finalFilename, serialize($plexBooking)) !== false){
+            unlink(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'booking-'.$bookingId.'.raw');
 
+            //$booking = new Booking();
+            //$booking->saveBooking($plexBooking);
+
+        }
+        
 
         return $bookingId;
 

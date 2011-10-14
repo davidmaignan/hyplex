@@ -95,28 +95,29 @@ class bookingActions extends sfActions
 
     public function executeConfirmation(sfWebRequest $request){
 
-
-
-
     }
 
     public function executeProcess(sfWebRequest $request){
+
 
         $parameters = $request->getPostParameters();
 
         $plexRequest = new PlexBookingRequest('booking', $request, $parameters['address']);
         $plexRequest->buildXML();
+
+        //echo $plexRequest->getXML();
+
+        //exit;
+        
         $filename = $plexRequest->executeRequest();
         
         //$filename = sfConfig::get('sf_user_folder').'/booking-rFW7Zi.raw';
-        //var_dump($response);
-        //exit;
+        
 
         $finalResponse = new PlexBookingResponse($filename);
+
         $finalResponse->checkResponseCode();
         $code = $finalResponse->responseCode;
-
-
 
         switch ($code) {
           case '0':
@@ -146,18 +147,46 @@ class bookingActions extends sfActions
 
       //Let's continue - object creation.
       $bookingId = $finalResponse->analyseResponse();
-
       $this->getUser()->addBookingId($bookingId);
-
-
       $this->redirect('booking/confirmed');
 
 
     }
 
     public function executeConfirmed(sfWebRequest $request){
+        
+        $this->bookingId = $this->getUser()->getLastBookingId();        
+        $this->booking = PlexParsing::getBookingData($this->bookingId);
 
-        $this->bookingId = $this->getUser()->getLastBookingId();
+        //var_dump($this->booking);
+        //exit;
+
+        $address = $this->booking->getAddress();
+        //var_dump($address);
+
+        //Create user
+        $newUser = new sfGuardUser();
+        $newUser->setEmailAddress($address['email']);
+        $newUser->setPassword($address['password']);
+
+        try{
+            $newUser->save();
+            $userId = $newUser->getId();
+
+        }catch (Doctrine_Exception $e){
+            $user = Doctrine::getTable('sfGuardUser')->findOneBy('email_address', $address['email']);
+            $userId = $user->getId();
+        }
+
+        //var_dump($userId);
+
+        //exit;
+
+        //$booking = new Booking();
+        //$booking->saveBooking($this->booking, $userId);
+
+        //exit;
+
 
     }
 

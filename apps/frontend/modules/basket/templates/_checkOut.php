@@ -37,16 +37,16 @@
             <td colspan="2">
                 <ul>
                     <li><?php echo ucfirst(__('total')) ?></li>
-                    <li class="sub-person"><?php echo ucfirst(__('price per person')) ?></li>
+                    <li class="sub-person"><?php //echo ucfirst(__('price per person')) ?></li>
                 </ul>
             </td>
             <td class="total">
                 <ul>
                     <li>
-                        <?php echo format_currency(rand(2999,8999),  sfConfig::get('app_currency')); ?>
+                        <?php echo format_currency($plexBasket->getTotalPrice(),  sfConfig::get('app_currency')); ?>
                     </li>
                     <li class="sub-person">
-                        <?php echo format_currency(rand(2999,8999)/3,  sfConfig::get('app_currency')); ?>
+                        <?php //echo format_currency(rand(2999,8999)/3,  sfConfig::get('app_currency')); ?>
                     </li>
                 </ul>
 

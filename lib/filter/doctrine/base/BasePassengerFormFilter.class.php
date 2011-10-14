@@ -24,7 +24,6 @@ abstract class BasePassengerFormFilter extends BaseFormFilterDoctrine
       'airline_code'          => new sfWidgetFormFilterInput(),
       'meal_preference'       => new sfWidgetFormFilterInput(),
       'special_assistance'    => new sfWidgetFormFilterInput(),
-      'bookings_list'         => new sfWidgetFormDoctrineChoice(array('multiple' => true, 'model' => 'Booking')),
     ));
 
     $this->setValidators(array(
@@ -39,7 +38,6 @@ abstract class BasePassengerFormFilter extends BaseFormFilterDoctrine
       'airline_code'          => new sfValidatorPass(array('required' => false)),
       'meal_preference'       => new sfValidatorPass(array('required' => false)),
       'special_assistance'    => new sfValidatorPass(array('required' => false)),
-      'bookings_list'         => new sfValidatorDoctrineChoice(array('multiple' => true, 'model' => 'Booking', 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('passenger_filters[%s]');
@@ -49,24 +47,6 @@ abstract class BasePassengerFormFilter extends BaseFormFilterDoctrine
     $this->setupInheritance();
 
     parent::setup();
-  }
-
-  public function addBookingsListColumnQuery(Doctrine_Query $query, $field, $values)
-  {
-    if (!is_array($values))
-    {
-      $values = array($values);
-    }
-
-    if (!count($values))
-    {
-      return;
-    }
-
-    $query
-      ->leftJoin($query->getRootAlias().'.BookingPassenger BookingPassenger')
-      ->andWhereIn('BookingPassenger.booking_id', $values)
-    ;
   }
 
   public function getModelName()
@@ -89,7 +69,6 @@ abstract class BasePassengerFormFilter extends BaseFormFilterDoctrine
       'airline_code'          => 'Text',
       'meal_preference'       => 'Text',
       'special_assistance'    => 'Text',
-      'bookings_list'         => 'ManyKey',
     );
   }
 }

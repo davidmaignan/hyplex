@@ -12,4 +12,15 @@
  */
 class Booking extends BaseBooking
 {
+     public function saveBooking(PlexBooking $booking, $userId){
+
+        $bookingId = $booking->getBookingId();
+
+        $this->setBookingId($bookingId);
+        $this->setObject($booking);
+        $this->setUserId($userId);
+        $this->save();
+
+    }
+
 }

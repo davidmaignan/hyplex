@@ -1,3 +1,21 @@
+INSERT INTO `area` VALUES(1, 'AFRI');
+INSERT INTO `area` VALUES(2, 'ASIA');
+INSERT INTO `area` VALUES(3, 'ATOC');
+INSERT INTO `area` VALUES(4, 'AUST');
+INSERT INTO `area` VALUES(5, 'CARI');
+INSERT INTO `area` VALUES(6, 'EAAF');
+INSERT INTO `area` VALUES(7, 'EURO');
+INSERT INTO `area` VALUES(8, 'INOC');
+INSERT INTO `area` VALUES(9, 'MIAM');
+INSERT INTO `area` VALUES(10, 'MIEA');
+INSERT INTO `area` VALUES(11, 'NOAF');
+INSERT INTO `area` VALUES(12, 'NOAM');
+INSERT INTO `area` VALUES(13, 'PAOC');
+INSERT INTO `area` VALUES(14, 'SOAM');
+INSERT INTO `area` VALUES(15, 'SOEA');
+INSERT INTO `area` VALUES(16, 'SOPA');
+INSERT INTO `area` VALUES(17, 'WEAF');
+
 INSERT INTO `area_translation` VALUES(1, 'Africa', 'en_US', 'africa');
 INSERT INTO `area_translation` VALUES(1, 'Afrique', 'fr_FR', 'afrique');
 INSERT INTO `area_translation` VALUES(1, '非洲', 'zh_CN', '');

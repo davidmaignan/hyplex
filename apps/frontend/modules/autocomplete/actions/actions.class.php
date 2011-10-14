@@ -17,7 +17,7 @@ class autocompleteActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    $this->forward('default', 'module');
+     $this->forward('default', 'module');
   }
 
   public function executeCountry(sfWebRequest $request){
@@ -34,7 +34,7 @@ class autocompleteActions extends sfActions
 
   }
 
-    public function executeState(sfWebRequest $request){
+  public function executeState(sfWebRequest $request){
 
       $search = $request->getParameter('name_startsWith');
 
@@ -45,6 +45,19 @@ class autocompleteActions extends sfActions
       $resultJSON = json_encode(array('values'=>$search,'results'=>$q));
 
       return $this->renderText($resultJSON);
+
+  }
+
+  public function executeSearchAirportComplete2(sfWebRequest $request){
+
+        $search = $request->getParameter('name_startsWith');
+
+        $q = Doctrine::getTable('city')->searchAutoComplete($search);
+
+        $resultJSON = json_encode(array('values'=>$search,'results'=>$q));
+
+        return $this->renderText($resultJSON);
+
 
   }
 

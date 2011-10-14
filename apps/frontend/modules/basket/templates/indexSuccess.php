@@ -68,7 +68,7 @@
     <div id="extras" class="basket-data-container hide">
         <?php if(isset($extras)): ?>
         <h2 class="title"><?php echo ucwords(__('Extras')); ?></h2>
-           
+        
         <?php else: ?>
         <p><?php echo __('You have no extras in your basket'); ?></p>
         <?php endif; ?>
@@ -104,3 +104,6 @@ $('document').ready(function(){
 
 
 </script>
+<?php
+echo "<pre>";
+print_r($plexBasket);

@@ -20,6 +20,8 @@ var timer_is_on=0;
 var hotelDetailPage = false;
 var mapInitialized = false;
 
+var autoCompleteURL;
+
 //var gMapHotel_starRating = [];
 
 //Function to check if element is in_array.

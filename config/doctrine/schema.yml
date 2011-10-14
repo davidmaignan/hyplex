@@ -293,7 +293,6 @@ HotelFacility:
   columns:
     name: { type: string(255), unique: true, notnull: true }
 
-
 HotelChain:
   actAs:
     Sluggable:
@@ -322,24 +321,6 @@ Address:
       type: one
       foreignType: one
 
-Booking:
-  actAs: { Timestampable: ~ }
-  columns:
-    title: { type: string(255) }
-    cover: { type: string(255) }
-    director: { type: string(255) }
-    address_id: integer
-  relations:
-    Actor:
-      class: Passenger
-      refClass: BookingPassenger
-      foreignAlias: Bookings
-    Address:
-      local: address_id
-      foreign: id
-      type: one
-      foreignType: one
-
 Passenger:
   columns:
     id: { type: integer, primary: true }
@@ -361,17 +342,16 @@ Passenger:
     meal_preference: { type: string(255) }
     special_assistance: { type: string(255) }
 
-
-BookingPassenger:
+Booking:
+  actAs: { Timestampable: ~ }
   columns:
-    booking_id:
-      type: integer
-      primary: true
-    passenger_id:
-      type: integer
-      primary: true
+    booking_id: { type: string(255), unique: true }
+    object: { type: object }
+    user_id: { type: integer }
   relations:
-    Booking:
-      onDelete: CASCADE
-    Passenger:
-      onDelete: CASCADE
+    sfGuardUser:
+      local: user_id
+      foreign: id
+      type: one
+      foreignType: one
+

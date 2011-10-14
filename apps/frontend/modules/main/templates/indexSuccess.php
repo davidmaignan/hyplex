@@ -7,6 +7,7 @@
 <?php use_javascript('jquery.maskedinput.js');?>
 <?php use_javascript('search/searchFlight'); ?>
 <?php use_javascript('search/searchHotel'); ?>
+<?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
 
 <?php //use_javascript('search/airport_list_'.$sf_user->getCulture().'.js'); ?>
 <?php //use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js'); ?>
