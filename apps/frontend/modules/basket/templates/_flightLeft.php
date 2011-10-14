@@ -11,8 +11,19 @@
     <td colspan="2">
         <ul class="sub-list">
             <li>
-                <?php echo $flightParameters->getOrigin(); ?> to <?php echo $flightParameters->getDestination(); ?>
+                <?php echo $flightParameters->arOrigin['code']; ?> to <?php echo $flightParameters->arDestination['code']; ?>
             </li>
+            
+        </ul>
+
+    </td>
+    <td class="sub-total">
+        <?php echo format_currency($flight->TotalPrice, sfConfig::get('app_currency')); ?>
+    </td>
+</tr>
+
+<tr class="basket-list"><td colspan="3">
+        <ul>
             <li>
                 <?php echo $flightParameters->getTypeRenamed(); ?>:
                 <?php echo format_date($flightParameters->getDepartDate(), 'd'); ?> -
@@ -29,10 +40,6 @@
             </li>
         </ul>
 
-    </td>
-    <td class="sub-total">
-        <?php echo format_currency($flight->TotalPrice, sfConfig::get('app_currency')); ?>
-    </td>
-</tr>
-<tr class="basket-list"><td colspan="3"></td></tr>
+
+    </td></tr>
 

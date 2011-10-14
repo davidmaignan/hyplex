@@ -11,9 +11,6 @@ class myUser extends sfGuardSecurityUser
         //$this->dispatcher->notify(new sfEvent($this, 'user.cache_folder'));
 
         //First request - create attribute to keep the searches
-       
-
-
     }
 
     public function isFirstRequest($boolean = null)
@@ -112,6 +109,42 @@ class myUser extends sfGuardSecurityUser
 
         return is_array($prevSearch)? end($prevSearch):null;
 
+    }
+
+
+    public function addBookingId($bookingId){
+
+        $prevBooking = $this->setAttribute('prevBooking', $bookingId);
+
+        return true;
+
+        if(is_null($prevBooking)){
+
+            $prevBooking = array($bookingId);
+            $this->setAttribute('prevBooking', $prevBooking);
+
+        }else if(is_array($prevBooking)){
+            array_push($prevBooking , $bookingId);
+            $this->setAttribute('prevBooking', $prevBooking);
+
+        }else{
+            throw new Exception('An error has occured in sfUser addBooking function. Cannot recognize attribute prevBooking.');
+        }
+    }
+
+    public function getLastBookingId(){
+
+        $prevBooking = $this->getAttribute('prevBooking');
+
+        return $prevBooking;
+
+        if(is_array($prevBooking)){
+            return end($prevBooking);
+        }else{
+            throw new Exception('An error has occured in sfUser getLastBookingId. Cannot recognize attribute prevBooking.');
+        }
 
     }
+
+
 }

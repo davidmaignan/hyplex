@@ -387,7 +387,7 @@ class hotelActions extends sfActions
         //Hotel detail file name path
         $hotelDetailFile = PlexParsing::getFullPathToFolder('hotel', $filename).$hotel->id.'.raw';
 
-        if(!file_exists($hotelDetailFile)){
+        //if(!file_exists($hotelDetailFile)){
 
             //Hotel detail request
             $plexRequest = new PlexHotelDetailsRequest($hotel, $filename, $this->getUser());
@@ -397,6 +397,8 @@ class hotelActions extends sfActions
             $finalResponse = new PlexHotelDetailsResponse($hotel, $response, $request, $filename);
             $finalResponse->checkResponseCode();
             $code = $finalResponse->responseCode;
+
+            var_dump($code);
 
             switch ($code) {
 
@@ -420,12 +422,17 @@ class hotelActions extends sfActions
                       sfContext::getInstance()->getEventDispatcher()->notify($event);
 
                       //$this->redirect('hotel/notFound');
-                      $this->forward('error', 'SessionExpired');
+                      //$this->forward('error', 'SessionExpired');
                       break;
 
                 }
 
+
+
                 $this->hotel = $finalResponse->getHotel();
+
+                //var_dump($this->hotel);
+                //exit;
 
                 //Rewrite the file to get the hotel object with the data received from the plex request.
                 $content = file_get_contents($file);
@@ -449,7 +456,8 @@ class hotelActions extends sfActions
 
                 file_put_contents($file, $newContent);
 
-        }
+        //}
+
   
         $this->hotelCoordinates = json_encode($this->hotel->arCoordinates);
         $this->slugName = Utils::slugify($this->hotel->getName());
@@ -507,8 +515,6 @@ class hotelActions extends sfActions
 
     public function executeSelected(sfWebRequest $request){
 
-        
-
         $filename = $request->getPostParameter('filename');
         $slug = $request->getPostParameter('slug');
         //var_dump($request->getPostParameters());
@@ -523,8 +529,9 @@ class hotelActions extends sfActions
 
 
         //var_dump($roomsPosted);
-
+        $hotelId = $hotel->getId();
         $roomIds = $hotel->getRoomIds();
+
 
         //var_dump($roomIds);
         //var_dump(array_intersect($roomIds, $roomsPosted));
@@ -547,7 +554,7 @@ class hotelActions extends sfActions
         unset($parameters['slug']);
 
         $plexBasket = PlexBasket::getInstance();
-        $plexBasket->addHotel($filename, $slug, $parameters, $roomIds);
+        $plexBasket->addHotel($filename, $slug, $hotelId, $parameters, $roomIds);
 
         //var_dump('all good');
         

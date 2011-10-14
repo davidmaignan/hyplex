@@ -336,15 +336,19 @@ abstract class PlexFlightParameters extends PlexParameters {
     }
 
 
-    public function getOriginDestination(){
+    public function getOriginDestination($culture = 'en_US'){
 
-        return $this->getOrigin() . ' - '.$this->getDestination();
+        
+        return $this->arOrigin[$culture]['name'] . ' (' .$this->arOrigin['code'] . ') <br />' .
+               $this->arDestination[$culture]['name'] . ' (' .$this->arDestination['code'] . ')';
+        //return $this->getOrigin() . ' - '.$this->getDestination();
 
         
     }
 
     public function getPassengers(){
-        return null;
+        $passengers = (int)$this->getAdults() + (int)$this->getChildren() + (int)$this->getInfants();
+        return $passengers;
     }
 
 }

@@ -13,6 +13,7 @@
  * @property Area $Area
  * @property State $States
  * @property City $Cities
+ * @property Address $Address
  * 
  * @method integer getId()      Returns the current record's "id" value
  * @method string  getCode()    Returns the current record's "code" value
@@ -22,6 +23,7 @@
  * @method Area    getArea()    Returns the current record's "Area" value
  * @method State   getStates()  Returns the current record's "States" value
  * @method City    getCities()  Returns the current record's "Cities" value
+ * @method Address getAddress() Returns the current record's "Address" value
  * @method Country setId()      Sets the current record's "id" value
  * @method Country setCode()    Sets the current record's "code" value
  * @method Country setName()    Sets the current record's "name" value
@@ -30,6 +32,7 @@
  * @method Country setArea()    Sets the current record's "Area" value
  * @method Country setStates()  Sets the current record's "States" value
  * @method Country setCities()  Sets the current record's "Cities" value
+ * @method Country setAddress() Sets the current record's "Address" value
  * 
  * @package    hyplexdemo
  * @subpackage model
@@ -90,6 +93,10 @@ abstract class BaseCountry extends sfDoctrineRecord
              'foreign' => 'country_id'));
 
         $this->hasOne('City as Cities', array(
+             'local' => 'id',
+             'foreign' => 'country_id'));
+
+        $this->hasOne('Address', array(
              'local' => 'id',
              'foreign' => 'country_id'));
 

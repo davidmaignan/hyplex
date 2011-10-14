@@ -21,6 +21,18 @@ all:
     username: admin
     password: travel
     
+  plex3:
+    url: http://test.hypertechsolutions.com/ipm/services/PlexConnect
+    transactionId: TRANS101
+    systemName: Test
+    companyId: STD
+    partnerId: STD
+    username: wstest
+    password: wstest01
+
+  sf_guard_plugin:
+    remember_cookie_name:   HypertechRememberMe
+
 
   sf_guard_plugin:
     routes_register: false
@@ -50,3 +62,9 @@ all:
   currency: USD
 
   telephone: 1 800 123 4567
+    
+  special:
+    assistance: [ '' ,Can walk to seat, Can walk up stairs, Dry Cell Battery, Manual Power, Must be carried, On Board, Wet Cell Battery]
+
+  creditcard:
+    accepted: [Mastercard, Visa, American Express]

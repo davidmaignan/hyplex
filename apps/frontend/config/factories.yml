@@ -51,6 +51,4 @@ all:
     param:
       formats:
         iphone: text/html
-
-
     

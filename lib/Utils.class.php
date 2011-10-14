@@ -5,17 +5,14 @@
  *
  * @author david
  */
-
 class Utils {
 
     static $language = array('en_US' => 'english', 'fr_FR' => 'francais', 'zh_CN' => '中文');
     static $languageBackend = array('en' => 'english', 'fr' => 'français', 'zh_CN' => '中文');
 
+    static public function slugify($text) {
 
-    static public function slugify($text){
-
-        if (empty($text))
-        {
+        if (empty($text)) {
             return 'n-a';
         }
 
@@ -28,21 +25,19 @@ class Utils {
         return $text;
     }
 
-
-
-    /*
+    /**
      * Format Date: Fri, 25 Mar 2011 17:31:23 GMT to 'Y-m-d H:i:s'
      * @param $string Format expected: Date: Fri, 25 Mar 2011 17:31:23 GMT
      * @return date format 'Y-m-d H:i:s'
      */
-    
+
     static public function formatDateResponse($string) {
         $string = trim(substr($string, strpos($string, ' '), - strpos($string, ' ') + 1));
         $date = new DateTime($string);
         return $date->format('Y-m-d H:i:s');
     }
 
-    /*
+    /**
      * Retrieve prices from slider
      * @param $string Format expected: $750 to $1750
      * @return array(price1, price2)
@@ -55,7 +50,7 @@ class Utils {
         return array((int) $data[1], (int) $data[2]);
     }
 
-    /*
+    /**
      * Retrieve time from slider
      * @param $string format expected: 6:00 - 21:00
      * @return array(array('hour'=>value, 'min'=>value),array('hour'=>value, 'min'=>value))
@@ -71,7 +66,7 @@ class Utils {
         return array(array_combine($keys, $d), array_combine($keys, $d2));
     }
 
-    /*
+    /**
      * Return array time from a string
      * @param $string format expected 2011-04-01 06:30
      * @return array('hour'=>value, 'min'=>value)
@@ -86,7 +81,7 @@ class Utils {
         return array_combine($keys, $d);
     }
 
-    /*
+    /**
      * Return array date from a string
      * @param $string format expected 2011-04-01 06:30
      * @return array('year'=>value, 'month'=>value,'day'=>value)
@@ -100,8 +95,8 @@ class Utils {
 
         return array_combine($keys, $d);
     }
-    
-    /*
+
+    /**
      * Compare 2 times
      * @param time1 array('hour','min')
      * @param time2 array('hour','min')
@@ -114,7 +109,7 @@ class Utils {
         return ($time1 > $time2) ? false : true;
     }
 
-    /*
+    /**
      * Get number of minutes between 2 dates
      * @param time1 format expected: 2011-04-01 06:30
      * @param time2 format expected: 2011-04-01 08:26
@@ -140,7 +135,7 @@ class Utils {
         return floor($diff);
     }
 
-    /*
+    /**
      * Retreive previous searches and add new ones to sfUser prevSearch attribute
      * @param sfUser
      *
@@ -178,7 +173,7 @@ class Utils {
 
         //Add to the previous one
         $prevSear = $user->getAttribute('prevSearch');
-        
+
         //var_dump($prevSear);
         if (is_array($prevSear)) {
             $searches = array_merge($prevSear, $searches);
@@ -188,18 +183,18 @@ class Utils {
         sfContext::getInstance()->getLogger()->alert('retreivePrevSearch called');
     }
 
-
-    /*
+    /**
      * Retreive parameters $paramFactory
      * @param $filename
      * Open file request, look for the lines where it is saved and unserialize the object
      * @return paramFactory object containing the parameters
      */
+
     static public function retreiveParameters($filename) {
         $array = explode('/', $filename);
 
-        if(!file_exists(sfConfig::get('sf_user_folder') . '/request')){
-            throw new Exception('No file request exist in the user folder: '.sfConfig::get('sf_user_folder'));
+        if (!file_exists(sfConfig::get('sf_user_folder') . '/request')) {
+            throw new Exception('No file request exist in the user folder: ' . sfConfig::get('sf_user_folder'));
         }
 
         $handle = fopen(sfConfig::get('sf_user_folder') . '/request', 'rb');
@@ -222,7 +217,7 @@ class Utils {
         return $data;
     }
 
-    /*
+    /**
      * Create an array for 24 hours
      * @return array with 24 keys and 24:00 values
      */
@@ -238,7 +233,7 @@ class Utils {
         return array_combine($keys, $values);
     }
 
-    /*
+    /**
      * Calculate the number of days between 2 dates
      * Loop that check day by day and substract (or add) until it reach the same date
      * @param $date1, $date2 prefered format YYYY-MM-DD but any format should work
@@ -296,12 +291,12 @@ class Utils {
         }
     }
 
-    /*
+    /**
      * Get time from a number of minutes
      * @param $minutes int
      * @return paramFactory object containing the parameters
      */
-    
+
     static public function getHourMinutes($minutes) {
         if ($minutes > 60) {
             $hours = floor($minutes / 60);
@@ -315,15 +310,15 @@ class Utils {
         }
     }
 
-
-    /*
+    /**
      * Get Icon Airline
      * @param $key a two letter code specific for each airline, $name optional with name under the icon
      * @return image if file exist or the 2 keys if no airline image
      */
+
     static public function getAirlineIcon($key, $name = false) {
 
-        if($name){
+        if ($name) {
             $airlines = self::createAirlineArray();
             switch ($key) {
                 case 'multi':
@@ -331,50 +326,65 @@ class Utils {
                     break;
 
                 default:
-                    $name = '<br />'.$airlines[$key][0];
+                    $name = '<br />' . $airlines[$key][0];
                     break;
             }
-            
-        }else{
+        } else {
             $name = '';
         }
 
         if ($key == 'multi') {
-            return image_tag('airlines/MULT.gif', array('class' => 'airline border')).$name;
+            return image_tag('airlines/MULT.gif', array('class' => 'airline border')) . $name;
         } else {
 
             switch (true) {
                 case (file_exists(sfConfig::get('sf_web_dir') . '/images/airlines/' . $key . '.png')):
-                    return image_tag('airlines/' . $key . '.png', array('class' => 'airline border')).$name;
+                    return image_tag('airlines/' . $key . '.png', array('class' => 'airline border')) . $name;
                     break;
                 case (file_exists(sfConfig::get('sf_web_dir') . '/images/airlines/' . $key . '.gif')):
-                    return image_tag('airlines/' . $key . '.gif', array('class' => 'airline border')).$name;
+                    return image_tag('airlines/' . $key . '.gif', array('class' => 'airline border')) . $name;
                     break;
                 default:
-                    return $key.$name;
+                    return $key . $name;
                     //return image_tag('airlines/no-icon.gif', array('class' => 'airline border'));
                     break;
             }
         }
     }
 
-    /*
+
+    static public function getAirlineCode($value){
+
+        $airlines = Utils::createAirlineArray();
+
+        foreach ($airlines as $key=>$airline) {
+
+            if($airline[0] == $value){
+                return $key;
+            }   
+        }
+
+        return null;
+    }
+
+
+
+    /**
      * Return for matrix link if 2 is true cause it's the cheapest price for the stop
      * @param $data array(0=>price, 1=>uniqueRefId, 2=> true or false)
      * return string
      *
      */
 
-    static public function getMatrixAirlinePriceLink($data)
-    {
+    static public function getMatrixAirlinePriceLink($data) {
         //var_dump($data);
 
-        if($data[0] == '')
+        if ($data[0] == '')
             return '';
 
-        return ($data[2] === TRUE)?
-                    "<a href='#{$data[1]}' class='matrix-anchor' >".format_currency($data[0],'USD')."</a>":
-                    "<a href='#{$data[1]}' class='matrix-anchor' >".format_currency($data[0],'USD')."</a>";
+        return ($data[2] === TRUE) ?
+                "<a href='#{$data[1]}' class='matrix-anchor' >" . format_currency($data[0], 'USD') . "</a>" :
+                "<a href='#{$data[1]}' class='matrix-anchor' >" . format_currency($data[0], 'USD') . "</a>";
     }
 
     /**
@@ -385,7 +395,7 @@ class Utils {
     static public function createAirlineArray() {
 
         //Avoid recreating this array for each sergment save it in global array to fast access
-        if(isset($GLOBALS['airlines'])){
+        if (isset($GLOBALS['airlines'])) {
             return $GLOBALS['airlines'];
             //echo 'here';
         }
@@ -396,16 +406,15 @@ class Utils {
             $airlines = sfYaml::load($fileAirline);
             $GLOBALS['airlines'] = $airlines;
             return $airlines;
-            
         } else {
             //Create file, query db
             $airlines = Doctrine::getTable('Airline')->findAll()->toArray();
             $data = '';
 
             foreach ($airlines as $airline) {
-                $data .= $airline['tag'] . ': [ ' . $airline['name'] . ", ".$airline['slug'] ."]\r\n";
+                $data .= $airline['tag'] . ': [ ' . $airline['name'] . ", " . $airline['slug'] . "]\r\n";
             }
-            
+
             file_put_contents($fileAirline, $data);
             chmod($fileAirline, 0777);
 
@@ -419,10 +428,37 @@ class Utils {
         }
     }
 
+    static public function createMealPreferenceArray($culture = 'en_US'){
 
-    static public function createHotelchainArray(){
 
-        if(isset($GLOBALS['hotelchain'])){
+        if(isset($GLOBALS['mealPreference'])){
+            return $GLOBALS['mealPreference'];
+        }
+
+        $file = sfConfig::get('sf_data_dir') . '/airline/mealPreference.yml';
+        $meals = sfYaml::load($file);
+        $GLOBALS['mealPreference'] = $meals[$culture];
+        return $meals[$culture];
+        
+    }
+
+        static public function createSpecialServicesArray($culture = 'en_US'){
+
+
+        if(isset($GLOBALS['specialServices'])){
+            return $GLOBALS['specialServices'];
+        }
+
+        $file = sfConfig::get('sf_data_dir') . '/airline/specialServices.yml';
+        $array = sfYaml::load($file);
+        $GLOBALS['specialServices'] = $array[$culture];
+        return $array[$culture];
+
+    }
+
+    static public function createHotelchainArray() {
+
+        if (isset($GLOBALS['hotelchain'])) {
             return $GLOBALS['hotelchain'];
         }
 
@@ -433,7 +469,6 @@ class Utils {
             $hotelChains = sfYaml::load($fileHotelChains);
             $GLOBALS['hotelchain'] = $hotelChains;
             return $hotelChains;
-
         } else {
             //Create file, query db
             $hotelChains = Doctrine::getTable('HotelChain')->findAll()->toArray();
@@ -442,12 +477,12 @@ class Utils {
             //var_dump($hotelChains);
 
             foreach ($hotelChains as $chain) {
-                $data .= $chain['tag'] . ': [ ' . $chain['name'] . ", ".$chain['slug'] ."]\r\n";
+                $data .= $chain['tag'] . ': [ ' . $chain['name'] . ", " . $chain['slug'] . "]\r\n";
             }
 
             file_put_contents($fileHotelChains, $data);
             chmod($fileHotelChains, 0777);
-            
+
 
             $hotelChains = sfYaml::load($fileHotelChains);
             if (is_null($hotelChains)) {
@@ -457,10 +492,7 @@ class Utils {
             $GLOBALS['hotelchain'] = $hotelChains;
             return $hotelChains;
         }
-
-
     }
-
 
     /*
      * Create a javascript file with an array containing the airport info for the autocomplete
@@ -470,22 +502,20 @@ class Utils {
      *
      */
 
-    static public function createAirportJavascriptFile($culture, $filename)
-    {
+    static public function createAirportJavascriptFile($culture, $filename) {
         Doctrine::getConnectionByTableName('City');
-        
+
         $airports = Doctrine::getTable('City')->getAllByCulture($culture);
 
         $string = 'var airports = [';
-        foreach($airports as $airport)
-        {
+        foreach ($airports as $airport) {
             $string .= '{';
-            $string .= 'airportCode: "'. $airport['code'] .'", ';
-            $string .= 'airportName: "'. $airport['airport'] .'", ';
-            $string .= 'cityCode: "'. $airport['code'] .'", ';
-            $string .= 'cityName: "'. $airport['city'] .'", ';
-            $string .= 'country: "'. $airport['country'] .'", ';
-            $string .= 'state: "'. $airport['state'] .'"}';
+            $string .= 'airportCode: "' . $airport['code'] . '", ';
+            $string .= 'airportName: "' . $airport['airport'] . '", ';
+            $string .= 'cityCode: "' . $airport['code'] . '", ';
+            $string .= 'cityName: "' . $airport['city'] . '", ';
+            $string .= 'country: "' . $airport['country'] . '", ';
+            $string .= 'state: "' . $airport['state'] . '"}';
             $string .= ',';
         }
         $string .= '];';
@@ -493,27 +523,56 @@ class Utils {
         file_put_contents($filename, $string);
 
         /*
-        $airports = Doctrine::getTable('Airport')->getAllByCulture($culture);
-        $string = 'var airports = [';
-        foreach($airports as $airport)
-        {
-            $string .= '{';
-            $string .= 'airportCode: "'. $airport['code'] .'", ';
-            $string .= 'airportName: "'. $airport['Translation'][$culture]['name'] .'", ';
-            $string .= 'cityCode: "'. $airport['city_code'] .'", ';
-            $string .= 'cityName: "'. $airport['Translation'][$culture]['city_name'] .'", ';
-            $string .= 'country: "'. $airport['Translation'][$culture]['country'] .'", ';
-            $string .= 'state: "'. $airport['state'] .'", ';
-            $string .= 'region: "'. $airport['Translation'][$culture]['region'] .'"}';
-            $string .= ',';
-        }
-        $string .= '];';
+          $airports = Doctrine::getTable('Airport')->getAllByCulture($culture);
+          $string = 'var airports = [';
+          foreach($airports as $airport)
+          {
+          $string .= '{';
+          $string .= 'airportCode: "'. $airport['code'] .'", ';
+          $string .= 'airportName: "'. $airport['Translation'][$culture]['name'] .'", ';
+          $string .= 'cityCode: "'. $airport['city_code'] .'", ';
+          $string .= 'cityName: "'. $airport['Translation'][$culture]['city_name'] .'", ';
+          $string .= 'country: "'. $airport['Translation'][$culture]['country'] .'", ';
+          $string .= 'state: "'. $airport['state'] .'", ';
+          $string .= 'region: "'. $airport['Translation'][$culture]['region'] .'"}';
+          $string .= ',';
+          }
+          $string .= '];';
 
-        file_put_contents($filename, $string);
+          file_put_contents($filename, $string);
          *
          *
          */
+    }
 
+    static public function createAirlineJavascriptFile($file) {
+
+
+        $airlines = sfYaml::load(sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'airline' . DIRECTORY_SEPARATOR . 'airlines.yml');
+
+        //var_dump($airlines);
+        //exit;
+
+        $string = 'var airlines = [';
+        foreach ($airlines as $key => $airline) {
+            $string .= '{';
+            $string .= 'value: "' . $key . '", ';
+            $string .= 'label: "' . $airline[0] . '", ';
+            $string .= 'desc: "' . $airline[0] . '", ';
+            $string .= 'icon: "' . $airline[0] . '", ';
+            $string .= 'country: "' . $airline[0] . '", ';
+            $string .= 'state: "' . $airline[0] . '", ';
+            $string .= 'region: "' . $airline[0] . '"}';
+            $string .= ',';
+        }
+
+        $string .= '];';
+
+        //echo $string;
+        //exit;
+
+        file_put_contents($file, $string);
+        chmod($file, 0777);
     }
 
     /*
@@ -523,7 +582,7 @@ class Utils {
      * @return image if file exist or the 2 keys if no airline image
      */
 
-    static public function createAirportArray(){
+    static public function createAirportArray() {
         
     }
 
@@ -553,6 +612,7 @@ class Utils {
      * @param $filename raw response from Plex
      * @return array(code, date, server, raw)
      */
+
     static function getHeader($filename) {
 
         //Check the header response and choose the action depending on the status of the response.
@@ -577,28 +637,24 @@ class Utils {
 
     static function toBold(&$ar, $data) {
 
-        foreach($ar as &$value){
+        foreach ($ar as &$value) {
             $value = str_replace($data, "<b>$data</b>", $value);
         }
 
-        foreach($ar as &$value){
-            $value = str_replace(ucfirst($data), "<b>".ucfirst($data)."</b>", $value);
+        foreach ($ar as &$value) {
+            $value = str_replace(ucfirst($data), "<b>" . ucfirst($data) . "</b>", $value);
         }
-
     }
-    
-    static function toBoldString(&$string, $data){
+
+    static function toBoldString(&$string, $data) {
 
         //$data = ucfirst($data);
-        
+
         $value = str_replace($data, "<b>$data</b>", $string);
-        $value = str_replace(ucfirst($data), "<b>".ucfirst($data)."</b>", $value);
+        $value = str_replace(ucfirst($data), "<b>" . ucfirst($data) . "</b>", $value);
 
         return $value;
-        
-        
     }
-
 
     static function lcfirst($str) {
         $str[0] = strtolower($str[0]);
@@ -608,12 +664,224 @@ class Utils {
     /*
      * Function to return green check mark on yes and red cross on No
      */
-    static function getIconCheckCross($value){
-        $string = ($value == 'Yes')? '24-em-check.png':'24-em-cross.png';
-        return image_tag('icons/'.$string,array('alt'=>$value));
+
+    static function getIconCheckCross($value) {
+        $string = ($value == 'Yes') ? '24-em-check.png' : '24-em-cross.png';
+        return image_tag('icons/' . $string, array('alt' => $value));
     }
 
+    static function checkCreditCard($cardnumber, $cardname, &$errornumber, &$errortext) {
+
+        // Define the cards we support. You may add additional card types.
+        //  Name:      As in the selection box of the form - must be same as user's
+        //  Length:    List of possible valid lengths of the card number for the card
+        //  prefixes:  List of possible prefixes for the card
+        //  checkdigit Boolean to say whether there is a check digit
+        // Don't forget - all but the last array definition needs a comma separator!
+
+        $cards = array(array('name' => 'American Express',
+                'length' => '15',
+                'prefixes' => '34,37',
+                'checkdigit' => true
+            ),
+            array('name' => 'Diners Club Carte Blanche',
+                'length' => '14',
+                'prefixes' => '300,301,302,303,304,305',
+                'checkdigit' => true
+            ),
+            array('name' => 'Diners Club',
+                'length' => '14,16',
+                'prefixes' => '305,36,38,54,55',
+                'checkdigit' => true
+            ),
+            array('name' => 'Discover',
+                'length' => '16',
+                'prefixes' => '6011,622,64,65',
+                'checkdigit' => true
+            ),
+            array('name' => 'Diners Club Enroute',
+                'length' => '15',
+                'prefixes' => '2014,2149',
+                'checkdigit' => true
+            ),
+            array('name' => 'JCB',
+                'length' => '16',
+                'prefixes' => '35',
+                'checkdigit' => true
+            ),
+            array('name' => 'Maestro',
+                'length' => '12,13,14,15,16,18,19',
+                'prefixes' => '5018,5020,5038,6304,6759,6761',
+                'checkdigit' => true
+            ),
+            array('name' => 'MasterCard',
+                'length' => '16',
+                'prefixes' => '51,52,53,54,55',
+                'checkdigit' => true
+            ),
+            array('name' => 'Solo',
+                'length' => '16,18,19',
+                'prefixes' => '6334,6767',
+                'checkdigit' => true
+            ),
+            array('name' => 'Switch',
+                'length' => '16,18,19',
+                'prefixes' => '4903,4905,4911,4936,564182,633110,6333,6759',
+                'checkdigit' => true
+            ),
+            array('name' => 'Visa',
+                'length' => '13,16',
+                'prefixes' => '4',
+                'checkdigit' => true
+            ),
+            array('name' => 'Visa Electron',
+                'length' => '16',
+                'prefixes' => '417500,4917,4913,4508,4844',
+                'checkdigit' => true
+            ),
+            array('name' => 'LaserCard',
+                'length' => '16,17,18,19',
+                'prefixes' => '6304,6706,6771,6709',
+                'checkdigit' => true
+            )
+        );
+
+        $ccErrorNo = 0;
+
+        $ccErrors [0] = "Unknown card type";
+        $ccErrors [1] = "No card number provided";
+        $ccErrors [2] = "Credit card number has invalid format";
+        $ccErrors [3] = "Credit card number is invalid";
+        $ccErrors [4] = "Credit card number is wrong length";
+
+        // Establish card type
+        $cardType = -1;
+        for ($i = 0; $i < sizeof($cards); $i++) {
+
+            // See if it is this card (ignoring the case of the string)
+            if (strtolower($cardname) == strtolower($cards[$i]['name'])) {
+                $cardType = $i;
+                break;
+            }
+        }
+
+        // If card type not found, report an error
+        if ($cardType == -1) {
+            $errornumber = 0;
+            $errortext = $ccErrors [$errornumber];
+            return false;
+        }
+
+        // Ensure that the user has provided a credit card number
+        if (strlen($cardnumber) == 0) {
+            $errornumber = 1;
+            $errortext = $ccErrors [$errornumber];
+            return false;
+        }
+
+        // Remove any spaces from the credit card number
+        $cardNo = str_replace(' ', '', $cardnumber);
+
+        // Check that the number is numeric and of the right sort of length.
+        if (!eregi('^[0-9]{13,19}$', $cardNo)) {
+            $errornumber = 2;
+            $errortext = $ccErrors [$errornumber];
+            return false;
+        }
+
+        // Now check the modulus 10 check digit - if required
+        if ($cards[$cardType]['checkdigit']) {
+            $checksum = 0;                                  // running checksum total
+            $mychar = "";                                   // next char to process
+            $j = 1;                                         // takes value of 1 or 2
+            // Process each digit one by one starting at the right
+            for ($i = strlen($cardNo) - 1; $i >= 0; $i--) {
+
+                // Extract the next digit and multiply by 1 or 2 on alternative digits.
+                $calc = $cardNo{$i} * $j;
+
+                // If the result is in two digits add 1 to the checksum total
+                if ($calc > 9) {
+                    $checksum = $checksum + 1;
+                    $calc = $calc - 10;
+                }
+
+                // Add the units element to the checksum total
+                $checksum = $checksum + $calc;
+
+                // Switch the value of j
+                if ($j == 1) {
+                    $j = 2;
+                } else {
+                    $j = 1;
+                };
+            }
+
+            // All done - if checksum is divisible by 10, it is a valid modulus 10.
+            // If not, report an error.
+            if ($checksum % 10 != 0) {
+                $errornumber = 3;
+                $errortext = $ccErrors [$errornumber];
+                return false;
+            }
+        }
+
+        // The following are the card-specific checks we undertake.
+        // Load an array with the valid prefixes for this card
+        $prefix = split(',', $cards[$cardType]['prefixes']);
+
+        // Now see if any of them match what we have in the card number
+        $PrefixValid = false;
+        for ($i = 0; $i < sizeof($prefix); $i++) {
+            $exp = '^' . $prefix[$i];
+            if (ereg($exp, $cardNo)) {
+                $PrefixValid = true;
+                break;
+            }
+        }
+
+        // If it isn't a valid prefix there's no point at looking at the length
+        if (!$PrefixValid) {
+            $errornumber = 3;
+            $errortext = $ccErrors [$errornumber];
+            return false;
+        }
+
+        // See if the length is valid for this card
+        $LengthValid = false;
+        $lengths = split(',', $cards[$cardType]['length']);
+        for ($j = 0; $j < sizeof($lengths); $j++) {
+            if (strlen($cardNo) == $lengths[$j]) {
+                $LengthValid = true;
+                break;
+            }
+        }
+
+        // See if all is OK by seeing if the length was valid.
+        if (!$LengthValid) {
+            $errornumber = 4;
+            $errortext = $ccErrors [$errornumber];
+            return false;
+        };
+
+        // The credit card is in the required format.
+        return true;
+    }
+
+    /**
+     * Calculate the age of passenger depending on a specific date
+     * @param <string> $age dob of the passenger (Y-m-d format)
+     * @param <string> $date traveling date (Y-m-d format)
+     * @return <int> age of the passenger
+     */
+    static public function getAge($age, $date){
+
+        list($y1,$m1,$d1) = explode('-', $age);
+        list($y2,$m2, $d2) = explode('-',$date);
+
+        return ($m2.$d2< $m1.$d1)? ($y2-$y1)-1 : ($y2-$y1);
+        
+    }
 
 }
 
-?>

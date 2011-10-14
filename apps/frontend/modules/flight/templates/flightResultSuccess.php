@@ -1,7 +1,7 @@
 <?php use_javascript('jquery-1.5.1.min.js'); ?>
 <?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
 <?php use_javascript('myScript.js'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
+<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
 
 <?php use_stylesheet('grid'); ?>
 <?php use_stylesheet('typography'); ?>

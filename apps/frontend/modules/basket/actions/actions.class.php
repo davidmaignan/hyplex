@@ -23,7 +23,8 @@ class basketActions extends sfActions
 
       $this->flight = $this->plexBasket->getFlight();
 
-      //var_dump($this->flight);
+      //echo "<pre>";
+      //print_r($this->plexBasket);
       //exit;
 
       if($this->flight !== null){

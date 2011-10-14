@@ -27,8 +27,10 @@ class HotelChainTable extends Doctrine_Table
             try{
                 $hotelChain->save();
             }  catch (Doctrine_Exception $e){
-                echo 'error doctrine';
-                exit;
+                //var_dump($e);
+                //exit;
+                //echo 'error doctrine';
+                //exit;
             }
         }
 

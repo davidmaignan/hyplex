@@ -58,5 +58,27 @@ class basketComponents extends sfComponents {
         
     }
     
+    public function executeCheckOut(sfWebRequest $request){
+        
+          $this->plexBasket = PlexBasket::getInstance();
+
+          $this->flight = $this->plexBasket->getFlight();
+
+
+          if($this->flight !== null){
+             $this->flightParameters = PlexParsing::retreiveParameters($this->plexBasket->getFlightFilename());
+          }
+
+          $this->hotel = $this->plexBasket->getHotel();
+
+          if($this->hotel !== null){
+              $this->hotelParameters = PlexParsing::retreiveParameters($this->plexBasket->getHotelFilename());
+          }
+
+        
+    }
+
+    
+
 
 }

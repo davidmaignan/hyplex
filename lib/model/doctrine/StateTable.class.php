@@ -16,4 +16,27 @@ class StateTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('State');
     }
+
+
+   public function searchAutoComplete($value){
+
+        $culture = sfContext::getInstance()->getUser()->getCulture();
+
+        $value = $value.'%';
+
+        $q = Doctrine::getTable('state')
+                ->createQuery('a')
+                ->select('a.id, t.name AS name, c.id, u.name')
+                ->leftJoin('a.Translation t')
+                ->leftJoin('country c')
+                ->andWhere('c.id = a.country_id')
+                ->leftJoin('c.Translation u')
+                ->andWhere('u.lang = ?',$culture)
+                ->andWhere('t.lang = ?', $culture)
+                ->addWhere('t.name LIKE ?', $value)
+                ->execute(array(), Doctrine_Core::HYDRATE_SCALAR);
+
+        return $q;
+   }
+
 }

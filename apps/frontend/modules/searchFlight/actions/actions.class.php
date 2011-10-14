@@ -33,7 +33,10 @@ class searchFlightActions extends sfActions {
 
     }
 
-    
+    /**
+     * Function to perform a search from previous search parameters
+     * @param sfWebRequest $request
+     */
 
     public function executeSearchAgain(sfWebRequest $request){
 
@@ -41,8 +44,9 @@ class searchFlightActions extends sfActions {
         $parameters = PlexParsing::retreiveParameters($filename);
         $params1 = $parameters->getParametersArray($this->getUser()->getCulture());
 
-        //echo "<pre>";
-        //print_r($params1);
+        //Replace csrf_token with a valid on
+        $token = PlexBasket::getInstance()->getCSRFToken(new SearchFlightForm());
+        $params1['_csrf_token'] = $token;
 
         //$secret = sfConfig::get('sf_csrf_secret');
         //$csrf_token = md5($secret.session_id().get_class(new SearchFlightForm()));
@@ -75,9 +79,7 @@ class searchFlightActions extends sfActions {
 
         $this->form = new SearchFlightForm();
         $this->form->bind($params1);
-
-        //var_dump($this->form->isValid());
-        //exit;
+        
         if($this->form->isValid()){
             //Form is valid - add parameters to the request and proceed
             $request->setParameter('search_flight', $params1);
@@ -87,7 +89,6 @@ class searchFlightActions extends sfActions {
             $this->forward('searchFlight', 'modifySearch');
 
         }
-        
 
         $this->setTemplate('index');
 

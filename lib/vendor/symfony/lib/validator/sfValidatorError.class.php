@@ -31,6 +31,7 @@ class sfValidatorError extends Exception implements Serializable
    */
   public function __construct(sfValidatorBase $validator, $code, $arguments = array())
   {
+
     $this->validator = $validator;
     $this->arguments = $arguments;
 

@@ -2,6 +2,10 @@
 # http://www.symfony-project.org/reference/1_4/en/12-Filters
 
 rendering: ~
+
+remember_me:
+  class: sfGuardRememberMeFilter
+
 security:  ~
 
 # insert your own filters here
@@ -14,11 +18,8 @@ plexSession:
 historic:
   class: historicFilter
 
-remember_me:
-  class: sfGuardRememberMeFilter
-
-#error:
-#  class: errorFilter
+error:
+  class: errorFilter
 
 javascript:
   class: javascriptFilter

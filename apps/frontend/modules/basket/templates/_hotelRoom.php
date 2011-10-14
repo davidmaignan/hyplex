@@ -14,10 +14,10 @@
         <?php $firstRate = true; ?>
         <?php foreach ($hotel->arRoomsType as $key => $roomType): ?>
 
-        <?php include_partial('roomType', array('roomType' => $roomType, 'i' => $i, 'class' => $class, 'key' => $key, 'colspan' => $colspan)) ?>
+        <?php include_partial('basket/roomType', array('roomType' => $roomType, 'i' => $i, 'class' => $class, 'key' => $key, 'colspan' => $colspan)) ?>
 
         <?php foreach ($roomType->arRates as $k => $rate): ?>
-        <?php include_partial('rate', array('rate' => $rate, 'firstRate' => $firstRate, 'k' => $k, 'i' => $i, 'class' => $class, 'hotel' => $hotel)) ?>
+        <?php include_partial('basket/rate', array('rate' => $rate, 'firstRate' => $firstRate, 'k' => $k, 'i' => $i, 'class' => $class, 'hotel' => $hotel)) ?>
         <?php $firstRate = false; ?>
         <?php endforeach; ?>
 

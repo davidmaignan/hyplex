@@ -52,7 +52,6 @@ class sfGuardRememberMeFilter extends sfFilter
         $this->context->getUser()->signIn($q->fetchOne()->User);
       }
     }
-    //var_dump('sfGuardRememberMeFilter');
 
     $filterChain->execute();
   }

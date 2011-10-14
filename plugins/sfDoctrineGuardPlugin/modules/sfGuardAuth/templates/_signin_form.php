@@ -1,5 +1,5 @@
 <?php use_helper('I18N') ?>
-
+<div class="span-8 append-bottom">
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
   <table>
     <tbody>
@@ -23,3 +23,4 @@
     </tfoot>
   </table>
 </form>
+</div>

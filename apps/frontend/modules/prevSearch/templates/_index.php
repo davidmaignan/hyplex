@@ -1,3 +1,5 @@
+
+
 <?php use_helper('Date','Number','I18n','Text'); ?>
 <h2 class="title"><?php echo __('Previous searches'); ?></h2>
 <div>
@@ -5,6 +7,10 @@
         <?php $i=0; ?>
         <?php while($i<= 5 && $i<count($prevSearches)): ?>
             <?php $parameters = ($prevSearches[$i]['parameters']); ?>
+<?php
+//var_dump($parameters->arOrigin);
+//exit;
+?>
             <tr class="<?php echo (fmod($i, 2) == 0) ? 'bg-1' : 'bg-2' ?>">
                 <td style="font-weight: bold;">
                     <?php echo ucwords($parameters->getTypeRenamed()); ?>
@@ -12,7 +18,7 @@
                 <td>
                     <ul class="prevSearch-list-index">
                         <li>
-                            <?php echo link_to2($parameters->getOriginDestination($sf_user->getCulture()),
+                            <?php echo link_to2(html_entity_decode($parameters->getOriginDestination($sf_user->getCulture())),
                                                 'previous_search',
                                                 array('filename'=>$prevSearches[$i]['file'])); ?>
                             <a href="#"><?php //echo $parameters->getOriginDestination($sf_user->getCulture()); ?></a>

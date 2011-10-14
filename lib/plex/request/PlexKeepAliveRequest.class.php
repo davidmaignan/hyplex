@@ -17,7 +17,7 @@ class PlexKeepAliveRequest extends PlexRequest implements PlexRequestInterface {
         
         $this->sTId = $sTId;
 
-        $this->defineParams(1);
+        $this->defineParams();
         $this->xml = $this->buildXML();
         
     }

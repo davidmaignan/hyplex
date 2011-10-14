@@ -1,5 +1,28 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
+autocomplete:
+  url: /:sf_culture/autocomplete/searchAirportComplete2
+  param: { module: autocomplete, action: searchAirportComplete2 }
+
+booking_check_address:
+  url: /:sf_culture/check-out/check-address-and-payement-information
+  param: { module: booking, action: setAddress }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+booking_address:
+  url: /:sf_culture/check-out/address-and-payement-information
+  param: { module: booking, action: getAddress }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+booking_passenger:
+  url: /:sf_culture/check-out/check-passenger-informations
+  param: { module: booking, action: setPassenger }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+checkout:
+  url: /:sf_culture/check-out/passengers-informations
+  param: { module: booking, action: getPassenger }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 previous_hotel:
   url: /:sf_culture/previous-hotel-search/:wherebox/:checkin_date/:checkout_date
