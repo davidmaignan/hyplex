@@ -75,8 +75,6 @@ class FlightReturnObj extends FlightGenericObj {
                     format_date($this->SegmentInbound->Departs, 't').'</td><td>'.
                     format_date($this->SegmentInbound->Arrives, 'flight') .'</td><td>'.
                     format_date($this->SegmentInbound->Arrives, 't').'</td><td></td><td></td></tr>';
-        
-        
 
         return $string;
     }
@@ -136,7 +134,6 @@ class FlightReturnObj extends FlightGenericObj {
      * to display summurize information of the FlightReturnObject
      *
      */
-
     public function summurizeSegmentsInfos() {
 
         //Analyse segment to go and simplify it (if multiple stops just show number of stops
@@ -177,7 +174,11 @@ class FlightReturnObj extends FlightGenericObj {
 
 
    
-
+    /**
+     * Return Origin and Destination in a formatted string.
+     * @param string $culture
+     * @return string
+     */
     public function displayConfirmationTitle($culture = 'en_US'){
 
 
@@ -202,9 +203,38 @@ class FlightReturnObj extends FlightGenericObj {
         
         return __('Round trip from %1% to %2%',array('%1%'=> $from,'%2%'=> $to));
 
+    }
+
+    /**
+     * Return the Departure date from outbound or inbound
+     * @param string $way
+     * @return string format (Y-m-d)
+     */
+    public function getOriginOrReturnDateOrTime($way, $date){
+
+        if(!$way){
+            throw new Exception('You must provide a way in getOriginOrReturnDate function');
+        }
+
+        if($way == 'origin'){
+            $value = $this->SegmentOutbound->Departs;
+        }else{
+            $value = $this->SegmentInbound->Departs;
+        }
+
+        $value = explode(' ', $value);
+
+        if($date == 'date'){
+            return $value[0];
+        }else{
+            return $value[1];
+        }
+
 
         
+        
     }
+
 
 
     /**
@@ -561,4 +591,4 @@ class FlightReturnObj extends FlightGenericObj {
 
 }
 
-?>
+

@@ -290,4 +290,34 @@ class FlightGenericObj {
         return $passengersString;
     }
 
+
+    /**
+     * Return Origin or Destination airport formatted: LAX - Los Angeles [CA], USA
+     * @param string $culture
+     * @return string
+     */
+    public function getOriginOrDestination($way, $culture = 'en_US'){
+
+        $string = '';
+
+        if($way == 'origin'){
+            $code = $this->SegmentOutbound->DepartureFrom;
+        }else{
+            $code = $this->SegmentOutbound->ArrivalTo;
+        }
+        //$codeFrom = $this->SegmentOutbound->DepartureFrom;
+        
+
+        //var_dump($this->arAirport);
+
+        $string = truncate_text($this->arAirport[$code][$culture]['name'], 15) .' ('.$code.'),  ' .
+                    $this->arAirport[$code][$culture]['city_name']. ' ';
+        $string .= isset($this->arAirport[$code]['state'])? ' ['.$this->arAirport[$code]['state'].'], ': '';
+
+        $string .= $this->arAirport[$code][$culture]['country'];
+
+
+        return $string;
+    }
+
 }

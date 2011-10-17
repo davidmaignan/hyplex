@@ -381,5 +381,7 @@ class HotelSimpleObj extends HotelGenericObj {
 
     }
 
+
+
 }
 

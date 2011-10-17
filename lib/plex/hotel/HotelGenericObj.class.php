@@ -11,7 +11,9 @@
  */
 class HotelGenericObj {
 
-    //Variables
+    private $filename;
+
+    //public
     public $id;
     public $name;
     public $hotelChain;
@@ -36,6 +38,7 @@ class HotelGenericObj {
 
 
 
+    
     public function getId(){
         return $this->id;
     }
@@ -48,18 +51,37 @@ class HotelGenericObj {
         return $string;
 
     }
-    
-    public function getFullAddress(){
 
-        $string = $this->hotelAddress['Street1'].' ';
-        $string .= ($this->hotelAddress['Street2'])? ", {$this->hotelAddress['Street2']} ": ', ';
+
+    /**
+     * Return address full or half full
+     * @param boolean if true return with street otherwise only city, state, country
+     * @return string
+     */
+    public function getFullAddress($bool = true){
+
+        $string = '';
+
+        if($bool){
+            $string .= $this->hotelAddress['Street1'].' ';
+            $string .= ($this->hotelAddress['Street2'])? ", {$this->hotelAddress['Street2']} ": ', ';
+        }
+
         $string .= $this->hotelAddress['City'];
         $string .= ($this->hotelAddress['StateProvince'])? " [{$this->hotelAddress['StateProvince']}] ": '';
-        $string .= ' - '.$this->hotelAddress['PostalCode'].', '.$this->hotelAddress['Country'];
+
+        //Add postcode if full address
+        if($bool){
+            $string .= ' - '.$this->hotelAddress['PostalCode'];
+        }
+        
+        $string .= ', '.$this->hotelAddress['Country'];
 
         return $string;
 
     }
+
+
 
 
 
@@ -138,7 +160,11 @@ class HotelGenericObj {
 
     }
 
+    public function getParameters(){
 
+        return PlexParsing::retreiveParameters($this->filename);
+
+    }
 
 
 }

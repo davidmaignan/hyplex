@@ -17,109 +17,23 @@
 
 
 <style>
-    .confirmation{
-        color: #454545;
-        font-size: 85%;
-    }
 
-    .confirmation td{
-        padding:7px 0 7px;
-    }
-
-    .confirmation td.icon{
-        width: 40px;
-        vertical-align: middle;
-    }
-
-    .confirmation tr.title td{
-        font-weight: bold;
-        padding: 15px 0 7px;
-        font-size: 110%;
-    }
-
-    #confirmation li{
-        padding-bottom: 6px;
-    }
-
-    .border-bottom{
-        border-bottom: 1px solid #dedecf;
-    }
-
-    .big{
-        font-size: 110%;
-    }
-
-    .bigger{
-        font-size: 130%;
-    }
-
-    #confirmation td.dotted{
-        background: url('/images/dot.gif') repeat-x left 14px;
-    }
-
-    #confirmation td.price{
-        width: 200px;
-        text-align: right;
-        background: url('/images/dot.gif') repeat-x left 14px;
-    }
-
-    #confirmation td.dotted span{
-        background-color: white;
-        padding-right: 14px;
-    }
-
-    #confirmation td.price span{
-        background-color: white;
-        padding-left: 14px;
-    }
-
-    .total{
-        font-size: 140%;
-        width: 220px;
-        text-align: right;
-    }
-
-    dl {
-
-    }
-
-    dl dt {
-        float:left;
-        font-weight:bold;
-        margin-right:10px;
-        padding:5px;
-        width:150px;
-    }
-
-    dl dd {
-        margin:2px 0;
-        padding:5px 0;
-    }
-
-    h2.entourage{
-        border: 0px solid #C2DAE9;
-        border-top-color: #c2dae9;
-        border-top-width: 3px;
-        border-top-style: solid;
-        padding: 8px;
-        margin-bottom: 8px;
-        margin-top: 25px;
-        abackground-color: #EFF7FD;
-    }
-
-    table.basket-flight{
-        background: none;
-    }
-
-    table.basket-flight td{
-        border-bottom: 1px dotted #dddddd;
-        background: none;
-        line-height: 18px;
-    }
-
-    table.fly-programm td{
-        border: none;
+.total{
+    font-size: 140%;
+    width: 220px;
+    text-align: right;
 }
+
+table.basket-flight{
+    background: none;
+}
+
+table.basket-flight td{
+    border-bottom: 1px dotted #dddddd;
+    background: none;
+    line-height: 18px;
+}
+
 
 ol.hotel-passenger li{
     list-style-type: decimal;
@@ -143,9 +57,19 @@ li.savePDF{
     background-image: url('/images/icons/page_white_acrobat.png');
 }
 
-ul li{
-    line-height: 20px;
-    font-size: 90%;
+p{
+    line-height: 18px;
+}
+
+h2.entourage{
+    border: 0px solid #C2DAE9;
+    border-top-color: #c2dae9;
+    border-top-width: 3px;
+    border-top-style: solid;
+    padding: 8px;
+    margin-bottom: 8px;
+    margin-top: 25px;
+    abackground-color: #EFF7FD;
 }
 
 h2.traveler, h2.flight, h2.hotel, h2.car{
@@ -190,7 +114,7 @@ h2.hotel{
 <hr class="space3" />
 
 <h2 class="entourage summary">Booking summary</h2>
-<?php include_partial('bookingSummary'); ?>
+<?php include_partial('bookingSummary', array('booking'=>$booking)); ?>
 
 <hr class="space3" />
 <h2 class="entourage traveler">Travelers</h2>

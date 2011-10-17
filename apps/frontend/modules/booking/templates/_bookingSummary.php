@@ -1,38 +1,51 @@
 
+<?php
+//$hotel = $booking->getHotel();
+//var_dump($hotel);
+?>
+
 <table class="basket-flight">
     <tr>
         <td style="vertical-align: middle;"><img src="/images/mobico/flight.png" /></td>
         <td>
-            LAX Los Angeles [CA], USA <br />
-            DFW Dallas [TX], USA
+            <?php echo $booking->getFlight()->getOriginOrDestination('origin',$sf_user->getCulture()) ?><br />
+            <?php echo $booking->getFlight()->getOriginOrDestination('destination',$sf_user->getCulture()) ?>
         </td>
         <td class="smaller">
             Depart:<br />
             Return:
         </td>
         <td>
-            Tuesday, November 1, 2011 <br />
-            Tuesday, November 8, 2011 
+            <?php echo format_date($booking->getFlight()->getOriginOrReturnDateOrTime('origin','date'),'D') ?><br />
+            <?php echo format_date($booking->getFlight()->getOriginOrReturnDateOrTime('return','date'), 'D') ?>
         </td>
         <td style="text-align: right">
-            8:00 AM<br />
-            12:30 PM
+            <?php echo $booking->getFlight()->getOriginOrReturnDateOrTime('origin','time') ?><br />
+            <?php echo $booking->getFlight()->getOriginOrReturnDateOrTime('return','time') ?>
         </td>
         <td style="text-align: right" class="bold"><?php echo format_currency(rand(1999,12999),  sfConfig::get('app_currency')) ?></td>
     </tr>
     <tr>
         <td style="vertical-align: middle;"><img src="/images/mobico/hotel.png" /></td>
         <td>
-            La Quinta Inn Dallas Grand Prairie<br />
-            4 nights, 2 rooms
+            <?php echo $booking->getHotel()->getName() ?>,
+            <?php echo $booking->getHotel()->getFullAddress(false) ?><br />
+            <?php echo format_number_choice(
+                    '[1] night|(1,+Inf]%nights nights',
+                    array('%nights'=>$booking->getHotel()->getParameters()->getNumberNights()),
+                    $booking->getHotel()->getParameters()->getNumberNights()) ?>
+            ,  <?php echo format_number_choice(
+                    '[1] room|(1,+Inf]%rooms rooms',
+                    array('%rooms'=>count($booking->getHotel()->arRooms)),
+                    count($booking->getHotel()->arRooms)) ?>
         </td>
         <td class="smaller">
             Checkin:<br />
             Checkout:
         </td>
         <td colspan="2">
-            Tuesday, November 1, 2011  <br />
-            Tuesday, November 8, 2011
+            <?php echo format_date($booking->getHotel()->getParameters()->getCheckinDate(),'D') ?><br />
+            <?php echo format_date($booking->getHotel()->getParameters()->getCheckOutDate(),'D') ?>
         </td>
         <td style="text-align: right" class="bold"><?php echo format_currency(rand(1999,12999),  sfConfig::get('app_currency')) ?></td>
     </tr>

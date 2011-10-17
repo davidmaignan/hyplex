@@ -13,7 +13,7 @@ default:
     #robots:       index, follow
 
   #stylesheets:    [main.css, frontend_temp.css, typography.css]
-  stylesheets:    []
+  stylesheets:    [grid, typography]
 
   javascripts:    []
 

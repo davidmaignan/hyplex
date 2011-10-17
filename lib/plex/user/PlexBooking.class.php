@@ -93,6 +93,7 @@ class PlexBooking {
     public function getAddress(){
         return $this->address;
     }
+  
 
 }
 
