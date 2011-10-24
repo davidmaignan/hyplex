@@ -48,11 +48,14 @@
                 <li><a href="#" class="form-tab" id="car-tab"><?php echo __('Car'); ?></a></li>
                 <li><a href="#" class="form-tab-last" id="package-tab"><?php echo __('Package'); ?></a></li>
             </ul>
-            <div id="flight-form" class="none">
+            <div id="flight-form">
                 <?php include_partial('searchFlight/formIndex', array('form' => $flightForm)); ?>
             </div>
             <div id="hotel-form" class="">
                 <?php include_partial('searchHotel/formIndex', array('form' => $hotelForm)); ?>
+            </div>
+            <div id="car-form">
+                <?php include_partial('searchCar/formIndex',array('form'=>$carForm)); ?>
             </div>
             
     </div>
@@ -151,6 +154,7 @@
     $('document').ready(function(){
 
         $('#hotel-form').hide();
+        $('#car-form').hide();
 
         $('#flight-tab').click(function(){
             $('#flight-form').show();
@@ -168,6 +172,17 @@
             $('#flight-form').hide();
             $('#hotel-form').show();
             $('#car-form').hide();
+            $('#package-form').hide();
+            $('.form-tab').each(function(){
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
+
+        $('#car-tab').click(function(){
+            $('#flight-form').hide();
+            $('#hotel-form').hide();
+            $('#car-form').show();
             $('#package-form').hide();
             $('.form-tab').each(function(){
                 $(this).removeClass('selected');

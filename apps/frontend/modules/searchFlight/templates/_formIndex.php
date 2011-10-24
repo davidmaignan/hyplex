@@ -4,8 +4,6 @@
 <form action="<?php echo url_for('@search_flight_form') ?>" method="post" id="flight-form-index">
     <fieldset>
 
-        
-
         <h3 class="form-index"><?php echo __('Trip details'); ?></h3>
         <table class="form-index">
             <tr>

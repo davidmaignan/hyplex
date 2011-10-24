@@ -8,7 +8,7 @@
                     <li><?php echo $form['newRooms'][$num]['number_adults']; ?></li>
                 </ul>
             </td>
-            <td style="vertical-align: top;">
+            <td style="vertical-align: top; padding-left: 10px;">
                 <ul>
                     <li><?php echo $form['newRooms'][$num]['number_children']->renderLabel(); ?></li>
                     <li><?php echo $form['newRooms'][$num]['number_children']; ?></li>

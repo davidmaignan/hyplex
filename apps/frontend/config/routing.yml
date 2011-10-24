@@ -1,5 +1,6 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
+
 autocomplete:
   url: /:sf_culture/autocomplete/searchAirportComplete2
   param: { module: autocomplete, action: searchAirportComplete2 }
@@ -90,7 +91,7 @@ hotel_simple:
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 search_hotel_form:
-  url: /:sf_culture/search/hotel/invalid/
+  url: /:sf_culture/search/hotel/validation/
   param: { module: searchHotel, action: create }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
@@ -179,8 +180,19 @@ multipleDestination:
   param: { module: searchFlight, action: multipleDestination }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
+search_car:
+  url: /:sf_culture/search/car/
+  param: { module: searchCar, action: index }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
+search_car_form:
+  url: /:sf_culture/search/car/validation/*
+  param: { module: searchCar, action: create }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 search_flight_form:
-  url: /:sf_culture/search/flight/invalid/*
+  url: /:sf_culture/search/flight/validation/*
   param: { module: searchFlight, action: create }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
@@ -193,12 +205,6 @@ search_flight_again:
   url: /:sf_culture/search-flight-again/:filename
   param: { module: searchFlight, action: searchAgain }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
-
-#research_flight:
-#  url: /:sf_culture/research/flight/:filename
-#  param: { module: searchFlight, action: index }
-#  requirements:
-#    sf_culture: (?:en_US|fr_FR|zh_CN)
 
 search_flight:
   url: /:sf_culture/search/flight/

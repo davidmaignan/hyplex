@@ -23,7 +23,7 @@ if ($form->hasGlobalErrors()) {
 
 
 <style>
-    table.hotel-form-table td{
+    table.form-error td{
         padding-right: 10px;
     }
 
@@ -47,7 +47,6 @@ if ($form->hasGlobalErrors()) {
                     <ul>
                         <li><?php echo $form['wherebox']->renderLabel(); ?></li>
                         <li><?php echo $form['wherebox']; ?><br /><br /></li>
-                        <li><?php echo $form['wherebox']->renderError(); ?></li>
                     </ul>
 
                 </td>
@@ -55,7 +54,6 @@ if ($form->hasGlobalErrors()) {
                     <ul>
                         <li><?php echo $form['checkin_date']->renderLabel(); ?></li>
                         <li><?php echo $form['checkin_date']; ?><br /><br /></li>
-                        <li><?php echo $form['checkin_date']->renderError(); ?></li>
                     </ul>
 
                 </td>
@@ -63,10 +61,13 @@ if ($form->hasGlobalErrors()) {
                     <ul>
                         <li><?php echo $form['checkout_date']->renderLabel(); ?></li>
                         <li><?php echo $form['checkout_date']; ?><br /><br /></li>
-                        <li><?php echo $form['checkout_date']->renderError(); ?></li>
                     </ul>
-
                 </td>
+            </tr>
+            <tr>
+                <td><?php echo $form['wherebox']->renderError(); ?></td>
+                <td><?php echo $form['checkin_date']->renderError(); ?></td>
+                <td><?php echo $form['checkout_date']->renderError(); ?></td>
             </tr>
         </table>
         <hr class="space2"/>
@@ -82,7 +83,7 @@ if ($form->hasGlobalErrors()) {
                                 <li><?php echo $f['number_adults']; ?></li>
                             </ul>
                         </td>
-                        <td style="vertical-align: top;">
+                        <td style="vertical-align: top; padding-left: 10px;">
                             <ul>
                                 <li><?php echo $f['number_children']->renderLabel(); ?></li>
                                 <li><?php echo $f['number_children']; ?></li>

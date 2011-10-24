@@ -21,6 +21,7 @@ class mainActions extends sfActions {
 
         $this->flightForm = new SearchFlightForm();
         $this->hotelForm = new SearchHotelForm();
+        $this->carForm = new SearchCarForm();
 
         //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->findAll()->toArray();
         //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->getActivePromotions($this->getUser()->getCulture())->execute()->toArray();

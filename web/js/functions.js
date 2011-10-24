@@ -64,10 +64,43 @@ function preg_quote( str ) {
 }
 
 
-function highlight2( data, search ){
-    //return data.replace( new RegExp( preg_quote( search ), 'gi' ), "<span style='font-weight:bold;color:#ED145B;'>" + search + "</span>" );
 
+ function highlight2( data, search ){
+
+    var values = search.split(' ');
+
+    //alert(search);
+
+    for(var i in values){
+        if(values[i] != ''){
+            values[i] = values[i].toLowerCase();
+            data = data.replace( new RegExp( "(?!<[^<>]*)("
+                + $.ui.autocomplete.escapeRegex(values[i]) +
+                ")(?![^<>]*>)", "g"), "<strong>" + values[i] + "</strong>" );
+            data = data.replace( new RegExp( "(?!<[^<>]*)("
+                + $.ui.autocomplete.escapeRegex(values[i].capitalize()) +
+                ")(?![^<>]*>)", "g"), "<strong>" + values[i].capitalize() + "</strong>" );
+            data = data.replace( new RegExp( "(?!<[^<>]*)("
+                + $.ui.autocomplete.escapeRegex(values[i].toUpperCase()) +
+                ")(?![^<>]*>)", "g"), "<strong>" + values[i].toUpperCase() + "</strong>" );
+            //data = data.replace( new RegExp( ( values[i].capitalize() ), 'g' ), "<strong>" + values[i].capitalize() + "</strong>" );
+        }
+
+    }
+
+    return data;
+
+    //return data.replace( new RegExp( preg_quote( values[0] ), 'gi' ), "<span style='font-weight:bold;color:#ED145B;'>" + values[0] + "</span>" );
 }
+
+String.prototype.toLower = function() {
+    return this.charAt(0).toLowerCase() + this.slice(1);
+}
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 
 
 function tripDuration(secs)
