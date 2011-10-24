@@ -47,7 +47,29 @@ abstract class PlexParameters {
     public function getReturnDate() {
         return $this->return_date;
     }
-    
+
+    public function getCodes(){
+
+        $ar = array();
+
+        switch($this->type){
+
+            case 'HotelSimple':
+            array_push($ar, $this->wherebox);
+            break;
+
+            case 'flightReturn' || 'flightOneway':
+            array_push($ar, $this->originCode);
+            array_push($ar, $this->destinationCode);
+            break;
+
+
+
+        }
+
+        return $ar;
+
+    }
 
 }
-?>
+

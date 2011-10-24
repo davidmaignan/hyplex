@@ -1,0 +1,22 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           RequestPlex
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          request_plex
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        display: [date, type, user_culture, user_ip, user_agent, user_folder, filename, response_code, elapsed_time]
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

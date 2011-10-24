@@ -35,6 +35,10 @@ class PlexBooking {
 
     }
 
+    public function  __toString() {
+        return "Implement toString in PlexBooking object to display parameters";
+    }
+
     public function getCustomer(){
 
         return  $this->passengers[1]['salutation']. ' ' .

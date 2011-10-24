@@ -34,8 +34,7 @@ RequestPlex:
     response_raw:               { type: clob }
     response_code:              { type: int, notnull: true }
     response_processed:         { type: clob }
-    elapsed_plex_request:       { type: decimal, notnull: true, scale: 14 }
-    elapsed_process_response:   { type: decimal, notnull: true, scale: 14 }
+    elapsed_time:               { type: object}
 
 PromotionalBanner:
   actAs:

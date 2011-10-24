@@ -13,9 +13,10 @@ class PlexKeepAliveRequest extends PlexRequest implements PlexRequestInterface {
 
     protected $sTId;
 
-    public function  __construct($sTId) {
+    public function  __construct($sTId, $request) {
         
         $this->sTId = $sTId;
+        $this->request = $request;
 
         $this->defineParams();
         $this->xml = $this->buildXML();
@@ -43,6 +44,8 @@ class PlexKeepAliveRequest extends PlexRequest implements PlexRequestInterface {
 
     }
 
+
+    /*
     public function  executeRequest() {
         
         $timer = sfTimerManager::getTimer('PlexRequest');
@@ -64,7 +67,9 @@ class PlexKeepAliveRequest extends PlexRequest implements PlexRequestInterface {
 
         return $this->response;
     }
+     * 
+     */
 
 
 }
-?>
+

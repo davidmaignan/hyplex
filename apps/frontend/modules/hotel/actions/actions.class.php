@@ -283,29 +283,24 @@ class hotelActions extends sfActions
 
         //return $this->renderText($hotel->name);
 
-        $termsConditionsFile = PlexParsing::getFullPathToFolder('hotel', $filename).$termsConditionId.'.raw';
+        $termsConditionsFile = PlexParsing::getFullPathToFolder('hotel', $filename).$termsConditionId.'.xml';
+
+        //var_dump($termsConditionId);
+        //exit;
 
         if(!file_exists($termsConditionsFile)){
 
-            $plexRequest = new PlexHotelRateDetails($hotel, $filename, $termsConditionId, $this->getUser());
+            $plexRequest = new PlexHotelRateDetailsRequest($hotel, $filename, $request, $termsConditionId, $this->getUser());
             $plexRequest->buildXML();
             $response = $plexRequest->executeRequest();
-
             
-
-            //$finalResponse = new PlexHotelDetailsResponse($hotel, $response, $request, $filename);
-            //$finalResponse->checkResponseCode();
-            //$code = $finalResponse->responseCode;
-
-
         }else{
 
             $response = file_get_contents($termsConditionsFile);
 
-            //return $this->renderText('file exists');
-
-            
         }
+
+        
 
         $finalResponse = new PlexHotelRateResponse($response);
         $finalResponse->checkResponseCode();
@@ -314,6 +309,7 @@ class hotelActions extends sfActions
         switch ($code) {
 
             case '0':
+                  file_put_contents($termsConditionsFile, $response);
                   $finalResponse->parseResponse();
                   break;
 
@@ -351,6 +347,8 @@ class hotelActions extends sfActions
 
     public function executeHotelDetail(sfWebRequest $request){
 
+        
+
         $debug = false;
 
         $slug = $request->getParameter('slug');
@@ -367,8 +365,7 @@ class hotelActions extends sfActions
 
         $file = PlexParsing::getFullPathToFolder('hotel', $filename, 'plex');
 
-        
-        
+
         $handle = fopen($file , 'r');
         while(!feof($handle)){
 
@@ -382,27 +379,27 @@ class hotelActions extends sfActions
             }
         }
 
- 
-
         //Hotel detail file name path
-        $hotelDetailFile = PlexParsing::getFullPathToFolder('hotel', $filename).$hotel->id.'.raw';
+        $hotelDetailFile = PlexParsing::getFullPathToFolder('hotel', $filename).$hotel->id.'.xml';
 
-        //if(!file_exists($hotelDetailFile)){
+        //var_dump($hotelDetailFile);
+
+        if(!file_exists($hotelDetailFile)){
 
             //Hotel detail request
-            $plexRequest = new PlexHotelDetailsRequest($hotel, $filename, $this->getUser());
+            $plexRequest = new PlexHotelDetailsRequest($hotel, $request, $filename, $this->getUser());
             $plexRequest->buildXML();
-            $response = $plexRequest->executeRequest();
+            $response = $plexRequest->executeRequest();            
 
             $finalResponse = new PlexHotelDetailsResponse($hotel, $response, $request, $filename);
             $finalResponse->checkResponseCode();
             $code = $finalResponse->responseCode;
 
-            var_dump($code);
-
             switch ($code) {
 
                 case '0':
+                      //need to save the response in a file
+                      file_put_contents($hotelDetailFile, $finalResponse);
                       $finalResponse->parseResponse();
                       break;
 
@@ -456,8 +453,7 @@ class hotelActions extends sfActions
 
                 file_put_contents($file, $newContent);
 
-        //}
-
+        }
   
         $this->hotelCoordinates = json_encode($this->hotel->arCoordinates);
         $this->slugName = Utils::slugify($this->hotel->getName());

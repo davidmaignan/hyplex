@@ -19,7 +19,13 @@ class Booking extends BaseBooking
         $this->setBookingId($bookingId);
         $this->setObject($booking);
         $this->setUserId($userId);
-        $this->save();
+        try{
+            $this->save();
+        }catch(Doctrine_Exception $e){
+            //echo $e->__toString();
+            //exit;
+        }
+
 
     }
 

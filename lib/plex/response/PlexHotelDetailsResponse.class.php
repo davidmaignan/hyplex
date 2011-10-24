@@ -17,20 +17,19 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
 
     public function  __construct(HotelSimpleObj $hotel, $response, $request, $filename) {
 
+
         $this->response = $response;
         $this->filename = $filename;
         $this->hotel = $hotel;
         $this->request = $request;
-
-        //echo $this->getFilename();
+        
 
     }
 
-    /*
+    /**
      * Get the filename for this response
-     * @return string the fullpath to the raw request saved
+     * @return string the fullpath to the response xml
      */
-
     public function getFilename() {
 
 
@@ -38,7 +37,7 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
                 'hotel'.DIRECTORY_SEPARATOR.
                 $this->filename;
 
-        return $path.DIRECTORY_SEPARATOR.$this->hotel->id.'.raw';
+        return $path.DIRECTORY_SEPARATOR.$this->hotel->id.'.xml';
         //return $this->filename;
     }
 
@@ -46,7 +45,10 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
 
     }
 
+    /*
     public function checkResponseCode() {
+
+        
 
         ini_set('error_reporting', E_ERROR);
 
@@ -92,118 +94,75 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
 
 
     }
-
+    */
 
 
     public function  parseResponse() {
 
-        $responseData = $this->responseData;
-
         $timer = sfTimerManager::getTimer('ParseResponse');
 
-        //Parse the response for - HotelDescription, AllHotelImageLinks, AllHotelFacilities
+        //Parse the response for - HotelDescription, AllHotelImageLinks, AllHotelFacilities        
+        $xml = simplexml_load_string($this->response);        
+        
+        if((array)$xml->HotelDescription){
+            $data = html_entity_decode((string)$xml->HotelDescription);
+            $this->hotel->setFullDescription($data);
+        }else{
+            $infos = array();
+            $infos['message'] = 'Error hotel description: '. $this->hotel->id .' doesn\'t have any description';
+            $infos['filename'] = $this->getFilename();
+            $infos['plexResponse'] = file_get_contents($this->getFilename());
+            $infos['parameters'] = null;
 
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+
+       }
+
+       if((array)$xml->AllHotelFacilities){
+            $data = html_entity_decode((string)$xml->HotelDescription);
+            $this->hotel->setFullFacilities(($xmlFacilities));
+        }else{
+            $infos = array();
+            $infos['message'] = 'Error hotel facilities: '. $this->hotel->id .' doesn\'t have any facilities';
+            $infos['filename'] = $this->getFilename();
+            $infos['plexResponse'] = file_get_contents($this->getFilename());
+            $infos['parameters'] = null;
+
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+
+        }
+
+        if((array)$xml->AllHotelImageLinks){
+            //$data = html_entity_decode((string)$xml->HotelDescription);
+            //$this->hotel->setFullFacilities(($xmlFacilities));
+        }else{
+            $infos = array();
+            $infos['message'] = 'Error hotel images: '. $this->hotel->id .' doesn\'t have any images';
+            $infos['filename'] = $this->getFilename();
+            $infos['plexResponse'] = file_get_contents($this->getFilename());
+            $infos['parameters'] = null;
+
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+
+        }
         
 
-        $start = strpos($responseData, '<HotelDescription>');
-        $end = strrpos($responseData, '</HotelDescription>');
-
-        //If can't find tags AirInfos. xml empty or badly formatted
-        if($start == -1 || $end == -1 || $star === false || $end === false)
-        {
+        if((array)$xml->GoogleMapInfo->MapLatLon){
+            $this->hotel->setCoordinates($xml->GoogleMapInfo->MapLatLon);
+        }else{
             $infos = array();
-            $infos['message'] = 'Error while building xml: cannot find tags hotelDescription for '.$this->getFilename();
+            $infos['message'] = 'Error hotel latLong: '. $this->hotel->id .' doesn\'t have any latLong info';
             $infos['filename'] = $this->getFilename();
             $infos['plexResponse'] = file_get_contents($this->getFilename());
-            $infos['parameters'] = $this->request->getPostParameters();
+            $infos['parameters'] = null;
 
             $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
             sfContext::getInstance()->getEventDispatcher()->notify($event);
-            sfContext::getInstance()->getController()->forward('error', 'plexError');
-            exit;
-        }else{
-
-            $body = trim(substr($responseData, $start +  strlen('<HotelDescription>'), $end - $start -strlen('</HotelDescription>')));
-            $body = html_entity_decode($body);
-            $this->hotel->setFullDescription(($body));
-        }
-
-        //Facilities
-        $start = strpos($responseData, '<AllHotelFacilities>');
-        $end = strrpos($responseData, '</AllHotelFacilities>');
-
-        //If can't find tags AllHotelFacilities. xml empty or badly formatted
-        if($start == -1 || $end == -1 || $star === false || $end === false)
-        {
-            $infos = array();
-            $infos['message'] = 'Error while building xml: cannot find tags AllHotelFacilities for '.$this->getFilename();
-            $infos['filename'] = $this->getFilename();
-            $infos['plexResponse'] = file_get_contents($this->getFilename());
-            $infos['parameters'] = $this->request->getPostParameters();
-
-            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
-            sfContext::getInstance()->getEventDispatcher()->notify($event);
-            //sfContext::getInstance()->getController()->forward('error', 'plexError');
-            //exit;
-        }else{
-
-            $body = trim(substr($responseData, $start , $end - $start + strlen('</AllHotelFacilities>')));
-
-            $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
-
-            $xmlFacilities = simplexml_load_string($data);
-            $this->hotel->setFullFacilities(($xmlFacilities));
-        }
-
-        //Images
-        $start = strpos($responseData, '<AllHotelImageLinks>');
-        $end = strrpos($responseData, '</AllHotelImageLinks>');
-
-        if($start == -1 || $end == -1 || $star === false || $end === false)
-        {
-            $infos = array();
-            $infos['message'] = 'Error while building xml: cannot find tags AllHotelImageLinks for '.$this->getFilename();
-            $infos['filename'] = $this->getFilename();
-            $infos['plexResponse'] = file_get_contents($this->getFilename());
-            $infos['parameters'] = $this->request->getPostParameters();
-
-            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
-            sfContext::getInstance()->getEventDispatcher()->notify($event);
-            //sfContext::getInstance()->getController()->forward('error', 'plexError');
-            //exit;
-        }else{
-
 
         }
-
-
-        //Coordinates
-        $start = strpos($responseData, '<MapLatLon>');
-        $end = strrpos($responseData, '</MapLatLon>');
-
-        if($start == -1 || $end == -1 || $star === false || $end === false)
-        {
-            $infos = array();
-            $infos['message'] = 'Error while building xml: cannot find tags MapLatLon for '.$this->getFilename();
-            $infos['filename'] = $this->getFilename();
-            $infos['plexResponse'] = file_get_contents($this->getFilename());
-            $infos['parameters'] = $this->request->getPostParameters();
-
-            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
-            sfContext::getInstance()->getEventDispatcher()->notify($event);
-            //sfContext::getInstance()->getController()->forward('error', 'plexError');
-            //exit;
-        }else{
-
-            $body = trim(substr($responseData, $start , $end - $start + strlen('</MapLatLon>')));
-
-            //echo htmlentities($body);
-
-            $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
-            $xmlCoordinates = simplexml_load_string($data);
-            $this->hotel->setCoordinates(($xmlCoordinates));
-        }
-
         
     }
 

@@ -20,7 +20,7 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
         $timer = sfTimerManager::getTimer('buildXML');
 
         //Hack to modify url
-        $this->url = $this->url.'_v1';
+        
 
         $plexBasket = PlexBasket::getInstance();
 
@@ -53,7 +53,7 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
         //Flight
         $flightDatas = $plexBasket->getArBookingFlight();
         
-        if(!is_null($flightDatas)){
+        if(!empty($flightDatas)){
             foreach($flightDatas as $key=>$value){
                 $xml .= "<v1:AirBookingInfo>
                         <v1:UniqueReferenceId>{$key}</v1:UniqueReferenceId>
@@ -76,33 +76,34 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
         $xml .= "</v1:PaxIds>";
         $xml .= "</v1:AirBookingInfo>";         
         */
-
-
+        
         //Hotel
         $hotelDatas = $plexBasket->getArBookingHotel();
-        //var_dump($hotelDatas);
         
         
-        $xml .= " <v1:HotelBookingInfo><v1:HotelId>{$hotelDatas['hotelID']}</v1:HotelId>";
+        if(!empty($hotelDatas)){
+            $xml .= " <v1:HotelBookingInfo><v1:HotelId>{$hotelDatas['hotelID']}</v1:HotelId>";
 
-        foreach($hotelDatas['rooms'] as $key_room=> $room){
+            foreach($hotelDatas['rooms'] as $key_room=> $room){
 
-            $xml .= "<v1:UniqueRateIdInfo>
-                       <v1:UniqueReferenceId>".$key_room."</v1:UniqueReferenceId>
-                       <v1:PaxIds>";
+                $xml .= "<v1:UniqueRateIdInfo>
+                           <v1:UniqueReferenceId>".$key_room."</v1:UniqueReferenceId>
+                           <v1:PaxIds>";
 
-            foreach($room as $person){
-                $xml .= "<v1:PaxId>". $person ."</v1:PaxId>";
+                foreach($room as $person){
+                    $xml .= "<v1:PaxId>". $person ."</v1:PaxId>";
+                }
+                $xml .= "</v1:PaxIds></v1:UniqueRateIdInfo>";
             }
-                          
-            $xml .= "</v1:PaxIds></v1:UniqueRateIdInfo>";
-
+            $xml  .= "</v1:HotelBookingInfo>";
         }
-                    
-        $xml  .= "</v1:HotelBookingInfo>";        
+
+
+
         $xml .=    "<v1:PassengersInfo>";
 
         $passengers = $plexBasket->getBookingPassengers(2);
+
         foreach ($passengers as $key=>$passenger) {
 
             $xml .= "<v1:PassengerInfo>
@@ -113,9 +114,14 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
                            <v1:PaxLastName>{$passenger['last_name']}</v1:PaxLastName>
                            <v1:Gender>{$passenger['gender']}</v1:Gender>
                            <v1:DateOfBirth>{$passenger['dob']}</v1:DateOfBirth>
-                           <v1:PaxType>{$passenger['type']}</v1:PaxType>
-                           <v1:FrequentFlyerNumber>{$passenger['frequent_flyer_number']}</v1:FrequentFlyerNumber>
-                           <v1:MealPreference>{$passenger['meal_preference']}</v1:MealPreference>
+                           <v1:PaxType>{$passenger['type']}</v1:PaxType>";
+
+            if($passenger['frequent_flyer_number'] != ''){
+              $xml .= "<v1:FrequentFlyerNumber>{$passenger['frequent_flyer_number']}</v1:FrequentFlyerNumber>
+                       <v1:AirlineCode>{$passenger['airline_code']}</v1:AirlineCode>";
+              }
+
+              $xml .="<v1:MealPreference>{$passenger['meal_preference']}</v1:MealPreference>
                            <v1:SpecialAssistance>{$passenger['special_assistance']}</v1:SpecialAssistance>
                         </v1:PassengerInfo>";
         }
@@ -160,9 +166,10 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
         $this->xml = $xml;
 
         
+
     }
 
-
+    /*
     public function executeRequest() {
 
         //$timer = sfTimerManager::getTimer('PlexRequest');
@@ -197,10 +204,59 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
         return $fullFilename;
 
     }
+     * 
+     */
 
     public function getXML(){
 
         return htmlentities(str_replace("/\>", "/\>\n", $this->xml));
+    }
+
+    public function executeRequest() {
+
+        $this->url = $this->url.'_v1';
+
+
+        $timer = sfTimerManager::getTimer('PlexRequest');
+
+        $client = new SoapClient(null,array('location'=>$this->location,'uri'=>$this->uri, 'trace'=>1));
+        $response = $client->__doRequest($this->xml, $this->url, 'doAuthorization', 1);
+
+        $header = $this->getHeader($client->__getLastResponseHeaders());
+        $infosUser = $this->retreiveUserInfos($this->request);
+        $elapsedTime = $timer->getElapsedTime();
+
+        //Http code 200 success, 500 failure ...
+        $code = $header['code'][1];
+
+        //If code not 200 -> redirect to error page and save in plexErrorLog
+        if($code != 200){
+            $this->redirectIfServerError($code, $this->request->getPostParameters(), $response);
+        }
+
+        $this->response = ($this->removeSoapEnvelop($response));
+
+        //If cant' create SimpleXMLObject
+        if (simplexml_load_string($this->response) === false){
+
+            $infos = array();
+            $infos['message'] = 'Error XML: plexResponse cannot be create a simpleXMLObject.';
+            $infos['code'] = 500;
+            $infos['filename'] = null;
+            $infos['parameters'] = $this->request->getPostParameters();
+            $infos['response'] = $this->response;
+
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getLogger()->alert('executeRequest function called in plexRequest');
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+            sfContext::getInstance()->getController()->forward('error', 'plexError');
+            exit;
+
+        }
+
+        $timer->addTime();
+
+        return $this->response;
     }
 
 }

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PLEXC_CreateBookingRS xmlns="http://plexconnect.ipm.hypertechsolutions.com/v1">
+    <ResponseCode>0</ResponseCode>
+    <ResponseMessage>SUCCESS</ResponseMessage>
+    <TransactionId>TRANS101</TransactionId>
+    <BookingId>S102746</BookingId>
+    <ItemConfirmations>
+        <ItemConfirmation>
+            <UniqueReferenceId>9c4c8rvprlklt9j3qt2mg2khvs</UniqueReferenceId>
+            <ConfirmationNumber xsi:type="xsd:string">FI120520430</ConfirmationNumber>
+            <ItemStatus xsi:type="xsd:string">Confirmed</ItemStatus>
+        </ItemConfirmation>
+    </ItemConfirmations>
+</PLEXC_CreateBookingRS>

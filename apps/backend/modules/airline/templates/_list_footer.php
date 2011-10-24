@@ -1,0 +1,1 @@
+<p>Missing icon! Just drop them in the folder web/images/airlines named by the tag of the airline with a size of 38*25 (gif or png).</p>

@@ -136,28 +136,39 @@ h2.hotel{
 
         <tr class="small">
             <td class=""><?php echo __('Title') ?></td>
-            <td><?php echo __('Full name') ?></td>
+            <td style="width: 180px;"><?php echo __('Full name') ?></td>
             <td><?php echo __('dob') ?></td>
             <td><?php echo __('age') ?></td>
-            <td><?php echo __('Frequent Flyer number') ?></td>
-            <td><?php echo __('Airline program') ?></td>
-            <td><?php echo __('Special meal') ?></td>
-            <td><?php echo __('Special assistance') ?></td>
-            </tr>
+            <td><?php echo __('Frequent Flyer programm') ?></td>
+            <td><?php echo __('Special request') ?></td>
+        </tr>
         <?php foreach($booking->getPassengers() as $passenger): ?>
         <tr class="border">
-            <td class=""><?php echo $passenger['salutation'] ?>
-            </td>
+            <td class=""><?php echo $passenger['salutation'] ?></td>
             <td class=""><?php echo $passenger['first_name'].' '. $passenger['last_name'] ?></td>
             <td class=""><?php echo $passenger['dob'] ?></td>
             <td class=""><?php echo ($passenger['type'] == 'CHD')? format_number_choice(
                         '[0,1] year old|(2,+Inf]%1% years old',
                             array('%1%' => Utils::getAge($passenger['dob'], date('Y-m-d'))),
                             Utils::getAge($passenger['dob'], date('Y-m-d'))): '' ?></td>
-            <td class=""><?php echo $passenger['frequent_flyer_number'] ?></td>
-            <td class=""><?php echo $passenger['airline_code'] ?></td>
-            <td class=""><?php echo $meals[$passenger['meal_preference']] ?></td>
-            <td class=""><?php echo $assistance[$passenger['special_assistance']] ?></td>
+            <td class="">
+                <?php if($passenger['frequent_flyer_number']): ?>
+                <ul>
+                    <li><?php echo __('%1%: '.$passenger['frequent_flyer_number'], array('%1%'=>'Number')) ?></li>
+                    <li><?php echo __('%1%: '.$passenger['airline_code'], array('%1%'=>'Compagnie')) ?></li>
+                </ul>
+                <?php endif; ?>
+            </td>
+            <td class="">
+                <ul>
+                    <?php if($meals[$passenger['meal_preference']]): ?>
+                    <li><?php echo __('%1%: '.$meals[$passenger['meal_preference']], array('%1%'=>'Meal')) ?></li>
+                    <?php endif; ?>
+                    <?php if($assistance[$passenger['special_assistance']]): ?>
+                    <li><?php echo __('%1%: '.$assistance[$passenger['special_assistance']], array('%1%'=>'Assistance')) ?></li>
+                    <?php endif; ?>
+                </ul>
+            </td>
             
          </tr>
          <?php endforeach; ?>

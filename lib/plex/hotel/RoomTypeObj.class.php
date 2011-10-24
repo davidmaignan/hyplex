@@ -69,7 +69,7 @@ class RoomTypeObj {
 
         $tmp['RateDescription'] = (string)$data->{'RateDescription'};
 
-        $tmp['termsConditionId'];
+        $tmp['termsConditionId'] = '';
 
         $tmp2 = array();
         foreach ($data->children() as $key => $value) {

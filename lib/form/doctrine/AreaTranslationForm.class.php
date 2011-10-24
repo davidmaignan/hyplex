@@ -12,5 +12,6 @@ class AreaTranslationForm extends BaseAreaTranslationForm
 {
   public function configure()
   {
+      unset($this['slug']);
   }
 }

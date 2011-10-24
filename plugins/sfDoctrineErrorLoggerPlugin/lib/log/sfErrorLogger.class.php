@@ -76,20 +76,22 @@ class sfErrorLogger {
 
     static public function plexError(sfEvent $event) {
 
-        
-
         $message = $event['infos']['message'];
         $filename = $event['infos']['filename'];
-        $plexResponse = $event['infos']['plexResponse'];
+        $code = $event['infos']['code'];
+        $plexResponse = $event['infos']['response'];
         $params = $event['infos']['parameters'];
 
         $exception = $event->getSubject();
         $context = sfContext::getInstance();
 
+        $filename = PlexParsing::splitFilename($filename);
+
         try {
+            
             Doctrine::getConnectionByTableName('sfErrorLog');
             $log = new plexErrorLog();
-            $log->setType(500);
+            $log->setType($code);
             $log->setClassName(get_class($exception));
             $log->setMessage($message);
             $log->setFile($filename);
@@ -103,8 +105,7 @@ class sfErrorLogger {
             
         }
 
-        //echo 'plexError';
-        //break;
+    
     }
 
     static public function phpError(sfEvent $event){

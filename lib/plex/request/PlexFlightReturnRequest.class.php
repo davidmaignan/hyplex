@@ -114,6 +114,8 @@ class PlexFlightReturnRequest extends PlexRequest implements PlexRequestInterfac
         return $this->xml;
     }
 
+
+    /*
     public function executeRequest() {
 
         $timer = sfTimerManager::getTimer('PlexRequest');
@@ -135,6 +137,6 @@ class PlexFlightReturnRequest extends PlexRequest implements PlexRequestInterfac
 
         return $this->response;
     }
-
+    */
 
 }
