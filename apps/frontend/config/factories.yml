@@ -51,4 +51,7 @@ all:
     param:
       formats:
         iphone: text/html
-    
+
+  user:
+    param:
+      timeout:      3600
