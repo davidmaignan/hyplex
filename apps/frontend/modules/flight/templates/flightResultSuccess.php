@@ -25,7 +25,7 @@
 <?php include_partial('dialog_message'); ?>
 
 <div class="span-26 last summary">
-    <?php include_partial('summary',array('parameters'=>$parameters)); ?>
+    <?php include_partial('summary'.$type, array('parameters'=>$parameters, 'total'=>count($results))); ?>
 </div>
 
 <div class="span-6 shadow bg-white">
@@ -91,7 +91,7 @@
     <hr class="space3" />
     <div id="Results">
         <?php foreach ($results as $result): ?>
-        <?php include_partial('flightReturn', array('result' => $result, 'filename'=>$filename)); ?>
+        <?php include_partial($type, array('result' => $result, 'filename'=>$filename)); ?>
         <?php endforeach; ?>
     </div>
 

@@ -12,5 +12,6 @@ class StateTranslationForm extends BaseStateTranslationForm
 {
   public function configure()
   {
+      unset($this['slug']);
   }
 }

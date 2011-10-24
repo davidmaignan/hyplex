@@ -24,6 +24,7 @@ class CityTable extends Doctrine_Table {
 
     public function addRank($values){
 
+       
         foreach($values as $value){
 
             $q = Doctrine_Query::create()

@@ -296,6 +296,8 @@ class PlexParsing {
 
 
     public static function getBookingData($bookingId){
+
+        
         $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'booking-'.$bookingId.'.plex';
 
         if(file_exists($filename)){
@@ -306,6 +308,34 @@ class PlexParsing {
 
         return unserialize($content);
 
+    }
+
+    /**
+     * Rewrite the filename string / Remove sensitive info to return only the path of the file from the cache array
+     * Used in sfErrorLogger, saved in db filename = /cache/sf_user_folder/...
+     * @param string $filename
+     * @param string $level -choose which level you want the filepath (e.g. cache, sf_user_folder, flight, hotel ....)
+     * @return string
+     */
+    public static function splitFilename($filename, $level = 'cache'){
+
+        $values = explode('/', $filename);
+
+        foreach ($values as $key=>$value) {
+
+            if($value != 'cache'){
+                unset($values[$key]);
+                //break;
+                //echo $value;
+                
+            }else{
+                unset($values[$key]);
+                break;
+            }
+
+        }
+
+        return implode('/', $values);
 
     }
 

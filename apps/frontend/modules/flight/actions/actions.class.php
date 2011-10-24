@@ -86,8 +86,9 @@ class flightActions extends sfActions {
                   break;
           }
 
+        //ob_start();
         //var_dump($this->filename);
-
+        //exit;
           /*
 
         if(!$request->hasParameter('filename')){
@@ -103,7 +104,7 @@ class flightActions extends sfActions {
         $this->page = 1;
 
         //Retrieve the search parameters.
-        $this->parameters = Utils::retreiveParameters($this->filename);
+        $this->parameters = PlexParsing::retreiveParameters($this->filename);
 
         //var_dump($this->parameters);
         //exit;
@@ -149,16 +150,20 @@ class flightActions extends sfActions {
 
         switch ($this->parameters->getType()) {
             case 'flightReturn':
-                $this->setTemplate('flightResult');
+                $this->type = 'flightReturn';
+                //$this->setTemplate('flightResult');
                 break;
 
             case 'flightOneway':
-                $this->setTemplate('flightOneway');
+                $this->type = 'flightOneway';
+                //$this->setTemplate('flightOneway');
                 break;
 
             default:
                 break;
         }
+
+        $this->setTemplate('flightResult');
 
         //$this->setTemplate('test');
         //sfConfig::set('sf_escaping_strategy', false);

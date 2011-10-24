@@ -5,6 +5,7 @@
 ?>
 
 <table class="basket-flight">
+    <?php if($booking->getFlight()): ?>
     <tr>
         <td style="vertical-align: middle;"><img src="/images/mobico/flight.png" /></td>
         <td>
@@ -25,6 +26,8 @@
         </td>
         <td style="text-align: right" class="bold"><?php echo format_currency(rand(1999,12999),  sfConfig::get('app_currency')) ?></td>
     </tr>
+    <?php endif; ?>
+    <?php if($booking->getHotel()): ?>
     <tr>
         <td style="vertical-align: middle;"><img src="/images/mobico/hotel.png" /></td>
         <td>
@@ -49,6 +52,8 @@
         </td>
         <td style="text-align: right" class="bold"><?php echo format_currency(rand(1999,12999),  sfConfig::get('app_currency')) ?></td>
     </tr>
+    <?php endif; ?>
+    <?php if($booking->getCar()): ?>
     <tr>
         <td style="vertical-align: middle;"><img src="/images/mobico/car.png" /></td>
         <td>
@@ -65,6 +70,7 @@
         </td>
         <td style="text-align: right" class="bold"><?php echo format_currency(rand(1999,12999),  sfConfig::get('app_currency')) ?></td>
     </tr>
+    <?php endif; ?>
     <tr>
         <td></td>
         <td></td>

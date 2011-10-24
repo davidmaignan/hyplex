@@ -12,6 +12,6 @@ class CityForm extends BaseCityForm
 {
   public function configure()
   {
-      unset($this['cities_list']);
+      unset($this['cities_list'],  $this['hotels_list']);
   }
 }

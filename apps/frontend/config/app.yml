@@ -5,6 +5,8 @@
 all:
   plex:
     url: http://test.hypertechsolutions.com/ipm2/services/PlexConnect
+    location: http://test.hypertechsolutions.com/ipm/services/PlexConnect
+    uri: http://plexconnect.ipm.hypertechsolutions.com
     transactionId: TRANS101
     systemName: Test
     companyId: STD
@@ -14,6 +16,8 @@ all:
 
   plex2:
     url: http://test.hypertechsolutions.com/ipm3/services/PlexConnect
+    location: http://test.hypertechsolutions.com/ipm/services/PlexConnect
+    uri: http://plexconnect.ipm.hypertechsolutions.com
     transactionId: TRANS101
     systemName: Test
     companyId: PCS
@@ -23,6 +27,8 @@ all:
     
   plex3:
     url: http://test.hypertechsolutions.com/ipm/services/PlexConnect
+    location: http://test.hypertechsolutions.com/ipm/services/PlexConnect
+    uri: http://plexconnect.ipm.hypertechsolutions.com
     transactionId: TRANS101
     systemName: Test
     companyId: STD

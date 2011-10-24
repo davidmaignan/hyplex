@@ -23,8 +23,6 @@ class HotelGenericObj {
     public $isOurPick;
     public $baseImageLink;
     public $propertyType;
-    public $hotelDescription;
-    public $hotelFullDescription;
     public $hotelAddress = array();
     public $hotelFacilities = array();
     public $hotelFullFacilities = array();
@@ -35,9 +33,8 @@ class HotelGenericObj {
     public $maxPrice;
     public $numRooms = array();
     public $arCoordinates = array();
-
-
-
+    public $hotelDescription;
+    public $hotelFullDescription;
     
     public function getId(){
         return $this->id;

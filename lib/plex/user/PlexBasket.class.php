@@ -63,6 +63,29 @@ class PlexBasket {
         
     }
 
+    /**
+     * Function to delete all datas from previous booking
+     */
+    public function reset(){
+
+        $this->arFlights = array();
+        $this->arFlightsArchived = array();
+        $this->arHotels = array();
+        $this->arHotelsArchived = array();
+        $this->culture;
+
+        $this->arBookingPassengers = array();
+        $this->arBookingAddress = array();
+        $this->arBookingHotel = array();          //Rooms with id of the passengers adults / children
+        $this->arBookingFlight = array();         //Flight reference with id of the passengers adults / children
+
+        $this->total = array();
+
+        $this->save();
+
+    }
+
+    /*
     public function setAllItemsToHistoric(){
 
         //Flight
@@ -77,6 +100,8 @@ class PlexBasket {
         }
 
     }
+     * 
+     */
 
     public function addFlight($filename, $uniqueReferenceId){
         $this->arFlights[0] = array('filename'=>$filename,'uniqueReferenceId'=>$uniqueReferenceId);
@@ -157,7 +182,7 @@ class PlexBasket {
         return $this->arHotels[0]['rooms'];
     }
     
-
+    
     public function remove($type){
 
         switch($type){
@@ -356,7 +381,7 @@ class PlexBasket {
             $filename = $this->getHotelFilename();
 
             if(is_null($filename)){
-                return $this->arBookingHotel = null;
+                return $this->arBookingHotel = array();
             }
 
             $hotelParameters = PlexParsing::retreiveParameters($filename);
@@ -443,8 +468,6 @@ class PlexBasket {
 
         }
 
-        
-        
     }
 
 
@@ -462,6 +485,8 @@ class PlexBasket {
 
 
     public function distributePassengerPerFlight(){
+
+        echo 'here';
 
         $filename = $this->getFlightFilename();
         $flightParameters = PlexParsing::retreiveParameters($filename);
@@ -490,12 +515,13 @@ class PlexBasket {
     }
 
     public function getArBookingFlight(){
-
+        
         if(empty($this->arBookingFlight) && !is_null($this->getFlightFilename())){
             $this->distributePassengerPerFlight();
-        }else{
-            return null;
         }
+
+        return $this->arBookingFlight;
+        
 
     }
     /**

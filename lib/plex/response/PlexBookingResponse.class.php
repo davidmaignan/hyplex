@@ -12,9 +12,30 @@
 class PlexBookingResponse extends PlexResponse implements PlexResponseInterface {
     //put your code here
 
-    public function  __construct($filename) {
-        
+    public function  __construct($response) {
 
+        $this->response = $response;
+
+        $xml = simplexml_load_string($response);
+        //var_dump($xml);
+
+        $this->responseData = $xml;
+
+        $this->responseCode = (int)$xml->ResponseCode;
+
+        /*
+        $filename = tempnam(sfConfig::get('sf_user_folder'), 'booking-');
+        $fullFilename = $filename.'.raw';
+        file_put_contents($fullFilename, $this->response);
+        chmod($fullFilename, 0777);
+
+        unlink($filename);
+        */
+        
+        //$xml = simplexml_load_string($response);
+
+
+        
 
         $this->response = file_get_contents($filename);
         //$tmp = explode('/', $filename);
@@ -22,6 +43,9 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
 
     public function checkResponseCode() {
 
+
+
+        /*
         ini_set('error_reporting', E_ERROR);
 
         $response = $this->response;
@@ -63,11 +87,15 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
 
         $times = sfTimerManager::getTimers();
         $t = $times['PlexRequest'];
+         * 
+         */
 
 
     }
 
-
+    /**
+     * Save the booking response in a file
+     */
     public function parseResponse(){
         
     }
@@ -76,22 +104,24 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
 
         $responseData = $this->responseData;
 
-        //Parse the response if Success
-        $start = strpos($responseData, '<BookingId>');
-        $end = strrpos($responseData, '</BookingId>');
+        $bookingId = (string)$responseData->BookingId;
 
+        //var_dump($bookingId);
+        //exit;
+        
+        if($bookingId == ''){
 
-        //If can't find tags AirInfos. xml empty or badly formatted
-        if($start === false || $end === false)
-        {
-            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
-            sfContext::getInstance()->getEventDispatcher()->notify($event);
-            sfContext::getInstance()->getController()->forward('error', 'plexError');
+            echo 'PlexBookingRespons analyseResponse to complete line 117';
             exit;
+
+            //$event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            //sfContext::getInstance()->getEventDispatcher()->notify($event);
+            //sfContext::getInstance()->getController()->forward('error', 'plexError');
+            //exit;
         }
 
         
-        $bookingId = trim(substr($responseData, $start+11, $end-($start+11)));
+        
 
         //var_dump($bookingId);
 
@@ -108,6 +138,7 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
         $arBooking['flight'] = $plexBasket->getFlight();
         $arBooking['hotel'] = $plexBasket->getHotel();
         $arBooking['hotelFilename'] = $plexBasket->getHotelFilename();
+        $arBooking['plexResponse'] = $this->response;
 
         $finalFilename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'booking-'.$bookingId.'.plex';
 
@@ -116,13 +147,12 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
 
         //Delete the raw response - to uncomment for production
         if(file_put_contents($finalFilename, serialize($plexBooking)) !== false){
-            unlink(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'booking-'.$bookingId.'.raw');
+            //unlink(sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'booking-'.$bookingId.'.raw');
 
             //$booking = new Booking();
             //$booking->saveBooking($plexBooking);
 
         }
-        
 
         return $bookingId;
 

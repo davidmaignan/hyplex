@@ -9,7 +9,7 @@
  * Request to get terms and conditions for a specific rate
  * @author david
  */
-class PlexHotelRateDetails extends PlexRequest implements PlexRequestInterface{
+class PlexHotelRateDetailsRequest extends PlexRequest implements PlexRequestInterface{
     //put your code here
 
 
@@ -23,8 +23,11 @@ class PlexHotelRateDetails extends PlexRequest implements PlexRequestInterface{
     protected $uniqueReferenceId;
     
 
-    public function  __construct(HotelSimpleObj $hotel, $filename, $termsConditionId, sfUser $user) {
+    public function  __construct(HotelSimpleObj $hotel, $filename, $request, $termsConditionId, sfUser $user) {
 
+
+
+        $this->request = $request;
         
         $this->sTId = $user->getAttribute('sTId');
         $this->filename = $filename;
@@ -66,7 +69,9 @@ class PlexHotelRateDetails extends PlexRequest implements PlexRequestInterface{
     public function getXML(){
         return $this->xml;
     }
+
     
+    /*
     public function executeRequest() {
 
         //$timer = sfTimerManager::getTimer('PlexRequest');
@@ -99,8 +104,8 @@ class PlexHotelRateDetails extends PlexRequest implements PlexRequestInterface{
 
         //Save the response in a tmp file
 
-
-
     }
+     * 
+     */
     
 }

@@ -1,0 +1,31 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           City
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          city
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        max_per_page: 50
+        display: [id, code, name, airport, country, state, cache, latitude, longitude]
+        batch_actions:
+          _delete: ~
+          cacheUncache:     ~
+        object_actions:
+          cache: { name: cache / uncache, action: cacheUncache, icon: %SF_ADMIN_WEB_DIR%/images/database_save.png}
+          _edit: ~
+          _delete: ~
+      filter:
+        display: [id, code, name, cache, metropolitan, archived, country_id]
+      form:    ~
+      edit:    ~
+      new:     ~

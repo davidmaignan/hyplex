@@ -1,0 +1,28 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           booking
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          booking
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:  ~
+      list:
+        object_actions:
+          view:         { credentials: [[sales, marketing, admin]] }
+          _edit:        { credentials: [[admin, sales]] }
+          _delete:      { credentials: [admin] }
+        display:        [id, user_id, booking_id, object, created_at]
+        sort:           [id, asc]
+        max_per_page:   10
+      filter:  ~
+      form:    ~
+      edit:    ~
+      new:     ~

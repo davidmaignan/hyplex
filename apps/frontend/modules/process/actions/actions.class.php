@@ -10,19 +10,15 @@
  */
 class processActions extends sfActions
 {
+
  /**
   * Executes index action
   * @param sfRequest $request A request object
   */
-
-  
-    
   public function executeIndex(sfWebRequest $request)
   {
-      //$arRank = array('LAX','NYC');
-      //var_dump($arRank);
-      //$q = Doctrine::getTable('city')->addRank($arRank);
-      //exit;
+
+      //$this->getUser()->setAttribute('sTId', null);
 
       //Debuggind mode
       $debug = false;
@@ -34,8 +30,6 @@ class processActions extends sfActions
           $parameters = $request->getParameter('search_hotel');
           $type = 'hotelSimple';
       }
-
-      
 
       //Temporary redirection to notImplemented page
       switch ($type) {
@@ -56,83 +50,40 @@ class processActions extends sfActions
               break;
       }
 
-      //var_dump($parameters);
-      //var_dump($type);
-      //exit;
-
       $paramFactory = PlexParametersFactory::factory($type, $parameters, $this->getUser()->getCulture());
 
-      //echo "<pre>";
-      //print_r($paramFactory);
-      //exit;
-
-      $searchParametersArray = $paramFactory->getParametersArray($this->getUser()->getCulture());
-      //var_dump($searchParametersArray);
-        
+     
+      //$searchParametersArray = $paramFactory->getParametersArray($this->getUser()->getCulture());
       //If error in parameter class
 
+      if($paramFactory->problemWithCode === true){
 
-      
-
-      if($paramFactory->problemWithCode === true)
-      {
           $this->forward('searchFlight', 'index');
+          
+      }else{
+
+        //Improve ranking of the city
+        $q = Doctrine::getTable('city')->addRank($paramFactory->getCodes());
+
       }
 
-     
       if($debug === false){
       
           //Create PlexRequest Object - Generate a sessionTokenId or reuse cached one
           $plexRequest = PlexRequestFactory::factory($type, $request, $paramFactory);
 
-          //If 500 error from plex
-          $return = $plexRequest->return;
-          //var_dump($return);
-          //break;
-
-          //If error connecting plex application
-          if($return !== true)
-          {
-              $this->redirect('error/plexError');
-          }
-
           //Build xml with search parameters
           $plexRequest->buildXML();
-
-          //echo htmlentities($plexRequest->getXML());
-          //echo "<hr />";
-          //break;
-
           $response = $plexRequest->executeRequest();
 
       }else{
           
-          $filename = sfConfig::get('sf_data_dir').'/rawplexresponse/flightReturn.raw';
+          $filename = sfConfig::get('sf_data_dir').'/rawplexresponse/flightOneWay.xml';
           $response = file_get_contents($filename);
       }
 
-
-      //echo htmlentities($response);
-      //break;
-
-      //echo $type;
-      //break;
-
       //Create PlexResponse Object
       $finalResponse = PlexResponseFactory::factory($type, $response, $request, $paramFactory, false);
-
-      //var_dump($finalResponse);
-      //break;
-
-      //If error - redirect to appropriate page or forward to new action
-      //$finalResponse = new PlexFlightOnewayResponse($type, $response, $request, $paramFactory, $debug);
-
-      $finalResponse->checkResponseCode();
-      $code = $finalResponse->responseCode;
-
-
-      //echo $code;
-      //break;
 
       //Check what response code and take appropriate action
       /*
@@ -148,9 +99,8 @@ class processActions extends sfActions
         10  Data not found
       */      
 
-      
 
-      switch ($code) {
+      switch ($finalResponse->checkResponseCode()) {
           case '0':
               $finalResponse->parseResponse();
               break;
@@ -217,12 +167,12 @@ class processActions extends sfActions
              $this->redirect('error/plexError');
              break;
       }
-
+      
       //Let's continue - object creation.
       $finalResponse->analyseResponse();
 
 
-      
+
 
       //Check airlines and add new ones.
       $airlines = Utils::createAirlineArray();
@@ -235,7 +185,6 @@ class processActions extends sfActions
           Utils::createAirlineArray();
       }
 
-      
 
       //Check hotelChain and add new ones
       $hotelChains = Utils::createHotelchainArray();
@@ -250,17 +199,13 @@ class processActions extends sfActions
 
       $newHotelChain = array_diff($listChains, array_keys($hotelChains));
 
-      
 
       if(!empty($newHotelChain)){
           unset($GLOBALS['hotelchain']);
           $q = Doctrine::getTable('hotelchain')->savelist($newHotelChain);
           unlink($fileHotelchain = sfConfig::get('sf_data_dir') . '/hotel/hotelChains.yml');
           Utils::createHotelchainArray();
-      }
-
-      //Array to get searched city (codes) to increase their rank / popularity
-      $arRank = array();
+      }  
 
       //Redirection 
       switch ($type) {
@@ -270,10 +215,6 @@ class processActions extends sfActions
                   'destination'=>$paramFactory->getDestination(),
                   'depart_date'=>$paramFactory->depart_date
               ));
-
-              array_push($arRank, $paramFactory->getOrigin());
-              array_push($arRank, $paramFactory->getDestination());
-
               break;
 
           case 'flightReturn':
@@ -283,10 +224,6 @@ class processActions extends sfActions
                   'depart_date'=>$paramFactory->depart_date,
                   'return_date'=>$paramFactory->return_date
               ));
-
-              array_push($arRank, $paramFactory->getOrigin());
-              array_push($arRank, $paramFactory->getDestination());
-
               break;
 
           case 'hotelSimple':
@@ -295,18 +232,16 @@ class processActions extends sfActions
                   'checkin_date'=>$paramFactory->getCheckinDate(),
                   'checkout_date'=>$paramFactory->getCheckoutDate()
               ));
-
-              array_push($arRank, $paramFactory->getWhereBox());
               break;
 
           default:
+              
               break;
       }
-
       
       
       $this->getUser()->setFlash('filename', $finalResponse->filename,true);
-      $q = Doctrine::getTable('city')->addRank($arRank);
+      //$q = Doctrine::getTable('city')->addRank($paramFactory);
 
       $this->redirect($url);
 

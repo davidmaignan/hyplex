@@ -1,0 +1,1145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PLEXC_AirAvailRS xmlns="http://plexconnect.ipm.hypertechsolutions.com">
+    <ResponseCode>0</ResponseCode>
+    <ResponseMessage>Success</ResponseMessage>
+    <TransactionId>TRANS101</TransactionId>
+    <AirInfos>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>g9nhh9lpmj57qh7u8pahhs3p6r</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1471</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 11:40</Departs>
+                    <Arrives>2011-11-01 19:12</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>671</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 07:30</Departs>
+                    <Arrives>2011-11-08 10:44</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>374</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>ontm9kli2c3qsd2cgbk01915ci</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1471</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 11:40</Departs>
+                    <Arrives>2011-11-01 19:12</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>679</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 09:52</Departs>
+                    <Arrives>2011-11-08 13:05</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>373</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>mnrtqp863e7khn8hgnlp9p1ql9</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1471</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 11:40</Departs>
+                    <Arrives>2011-11-01 19:12</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>399</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-08 07:00</Departs>
+                    <Arrives>2011-11-08 10:25</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>385</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>nit13l6gp62df2an4tdjkpqgco</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>959</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 13:30</Departs>
+                    <Arrives>2011-11-01 21:02</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>407</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-08 09:10</Departs>
+                    <Arrives>2011-11-08 12:35</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>385</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>h2gvpq964pc6u67scl6f99k6mq</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>959</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 13:30</Departs>
+                    <Arrives>2011-11-01 21:02</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>399</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-08 07:00</Departs>
+                    <Arrives>2011-11-08 10:25</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>385</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>9vdlb28s5afrbeuvm65lgkf2fq</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>959</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 13:30</Departs>
+                    <Arrives>2011-11-01 21:02</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>679</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 09:52</Departs>
+                    <Arrives>2011-11-08 13:05</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>373</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>oao4820jvn320e2id89o2ah0d9</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>959</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 13:30</Departs>
+                    <Arrives>2011-11-01 21:02</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>677</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 20:45</Departs>
+                    <Arrives>2011-11-08 23:59</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>374</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>308.60</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>k1j1jmaa9jln49bhb4o0gdhkvo</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>959</FlightNumber>
+                    <EquipmentCode>321</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 13:30</Departs>
+                    <Arrives>2011-11-01 21:02</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>CLT</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>272</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>US</AirlineCode>
+                    <Airline>US Airways</Airline>
+                    <OperatingAirlineCode>US</OperatingAirlineCode>
+                    <OperatingAirline>US Airways</OperatingAirline>
+                    <FlightNumber>1458</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>U</ClassOfService>
+                    <Departs>2011-11-01 22:10</Departs>
+                    <Arrives>2011-11-01 23:59</Arrives>
+                    <DepartureFrom>CLT</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>109</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>3</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>671</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 07:30</Departs>
+                    <Arrives>2011-11-08 10:44</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>374</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>j9jrh54738fdf1337ubrvfc2le</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>121</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-01 08:30</Departs>
+                    <Arrives>2011-11-01 17:15</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>345</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>120</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-08 09:00</Departs>
+                    <Arrives>2011-11-08 12:21</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>381</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>la37hg4hll96dm0k1m2pm3oqrj</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>121</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-01 08:30</Departs>
+                    <Arrives>2011-11-01 17:15</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>345</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>27</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-08 07:00</Departs>
+                    <Arrives>2011-11-08 10:31</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>391</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>45ht1n0ltuq8ribjlj6862h019</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>670</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-01 07:15</Departs>
+                    <Arrives>2011-11-01 15:28</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>313</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>671</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 07:30</Departs>
+                    <Arrives>2011-11-08 10:44</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>374</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>ugg70i86d96ttu8oftb66hu12c</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>670</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-01 07:15</Departs>
+                    <Arrives>2011-11-01 15:28</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>313</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>679</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 09:52</Departs>
+                    <Arrives>2011-11-08 13:05</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>373</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>tctlem8iogmnp22ekhgmfgrdo9</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>30</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-01 06:30</Departs>
+                    <Arrives>2011-11-01 14:59</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>329</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>27</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-08 07:00</Departs>
+                    <Arrives>2011-11-08 10:31</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>391</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>fba0gg1f7b36of07sdhdt4ktkb</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>30</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-01 06:30</Departs>
+                    <Arrives>2011-11-01 14:59</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>329</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>DL</AirlineCode>
+                    <Airline>Delta Airlines</Airline>
+                    <OperatingAirlineCode>DL</OperatingAirlineCode>
+                    <OperatingAirline>Delta Airlines</OperatingAirline>
+                    <FlightNumber>120</FlightNumber>
+                    <EquipmentCode>752</EquipmentCode>
+                    <ClassOfService>T</ClassOfService>
+                    <Departs>2011-11-08 09:00</Departs>
+                    <Arrives>2011-11-08 12:21</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>381</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>allc0ohkal0t4hrb23r5fa2bo9</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>412</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-01 13:40</Departs>
+                    <Arrives>2011-11-01 22:00</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>320</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>399</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-08 07:00</Departs>
+                    <Arrives>2011-11-08 10:25</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>385</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>cecovqvv1leujp6ppbboqmq11e</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>412</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-01 13:40</Departs>
+                    <Arrives>2011-11-01 22:00</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>320</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>407</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-08 09:10</Departs>
+                    <Arrives>2011-11-08 12:35</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>385</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>q700sglnl7c7l7ijud1crn9ha</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>412</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-01 13:40</Departs>
+                    <Arrives>2011-11-01 22:00</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>320</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>VX</AirlineCode>
+                    <Airline></Airline>
+                    <OperatingAirlineCode>VX</OperatingAirlineCode>
+                    <OperatingAirline></OperatingAirline>
+                    <FlightNumber>409</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>S</ClassOfService>
+                    <Departs>2011-11-08 11:30</Departs>
+                    <Arrives>2011-11-08 14:55</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>385</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>6b0f45d594pd97s730g7hmhm0t</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>678</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-01 13:55</Departs>
+                    <Arrives>2011-11-01 22:08</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>313</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>671</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 07:30</Departs>
+                    <Arrives>2011-11-08 10:44</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>374</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+        <Air>
+            <FareDescription>Published</FareDescription>
+            <TotalPrice>314.40</TotalPrice>
+            <CommissionAmount>0.00</CommissionAmount>
+            <CommissionPercentage>0</CommissionPercentage>
+            <UniqueReferenceId>6dsrte6lfmbr2cud51l67bv43r</UniqueReferenceId>
+            <SegmentInfos>
+                <Segment>
+                    <SegmentNumber>1</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>674</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-01 15:05</Departs>
+                    <Arrives>2011-11-01 23:19</Arrives>
+                    <DepartureFrom>LAX</DepartureFrom>
+                    <ArrivalTo>JFK</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>314</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+                <Segment>
+                    <SegmentNumber>2</SegmentNumber>
+                    <AirlineCode>B6</AirlineCode>
+                    <Airline>Jet Blue</Airline>
+                    <OperatingAirlineCode>B6</OperatingAirlineCode>
+                    <OperatingAirline>Jet Blue</OperatingAirline>
+                    <FlightNumber>671</FlightNumber>
+                    <EquipmentCode>320</EquipmentCode>
+                    <ClassOfService>O</ClassOfService>
+                    <Departs>2011-11-08 07:30</Departs>
+                    <Arrives>2011-11-08 10:44</Arrives>
+                    <DepartureFrom>JFK</DepartureFrom>
+                    <ArrivalTo>LAX</ArrivalTo>
+                    <NumberStops>0</NumberStops>
+                    <FlightDuration>374</FlightDuration>
+                    <Cabin></Cabin>
+                    <DepartureTerminal></DepartureTerminal>
+                    <ArrivalTerminal></ArrivalTerminal>
+                    <TransitAirportCode1></TransitAirportCode1>
+                    <TransitAirportCode2></TransitAirportCode2>
+                </Segment>
+            </SegmentInfos>
+        </Air>
+    </AirInfos>
+</PLEXC_AirAvailRS>

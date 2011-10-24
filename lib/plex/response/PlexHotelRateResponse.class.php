@@ -16,21 +16,46 @@ class PlexHotelRateResponse extends PlexResponse implements PlexResponseInterfac
     public $rateDetails = array();
 
     public function  __construct($response) {
+        
         $this->response = $response;
+
+         //need to save the response in a file
+
     }
 
 
     public function parseResponse() {
 
-        $responseData = $this->response;
+        //$responseData = $this->response;
+
+        $xml = simplexml_load_string($this->response);
+
+        //var_dump($xml);
+        //exit;
 
         $timer = sfTimerManager::getTimer('ParseResponse');
 
-        //Parse the response if Success
-        $start = strpos($responseData, '<TermsAndConditionsInfo>');
-        $end = strrpos($responseData, '</TermsAndConditionsInfo>');
+        if((array)$xml->TermsAndConditionsInfo){
 
-        //Terms and conditions tags 
+            foreach($xml->TermsAndConditionsInfo->children() as $key=>$value){
+
+                switch (true) {
+                    case (preg_match('#terms#i', $key)>0):
+                        array_push($this->termsConditions, (string)$value);
+                        break;
+
+                    case (preg_match('#itinerary#i', $key)>0):
+                        array_push($this->rateDetails, (string)$value);
+                        break;
+
+                }
+                 
+            }
+
+        }
+
+        /*
+        //Terms and conditions tags TermsAndConditionsInfo
         if(($start > 0 && $end > 0) || ($start !== false || $end !== false))
         {
             $body = trim(substr($responseData, $start, $end - $start + strlen('</TermsAndConditionsInfo>')));
@@ -61,10 +86,21 @@ class PlexHotelRateResponse extends PlexResponse implements PlexResponseInterfac
         }else{
             unset($this->rateDetails);
         }
+        */
+
+        if(empty($this->termsConditions)){
+            unset($this->termsConditions);
+        }
+
+        if(empty($this->rateDetails)){
+            unset($this->rateDetails);
+        }
+
+
 
     }
     
-
+    /*
     public function checkResponseCode() {
 
         ini_set('error_reporting', E_ERROR);
@@ -105,6 +141,8 @@ class PlexHotelRateResponse extends PlexResponse implements PlexResponseInterfac
         $t = $times['PlexRequest'];
 
     }
+     * 
+     */
 
     public function analyseResponse(){
         

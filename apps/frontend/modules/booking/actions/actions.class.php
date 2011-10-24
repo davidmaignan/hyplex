@@ -99,25 +99,28 @@ class bookingActions extends sfActions
 
     public function executeProcess(sfWebRequest $request){
 
+        $debug = false;
 
         $parameters = $request->getPostParameters();
 
         $plexRequest = new PlexBookingRequest('booking', $request, $parameters['address']);
         $plexRequest->buildXML();
 
-        //echo $plexRequest->getXML();
+        if(!$debug){
+            $response = $plexRequest->executeRequest();
+        }else{
+            $response = file_get_contents(sfConfig::get('sf_data_dir').DIRECTORY_SEPARATOR.'rawplexresponse'.
+                    DIRECTORY_SEPARATOR.'booking.xml');
+        }
 
-        //exit;
-        
-        $filename = $plexRequest->executeRequest();
-        
-        //$filename = sfConfig::get('sf_user_folder').'/booking-rFW7Zi.raw';
-        
-
-        $finalResponse = new PlexBookingResponse($filename);
+        $finalResponse = new PlexBookingResponse($response);
 
         $finalResponse->checkResponseCode();
         $code = $finalResponse->responseCode;
+
+
+
+        /* To complete with the different code possible */
 
         switch ($code) {
           case '0':
@@ -147,7 +150,9 @@ class bookingActions extends sfActions
 
       //Let's continue - object creation.
       $bookingId = $finalResponse->analyseResponse();
+
       $this->getUser()->addBookingId($bookingId);
+      
       $this->redirect('booking/confirmed');
 
 
@@ -155,37 +160,37 @@ class bookingActions extends sfActions
 
     public function executeConfirmed(sfWebRequest $request){
         
-        $this->bookingId = $this->getUser()->getLastBookingId();        
+        $this->bookingId = $this->getUser()->getLastBookingId();
+
         $this->booking = PlexParsing::getBookingData($this->bookingId);
 
-        //var_dump($this->booking);
-        //exit;
-
         $address = $this->booking->getAddress();
-        //var_dump($address);
-
-        //Create user
-        $newUser = new sfGuardUser();
-        $newUser->setEmailAddress($address['email']);
-        $newUser->setPassword($address['password']);
 
         try{
-            $newUser->save();
-            $userId = $newUser->getId();
-
+            $user = new sfGuardUser();
+            $user->setEmailAddress($address['email']);
+            $user->setUsername($address['email']);
+            $user->setPassword($address['password']);
+            $user->save();
         }catch (Doctrine_Exception $e){
             $user = Doctrine::getTable('sfGuardUser')->findOneBy('email_address', $address['email']);
-            $userId = $user->getId();
+            //echo $user;
+            
         }
 
-        //var_dump($userId);
+
+        $userId = $user->getId();
+
 
         //exit;
 
-        //$booking = new Booking();
-        //$booking->saveBooking($this->booking, $userId);
+        $booking = new Booking();
+        $booking->saveBooking($this->booking, $userId);
 
         //exit;
+        $plexBasket = PlexBasket::getInstance();
+        $this->getLogger()->alert('PlexBasket reset called in executeConfirmed in booking module');
+        $plexBasket->reset();
 
 
     }
