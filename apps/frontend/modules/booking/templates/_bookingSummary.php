@@ -7,7 +7,7 @@
 <table class="basket-flight">
     <?php if($booking->getFlight()): ?>
     <tr>
-        <td style="vertical-align: middle;"><img src="/images/mobico/flight.png" /></td>
+        <td><img src="/images/mobico/flight.png" /></td>
         <td>
             <?php echo $booking->getFlight()->getOriginOrDestination('origin',$sf_user->getCulture()) ?><br />
             <?php echo $booking->getFlight()->getOriginOrDestination('destination',$sf_user->getCulture()) ?>
@@ -29,8 +29,8 @@
     <?php endif; ?>
     <?php if($booking->getHotel()): ?>
     <tr>
-        <td style="vertical-align: middle;"><img src="/images/mobico/hotel.png" /></td>
-        <td>
+        <td><img src="/images/mobico/hotel.png" /></td>
+        <td style="width: 350px;">
             <?php echo $booking->getHotel()->getName() ?>,
             <?php echo $booking->getHotel()->getFullAddress(false) ?><br />
             <?php echo format_number_choice(

@@ -75,8 +75,8 @@
         </div>
 
         <div style="clear:both"></div>
-        <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="search" />
+        <div class="last right">
+            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
         </div>
     </fieldset>
 

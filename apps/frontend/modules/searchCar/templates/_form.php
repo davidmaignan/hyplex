@@ -104,7 +104,7 @@ if ($form->hasGlobalErrors()) {
         <hr class="space2"/>
 
         <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="search" />
+            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
         </div>
         <?php echo $form['type']; ?>
         <?php echo $form['_csrf_token']; ?>

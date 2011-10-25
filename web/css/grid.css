@@ -572,35 +572,25 @@ td.center, th.center{
     height: 20px;
     vertical-align: text-bottom;
     letter-spacing: .02em;
-    border-bottom:1px solid #a3b9cb;
-    border: 1px solid #1c4879;
-
-}
-
-.box-11{
-    border-top:1px solid #a3b9cb;
 }
 
 
 .box-2{
-    padding:6px;
+    padding: 10px;
+    font-size: 90%;
     overflow: hidden;
     background-color: #d9e5ee;
 }
 
 #filterForm{
     font-size: 90%;
+    box-shadow: 0px 0px 2px #777777;
+
 }
 
 #filterForm label{
     font-size: 90%;
     font-weight: normal;
-}
-
-
-#filterForm .box-2{
-    padding: 10px;
-    font-size: 90%;
 }
 
 #slider_takeoff_departflight, #slider_takeoff_returnflight, #slider_tripduration, #slider_price{
@@ -666,7 +656,7 @@ a.only{
 }
 
 .hotel-list .hotel-name a:hover{
-    color: #f26522;
+    color: #ed145b;
 }
 
 
@@ -845,7 +835,6 @@ table.rates .price-total{
     font-size: 80%;
     margin-top: 9px;
     text-align: center;
-
 }
 
 
@@ -857,8 +846,6 @@ table.rates tbody td.room-rate-name{
     color: #333333;
     font-size: 90%;
 }
-
-
 
 table.rates .more-room-type{
     background: url("/images/icons/bullet_add.png") no-repeat scroll left top transparent;
@@ -940,8 +927,8 @@ span.term-condition-title{
 #hotel-total-top{
     float: right;
     padding:10px 7px;
-    border: 1px solid #dedecf;
-    background-color: #edede5;
+    border: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
 }
 
 

@@ -138,9 +138,6 @@ class SearchFlightForm extends sfForm {
             'number_infants' => 'Infants (0-2)',
         ));
 
-        $this->validatorSchema->setOption('allow_extra_fields', true);
-
-
 
         if (!empty($_POST)) {
             //echo $_POST['search_flight']['oneway'];

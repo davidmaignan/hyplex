@@ -6,7 +6,7 @@
 <?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
 
 <?php use_javascript('search/searchHotel'); ?>
-<?php //use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
+
 
 <?php use_javascript('debugger/ADS-final-verbose.js'); ?>
 <?php use_javascript('debugger/myLogger.js'); ?>
@@ -35,8 +35,6 @@
 
 <div class="span-26">
 
-
-
     <div class="span-15">
 
         <?php if($sf_user->hasFlash('children_age')): ?>
@@ -44,7 +42,6 @@
                 <?php echo __('Please provide children ages to get the best available price') ?>
             </div>
         <?php endif; ?>
-
 
         <?php if ($sf_request->hasParameter('wherebox')): ?>
             <h2><?php echo __('More information required for Wherebox'); ?></h2>

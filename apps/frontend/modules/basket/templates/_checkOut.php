@@ -54,4 +54,8 @@
         </tr>
 
     </table>
+
+    <a href="<?php echo url_for('basket/removeDataBooking') ?>">Remove data booking</a>
+
+
 </div>

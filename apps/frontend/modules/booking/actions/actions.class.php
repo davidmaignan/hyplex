@@ -173,16 +173,11 @@ class bookingActions extends sfActions
             $user->setPassword($address['password']);
             $user->save();
         }catch (Doctrine_Exception $e){
-            $user = Doctrine::getTable('sfGuardUser')->findOneBy('email_address', $address['email']);
-            //echo $user;
-            
+            $user = Doctrine::getTable('sfGuardUser')->findOneBy('email_address', $address['email']);            
         }
 
 
         $userId = $user->getId();
-
-
-        //exit;
 
         $booking = new Booking();
         $booking->saveBooking($this->booking, $userId);

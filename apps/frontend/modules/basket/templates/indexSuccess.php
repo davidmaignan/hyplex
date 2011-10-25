@@ -14,8 +14,8 @@
 
 <?php include_partial('include/dialog_message'); ?>
 
-<h1 class="title">Your basket</h1>
-
+<h1 class="title append-bottom">Your basket</h1>
+<hr class="space2" />
 <?php include_component('basket', 'checkOut') ?>
 
 <div class="span-18 last">
@@ -105,5 +105,5 @@ $('document').ready(function(){
 
 </script>
 <?php
-echo "<pre>";
-print_r($plexBasket);
+//echo "<pre>";
+//print_r($plexBasket);

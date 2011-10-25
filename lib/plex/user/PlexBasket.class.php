@@ -486,8 +486,6 @@ class PlexBasket {
 
     public function distributePassengerPerFlight(){
 
-        echo 'here';
-
         $filename = $this->getFlightFilename();
         $flightParameters = PlexParsing::retreiveParameters($filename);
 
