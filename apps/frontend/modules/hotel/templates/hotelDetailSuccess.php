@@ -21,10 +21,18 @@
             <ul>
                 <li id="hotel-price" class="hotel-price"><?php echo __('select a room'); ?></li>
                 <li class="hotel-price-total">
-                    Total for <?php echo $parameters->getNumberRooms(); ?> rooms, <?php echo $parameters->getNumberNights();?> nights
+                    Total for
+                    <?php echo format_number_choice(
+                    '[0]|[1]1 room | |(1,+Inf]%1% rooms | ', array(
+                        '%1%' => $parameters->getNumberRooms()), $parameters->getNumberRooms())
+                    ?>
+                    <?php echo format_number_choice(
+                    '[0]|[1]1 night|(1,+Inf]%1% nights', array(
+                        '%1%' => $parameters->getNumberNights()), $parameters->getNumberNights()) ?>
+
                 </li>
                 
-                <li><input type="submit" value="Book now" class="search"/></li>
+                <li><input type="submit" value="Book now" class="search right"/></li>
 
             </ul>
             

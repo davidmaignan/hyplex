@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:
-        display: [type, class_name, message, plex_response, _file]
+        display: [id, created_at, type, class_name, message, plex_response, _file]
       filter:  ~
       form:    ~
       edit:    ~

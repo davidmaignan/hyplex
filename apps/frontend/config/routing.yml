@@ -100,6 +100,12 @@ multidestination:
   param: { module: multidestination, action: index }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
+search_package:
+  url: /:sf_culture/search/package/
+  param: { module: searchPackage, action: index }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
 package:
   url: /:sf_culture/package/
   param: { module: package, action: index }
@@ -185,6 +191,11 @@ search_car:
   param: { module: searchCar, action: index }
   requirements:
     sf_culture: (?:en_US|fr_FR|zh_CN)
+
+search_package_form:
+  url: /:sf_culture/search/package/validation/*
+  param: { module: searchPackage, action: create }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 search_car_form:
   url: /:sf_culture/search/car/validation/*

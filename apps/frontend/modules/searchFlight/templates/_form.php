@@ -153,7 +153,7 @@ if ($form->hasGlobalErrors()) {
 
                 <tr>
                     <td colspan="4">
-                        <input type="submit" value="<?php echo __('search'); ?>" class="search" />
+                        <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
                     </td>
                 </tr>
                 <?php echo $form['type']; ?>

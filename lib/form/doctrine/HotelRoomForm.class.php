@@ -23,9 +23,9 @@ class HotelRoomForm extends sfForm {
 
         $this->setWidgets(array(
             'number_adults'=> new sfWidgetFormChoice(array(
-                'choices'=> self::$arAdults), array('class'=>'medium')),
+                'choices'=> self::$arAdults), array('class'=>'medium ')),
             'number_children'=> new sfWidgetFormChoice(array(
-                'choices'=>range(0,sfConfig::get('app_hotel_numberChildren'))), array('class'=>'numbChildDropMenu medium'))
+                'choices'=>range(0,sfConfig::get('app_hotel_numberChildren'))), array('class'=>'medium'))
         ));
 
 

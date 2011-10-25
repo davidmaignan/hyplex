@@ -1,19 +1,13 @@
-
-
-<?php use_helper('Date','Number','I18n','Text'); ?>
 <h2 class="title"><?php echo __('Previous searches'); ?></h2>
 <div>
     <table class="prev-searches">
         <?php $i=0; ?>
         <?php while($i<= 5 && $i<count($prevSearches)): ?>
             <?php $parameters = ($prevSearches[$i]['parameters']); ?>
-<?php
-//var_dump($parameters->arOrigin);
-//exit;
-?>
             <tr class="<?php echo (fmod($i, 2) == 0) ? 'bg-1' : 'bg-2' ?>">
-                <td style="font-weight: bold;">
-                    <?php echo ucwords($parameters->getTypeRenamed()); ?>
+                <td>
+                    <?php echo html_entity_decode($parameters->getIcon()); ?>
+                    <?php //echo ucwords($parameters->getTypeRenamed()); ?>
                 </td>
                 <td>
                     <ul class="prevSearch-list-index">
@@ -34,7 +28,7 @@
                     </ul>
 
                 </td>
-                <td style="width: 20px; text-align: center;">
+                <td style="text-align: center;">
                     <?php $route = ($prevSearches[$i]['type'] == 'flightReturn')? 'flight_modified_search':'hotel_modified_search'?>
                     <a href="<?php echo url_for($route,array('filename'=>$prevSearches[$i]['file'])) ?>"
                         class="">
@@ -42,25 +36,19 @@
                     </a>
 
                     <?php $route = ($prevSearches[$i]['type'] == 'flightReturn')? 'search_flight_again':'search_hotel_again'?>
+                    <br /><br />
                     <a href="<?php echo url_for($route,array('filename'=>$prevSearches[$i]['file'])) ?>"
-                       class="select">
+                       class="button action blue" style="font-size: 70%;">
                             <?php echo ucfirst(__('search')) ?>
                     </a>
                     
 
                 </td>
             </tr>
-            
-           
         <?php $i++;?>
         <?php endwhile; ?>
-       
     </table>
 </div>
 
-
-<hr class="space3" />
-
-<?php
 
 

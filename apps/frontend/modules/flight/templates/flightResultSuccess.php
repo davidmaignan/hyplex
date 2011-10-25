@@ -30,7 +30,7 @@
 
 <div class="span-6 shadow bg-white">
     <?php echo html_entity_decode($filterFormFinal); ?>
-
+    <hr class="space3"/>
     <div class="span-6 last">
 
         <div class="span-6 last bg-white append-bottom">
@@ -45,6 +45,7 @@
             </div>
         </div>
 
+        
 
         <div class="span-6 no-shadow bg-white append-bottom">
             <div class="padded center">

@@ -18,6 +18,7 @@
 
 <style>
 
+
 .total{
     font-size: 140%;
     width: 220px;

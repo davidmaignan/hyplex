@@ -27,7 +27,7 @@
 
         <tfoot>
             <tr>
-                <td colspan="<?php echo $colspan ?>"><input type="submit" value="Book Now" /></td>
+                <td colspan="<?php echo $colspan ?>"><input type="submit" value="Book Now" class="right"/></td>
             </tr>
         </tfoot>
     </table>

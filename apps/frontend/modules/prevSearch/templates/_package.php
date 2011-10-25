@@ -1,0 +1,1 @@
+<?php include_partial('prevSearch/index', array('prevSearches'=>$prevSearches));?>

@@ -83,8 +83,8 @@
                 <?php endforeach; ?>
                 <?php endif; ?>
                 <hr class="space2" />
-
-                <?php if(isset($form['children'])):?>
+                
+                <?php if(count($form['children'])>0):?>
                 <h2 class="title prepend-top">Children</h2>
                 <?php foreach ($form['children'] as $key => $f): ?>
                 <?php include_partial('formPassenger',array('f'=>$f, 'key'=>$key,'type'=>'child')); ?>
@@ -93,13 +93,14 @@
                 <?php echo $form['_csrf_token']; ?>
 
                 <div class="span-8 last right append-bottom">
-                    <input type="submit" value="<?php echo __('next'); ?>" class="next" />
+                    <input type="submit" value="<?php echo __('next'); ?>" class="blue right" />
                 </div>
         </form>
     </div>
 
 </div>
 
+<hr class="space3" />
 
     <script type="text/javascript">
 

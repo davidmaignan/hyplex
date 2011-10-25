@@ -377,20 +377,6 @@ span.layover{
 
 /* FILTER FORM */
 
-#filterForm{
-    font-size: 90%;
-}
-
-#filterForm label{
-   font-size: 90%;
-   font-weight: normal;
-}
-
-
-#filterForm .box-2{
-    padding: 10px;
-    font-size: 90%;
-}
 
 #slider_takeoff_departflight, #slider_takeoff_returnflight, #slider_tripduration, #slider_price{
     margin:8px 3px;
@@ -420,7 +406,6 @@ a.only{
     line-height: 18px;
     padding: 0;
     vertical-align: bottom;
-    
 }
 
 #filterFrom span.price{

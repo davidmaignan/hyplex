@@ -7,6 +7,7 @@
 <?php use_javascript('jquery.maskedinput.js');?>
 <?php use_javascript('search/searchFlight'); ?>
 <?php use_javascript('search/searchHotel'); ?>
+<?php use_javascript('search/searchPackage'); ?>
 <?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
 
 <?php //use_javascript('search/airport_list_'.$sf_user->getCulture().'.js'); ?>
@@ -46,7 +47,7 @@
                 <li><a href="#" class="selected form-tab" id="flight-tab"><?php echo __('Flight'); ?></a></li>
                 <li><a href="#" class="form-tab" id="hotel-tab"><?php echo __('Hotel'); ?></a></li>
                 <li><a href="#" class="form-tab" id="car-tab"><?php echo __('Car'); ?></a></li>
-                <li><a href="#" class="form-tab-last" id="package-tab"><?php echo __('Package'); ?></a></li>
+                <li><a href="#" class="form-tab" id="package-tab"><?php echo __('Package'); ?></a></li>
             </ul>
             <div id="flight-form">
                 <?php include_partial('searchFlight/formIndex', array('form' => $flightForm)); ?>
@@ -56,6 +57,9 @@
             </div>
             <div id="car-form">
                 <?php include_partial('searchCar/formIndex',array('form'=>$carForm)); ?>
+            </div>
+            <div id="package-form" class="hide">
+                <?php include_partial('searchPackage/formIndex',array('form'=>$packageForm)); ?>
             </div>
             
     </div>
@@ -127,7 +131,7 @@
                     <input type="text" name="newsletter_signup" value="enter you email" />
                 </td>
                 <td>
-                    <input type="submit" value="sign in" class="search-small" style="float: left;" />
+                    <input type="submit" value="sign in" class="blue small" style="float: left;" />
                 </td>
             </tr>
         </table>
@@ -184,6 +188,17 @@
             $('#hotel-form').hide();
             $('#car-form').show();
             $('#package-form').hide();
+            $('.form-tab').each(function(){
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
+
+        $('#package-tab').click(function(){
+            $('#flight-form').hide();
+            $('#hotel-form').hide();
+            $('#car-form').hide();
+            $('#package-form').show();
             $('.form-tab').each(function(){
                 $(this).removeClass('selected');
             });

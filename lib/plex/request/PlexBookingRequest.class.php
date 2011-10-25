@@ -17,6 +17,8 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
 
     public function buildXML() {
 
+        
+
         $timer = sfTimerManager::getTimer('buildXML');
 
         //Hack to modify url
@@ -65,7 +67,7 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
                 $xml .= "</v1:AirBookingInfo>";
             }
         }
-
+         
         /*
         $xml .= "<v1:AirBookingInfo>
                     <v1:UniqueReferenceId>{$flightReference}</v1:UniqueReferenceId>
@@ -131,7 +133,8 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
 
         //Get Booking address array
         $bookingAddress = $plexBasket->getBookingAddress();
-        
+
+
         $xml .=    "<v1:PaymentInfos>
                             <!--Zero or more repetitions:-->
                             <v1:PaymentInfo>
@@ -164,8 +167,7 @@ class PlexBookingRequest extends PlexRequest implements PlexRequestInterface {
                 </soapenv:Envelope>";
 
         $this->xml = $xml;
-
-        
+      
 
     }
 

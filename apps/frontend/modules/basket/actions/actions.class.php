@@ -43,6 +43,19 @@ class basketActions extends sfActions
       //exit;
   }
 
+  public function executeRemoveDataBooking(sfWebRequest $request){
+
+      $plexBasket = PlexBasket::getInstance();
+
+      //$plexBasket = new PlexBasket();
+
+      $plexBasket->arHotelBooking = array();
+
+      $this->redirect('basket/index');
+
+      
+  }
+
   public function executeRemove(sfWebRequest $request){
 
       $type = $request->getParameter('type');

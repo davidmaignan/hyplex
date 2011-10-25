@@ -71,5 +71,38 @@ abstract class PlexParameters {
 
     }
 
+    public function getIcon(){
+
+        $string = '';
+        //echo $this->type;
+
+        switch($this->type){
+            case 'flightReturn':
+                $string = 'flight';
+                break;
+            case 'flightOneway':
+                $string = 'flight';
+                break;
+
+            case 'hotelSimple':
+                $string = 'hotel';
+                break;
+            case 'car':
+                $string = 'car';
+                break;
+            case 'package':
+                $string = 'package';
+                break;
+            default:
+                $string = $this->type;
+                break;
+        }
+
+        //echo $string;
+
+        return image_tag('mobico'.DIRECTORY_SEPARATOR.$string.'.gif', array('alt'=>$this->getTypeRenamed()));
+
+    }
+
 }
 

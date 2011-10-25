@@ -204,7 +204,7 @@ if(isset($parameters['address'])){
 
 
             <div class="span-8 last right append-bottom">
-                <input type="submit" value="<?php echo __('next'); ?>" class="next" />
+                <input type="submit" value="<?php echo __('next'); ?>" class="blue right" />
             </div>
 
         </form>

@@ -73,7 +73,7 @@ if ($form->hasGlobalErrors()) {
         <hr class="space2"/>
         <h3 class="form-index"><?php echo __('Room details'); ?></h3>
         <?php foreach ($form['newRooms'] as $key => $f): ?>
-            <div id="room-container-<?php echo $key ?>" class="room-container">
+            <div id="room-container-<?php echo $key ?>" class="room-container <?php echo ($key != 1)? 'bordered': ''; ?>">
                 <table id="room-1" class="hotel-form-table">
                     <tr>
                         <td style="vertical-align: top; padding-top: 25px;  width: 50px;" class="label">Room:</td>
@@ -86,7 +86,7 @@ if ($form->hasGlobalErrors()) {
                         <td style="vertical-align: top; padding-left: 10px;">
                             <ul>
                                 <li><?php echo $f['number_children']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_children']; ?></li>
+                                <li><?php echo $f['number_children']->render(array('class'=>'hotel-children-age medium')); ?></li>
                             </ul>
                         </td>
                         <td style="width: 250px;">
@@ -99,7 +99,7 @@ if ($form->hasGlobalErrors()) {
                             </div>
 
                         </td>
-                        <td style="vertical-align: top; padding-top: 25px; width: 50px;">
+                        <td style="vertical-align: middle; width: 70px;">
                             <?php if($key != 1): ?>
                             <a href="#" id="room-delete-<?php echo $key ?>" onclick="do_delete(this);" class="remove-small"><?php echo __('remove'); ?></a>
                             <?php endif; ?>
@@ -111,10 +111,10 @@ if ($form->hasGlobalErrors()) {
 
         <div id="extrarooms" ></div>
         <br />
-        <button id="add_picture" type="button">More rooms</button>
+        <button id="add_picture" type="button" class="info">More rooms</button>
 
         <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="search" />
+            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
         </div>
         <?php echo $form['type']; ?>
         <?php echo $form['_csrf_token']; ?>
@@ -158,11 +158,12 @@ if ($form->hasGlobalErrors()) {
     });
 
     function activateChildDropMenu(){
-        $('.numbChildDropMenu').change(function(){
+        $('.hotel-children-age').change(function(){
             var name = $(this).closest('div.room-container').attr('id');
             name = name.charAt(name.length-1);
             var roomNumber = name.charAt(name.length-1);
             var target = '#child-container-'+roomNumber;
+
             $(target).html(add_children(roomNumber,this.value));
         });
     }

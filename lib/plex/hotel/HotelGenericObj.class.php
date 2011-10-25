@@ -96,12 +96,12 @@ class HotelGenericObj {
 
     public function getFacilities(){
 
-        $arImages = array('Parking'=>'parking','Restaurant'=>'restaurant','Internet Access'=>'internet','Pool'=>'pool','Fitness Center'=>'gym');
+        $arImages = array('Parking'=>'parking','Restaurant'=>'restaurant','Internet Access'=>'wifi','Pool'=>'pool','Fitness Center'=>'gym');
 
         $string = "";
         foreach ($this->hotelFacilities as $key => $value) {
             $val = ($value == 'No')? 'off': 'on';
-            $string .= image_tag('icons/'.$arImages[$key].'_'.$val.'.png', array('alt'=>'No '.$key, 'class'=>'facilities-icon'));
+            $string .= image_tag('mobico/'.$arImages[$key].'_'.$val.'.gif', array('alt'=>'No '.$key, 'class'=>'facilities-icon'));
         }
         return $string;
 
