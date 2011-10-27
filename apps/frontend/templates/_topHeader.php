@@ -4,7 +4,7 @@
         <ul>
             <li><a href="#"><?php echo ucfirst(__('news')) ?></a></li>
             <li><a href="#"><?php echo ucfirst(__('feature deals')) ?></a></li>
-            <li><a href="#"><?php echo ucfirst(__('top destinations')) ?></a></li>
+            <li><a href="<?php echo url_for('@top_destination') ?>"><?php echo ucfirst(__('top destinations')) ?></a></li>
             <li><a href="<?php echo url_for('@reset') ?>"><?php echo ucfirst(__('vacations by interest')) ?></a></li>
         </ul>
         </div>

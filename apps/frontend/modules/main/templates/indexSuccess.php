@@ -88,13 +88,15 @@
         </select>
         <table>
             <tr><td><a>Sheraton Waikiki resort</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-            <tr class="desc"><td colspan="2">
+            <tr class="desc">
+            <td colspan="2">
                 <?php echo image_tag('tmp/feature_deals_1.jpg', array('class'=>'left'));?>
                     <p>Your request has been sent, but you can always change your mind.</p>
+            </td>
             </tr>
             <tr><td><a>Europe - Italy</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
             <tr><td><a>Discover South America</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-            <tr><td><a>Surfing in Hawai</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
+            <tr class="last"><td><a>Surfing in Hawai</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
         </table>
         <div style="clear:both;"></div>
         <?php //endforeach; ?>
@@ -108,7 +110,7 @@
     <div class="span-8 last prepend-top append-bottom" id="specialInterest">
         <h2 class="title"><?php echo __('Vacations by interest'); ?></h2>
         <?php echo image_tag('tmp/special_interest_1.jpg'); ?>
-        <div id="specialInterest-container">
+        <div id="specialInterest-container" class="small">
             <ul>
                 <li><a>All inclusive</a></li>
                 <li><a>Golf</a></li>
@@ -124,7 +126,7 @@
         </div>
     </div>
     <div class="span-8 last prepend-top" id="newsletter-signup">
-        <h2>Get deals in your inbox!<br />Sign up for Hypertech Email</h2>
+        <h2 class="smaller">Get deals in your inbox!<br />Sign up for Hypertech Email</h2>
         <table>
             <tr>
                 <td>

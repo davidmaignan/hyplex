@@ -1,6 +1,16 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+top_destination:
+  url: /:sf_culture/top-destination
+  param: { module: topDestination, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+promotionalBanner:
+  url: /:sf_culture/promotion
+  param: { module: promotionalBanner, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 autocomplete:
   url: /:sf_culture/autocomplete/searchAirportComplete2
   param: { module: autocomplete, action: searchAirportComplete2 }

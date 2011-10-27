@@ -10,7 +10,7 @@
             <tr>
                 <td colspan="2"><?php echo $form['wherebox']; ?></td>
             </tr>
-            <tr>
+            <tr class="topPadding">
                 <td class="prepend-top"><?php echo $form['checkin_date']->renderLabel(); ?></td>
                 <td><?php echo $form['checkout_date']->renderLabel(); ?></td>
             </tr>

@@ -7,7 +7,6 @@
 <?php use_stylesheet('grid'); ?>
 <?php use_stylesheet('typography'); ?>
 <?php use_stylesheet('form'); ?>
-<?php use_stylesheet('flightResult'); ?>
 
 <?php use_javascript('debugger/ADS-final-verbose.js'); ?>
 <?php use_javascript('debugger/myLogger.js'); ?>

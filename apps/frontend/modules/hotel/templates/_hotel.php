@@ -36,7 +36,7 @@
                 <?php
                 echo link_to2(__('select'), 'hotel_detail',
                         array('slug' => Utils::slugify($result->getName())),
-                        array('class' => 'hotelNameDetailAjaxLink select right'));
+                        array('class' => 'hotelNameDetailAjaxLink button action blue bigger right'));
                 ?>
         </ul>
     </div>

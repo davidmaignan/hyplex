@@ -1,14 +1,14 @@
 <?php
 
 /**
- * topdestination actions.
+ * account actions.
  *
- * @package    hypertech_booking
- * @subpackage topdestination
- * @author     Your name here
+ * @package    hyplexdemo
+ * @subpackage account
+ * @author     David Maignan
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
-class topdestinationActions extends sfActions
+class accountActions extends sfActions
 {
  /**
   * Executes index action
@@ -17,6 +17,6 @@ class topdestinationActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    //$this->forward('default', 'module');
+    $this->forward('default', 'module');
   }
 }

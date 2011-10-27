@@ -5,13 +5,13 @@
         <?php while($i<= 5 && $i<count($prevSearches)): ?>
             <?php $parameters = ($prevSearches[$i]['parameters']); ?>
             <tr class="<?php echo (fmod($i, 2) == 0) ? 'bg-1' : 'bg-2' ?>">
-                <td>
-                    <?php echo html_entity_decode($parameters->getIcon()); ?>
+                <!--<td>
+                    <?php //echo html_entity_decode($parameters->getIcon()); ?>
                     <?php //echo ucwords($parameters->getTypeRenamed()); ?>
-                </td>
+                </td>-->
                 <td>
                     <ul class="prevSearch-list-index">
-                        <li>
+                        <li><?php echo ucwords($parameters->getTypeRenamed()) ?> -
                             <?php echo link_to2(html_entity_decode($parameters->getOriginDestination($sf_user->getCulture())),
                                                 'previous_search',
                                                 array('filename'=>$prevSearches[$i]['file'])); ?>

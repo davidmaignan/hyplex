@@ -67,7 +67,7 @@ if ($form->hasGlobalErrors()) {
                         </span>
                     </td>
                 </tr>
-                <tr class="topPadding">
+                <tr>
                     <td class="small" colspan="2" style="width: 49%;">
                         <?php echo $form['origin']->renderError(); ?>
                     </td>
@@ -75,7 +75,7 @@ if ($form->hasGlobalErrors()) {
                         <?php echo $form['destination']->renderError(); ?>
                     </td>
                 </tr>
-                <tr>
+                <tr class="topPadding">
                     <td><?php echo $form['depart_date']->renderLabel(); ?></td>
                     <td><?php echo $form['depart_time']->renderLabel(); ?></td>
                     <td><?php echo $form['return_date']->renderLabel(); ?></td>

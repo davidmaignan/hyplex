@@ -1,5 +1,5 @@
 <div class="span-9 prepend-top" id="logo">
-    <?php echo link_to(image_tag('generic/logo_beta.png', array('alt' => 'Hypertech Solutions')), 'localized_homepage'); ?>
+    <?php echo link_to(image_tag('generic/logo_beta.png', array('alt' => 'Hypertech Solutions', 'width'=>'260px', 'height'=>'50px')), 'localized_homepage'); ?>
 </div>
 <div class="span-6 last">
     <ul style="font-size: 80%;">

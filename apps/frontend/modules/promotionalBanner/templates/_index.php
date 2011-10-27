@@ -13,17 +13,14 @@
 <?php //use_javascript('carousel.js'); ?>
 <?php use_stylesheet('carousel'); ?>
 
-
-
 <script type="text/javascript">
     var promotionalBanners = null;<?php //echo $sf_data->get('promotionalBanners', ESC_RAW); ?>
 </script>
 
 <div class="span-16 last append-bottom" id="carousel">
-
     <div id="">
         <div id="promotional_container">
-            <?php echo image_tag('tmp/gallery1.jpg'); ?>
+            <?php echo link_to(image_tag('tmp/gallery1.jpg'), 'promotionalBanner'); ?>
         </div>
     </div>
 </div>

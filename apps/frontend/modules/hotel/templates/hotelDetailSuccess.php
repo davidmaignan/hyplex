@@ -284,7 +284,8 @@
 
   var hotelLatitude = parseFloat(hotelCoordinates.latitude);
   var hotelLongitude = parseFloat(hotelCoordinates.longitude);
-  var zoomLevel = parseFloat(hotelCoordinates.zoomlevel);
+  var zoomLevel = 14;
+      //parseFloat(hotelCoordinates.zoomlevel);
 
   var mapInitializedHotelDetail = false;
 
@@ -316,11 +317,11 @@
         
         google.maps.event.addListener(map, 'click', function() {
 
-          if (map.getZoom() <= 12) {
+          if (map.getZoom() <= 14) {
             map.setZoom(17);
             map.setCenter(latlng);
           } else {
-            map.setZoom(12);
+            map.setZoom(14);
             map.setCenter(latlng);
           }
             
