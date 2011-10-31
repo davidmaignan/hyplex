@@ -1,9 +1,6 @@
 <tr class="basket-list-header active basket-hotel">
-    <td class="icon">
-        <?php echo image_tag('mobico/hotel_on.png'); ?>
-    </td>
     <td><?php echo ucfirst(__('hotel')) ?></td>
-    <td class="sub-total">
+    <td colspan="2" class="sub-total">
         <?php echo format_currency($hotel->getTotalPrice(), sfConfig::get('app_currency')); ?>
     </td>
 </tr>

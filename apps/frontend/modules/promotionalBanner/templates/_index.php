@@ -20,7 +20,7 @@
 <div class="span-16 last append-bottom" id="carousel">
     <div id="">
         <div id="promotional_container">
-            <?php echo link_to(image_tag('tmp/gallery1.jpg'), 'promotionalBanner'); ?>
+            <?php echo link_to(image_tag('tmp/gallery1.jpg'), '@vacation_interest'); ?>
         </div>
     </div>
 </div>

@@ -37,9 +37,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
-	list-style: none;
-}
+
 blockquote, q {
 	quotes: none;
 }
@@ -70,6 +68,14 @@ body {
 
 /* Links */
 
+blockquote{
+    color: #0c4878;
+    margin:20px 10px;
+    font-style: italic;
+    font-weight: 110%;
+    line-height: 22px;
+}
+
 a{text-decoration: none; color:#0c4878;cursor: pointer;	cursor: hand;}
 a:hover{color: #ed145b;}
 
@@ -90,7 +96,7 @@ h2{
     color: #0c4878;
 }
 
-h2.title{
+.title{
     border-bottom: 1px solid #cecece;
     margin-bottom: 13px;
     padding-bottom: 8px;
@@ -103,6 +109,22 @@ p{
    
 }
 
+ol, ul{
+    list-style: none;
+}
+
+ul.bullet{
+    list-style-type: square;
+    list-style-position: inside;
+}
+
+ul.bullet li{
+    line-height: normal;
+}
+
+ul.normal li{
+    line-height: 22px;
+}
 
 .blue{
     color: #0c4878;
@@ -147,6 +169,10 @@ p{
     font-size: 80%;
 }
 
+.smallest{
+    font-size: 70%;
+}
+
 .big{
     font-size: 110%;
     margin-bottom: 4px;
@@ -156,6 +182,19 @@ p{
     font-size: 125%;
     margin-bottom: 10px;
 }
+
+.biggest{
+    font-size: 155%;
+    margin-bottom: 10px;
+}
+
+img.bordered{
+    border: 1px solid #a3b9cb;
+    padding: 5px;
+    margin: 5px 10px;
+    background-color: #eff7fd;
+}
+
 
 a.remove{
     background: url('../sfDoctrinePlugin/images/delete.png') no-repeat left top;
@@ -202,6 +241,29 @@ ul.paginator a.selected{
 
 ul.paginator a{
     float: left;
+}
+
+
+ul.paginator a.next, ul.paginator a.prev{
+    width: 24px;
+    height: 24px;
+    display: block;
+    float: left;
+    text-indent: -1000px;
+    overflow: hidden;
+    background-position: left top;
+    margin-top: 8px;
+    margin-right: 0px;
+}
+
+ul.paginator a.next{
+    background-position: left -40px;
+    margin-right: 4px;
+}
+
+ul.paginator a.prev{
+    background-position: left -16px;
+
 }
 
 /* pagination */
@@ -478,12 +540,12 @@ select{
     text-shadow: -1px -1px 0 #0c4878;
 }
 
-.button.bigger{
+.button.bigger, .button.action.bigger{
     font-size: 110%;
     padding:8px 23px;
 }
 
-input.small{
+input.small, .button.action.small{
     font-size: 80%;
     margin-top:5px;
 }
@@ -857,4 +919,21 @@ input[type="text"]:focus, input[type="email"]:focus, input[type="number"]:focus,
     border-color: #6b98be;
     border-style: solid;
     border-width: 1px;
+}
+
+#breadcrumb li{
+    display: inline;
+    float: left;
+    font-size: 80%;
+}
+
+#breadcrumb a{
+    float: left;
+    margin-right: 7px;
+    background: url('../images/generic/arrow2.gif') no-repeat left 4px;
+    padding-left: 12px;
+}
+
+#breadcrumb a.first{
+    background-image: url('../images/generic/square.gif');
 }

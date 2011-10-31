@@ -931,7 +931,7 @@ function initializeGmapHotels(bool){
     gMapResultPage.fitBounds(gMapBounds);
 
     var markerCluster = new MarkerClusterer(gMapResultPage, markers,{
-        maxZoom: 14
+        maxZoom: 13
     });
     
     google.maps.event.addListener(gMapResultPage, 'click', function() {

@@ -17,7 +17,10 @@
 -------------------------------------------------------------- */
 
 /* Sets up basic grid floating and margin. */
-.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {
+.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6,
+.span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13,
+.span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20,
+.span-21, .span-22, .span-23, .span-24 {
     float: left;
     margin-right: 20px;
     border:0px solid red;
@@ -62,8 +65,17 @@
 div.prepend-top, .prepend-top {
     margin-top:10px;
 }
+
+.prepend-1{
+    margin-left: 14px;
+}
+
 div.append-bottom, .append-bottom {
     margin-bottom:10px;
+}
+
+div.append-bottom2, .append-bottom2 {
+    margin-bottom:5px;
 }
 
 /* TOP PAGE -----------------------------------------------*/
@@ -575,11 +587,20 @@ a.only{
 
 /* Hotel Result page --------------------------------------------  */
 
-.hotel-list-box{
+.hotel-list-box, pick-list-box{
     border-top: 1px solid #cecece;
     padding-top: 10px;
     margin-bottom: 8px;
     font-size: 82%;
+}
+
+.pick-list-box{
+    border:none;
+    border-bottom: 1px solid #cecece;
+    padding-bottom: 10px;
+    margin-top: 8px;
+    font-size: 82%;
+    line-height: 18px;
 }
 
 .hotel-list .hotel-name{
@@ -1152,6 +1173,9 @@ table.hotel-info td.first{
     color: #0c4878;
     display: inline;
     float: left;
+    border:none;
+    padding: 0;
+    margin:0;
 }
 
 .infoHotelBubble li.starRating{
@@ -1456,13 +1480,26 @@ form.location2{
 
 #basket h2{
     color:#0c4878;
+    border: 1px solid #efefef;
+}
+
+h2.flight, h2.hotel{
+    abackground: url('/images/mobico/flight.png') no-repeat 3px 4px;
+    height: 26px;
+    line-height: 28px;
+    padding: 3px;
+    margin-bottom: 8px;
+    border-bottom:2px solid #0c4878;
+    border-top-width: 2px;
+    border-left: none;
+    border-right: none;
+    color: #0c4878;
 }
 
 #basket h3{
     color: #0c4878;
     margin-bottom: 5px;
     padding-bottom: 7px;
-
     background: url('/images/generic/bg_line.gif') repeat-x left bottom;
 }
 
@@ -1527,7 +1564,6 @@ li.link-excursion{
 
 #data-container  th, #data-container td{
     text-align: left;
-
     padding: 3px 0px;
     font-size: 90%;
     font-weight: bold;
@@ -1538,6 +1574,9 @@ li.link-excursion{
     font-weight: normal;
 }
 
+#basket-summary{
+    border: 1px solid #cecece;
+}
 
 #basket-summary td{
     padding:6px;
@@ -1545,37 +1584,34 @@ li.link-excursion{
 
 #basket-summary td.icon{
     width: 26px;
+    height: 36px;
 }
 
 tr.basket-list-header{
-    background-color: #beddf8;
+    background-color: #f8f8f6;
+    font-size: 90%;
+    font-weight: bold;
+    border:1px solid #cecece;
 }
 
-tr.basket-list{
-    background-color: #eff7fd;
-}
 
 tr.basket-list-header.active{
     cursor: pointer;
     cursor: hand;
 }
 
-tr.basket-list-header:hover{
-    background-color: #aec9de;
-}
 
 #basket-summary tr.basket-list td{
-    background-color: #eff7fd;
+    abackground-color: #eff7fd;
     font-size: 80%;
 }
 
 tr.basket-list-header td{
     vertical-align: middle;
+    height: 36px;
 }
 
 tr.basket-list-total{
-    border-bottom: 1px solid #a3b9cb;
-    border-top: 1px solid #a3b9cb;
     background-color: #E0EDF8;
 }
 
@@ -1600,7 +1636,7 @@ tr.basket-list-total .sub-person{
 tr.basket-list-header.non-active{
     background-color: #f8f8f6;
     height: 30px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #cecece;
 }
 
 #basket-summary ul.sub-list li{
@@ -1633,7 +1669,7 @@ table.basket-flight{
 
 table.basket-flight td{
     padding:8px 6px;
-    border-bottom: 1px solid #a3b9cb;
+    border-top: 1px solid #a3b9cb;
     border-color: #97d1f4;
 }
 
