@@ -1,7 +1,22 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/09-Cache
 
-default:
-  enabled:     false
+_topHeader:
+  enabled:     true
+  with_layout: false
+  lifetime:    86400
+
+_header:
+  enabled:     true
+  with_layout: false
+  lifetime:    86400
+
+_navigation:
+  enabled:     true
+  with_layout: false
+  lifetime:    86400
+
+_footer:
+  enabled:     true
   with_layout: false
   lifetime:    86400

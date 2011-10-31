@@ -43,26 +43,14 @@ if ($form->hasGlobalErrors()) {
         <h3 class="form-index"><?php echo __('Travel details'); ?></h3>
         <table class="form-error">
             <tr>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['wherebox']->renderLabel(); ?></li>
-                        <li><?php echo $form['wherebox']; ?><br /><br /></li>
-                    </ul>
-
-                </td>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['checkin_date']->renderLabel(); ?></li>
-                        <li><?php echo $form['checkin_date']; ?><br /><br /></li>
-                    </ul>
-
-                </td>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['checkout_date']->renderLabel(); ?></li>
-                        <li><?php echo $form['checkout_date']; ?><br /><br /></li>
-                    </ul>
-                </td>
+                <td class="prepend-top"><?php echo $form['wherebox']->renderLabel(); ?></td>
+                <td class="prepend-top"><?php echo $form['checkin_date']->renderLabel(); ?></td>
+                <td class="prepend-top"><?php echo $form['checkout_date']->renderLabel(); ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $form['wherebox']; ?></td>
+                <td><?php echo $form['checkin_date']; ?></td>
+                <td><?php echo $form['checkout_date']; ?></td>
             </tr>
             <tr>
                 <td><?php echo $form['wherebox']->renderError(); ?></td>
@@ -76,18 +64,15 @@ if ($form->hasGlobalErrors()) {
             <div id="room-container-<?php echo $key ?>" class="room-container <?php echo ($key != 1)? 'bordered': ''; ?>">
                 <table id="room-1" class="hotel-form-table">
                     <tr>
-                        <td style="vertical-align: top; padding-top: 25px;  width: 50px;" class="label">Room:</td>
-                        <td style="vertical-align: top; width: 80px;">
-                            <ul>
-                                <li><?php echo $f['number_adults']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_adults']; ?></li>
-                            </ul>
-                        </td>
+                        <td></td>
+                        <td style="width: 80px;"><?php echo $f['number_adults']->renderLabel(); ?></td>
+                        <td><?php echo $f['number_children']->renderLabel(); ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label" style="vertical-align: middle;">Room:</td>
+                        <td><?php echo $f['number_adults']; ?></td>
                         <td style="vertical-align: top; padding-left: 10px;">
-                            <ul>
-                                <li><?php echo $f['number_children']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_children']->render(array('class'=>'hotel-children-age medium')); ?></li>
-                            </ul>
+                            <?php echo $f['number_children']->render(array('class'=>'hotel-children-age medium')); ?>
                         </td>
                         <td style="width: 250px;">
                             <div id="child-container-<?php echo $key; ?>">

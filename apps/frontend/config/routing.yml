@@ -1,6 +1,26 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+vacation_interest_country:
+  url: /:sf_culture/vacations-interest/country
+  param: { module: vacationInterest, action: country }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+vacation_interest:
+  url: /:sf_culture/vacations-interest/area
+  param: { module: vacationInterest, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+feature_deals:
+  url: /:sf_culture/feature-deals
+  param: { module: topDestination, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+promotionalBanner:
+  url: /:sf_culture/promotion
+  param: { module: promotionalBanner, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 autocomplete:
   url: /:sf_culture/autocomplete/searchAirportComplete2
   param: { module: autocomplete, action: searchAirportComplete2 }
@@ -242,9 +262,6 @@ sf_guard_signin:
   url: /signin
   param: { module: sfGuardAuth, action: signin }
 
-sf_guard_signout:
-  url: /signout
-  param: { module: sfGuardAuth, action: signout }
 
 # generic rules
 # please, remove them by adding more specific rules
@@ -252,7 +269,6 @@ sf_guard_signout:
 reset:
   url: /:sf_culture/reset
   param: { module: main , action: reset }
-
 
 default_index:
   url:   /:module

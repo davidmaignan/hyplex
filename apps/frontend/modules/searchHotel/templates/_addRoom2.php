@@ -1,6 +1,6 @@
 <div id="room-container-<?php echo $num ?>" class="room-container bordered">
     <table id="room-1" class="hotel-form-table">
-        <tr class="topPadding">
+        <tr>
             <td style="vertical-align: top; padding-top: 25px; width: 50px;" class="label">Room:</td>
             <td style="vertical-align: top; width: 80px;">
                 <ul>

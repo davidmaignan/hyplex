@@ -686,7 +686,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
             $frmStr .= '<tr class="'.(($jeton > 10)?'location2':'' ).' location_tr" id="location_'.$key.'_tr" >';
             $frmStr .= '<td>';
             $frmStr .= $frm->addInput('checkbox', 'location['.$key.']', 1, array('checked' => 'checked', 'class' => 'filterHotelCheckbox locationCheckbox', 'id' => 'location_'.$key));
-            $frmStr .= '<label for=location_' . $key . '>'.str_replace('_', ' ', $key).'</label></td>';
+            $frmStr .= '<label for=location_' . $key . '>'.truncate_text(str_replace('_', ' ', $key),20).'</label></td>';
             $frmStr .= '<td  style="font-size: 90%; "><a href="'.  url_for1('filter_hotel_form').'" id="filter-location-link-'.$key.'" class="filter-location-link" >'.count($value['list']).'</a></td>';
             $frmStr .= '<td  style="text-align: right;font-size: 90%; ">'.
                         $this->getLinkAccordingToNumberOfResponse($value['min']).

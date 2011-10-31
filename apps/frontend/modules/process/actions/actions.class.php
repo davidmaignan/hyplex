@@ -117,8 +117,8 @@ class processActions extends sfActions
               $datas['params'] = $paramFactory;
 
               //Save info in db
-              $event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
-              sfContext::getInstance()->getEventDispatcher()->notify($event);
+              //$event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
+              //sfContext::getInstance()->getEventDispatcher()->notify($event);
               
               $this->redirect('flight/notFound');
               break;
@@ -139,8 +139,8 @@ class processActions extends sfActions
               $datas['params'] = $paramFactory;
 
               //Save info in db
-              $event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
-              sfContext::getInstance()->getEventDispatcher()->notify($event);
+              //$event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
+              //sfContext::getInstance()->getEventDispatcher()->notify($event);
 
               $this->redirect('hotel/notFound');
               break;
@@ -157,8 +157,8 @@ class processActions extends sfActions
               $datas['params'] = $paramFactory;
 
               //Save info in db
-              $event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
-              sfContext::getInstance()->getEventDispatcher()->notify($event);
+              //$event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
+              //sfContext::getInstance()->getEventDispatcher()->notify($event);
               
               $this->redirect('flight/notFound');
               break;

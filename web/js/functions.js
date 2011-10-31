@@ -633,7 +633,7 @@ function changeMarkerIcon(marker, bool){
     //alert('changeMarkerIcon');
     //ADS.log.write(iconUrl+ ':'+newIconUrl);
 
-}
+};
 
 function showHideMarkers(){
 
@@ -692,7 +692,7 @@ function showHideMarkers(){
 
     */
 
-}
+};
 
 function in_array (needle, haystack, argStrict) {
 
@@ -714,7 +714,7 @@ function in_array (needle, haystack, argStrict) {
     }
 
     return false;
-}
+};
 
 
 function activateHotelTabulation(){
@@ -753,7 +753,7 @@ function activateHotelTabulation(){
     });
 
 
-}
+};
 
 function showHideHotelDivs($val){
     
@@ -802,7 +802,7 @@ function showHideHotelDivs($val){
     }
 
 
-}
+};
 
 function showGmapForOneHotel(bool, marker, zoom){
 
@@ -931,7 +931,7 @@ function initializeGmapHotels(bool){
     gMapResultPage.fitBounds(gMapBounds);
 
     var markerCluster = new MarkerClusterer(gMapResultPage, markers,{
-        maxZoom: 8
+        maxZoom: 13
     });
     
     google.maps.event.addListener(gMapResultPage, 'click', function() {
