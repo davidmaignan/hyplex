@@ -19,15 +19,13 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
     protected $uniqueReferenceId;
 
 
-    public function  __construct(HotelSimpleObj $hotel, $filename, sfUser $user) {
-
-        ob_start();
-
+    public function  __construct(HotelSimpleObj $hotel, $request, $filename, sfUser $user) {
 
         $this->sTId = $user->getAttribute('sTId');
         $this->filename = $filename;
 
-        
+        $this->request = $request;
+
         $this->uniqueReferenceId = $filename.'_'. time();
 
         $this->callingSystemId = 'Hypertech';
@@ -35,8 +33,9 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
         $this->hotel = $hotel;
 
         //build the xml
-        $this->defineParams(1);
+        $this->defineParams();
 
+        
     }
 
 
@@ -64,6 +63,7 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
         return $this->xml;
     }
 
+    /*
     public function executeRequest() {
 
         //$timer = sfTimerManager::getTimer('PlexRequest');
@@ -90,15 +90,14 @@ class PlexHotelDetailsRequest extends PlexRequest implements PlexRequestInterfac
         file_put_contents($filename, $this->response);
 
         chmod($filename, 0777);
-        
-
+       
         return $this->response;
 
         //Save the response in a tmp file
 
-
-
     }
+     *
+     */
     
 
     

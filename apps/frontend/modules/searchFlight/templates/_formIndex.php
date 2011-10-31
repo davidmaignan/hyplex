@@ -4,8 +4,6 @@
 <form action="<?php echo url_for('@search_flight_form') ?>" method="post" id="flight-form-index">
     <fieldset>
 
-        
-
         <h3 class="form-index"><?php echo __('Trip details'); ?></h3>
         <table class="form-index">
             <tr>
@@ -91,8 +89,8 @@
         </div>
 
         <div style="clear:both"></div>
-        <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="search" />
+        <div class="last bg1">
+            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
         </div>
     </fieldset>
 

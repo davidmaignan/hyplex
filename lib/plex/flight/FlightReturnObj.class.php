@@ -42,11 +42,41 @@ class FlightReturnObj extends FlightGenericObj {
 
     public function __construct() {
 
-        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date'));
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag', 'Date'));
     }
 
     public function setClass($value) {
         $this->class = $value;
+    }
+
+    public function  __toString() {
+
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag', 'Date'));
+
+
+        $string =   '<tr>';
+        $string .=  '<td>'. html_entity_decode($this->getAirlineIcon()).'</td>';
+        $string .=  '<td>Inbound</td>';
+        $string .=  '<td>'. $this->SegmentOutbound->DepartureFrom . '</td><td>'.
+                    $this->SegmentOutbound->ArrivalTo. '</td><td>'.
+                    format_date($this->SegmentOutbound->Departs, 'flight').'</td><td>'.
+                    format_date($this->SegmentOutbound->Departs, 't').'</td><td>'.
+                    format_date($this->SegmentOutbound->Arrives, 'flight') .'</td><td>'.
+                    format_date($this->SegmentOutbound->Arrives, 't').'</td><td>';
+        $string .= $this->SegmentOutbound->NumberStops .'</td><td>';
+        $string .= format_currency($this->TotalPrice,sfConfig::get('app_currency')).'</td></tr>';
+
+        $string  .=  '<tr>';
+        $string .= '<td></td>';
+        $string .= '<td>Outbound</td>';
+        $string  .=  '<td>'. $this->SegmentInbound->DepartureFrom . '</td><td>'.
+                    $this->SegmentInbound->ArrivalTo. '</td><td>'.
+                    format_date($this->SegmentInbound->Departs, 'flight').'</td><td>'.
+                    format_date($this->SegmentInbound->Departs, 't').'</td><td>'.
+                    format_date($this->SegmentInbound->Arrives, 'flight') .'</td><td>'.
+                    format_date($this->SegmentInbound->Arrives, 't').'</td><td></td><td></td></tr>';
+
+        return $string;
     }
 
     public function analyseSegmentInfos() {
@@ -99,12 +129,11 @@ class FlightReturnObj extends FlightGenericObj {
 
     }
 
-    /*
+    /**
      * Create the SegmentOutbound array and Segment Inbound array
      * to display summurize information of the FlightReturnObject
      *
      */
-
     public function summurizeSegmentsInfos() {
 
         //Analyse segment to go and simplify it (if multiple stops just show number of stops
@@ -143,10 +172,72 @@ class FlightReturnObj extends FlightGenericObj {
         //$this->nbrStopsInbound = count($this->Segments['inbound']) - 1;
     }
 
-    
+
+   
+    /**
+     * Return Origin and Destination in a formatted string.
+     * @param string $culture
+     * @return string
+     */
+    public function displayConfirmationTitle($culture = 'en_US'){
 
 
-    /*
+        $codeFrom = $this->SegmentOutbound->DepartureFrom;
+        $codeTo = $this->SegmentOutbound->ArrivalTo;
+
+        //var_dump($this->arAirport);
+
+        $from = $this->arAirport[$codeFrom][$culture]['name'] .' ('.$codeFrom.'),  ' .
+                    $this->arAirport[$codeFrom][$culture]['city_name']. ' ';
+        $from .= isset($this->arAirport[$codeFrom]['state'])? ' ['.$this->arAirport[$codeFrom]['state'].'], ': '';
+
+        $from .= $this->arAirport[$codeFrom][$culture]['country'];
+
+        $to = $this->arAirport[$codeTo][$culture]['name'] .' ('.$codeTo.'),  ' .
+                    $this->arAirport[$codeTo][$culture]['city_name']. ' ';
+        $to .= isset($this->arAirport[$codeTo]['state'])? ' ['.$this->arAirport[$codeTo]['state'].'], ': '';
+
+        $to .= $this->arAirport[$codeTo][$culture]['country'];
+
+
+        
+        return __('Round trip from %1% to %2%',array('%1%'=> $from,'%2%'=> $to));
+
+    }
+
+    /**
+     * Return the Departure date from outbound or inbound
+     * @param string $way
+     * @return string format (Y-m-d)
+     */
+    public function getOriginOrReturnDateOrTime($way, $date){
+
+        if(!$way){
+            throw new Exception('You must provide a way in getOriginOrReturnDate function');
+        }
+
+        if($way == 'origin'){
+            $value = $this->SegmentOutbound->Departs;
+        }else{
+            $value = $this->SegmentInbound->Departs;
+        }
+
+        $value = explode(' ', $value);
+
+        if($date == 'date'){
+            return $value[0];
+        }else{
+            return $value[1];
+        }
+
+
+        
+        
+    }
+
+
+
+    /**
      * Return a string representation of the object summurized flight.
      *
      * @return string 
@@ -500,4 +591,4 @@ class FlightReturnObj extends FlightGenericObj {
 
 }
 
-?>
+

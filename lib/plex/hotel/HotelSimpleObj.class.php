@@ -13,6 +13,12 @@
 class HotelSimpleObj extends HotelGenericObj {
 
     private $filename;
+    
+    public $class = 'bg-1';
+
+
+    private $arSimpleFields = array('HotelId','HotelName','HotelChain','Location','DisplayPriority',
+                                'IsOurPick','PropertyType','HotelDescription');
 
     private $arListFacilities = array(  'general'=>array('desk','disabled','elevator','storage','smoking'),
                                         'services'=>array('service','cleaning','breakfast','concierge','ticket','room'),
@@ -22,17 +28,129 @@ class HotelSimpleObj extends HotelGenericObj {
 
     private $arFacilitiesList = array();
 
-    public function __construct() {
+    public function __construct($data = null, $filename = null) {
+
+
+        if(!is_null($data) && !is_null($filename)){
+
+            $this->filename = $filename;
+
+            foreach($data as $key=>$value){
+
+                switch ($key) {
+
+                    case (in_array($key , $this->arSimpleFields)):
+                         $keyModified = $this->renameXMLTag($key);
+                         $this->$keyModified = ((string)$value == '')?'00':(string)$value;
+                         break;
+
+                    case 'StarRating':
+                         $keyModified = $this->renameXMLTag($key);
+                         $v = (string)$value;
+                         $this->$keyModified = self::renameStarRating($v);
+                         break;
+
+                    case 'BaseImageLink':
+                         $keyModified = $this->renameXMLTag($key);
+                         $val = (string)$value;
+                         //If no value is given to pic -> replace with generic no image available
+                         $this->$keyModified = ($val == '')? '/no_image_available.png': $val;
+                         break;
+
+
+                    case 'HotelAddress':
+                         foreach($value->children() as $t=>$u){
+                            $this->hotelAddress[$t] = (string)$u;
+                         }
+                         break;
+
+                    case 'HotelFacilities':
+                        foreach ($value as $v) {
+                            $this->hotelFacilities[(string)$v->{'FacilityName'}] = (string)$v->{'FacilityAvailable'} ;
+                        }
+                        break;
+
+                    case 'RoomResponses':
+                        $this->arRooms = $this->createRoomArray($value);
+                        $this->arRoomsType = $this->createRoomTypeArray($value);
+                        break;
+
+                        default:
+                        break;
+
+                }
+
+
+
+
+            }
+
+            $this->getMinMaxPrice();
+
+            unset($this->arSimpleFields);
+            unset($this->arListFacilities);
+
+        }
         
+        
+    }
+
+    public function setId($id){
+        $this->id = $id;
+    }
+
+    public function setName($name){
+        $this->name = $name;
+    }
+
+    public function setLocation($location){
+        $this->location = $location;
+    }
+
+    public function setChain($chain){
+        $this->chain = $chain;
+    }
+
+    public function setStarRating($star){
+        $this->starRating = $star;
+    }
+
+    public function setDisplayPriority($value){
+        $this->displayPriority = $value;
+    }
+
+    public function getToStringHeader(){
+        $string = '<thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Rating</th>
+                            <th>minPrice</th>
+                            <th>maxPrice</th>
+                            <th>location</th>
+                            <th>Chain</th>
+                        </tr>
+                    </thead>
+                    ';
+
+        return $string;
     }
 
     public function  __toString() {
 
-        $string = '<tr><td>'. $this->name . '</td><td>'.
-                $this->starRating. '</td><td>'.
-                $this->location .'</td><td>'.
-                $this->chain.'</td></tr>';
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag'));
+        
 
+        $string =   '<tr class="'.$this->class.'">';
+        $string .=  '<td>'. image_tag($this->getImageFullPath(),array('width'=>'60px')).'</td>';
+        $string .=  '<td>'. $this->name . '</td><td>'.
+                    HotelGenericObj::getStarRating($this->starRating). '</td><td>'.
+                    format_currency($this->minPrice, sfConfig::get('app_currency')).'</td><td>'.
+                    format_currency($this->maxPrice, sfConfig::get('app_currency')).'</td><td>'.
+                    $this->location .'</td><td>'.
+                    $this->chain.'</td></tr>';
+
+        /*
         $string .= '<tr>';
 
         foreach ($this->arRoomsType as $key => $value) {
@@ -48,7 +166,7 @@ class HotelSimpleObj extends HotelGenericObj {
         }
 
         $string .= '<tr>';
-
+        */
 
         //echo "<pre>";
         //print_r($this->arRoomsType);
@@ -249,10 +367,11 @@ class HotelSimpleObj extends HotelGenericObj {
     }
 
     public function setFullFacilities($data){
+        
         foreach ($data->children() as $value) {
             array_push($this->hotelFullFacilities, trim((string)$value));
         }
-        
+
         $this->arFacilitiesList = $this->hotelFullFacilities;
         sort($this->arFacilitiesList);
 
@@ -260,7 +379,6 @@ class HotelSimpleObj extends HotelGenericObj {
         $this->hotelFullFacilities = array_unique($this->hotelFullFacilities);
 
         //Analysing the array
-
         $keys = array_keys($this->arListFacilities);
         $tmp = array();
 
@@ -288,10 +406,7 @@ class HotelSimpleObj extends HotelGenericObj {
        }
 
        array_multisort($tmp);
-
        $this->hotelFullFacilities = $tmp;
-
-
     }
 
     public function getFullFacilities() {
@@ -335,8 +450,6 @@ class HotelSimpleObj extends HotelGenericObj {
 
         $room = 'room'.($key+1);
 
-       
-        
         $hotelRoomObj = reset($this->arRooms[$room]);
         $rate = reset($hotelRoomObj->arRates);
 
@@ -359,6 +472,102 @@ class HotelSimpleObj extends HotelGenericObj {
 
         return $total;
 
+    }
+
+    protected function renameXMLTag($name){
+
+        if(strpos($name, 'Hotel')>-1){
+            $name = substr($name , 5);
+        }
+
+        //$name = str_replace('.', '_', $name);
+
+        return Utils::lcfirst($name);
+    }
+
+    public static function renameStarRating($text){
+        $text = preg_replace('#(stars)#i', '', $text);
+        $text = str_replace('.', '_', $text);
+        return (string)$text;
+    }
+
+
+    protected function createRoomArray($datas){
+
+        $tmp = array();
+        //Create array room with keys => UniqueRoomRequestId (e.g. room1, room2 ...)
+        foreach($datas->children() as $key=>$value){
+            $tmp[strtolower((string)$value->{'UniqueRoomRequestId'})] = $this->createHotelRoomObj($value->{'RoomTypeInfos'});
+        }
+
+        return $tmp;
+
+    }
+
+    protected function createHotelRoomObj($data){
+
+        $tmp = array();
+
+        foreach ($data->{'RoomTypeInfo'} as $key => $value) {
+                //var_dump($value);
+                $hotelRoomObj = new HotelRoomObj($value);
+                array_push($tmp, $hotelRoomObj);
+                //var_dump($hotelRoomObj);
+        }
+
+        return $tmp;
+
+    }
+
+    /*
+     * Create array('roomType'=>array('RoomDescription'=>string,'rateType'=>array(
+     *
+     */
+    protected function createRoomTypeArray($datas){
+
+        $tmp = array();
+        //echo "<pre>";
+        //print_r($datas);
+        //break;
+
+        //Loop through each room
+        foreach($datas->children() as $key=>$room){
+
+            //Add every roomType in array -> add every rate and check if it's for room1, room 2 or both
+            foreach($room->{'RoomTypeInfos'}->children() as $roomType){
+
+                $roomTypeValue = (string)$roomType->{'RoomType'};
+                $roomNumber = Utils::lcfirst((string)$room->{'UniqueRoomRequestId'});
+
+                //Add new room types
+                if(!array_key_exists($roomTypeValue, $tmp)){
+
+                    $tmp[$roomTypeValue] = $this->createRoomTypeObj($roomType, $roomNumber);
+
+                }else{
+
+                    $tmp[$roomTypeValue]->addRoom($roomType, $roomNumber);
+
+                }
+
+            }
+
+        }
+
+        return $tmp;
+        //break;
+    }
+
+    protected function createRoomTypeObj($data, $roomNumber){
+
+        $newRoomType = new RoomTypeObj($data, $roomNumber);
+        return $newRoomType;
+
+    }
+
+
+    public function getInfos(){
+        return $this->id .' | '.$this->name;
     }
 
 }

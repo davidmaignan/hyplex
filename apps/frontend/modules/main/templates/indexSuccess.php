@@ -1,32 +1,26 @@
-<?php use_javascript('jquery-1.5.1.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
+<?php use_javascript('jquery-1.6.2.min.js'); ?>
+<?php use_javascript('jquery-ui-1.8.16.custom.min.js'); ?>
 <?php use_javascript('myScript'); ?>
 <?php use_javascript('functions.js'); ?>
 
-<?php use_javascript('jquery.bigframe.min.js'); ?>
-<?php use_javascript('thickbox-compressed.js'); ?>
-<?php use_javascript('jquery.autocomplete.min.js'); ?>
-
-<?php use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
 <?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
+<?php use_javascript('jquery.maskedinput.js');?>
 <?php use_javascript('search/searchFlight'); ?>
 <?php use_javascript('search/searchHotel'); ?>
+<?php use_javascript('search/searchPackage'); ?>
+<?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
 
-<?php use_javascript('search/airport_list_'.$sf_user->getCulture().'.js'); ?>
-<?php use_javascript('search/datepicker_'.$sf_user->getCulture().'.js'); ?>
-
-<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-<?php use_stylesheet('jquery.autocomplete.css'); ?>
-<?php use_stylesheet('thickbox.css'); ?>
-
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
+<?php //use_javascript('search/airport_list_'.$sf_user->getCulture().'.js'); ?>
+<?php //use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js'); ?>
 
 <?php use_stylesheet('grid'); ?>
 <?php use_stylesheet('typography'); ?>
 <?php use_stylesheet('form'); ?>
+<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
+<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
 
-<?php use_javascript('debugger/ADS-final-verbose.js'); ?>
-<?php use_javascript('debugger/myLogger.js'); ?>
+<?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
+<?php //use_javascript('debugger/myLogger.js'); ?>
 
 <?php use_helper('Date', 'Number', 'I18n'); ?>
 
@@ -42,7 +36,7 @@
     <p style="text-align: center;"><?php echo image_tag('generic/ajax-loader.gif', array('alt' => '')) ?></p>
     <br />
     <p><?php echo __('Your request has been sent. Please wait !'); ?></p>
-    <p><?php //echo __('You can always change your mind. Click cancel');     ?></p>
+    <p><?php //echo __('You can always change your mind. Click cancel'); ?></p>
 </div>
 
 
@@ -53,18 +47,25 @@
                 <li><a href="#" class="selected form-tab" id="flight-tab"><?php echo __('Flight'); ?></a></li>
                 <li><a href="#" class="form-tab" id="hotel-tab"><?php echo __('Hotel'); ?></a></li>
                 <li><a href="#" class="form-tab" id="car-tab"><?php echo __('Car'); ?></a></li>
-                <li><a href="#" class="form-tab-last" id="package-tab"><?php echo __('Package'); ?></a></li>
+                <li><a href="#" class="form-tab" id="package-tab"><?php echo __('Package'); ?></a></li>
             </ul>
-            <div id="flight-form" class="none">
+            <div id="flight-form">
                 <?php include_partial('searchFlight/formIndex', array('form' => $flightForm)); ?>
             </div>
             <div id="hotel-form" class="">
                 <?php include_partial('searchHotel/formIndex', array('form' => $hotelForm)); ?>
             </div>
+            <div id="car-form">
+                <?php include_partial('searchCar/formIndex',array('form'=>$carForm)); ?>
+            </div>
+            <div id="package-form" class="hide">
+                <?php include_partial('searchPackage/formIndex',array('form'=>$packageForm)); ?>
+            </div>
             
     </div>
     <hr class="space3" />
     <div class="span-9 prepend-top border">
+<<<<<<< HEAD
 
         
 
@@ -92,6 +93,10 @@
             </table>
             <?php endfor; ?>
         </div>
+=======
+        <?php include_component('prevSearch', 'index', array()); ?>
+        
+>>>>>>> release-1.1
     </div>
 
 </div>
@@ -113,13 +118,15 @@
         </select>
         <table>
             <tr><td><a>Sheraton Waikiki resort</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-            <tr class="desc"><td colspan="2">
+            <tr class="desc">
+            <td colspan="2">
                 <?php echo image_tag('tmp/feature_deals_1.jpg', array('class'=>'left'));?>
                     <p>Your request has been sent, but you can always change your mind.</p>
+            </td>
             </tr>
             <tr><td><a>Europe - Italy</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
             <tr><td><a>Discover South America</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-            <tr><td><a>Surfing in Hawai</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
+            <tr class="last"><td><a>Surfing in Hawai</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
         </table>
         <div style="clear:both;"></div>
         <?php //endforeach; ?>
@@ -133,7 +140,7 @@
     <div class="span-8 last prepend-top append-bottom" id="specialInterest">
         <h2 class="title"><?php echo __('Vacations by interest'); ?></h2>
         <?php echo image_tag('tmp/special_interest_1.jpg'); ?>
-        <div id="specialInterest-container">
+        <div id="specialInterest-container" class="small">
             <ul>
                 <li><a>All inclusive</a></li>
                 <li><a>Golf</a></li>
@@ -149,14 +156,14 @@
         </div>
     </div>
     <div class="span-8 last prepend-top" id="newsletter-signup">
-        <h2>Get deals in your inbox!<br />Sign up for Hypertech Email</h2>
+        <h2 class="smaller">Get deals in your inbox!<br />Sign up for Hypertech Email</h2>
         <table>
             <tr>
                 <td>
                     <input type="text" name="newsletter_signup" value="enter you email" />
                 </td>
                 <td>
-                    <input type="submit" value="sign in" class="search-small" style="float: left;" />
+                    <input type="submit" value="sign in" class="blue small" style="float: left;" />
                 </td>
             </tr>
         </table>
@@ -183,6 +190,7 @@
     $('document').ready(function(){
 
         $('#hotel-form').hide();
+        $('#car-form').hide();
 
         $('#flight-tab').click(function(){
             $('#flight-form').show();
@@ -201,6 +209,28 @@
             $('#hotel-form').show();
             $('#car-form').hide();
             $('#package-form').hide();
+            $('.form-tab').each(function(){
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
+
+        $('#car-tab').click(function(){
+            $('#flight-form').hide();
+            $('#hotel-form').hide();
+            $('#car-form').show();
+            $('#package-form').hide();
+            $('.form-tab').each(function(){
+                $(this).removeClass('selected');
+            });
+            $(this).addClass('selected');
+        });
+
+        $('#package-tab').click(function(){
+            $('#flight-form').hide();
+            $('#hotel-form').hide();
+            $('#car-form').hide();
+            $('#package-form').show();
             $('.form-tab').each(function(){
                 $(this).removeClass('selected');
             });

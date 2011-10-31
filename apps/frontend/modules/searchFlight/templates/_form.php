@@ -1,8 +1,8 @@
 <?php use_helper('I18n'); ?>
 <?php use_stylesheet('form'); ?>
 
-<?php use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
-<?php use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
+<?php //use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
+<?php //use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
 
 <?php
 if ($form->hasGlobalErrors()) {
@@ -153,7 +153,7 @@ if ($form->hasGlobalErrors()) {
 
                 <tr>
                     <td colspan="4">
-                        <input type="submit" value="<?php echo __('search'); ?>" class="search" />
+                        <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
                     </td>
                 </tr>
                 <?php echo $form['type']; ?>

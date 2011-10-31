@@ -322,7 +322,7 @@ abstract class PlexFlightParameters extends PlexParameters {
         switch($this->type){
 
             case 'flightReturn':
-                return 'Round trip';
+                return 'round trip';
                 break;
             case 'flightOneway':
                 return 'one way';
@@ -333,9 +333,23 @@ abstract class PlexFlightParameters extends PlexParameters {
                 break;
         }
 
-        
+    }
 
+
+    public function getOriginDestination($culture = 'en_US'){
+
+        
+        return $this->arOrigin[$culture]['name'] . ' (' .$this->arOrigin['code'] . ') <br />' .
+               $this->arDestination[$culture]['name'] . ' (' .$this->arDestination['code'] . ')';
+        //return $this->getOrigin() . ' - '.$this->getDestination();
+
+        
+    }
+
+    public function getPassengers(){
+        $passengers = (int)$this->getAdults() + (int)$this->getChildren() + (int)$this->getInfants();
+        return $passengers;
     }
 
 }
-?>
+

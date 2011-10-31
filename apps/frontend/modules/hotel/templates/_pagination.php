@@ -1,9 +1,10 @@
 <div class="span-18">
     <div class="padded">
-        <ul class="pagination">
-        <li class="bold" style="line-height: 24px;">
+        <div class="span-5 smaller bold" style="line-height: 20px;">
             <?php echo $page*10-9 ?> - <?php echo (($page*10) < $total)? $page*10: $total; ?> of <?php echo $total ?> hotels filtered
-        </li>
+        </div>
+        <div class="span-12 right last">
+        <ul class="pagination">
         <?php for ($i = (ceil($total / 10)); $i >= 1; $i--): ?>
         <?php if ($page == $i): ?>
                 <li><span class="page-link"><?php echo $i ?></span></li>
@@ -12,7 +13,7 @@
         <?php endif; ?>
         <?php endfor; ?>
         </ul>
-
+        </div>
         <div style="clear:both;"></div>
     </div>
 </div>

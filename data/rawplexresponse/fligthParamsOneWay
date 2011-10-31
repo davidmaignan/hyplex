@@ -1,0 +1,113 @@
+FlightReturnParameters Object
+(
+    [arParams] =>
+    [arMatches] => Array
+        (
+        )
+
+    [arOrigin] => Array
+        (
+            [id] => 8368
+            [code] => LAX
+            [airport] => Los Angeles International
+            [metropolitan] =>
+            [zh_CN] => Array
+                (
+                    [name] => 洛杉矶
+                    [country] => 美国
+                    [state] => Array
+                        (
+                            [code] => CA
+                            [name] => 美国加州
+                        )
+
+                )
+
+            [fr_FR] => Array
+                (
+                    [name] => Los Angeles
+                    [country] => États-unis
+                    [state] => Array
+                        (
+                            [code] => CA
+                            [name] => Californie
+                        )
+
+                )
+
+            [en_US] => Array
+                (
+                    [name] => Los Angeles
+                    [country] => USA
+                    [state] => Array
+                        (
+                            [code] => CA
+                            [name] => California
+                        )
+
+                )
+
+        )
+
+    [arDestination] => Array
+        (
+            [id] => 10695
+            [code] => JFK
+            [airport] => John F Kennedy International
+            [metropolitan] =>
+            [zh_CN] => Array
+                (
+                    [name] => 纽约
+                    [country] => 美国
+                    [state] => Array
+                        (
+                            [code] => NY
+                            [name] => 纽约
+                        )
+
+                )
+
+            [fr_FR] => Array
+                (
+                    [name] => New York
+                    [country] => États-unis
+                    [state] => Array
+                        (
+                            [code] => NY
+                            [name] => New York
+                        )
+
+                )
+
+            [en_US] => Array
+                (
+                    [name] => New York
+                    [country] => USA
+                    [state] => Array
+                        (
+                            [code] => NY
+                            [name] => New York
+                        )
+
+                )
+
+        )
+
+    [culture:protected] => en_US
+    [type:protected] => flightReturn
+    [problemWithCode] =>
+    [oneway] => 0
+    [origin] => Los Angeles, Los Angeles International, USA (LAX)
+    [destination] => New York, John F Kennedy International, USA (JFK)
+    [depart_date] => 2011-11-01
+    [depart_time] => 8
+    [return_date] => 2011-11-08
+    [return_time] => 8
+    [cabin] => Economy
+    [number_adults] => 1
+    [number_children] => 0
+    [number_infants] => 0
+    [_csrf_token] => f06fe818acebbe4aee7b4a424bc23154
+    [originCode] => LAX
+    [destinationCode] => JFK
+)

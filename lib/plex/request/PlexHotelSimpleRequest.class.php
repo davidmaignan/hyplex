@@ -15,9 +15,11 @@ class PlexHotelSimpleRequest extends PlexRequest implements PlexRequestInterface
     protected $url;
 
     public function  __construct($type, $request, $paramFactory) {
+        
         parent::__construct($type, $request, $paramFactory);
+        //$this->url = sfConfig::get('app_plex_url2');
 
-        $this->url = sfConfig::get('app_plex_url2');
+
     }
 
     public function  buildXML() {
@@ -27,7 +29,7 @@ class PlexHotelSimpleRequest extends PlexRequest implements PlexRequestInterface
         $sessionTokenId = sfContext::getInstance()->getUser()->getAttribute('sTId');
 
         //Retrieve the connection parameters
-        $this->defineParams(1);
+        $this->defineParams();
 
         $paramFactory = $this->paramFactory;
 
@@ -81,28 +83,36 @@ class PlexHotelSimpleRequest extends PlexRequest implements PlexRequestInterface
         return $this->xml;
     }
 
+    /*
     public function executeRequest() {
 
         $timer = sfTimerManager::getTimer('PlexRequest');
 
-        //sfContext::getInstance()->getLogger()->alert('Execute xml for flight Return request');
+        $client = new SoapClient(null,array('location'=>$this->location,'uri'=>$this->uri, 'trace'=>1));
+        $response = $client->__doRequest($this->xml, $this->url, 'doAuthorization', 1);
 
-        ini_set('error_reporting', E_ERROR | E_STRICT);
+        $header = $this->getHeader($client->__getLastResponseHeaders());
+        $infosUser = $this->retreiveUserInfos($request);
+        $elapsedTime = $timer->getElapsedTime();
 
-        $client = new nusoap_client($this->url, false);
-        $client->persistentConnection = true;
-        $client->soap_defencoding = 'utf-8';
-        $client->send($this->xml);
+        //Http code 200 success, 500 failure ...
+        $code = $header['code'][1];
 
-        $this->response = $client->response;
+        //If code not 200 -> redirect to error page and save in plexErrorLog
+        if($code != 200){
+            $this->redirectIfServerError($code, $this->request->getPostParameters(), $response);
+        }
+
+        $this->response = simplexml_load_string($this->removeSoapEnvelop($response));
+
+        $header = $client->__getLastResponseHeaders();
+        
 
         $timer->addTime();
 
-        ini_restore('error_reporting');
-
         return $this->response;
     }
-
+    */
 
 }
 

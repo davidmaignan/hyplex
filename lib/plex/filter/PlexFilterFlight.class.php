@@ -58,7 +58,7 @@ class PlexFilterFlight {
         //If filename.plex2 - already read one so best price added to request file
         //-----------------------------------------
 
-        $this->arObjs = $this->parseFile($this->getFilameFullPath() . '.plex');
+        $this->arObjs = $this->parseFile($this->getFilameFullPath());
         
         /*
         //Add the best price in the request file same line.
@@ -77,7 +77,9 @@ class PlexFilterFlight {
     }
 
     protected function getFilameFullPath(){
-        return sfConfig::get('sf_user_folder').'/'.$this->filename;
+        return sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.
+                'flight'.DIRECTORY_SEPARATOR.
+                $this->filename.DIRECTORY_SEPARATOR.'plexResponse.plex';
     }
 
     protected function parseFile($filename) {

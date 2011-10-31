@@ -22,4 +22,26 @@ class CountryTable extends Doctrine_Table
         $query->leftJoin($query->getRootAlias() . '.Translation t')
                 ->addWhere('t.name like \'%' . $value['text'] . '%\'');
     }
+
+
+    public function searchAutoComplete($value){
+
+        $culture = sfContext::getInstance()->getUser()->getCulture();
+
+        $value = $value.'%';
+
+        $q = Doctrine::getTable('country')
+                ->createQuery('a')
+                ->select('a.id, t.name AS name')
+                ->leftJoin('a.Translation t')
+                ->andWhere('t.lang = ?', $culture)
+                ->addWhere('t.name LIKE ?', $value)
+                ->execute(array(), Doctrine_Core::HYDRATE_SCALAR);
+
+        return $q;
+
+    }
+
+
+
 }

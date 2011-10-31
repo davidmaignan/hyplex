@@ -1,0 +1,8 @@
+all:
+  is_secure: false
+new:
+  is_secure: true
+  credentials: admin
+create:
+  is_secure: true
+  credentials: admin

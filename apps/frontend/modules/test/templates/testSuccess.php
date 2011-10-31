@@ -8,7 +8,7 @@ foreach($users as $user){
 
     echo $user->getUserName();
     echo '<br />';
-    var_dump($user->getAllPermissions());
+    //var_dump($user->getAllPermissions());
     echo '<br />';
     var_dump($user->getGroupNames());
     echo '<hr />';

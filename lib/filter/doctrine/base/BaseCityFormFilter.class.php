@@ -5,7 +5,7 @@
  *
  * @package    hyplexdemo
  * @subpackage filter
- * @author     Your name here
+ * @author     David Maignan
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 29570 2010-05-21 14:49:47Z Kris.Wallsmith $
  */
 abstract class BaseCityFormFilter extends BaseFormFilterDoctrine
@@ -19,6 +19,7 @@ abstract class BaseCityFormFilter extends BaseFormFilterDoctrine
       'state_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('State'), 'add_empty' => true)),
       'cache'        => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'archived'     => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
+      'rank'         => new sfWidgetFormFilterInput(),
       'metropolitan' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
       'latitude'     => new sfWidgetFormFilterInput(),
       'longitude'    => new sfWidgetFormFilterInput(),
@@ -33,6 +34,7 @@ abstract class BaseCityFormFilter extends BaseFormFilterDoctrine
       'state_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('State'), 'column' => 'id')),
       'cache'        => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'archived'     => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
+      'rank'         => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'metropolitan' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
       'latitude'     => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'longitude'    => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
@@ -100,6 +102,7 @@ abstract class BaseCityFormFilter extends BaseFormFilterDoctrine
       'state_id'     => 'ForeignKey',
       'cache'        => 'Boolean',
       'archived'     => 'Boolean',
+      'rank'         => 'Number',
       'metropolitan' => 'Boolean',
       'latitude'     => 'Number',
       'longitude'    => 'Number',

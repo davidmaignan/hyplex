@@ -34,8 +34,7 @@ RequestPlex:
     response_raw:               { type: clob }
     response_code:              { type: int, notnull: true }
     response_processed:         { type: clob }
-    elapsed_plex_request:       { type: decimal, notnull: true, scale: 14 }
-    elapsed_process_response:   { type: decimal, notnull: true, scale: 14 }
+    elapsed_time:               { type: object}
 
 PromotionalBanner:
   actAs:
@@ -160,6 +159,7 @@ City:
     state_id:        { type: integer }
     cache:           { type: boolean, default: 0 }
     archived:        { type: boolean, default: 0 }
+    rank:            { type: integer, default: 0 }
     metropolitan:    { type: boolean, default: 0 }
   indexes:
     code_index:
@@ -291,3 +291,66 @@ HotelFacility:
       fields: [name]
   columns:
     name: { type: string(255), unique: true, notnull: true }
+
+HotelChain:
+  actAs:
+    Sluggable:
+      fields: [name]
+      unique: true
+  columns:
+    tag:      { type: string(2), unique: true }
+    name:     { type: string(255) }
+
+Address:
+  columns:
+    id: { type: integer, primary: true }
+    address_1: { type: string(255), notnull: true }
+    address_2: { type: string(255) }
+    city: { type: string(255), notnull: true }
+    state: { type: string(255) }
+    country_id: { type: integer, notnull: true }
+    postcode: { type: string(10), notnull: true }
+    phone: { type: integer }
+    cellphone: { type: integer }
+    email: { type: string(255) }
+  relations:
+    Country:
+      local: country_id
+      foreign: id
+      type: one
+      foreignType: one
+
+Passenger:
+  columns:
+    id: { type: integer, primary: true }
+    salutation:
+      type: enum
+      values: [Mr, Ms, Mrs, Dr]
+    first_name: { type: string(100), notnull: true }
+    middle_name: { type: string(100) }
+    last_name: { type: string(100), notnull: true }
+    gender:
+      type: enum
+      values: [male, female]
+    dob: { type: string(10), notnull: true }
+    p_type:
+      type: enum
+      values: [ADT, CHD]
+    frequent_flyer_number: {type: string(20) }
+    airline_code: { type: string(255) }
+    meal_preference: { type: string(255) }
+    special_assistance: { type: string(255) }
+
+Booking:
+  actAs: { Timestampable: ~ }
+  columns:
+    booking_id: { type: string(255), unique: true }
+    object: { type: object }
+    user_id: { type: integer }
+  relations:
+    sfGuardUser:
+      local: user_id
+      foreign: id
+      type: one
+      foreignType: one
+

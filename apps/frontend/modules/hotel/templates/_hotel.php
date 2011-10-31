@@ -27,16 +27,16 @@
         </ul>
     </div>
     <div class="span-4 last">
-        <ul>
+        <ul class="hotel-price-window">
             <li class="hotel-price"><?php echo format_currency($result->minPrice, sfConfig::get('app_currency')) ?></li>
             <li class="hotel-price-total">
                 <?php echo  ucfirst(__('total price')). ': '.format_currency($result->minTotalPrice, sfConfig::get('app_currency')) ?>
             </li>
-            <li class="right">
+            <li>
                 <?php
                 echo link_to2(__('select'), 'hotel_detail',
                         array('slug' => Utils::slugify($result->getName())),
-                        array('class' => 'hotelNameDetailAjaxLink select'));
+                        array('class' => 'hotelNameDetailAjaxLink button action blue bigger right'));
                 ?>
         </ul>
     </div>

@@ -26,15 +26,75 @@ class searchFlightActions extends sfActions {
     public function executeModifySearch(sfWebRequest $request){
 
         $filename = $request->getParameter('filename');
-
         $parameters = PlexParsing::retreiveParameters($filename);
-
         $this->form = new SearchFlightForm($parameters->getParametersArray($this->getUser()->getCulture()));
 
         $this->setTemplate('index');
 
+    }
+
+    /**
+     * Function to perform a search from previous search parameters
+     * @param sfWebRequest $request
+     */
+
+    public function executeSearchAgain(sfWebRequest $request){
+
+        $filename = $request->getParameter('filename');
+        $parameters = PlexParsing::retreiveParameters($filename);
+        $params1 = $parameters->getParametersArray($this->getUser()->getCulture());
+
+        //Replace csrf_token with a valid on
+        $token = PlexBasket::getInstance()->getCSRFToken(new SearchFlightForm());
+        $params1['_csrf_token'] = $token;
+
+        //$secret = sfConfig::get('sf_csrf_secret');
+        //$csrf_token = md5($secret.session_id().get_class(new SearchFlightForm()));
+        //$params['_csrf_token'] = $csrf_token;
+        
+        //$this->form = new SearchFlightForm($params);
+        //var_dump($this->form->isValid());
+        //exit;
+        /*
+        $params = array('oneway' => 0,
+                        'origin' => 'Los Angeles, CA, USA, Los Angeles International (LAX)',
+                        'destination' => 'Dallas, TX, USA, Dallas Metropolitan Area (DFW)',
+                        'depart_date' => '2011-11-01',
+                        'depart_time' => '8',
+                        'return_date' => '2011-11-08',
+                        'return_time' => '8',
+                        'cabin' => 'Economy',
+                        'number_adults' => '1',
+                        'number_children' => '0',
+                        'number_infants' => '0',
+                        'type' => 'flightReturn',
+                        '_csrf_token' => '38f9fedaf302832104cefca0e8f677c9');
+         * 
+         */
+
+        //print_r($params);
+
+        //var_dump(array_diff($params1, $params));
+
+
+        $this->form = new SearchFlightForm();
+        $this->form->bind($params1);
+        
+        if($this->form->isValid()){
+            //Form is valid - add parameters to the request and proceed
+            $request->setParameter('search_flight', $params1);
+            $this->forward('process', 'index');
+
+        }else{
+            $this->forward('searchFlight', 'modifySearch');
+
+        }
+
+        $this->setTemplate('index');
 
     }
+
+    
 
     public function executeIndex(sfWebRequest $request) {
 
@@ -50,10 +110,6 @@ class searchFlightActions extends sfActions {
             //break;
         }
 
-        //var_dump($request->getParameter('test'));
-        //break;
-
-
         $this->form = new SearchFlightForm($parameters);
 
         if ($this->getRequest()->getRequestFormat() == 'iphone') {
@@ -66,14 +122,30 @@ class searchFlightActions extends sfActions {
     }
 
     public function executeCreate(sfWebRequest $request) {
-        //$this->forward404Unless($request->isMethod(sfRequest::POST));
-        $this->form = new SearchFlightForm();
-        if ($this->getRequest()->getRequestFormat() == 'iphone') {
-            $this->form = new SearchFlightIphoneForm();
+
+
+        //Search from a previous one
+        if($request->hasParameter('filename')){
+
+            $filename = $request->getParameter('filename');
+            $parameters = PlexParsing::retreiveParameters($filename);
+            $params = ($parameters->getParametersArray($this->getUser()->getCulture()));
+            $this->form = new SearchFlightForm();
+            $this->form->bind($params);
+
+
+        }else{
+
+            $this->form = new SearchFlightForm();
+            if ($this->getRequest()->getRequestFormat() == 'iphone') {
+                $this->form = new SearchFlightIphoneForm();
+            }
+            if ($this->getRequest()->getRequestFormat() == 'ipad') {
+                $this->form = new SearchFlightIpadForm();
+            }
+
         }
-        if ($this->getRequest()->getRequestFormat() == 'ipad') {
-            $this->form = new SearchFlightIpadForm();
-        }
+       
         $this->processForm($request, $this->form);
 
         $this->setTemplate('index');
@@ -128,7 +200,9 @@ class searchFlightActions extends sfActions {
         $origin = $parameters['search_flight']['origin'];
         $destination = $parameters['search_flight']['destination'];
 
-        //var_dump($parameters);
+        //echo "<pre>";
+        //print_r($parameters);
+        //exit;
         //echo $origin;
         //echo $destination;
         //break;

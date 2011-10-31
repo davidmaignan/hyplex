@@ -12,6 +12,8 @@ class frontendConfiguration extends sfApplicationConfiguration {
         $this->dispatcher->connect('plex.responsexml_error', array('sfErrorLogger','plexError'));
         $this->dispatcher->connect('plex.response_success', array('PlexLogger','logResponse'));
 
+        sfConfig::set('plex_ipm', 2);
+
     }
 
     public function filterRequestParameters(sfEvent $event, $parameters) {

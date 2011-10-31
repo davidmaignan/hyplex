@@ -6,6 +6,8 @@
 
 var targetInfos;
 
+
+
 $(document).ready(function(){
     
 
@@ -29,6 +31,9 @@ $(document).ready(function(){
         }
     });
 
+    
+    
+    /*
     $("#search_flight_origin").focus().autocomplete(airports, {
         minChars: 2,
         width: 300,
@@ -64,9 +69,9 @@ $(document).ready(function(){
             return formatAirportString(row);
         }
     });
-    
-
-    $("#search_flight_destination").autocomplete(airports, {
+    */
+    /*
+    $("#search_flight_destination, #search_flight_origin").autocomplete(airports, {
         minChars: 0,
         width: 300,
         matchContains: "word",
@@ -81,7 +86,7 @@ $(document).ready(function(){
             return formatAirportString(row);
         }
     });
-
+    */
     
 
     $(".multidestination-popup").click(function(){
@@ -159,32 +164,125 @@ $(document).ready(function(){
         $('.return-date').css('display','none');
         $('.return-time').css('display','none');
     }
+    
+    $( "#search_flight_destination" ).autocomplete({
+            autoFocus: true,
+            source: function( request, response ) {
+                    $.ajax({
+                            url: autoCompleteURL,
+                            dataType: "json",
+                            delay: 200,
+                            data: {
+                                    featureClass: "P",
+                                    style: "full",
+                                    maxRows: 12,
+                                    name_startsWith: request.term
+                            },
+                            success: function( data ) {
+                                    response( $.map( data.results, function( item ) {
+
+                                            var value = data.values[0];
+                                            //$('#log2').append(value);
+
+                                            var string = item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')';
+                                            string = highlight2(string, request.term);
 
 
-    //Rules to add the matches to the input field origin and destination
-
-    $('documtent').ready(function(){
-
-        $('.matches').click(function(){
-
-            var value = $(this).attr('innerHTML');
-
-            if($(this).hasClass('origin') == true){
-                var target = '#search_flight_origin';
-            }else{
-                var target = '#search_flight_destination';
+                                            return {
+                                                    label: string,
+                                                    value: item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')'
+                                            }
+                                    }));
+                            }
+                    });
+            },
+            minLength: 2,
+            select: function( event, ui ) {
+                    //log( ui.item ?
+                     //       "Selected: " + ui.item.label :
+                     //       "Nothing selected, input was " + this.value);
+            },
+            open: function() {
+                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+            },
+            close: function() {
+                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
             }
+    }).data('autocomplete')._renderItem = function( ul, item ) {
+        return $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( '<a>' + item.label + '</a>' )
+            .appendTo( ul );
+    };
 
-            $(target).val(value);
 
-            //alert(target);
-            return false;
+    $( "#search_flight_origin" ).autocomplete({
+            autoFocus: true,
+            source: function( request, response ) {
+                    $.ajax({
+                            url: autoCompleteURL,
+                            dataType: "json",
+                            autoFocus: true,
+                            delay: 400,
+                            data: {
+                                    featureClass: "P",
+                                    style: "full",
+                                    maxRows: 12,
+                                    name_startsWith: request.term
+                            },
+                            success: function( data ) {
+                                    response( $.map( data.results, function( item ) {
 
-            //alert('here');
-        });
-        
-    });
+                                            var value = data.values[0];
+                                            var string = item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')';
+                                            string = highlight2(string, request.term);
+                                            return {
+                                                    label: string,
+                                                    value: item.t_name+', '+ item.a_airport + ', '+ item.u_country +' ('+ item.a_code +')'
+                                            }
+                                    }));
+                            }
+                    });
+            },
+            minLength: 2,
+            select: function( event, ui ) {
+
+            },
+            open: function() {
+                    $( this ).removeClass( "ui-corner-all" ).addClass( "ui-corner-top" );
+            },
+            close: function() {
+                    $( this ).removeClass( "ui-corner-top" ).addClass( "ui-corner-all" );
+            }
+    }).data('autocomplete')._renderItem = function( ul, item ) {
+        return $( "<li></li>" )
+            .data( "item.autocomplete", item )
+            .append( '<a>' + item.label + '</a>' )
+            .appendTo( ul );
+    };
+
 
 });
 
+$('documtent').ready(function(){
+
+    $('.matches').click(function(){
+
+        var value = $(this).attr('innerHTML');
+
+        if($(this).hasClass('origin') == true){
+            var target = '#search_flight_origin';
+        }else{
+            var target = '#search_flight_destination';
+        }
+
+        $(target).val(value);
+
+        //alert(target);
+        return false;
+
+        //alert('here');
+    });
+
+});
 

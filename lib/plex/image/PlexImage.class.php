@@ -65,13 +65,17 @@ class PlexImage {
         //Better solution to implement when will have extra time
         //http://php.net/manual/en/function.imagecreatefrompng.php see example 1
         if(!$handle){
-            
             $url = sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'generic'.DIRECTORY_SEPARATOR.'no_image_available.png';
         }
-        //var_dump(file_exists($url));
-        //break;
-        
+
         $infoSrc = getimagesize($url);
+
+        if(empty($infoSrc)){
+            $url = sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'images'.DIRECTORY_SEPARATOR.'generic'.DIRECTORY_SEPARATOR.'no_image_available.png';
+            $infoSrc = getimagesize($url);
+        }
+
+
         //var_dump($infoSrc);
         $srcWidth = $infoSrc[0];
         $srcHeight = $infoSrc[1];
@@ -124,6 +128,10 @@ class PlexImage {
 
         $function = $this->arMimes[$infoSrc['mime']];
         //echo $function;
+
+        //var_dump($infoSrc['mime']);
+        //echo $url;
+        //exit;
 
         $src = $function($url);
 

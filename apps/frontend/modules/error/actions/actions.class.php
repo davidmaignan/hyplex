@@ -42,8 +42,8 @@ class errorActions extends sfActions
   public function executeSessionExpired(sfWebRequest $request)
   {
       //Delete the sTid in the user class
-     $this->getUser()->setAttribute('sTId', null);
-     $this->getUser()->setAttribute('sTId_time', null);
+      //$this->getUser()->setAttribute('sTId', null);
+      //$this->getUser()->setAttribute('sTId_time', null);
 
       //Tell basket object any product is obsolete and need to be checked for availability
 

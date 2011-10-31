@@ -17,7 +17,10 @@
 -------------------------------------------------------------- */
 
 /* Sets up basic grid floating and margin. */
-.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6, .span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13, .span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20, .span-21, .span-22, .span-23, .span-24 {
+.column, .span-1, .span-2, .span-3, .span-4, .span-5, .span-6,
+.span-7, .span-8, .span-9, .span-10, .span-11, .span-12, .span-13,
+.span-14, .span-15, .span-16, .span-17, .span-18, .span-19, .span-20,
+.span-21, .span-22, .span-23, .span-24 {
     float: left;
     margin-right: 20px;
     border:0px solid red;
@@ -54,12 +57,25 @@
 .span-25 {width:990px; margin-right:0;}
 
 
+.medium{
+    width: 225px;
+}
+
 /* In case you need to add a gutter above/below an element */
 div.prepend-top, .prepend-top {
     margin-top:10px;
 }
+
+.prepend-1{
+    margin-left: 14px;
+}
+
 div.append-bottom, .append-bottom {
     margin-bottom:10px;
+}
+
+div.append-bottom2, .append-bottom2 {
+    margin-bottom:5px;
 }
 
 /* TOP PAGE -----------------------------------------------*/
@@ -75,9 +91,6 @@ div.append-bottom, .append-bottom {
     font-size: 82%;
 }
 
-#top-header ul{
-
-}
 
 #top-header ul li{
     display:inline;
@@ -152,7 +165,6 @@ div.append-bottom, .append-bottom {
 #language ul li.selected,  #currency ul li.selected {
     height: 18px;
     border: 0px solid green;
-    border-top: none;
     padding: 6px;
     background: none;
     margin-bottom: 3px;
@@ -194,26 +206,6 @@ div.append-bottom, .append-bottom {
     color: #f26522;
 }
 
-
-#login{
-    float: right;
-    margin-top: 10px;
-    font-size: 90%;
-    text-align: right;
-}
-#login a{
-    margin-left: 15px;
-}
-
-#sign-in{
-
-}
-
-#create-account{
-    margin-right: 15px;
-}
-
-
 /* HEADER NAVIGATION ------------------------------------------ */
 
 #phoneInfo p.left{
@@ -247,7 +239,7 @@ div.append-bottom, .append-bottom {
     -webkit-box-shadow: 0px 0px 2px #333;
     box-shadow: 0px 0px 2px #333;
     border:1px solid white;
-    awidth: 1000px;
+    border-radius: 2px;
 }
 
 #main-nav li{
@@ -272,8 +264,6 @@ div.append-bottom, .append-bottom {
     color: #0c4878;
 }
 
-
-
 /* Homepage ------------------------------------------------*/
 
 #promotional_container{
@@ -290,6 +280,7 @@ div.append-bottom, .append-bottom {
 
 #featureDeals table{
     font-size: 85%;
+    width: 100%;
 }
 
 #featureDeals select{
@@ -308,12 +299,15 @@ div.append-bottom, .append-bottom {
 
 #featureDeals table tr.desc td{
     text-align: left;
-    border:none;
-    background: #EFF7FD url('../images/generic/bg-feature-deals.png') repeat-x left bottom;
+    border: none;
+
+}
+
+#featureDeals tr.last td{
+    border-bottom: 1px solid #97D1F4;
 }
 
 #featureDeals img.left{
-    align: left;
     margin-right: 10px;
 }
 
@@ -331,8 +325,6 @@ div.append-bottom, .append-bottom {
 #specialInterest{
     height: 300px;
     display: block;
-    border-bottom: 1px solid #cecece;
-
 }
 
 #specialInterest-container{
@@ -340,27 +332,17 @@ div.append-bottom, .append-bottom {
     overflow: auto;
     border: 1px solid #97D1F4;
     border-top: none;
-}
-
-#specialInterest ul{
-    margin: 10px 0 0 10px;
-    font-size: 85%;
-}
-
-#specialInterest ul li{
-    display: inline;
-
+    padding: 10px;
 }
 
 #specialInterest ul li a{
-    width: 115px;
+    width: 110px;
     background: url('../images/icons/bullet_blue.png') no-repeat left top;
     margin-right: 10px;
     margin-bottom: 8px;
     padding-left: 20px;
     display: block;
     float: left;
-
 }
 
 #newsletter-signup{
@@ -373,8 +355,7 @@ div.append-bottom, .append-bottom {
 }
 
 #newsletter-signup h2{
-    font-size: 90%;
-    line-height: 22px;
+    line-height: 20px;
 }
 
 #newsletter-signup table td{
@@ -400,7 +381,7 @@ div.append-bottom, .append-bottom {
 }
 
 .top-destination h2, .top-destination-last h2{
-    font-size: 100%;
+    
     margin: 5px 0 8px;
 }
 
@@ -424,34 +405,6 @@ div.append-bottom, .append-bottom {
 .extra-margin{
     margin-right: 8px;
 }
-
-
-
-/* TMP RULES FOR DESIGNING */
-
-.bg1{
-    background-color: #D8D8D8;
-}
-
-.bg2{
-    background-color: #336699;
-}
-
-.bg-white{
-    background-color: white;
-}
-
-.bg-blue1{
-    background-color: #d9e5ee;
-}
-
-.bg-grey{
-    background-color: #fefefe;
-}
-
-
-
-
 
 /* Generic rules --------------------------------------------------------- */
 
@@ -481,7 +434,9 @@ hr.space2 {
     background: #fff;
     color: #fff;
     visibility: hidden;
-    margin:4px;
+    margin: 4px 0 !important;
+    margin: 0px;
+    padding: 0;
 }
 
 
@@ -509,13 +464,24 @@ hr.space3 {
 /* Regular clearing
    apply to column that should drop below previous ones. */
 
-.clear { clear:both; }
-
+.clear {clear:both;}
 
 /* Generic rules */
 
 .right{
     float:right;
+}
+
+td.right, th.right{
+    text-align: right;
+}
+
+td.left, th.left{
+    text-align: left;
+}
+
+td.center, th.center{
+    text-align: center;
 }
 
 .left{
@@ -557,35 +523,25 @@ hr.space3 {
     height: 20px;
     vertical-align: text-bottom;
     letter-spacing: .02em;
-    border-bottom:1px solid #a3b9cb;
-    border: 1px solid #1c4879;
-
-}
-
-.box-11{
-    border-top:1px solid #a3b9cb;
 }
 
 
 .box-2{
-    padding:6px;
+    padding: 10px;
+    font-size: 90%;
     overflow: hidden;
     background-color: #d9e5ee;
 }
 
 #filterForm{
     font-size: 90%;
+    box-shadow: 0px 0px 2px #777777;
+
 }
 
 #filterForm label{
     font-size: 90%;
     font-weight: normal;
-}
-
-
-#filterForm .box-2{
-    padding: 10px;
-    font-size: 90%;
 }
 
 #slider_takeoff_departflight, #slider_takeoff_returnflight, #slider_tripduration, #slider_price{
@@ -631,11 +587,20 @@ a.only{
 
 /* Hotel Result page --------------------------------------------  */
 
-.hotel-list-box{
+.hotel-list-box, pick-list-box{
     border-top: 1px solid #cecece;
     padding-top: 10px;
     margin-bottom: 8px;
     font-size: 82%;
+}
+
+.pick-list-box{
+    border:none;
+    border-bottom: 1px solid #cecece;
+    padding-bottom: 10px;
+    margin-top: 8px;
+    font-size: 82%;
+    line-height: 18px;
 }
 
 .hotel-list .hotel-name{
@@ -651,7 +616,7 @@ a.only{
 }
 
 .hotel-list .hotel-name a:hover{
-    color: #f26522;
+    color: #ed145b;
 }
 
 
@@ -673,6 +638,9 @@ a.only{
     font-size: 170%;
     font-weight: bold;
     float: right;
+    display:block;
+    width: 150px;
+    text-align: right;
 }
 
 .hotel-price-total{
@@ -680,6 +648,7 @@ a.only{
     color: #888888;
     float: right;
     margin: 6px 0;
+    display:block;
 }
 
 .hotel-temptation{
@@ -763,11 +732,6 @@ table.rates td{
     vertical-align: top;
 }
 
-
-table.rates tr.room-type, table.rates tfoot tr{
-    border-top:  0px solid #a3b9cb;
-}
-
 table.rates tr.room-type td{
     padding-top:10px;
     padding-bottom:10px;
@@ -777,16 +741,9 @@ table.rates tr.room-type td{
 
 }
 
-table.rates span.rates-available{
-    font-weight: normal;
-    font-size: 70%;
-}
-
 table.rates tr.room-rate{
-    border-top: 1px solid #c2dae9;
-    border-style: dotted;
-    border-left: none;
-    border-right: none;
+    border-top: 1px dotted #c2dae9;
+    border-bottom: 1px dotted #c2dae9;
 }
 
 .odd{
@@ -798,6 +755,7 @@ table.rates tr.room-rate li.rate-name{
     font-weight: bold;
     color: #555555;
 }
+
 
 table.rates li.rate-links a{
     font-size: 90%;
@@ -826,7 +784,6 @@ table.rates .price-total{
     font-size: 80%;
     margin-top: 9px;
     text-align: center;
-
 }
 
 
@@ -839,90 +796,25 @@ table.rates tbody td.room-rate-name{
     font-size: 90%;
 }
 
-
-
-table.rates .more-room-type{
-    background: url("/images/icons/bullet_add.png") no-repeat scroll left top transparent;
-    padding-left:21px;
-    font-size: 80%;
-    font-weight: normal;
-}
-
-table.rates .less-room-type{
-    background: url("/images/icons/bullet_delete.png") no-repeat scroll left top transparent;
-}
-
 table.rates .more-rates{
     font-weight: bold;
-    abackground: url("/images/icons/bullet_toggle_plus.png") no-repeat scroll left top transparent;
-    apadding-left: 20px;
     padding-right: 15px;
     display:block;
     float: left;
     font-size: 90%;
 }
 
-table.rates .less-rate{
-    abackground: url("/images/icons/bullet_toggle_minus.png") no-repeat scroll left top transparent;
-}
-
-table.rates .borderLeft{
-    border-left: 1px solid #DAD8EE;
-}
-
-table.rates .type2{
-    display: none;
-}
-
-table.rates a.hotel-open-all{
-    font-size: 85%;
-    font-weight: normal;
-    float: right;
-    background: url("/images/icons/table_add.png") no-repeat scroll left top transparent;
-    padding-left: 20px;
-    height: 16px;
-    text-indent: -200px;
-    overflow: hidden;
-}
-
-table.rates .room-type-summary{
-    color: #5C5C5C;
-    font-size: 90%;
-    margin: 0px;
-    border: 1px solid #ece6c4;
-    background-color: #f6f3e2;
-    padding: 6px;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px; /* future proofing */
-    -khtml-border-radius:10px; /* for old Konqueror browsers */
-}
-
-table.rates span.blue{
-    color: #0c4878;
-
-}
-
-table.rates td.selected{
-    background-color: #f6f3e2;
-}
-
-
 .term-condition-content{
     line-height: 15px;
 }
 
-span.term-condition-title{
-    font-weight: bold;
-    display: block;
-    margin: 4px 0 2px;
-}
+
 /* Total boxes */
 #hotel-total-top{
     float: right;
     padding:10px 7px;
-    border: 1px solid #dedecf;
-    background-color: #edede5;
+    border: 1px solid #e5e5e5;
+    background-color: #f5f5f5;
 }
 
 
@@ -1281,6 +1173,9 @@ table.hotel-info td.first{
     color: #0c4878;
     display: inline;
     float: left;
+    border:none;
+    padding: 0;
+    margin:0;
 }
 
 .infoHotelBubble li.starRating{
@@ -1356,7 +1251,7 @@ table.hotel-info td.first{
     display: none;
 }
 
-.location2{
+form.location2{
     display:none;
 }
 
@@ -1564,40 +1459,159 @@ table.hotel-info td.first{
 
 /* Basket ------------------------------------------------------------------*/
 
+
+#basket{
+    position: absolute;
+    bottom: -310px;
+    abottom: 0px;
+    background-color: white;
+    z-index: auto;
+    width: 100%;
+    height: 350px;
+    display: block;
+    -moz-box-shadow: -2px 0px 0px #000;
+    -webkit-box-shadow: 0px 0px 0px #333;
+    box-shadow: 0px 0px 0px #333;
+    position: fixed;
+    border-top: 2px solid #aaa;
+    padding:0;
+    display: none;
+}
+
+#basket h2{
+    color:#0c4878;
+    border: 1px solid #efefef;
+}
+
+h2.flight, h2.hotel{
+    abackground: url('/images/mobico/flight.png') no-repeat 3px 4px;
+    height: 26px;
+    line-height: 28px;
+    padding: 3px;
+    margin-bottom: 8px;
+    border-bottom:2px solid #0c4878;
+    border-top-width: 2px;
+    border-left: none;
+    border-right: none;
+    color: #0c4878;
+}
+
+#basket h3{
+    color: #0c4878;
+    margin-bottom: 5px;
+    padding-bottom: 7px;
+    background: url('/images/generic/bg_line.gif') repeat-x left bottom;
+}
+
+#basket li.basket-list{
+    height: 32px;
+    display: block;
+    background-color: #f8f8f6;
+    padding: 5px;
+    padding-left: 35px;
+    line-height: 30px;
+    border-bottom: 1px solid white;
+}
+
+li.link-flight{
+    background: url('/images/icons/flight.png') no-repeat 10px 10px;
+}
+
+li.link-hotel{
+    background: url('/images/icons/hotel.png') no-repeat 10px 10px;
+}
+
+li.link-car{
+    background: url('/images/icons/car.png') no-repeat 10px 10px;
+}
+
+li.link-excursion{
+    background: url('/images/icons/excursion.png') no-repeat 10px 10px;
+}
+
+#basket li.selected{
+    background-color: #beddf8;
+}
+
+#basket li.active{
+    background-color: #deded0;
+}
+
+
+#list-icon{
+    margin:0;
+    margin-left: 30px;
+    padding:0;
+}
+
+#list-icon li{
+    display: block;
+    float: left;
+    margin-right: 40px;
+}
+
+#data-container{
+    background-color: #e0edf8;
+    display: block;
+
+}
+
+#data-container table{
+    width: 100%;
+    line-height: 20px;
+    font-size: 90%;
+}
+
+#data-container  th, #data-container td{
+    text-align: left;
+    padding: 3px 0px;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+#data-container td{
+    background: none;
+    font-weight: normal;
+}
+
+#basket-summary{
+    border: 1px solid #cecece;
+}
+
 #basket-summary td{
     padding:6px;
 }
 
 #basket-summary td.icon{
     width: 26px;
+    height: 36px;
 }
 
-tr.basket-list-header, tr.basket-list{
-    background-color: #beddf8;
+tr.basket-list-header{
+    background-color: #f8f8f6;
+    font-size: 90%;
+    font-weight: bold;
+    border:1px solid #cecece;
 }
+
 
 tr.basket-list-header.active{
     cursor: pointer;
     cursor: hand;
 }
 
-tr.basket-list-header:hover{
-    background-color: #aec9de;
-}
 
 #basket-summary tr.basket-list td{
-    background-color: #eff7fd;
+    abackground-color: #eff7fd;
     font-size: 80%;
-
 }
 
 tr.basket-list-header td{
     vertical-align: middle;
+    height: 36px;
 }
 
 tr.basket-list-total{
-    border-bottom: 1px solid #a3b9cb;
-    border-top: 1px solid #a3b9cb;
     background-color: #E0EDF8;
 }
 
@@ -1606,26 +1620,27 @@ tr.basket-list-total .sub-person{
     padding-top: 10px;
 }
 
-tr.basket-list td.sub-total{
-    font-weight: normal;
-}
-
-td.sub-total{
+#basket-summary td.sub-total{
     text-align: right;
     color: #0c4878;
     font-weight: bold;
     font-size: 92%;
     letter-spacing: .02em;
+    width: 50px;
+}
+
+#basket-summary tr.basket-list td.sub-total{
+    font-weight: normal;
 }
 
 tr.basket-list-header.non-active{
     background-color: #f8f8f6;
     height: 30px;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid #cecece;
 }
 
 #basket-summary ul.sub-list li{
-    padding: 2px 0;
+    padding-bottom: 6px;
 }
 
 a.add{
@@ -1645,6 +1660,7 @@ a.add:hover{
 }
 
 
+
 table.basket-flight{
     font-size: 85%;
     border: 0px solid #97d1f4;
@@ -1653,7 +1669,7 @@ table.basket-flight{
 
 table.basket-flight td{
     padding:8px 6px;
-    border-bottom: 1px solid #a3b9cb;
+    border-top: 1px solid #a3b9cb;
     border-color: #97d1f4;
 }
 
@@ -1719,4 +1735,111 @@ a.basket-flight-link{
 
 .basket-view-excursions{
     background-position: 3px -120px
+}
+
+
+/* Previous search box */
+
+ul.prevSearch-list-index li{
+    margin-bottom: 4px;
+}
+
+#basket{
+    position: absolute;
+    bottom: -310px;
+    abottom: 0px;
+    background-color: white;
+    z-index: auto;
+    width: 100%;
+    height: 350px;
+    display: block;
+    -moz-box-shadow: -2px 0px 0px #000;
+    -webkit-box-shadow: 0px 0px 0px #333;
+    box-shadow: 0px 0px 0px #333;
+    position: fixed;
+    border-top: 2px solid #aaa;
+    padding:0;
+    display: none;
+}
+
+#basket h2{
+    color:#0c4878;
+}
+
+#basket h3{
+    color: #0c4878;
+    margin-bottom: 5px;
+    padding-bottom: 7px;
+    background: url('/images/generic/bg_line.gif') repeat-x left bottom;
+}
+
+#basket li.basket-list{
+    height: 32px;
+    display: block;
+    background-color: #f8f8f6;
+    padding: 5px;
+    padding-left: 35px;
+    line-height: 30px;
+    border-bottom: 1px solid white;
+}
+
+li.link-flight{
+    background: url('/images/icons/flight.png') no-repeat 10px 10px;
+}
+
+li.link-hotel{
+    background: url('/images/icons/hotel.png') no-repeat 10px 10px;
+}
+
+li.link-car{
+    background: url('/images/icons/car.png') no-repeat 10px 10px;
+}
+
+li.link-excursion{
+    background: url('/images/icons/excursion.png') no-repeat 10px 10px;
+}
+
+#basket li.selected{
+    background-color: #beddf8;
+}
+
+#basket li.active{
+    background-color: #deded0;
+}
+
+
+#list-icon{
+    margin:0;
+    margin-left: 30px;
+    padding:0;
+}
+
+#list-icon li{
+    display: block;
+    float: left;
+    margin-right: 40px;
+}
+
+#data-container{
+    background-color: #e0edf8;
+    display: block;
+}
+
+#data-container table{
+    width: 100%;
+    line-height: 20px;
+    font-size: 90%;
+}
+
+#data-container  th, #data-container td{
+    text-align: left;
+
+    padding: 3px 0px;
+    font-size: 90%;
+    font-weight: bold;
+}
+
+#data-container td{
+    background: none;
+    font-weight: normal;
 }

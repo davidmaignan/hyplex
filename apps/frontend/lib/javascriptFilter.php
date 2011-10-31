@@ -39,6 +39,12 @@ class javascriptFilter extends sfFilter {
                 
             }
         }
+
+        $airlineFile = $folder.'airlines.js';
+
+        if(!file_exists($airlineFile)){
+            Utils::createAirlineJavascriptFile($airlineFile);
+        }
         
     }
 }

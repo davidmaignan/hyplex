@@ -23,7 +23,7 @@ abstract class PlexRequest{
     protected $response;
     public    $header = array();
     public    $type;
-    private   $request;
+    protected $request;
     protected $infosUser = array();
     public    $return;
     public    $paramFactory;
@@ -35,91 +35,55 @@ abstract class PlexRequest{
         $this->request = $request;
         $this->paramFactory = $paramFactory;
 
-        ini_set('error_reporting', E_ERROR);
+        //Retreive the connection parameters
+        $this->defineParams();
 
         //check if a sessionTokenId (sTId) already exists
         $user = sfContext::getInstance()->getUser();
         $this->sTId = $user->getAttribute('sTId');
-
-        //For debugging purpose only
-        //$user->setAttribute('sTId', null);
     
         if($this->sTId === null){
 
             $timer = sfTimerManager::getTimer('RequestInitPlex');
 
-            //sfContext::getInstance()->getLogger()->alert('Generate a sessionTokenId');
-            //Retreive the parameters to login
-            $this->defineParams(1);
-
             //build the xml
             $this->xml = $this->buildXML();
 
-            $client = new nusoap_client($this->url, false);
-            $client->persistentConnection = true;
-            $client->soap_defencoding = 'utf-8';
-            $client->send($this->xml);
+            $client = new SoapClient(null,array('location'=>$this->location,'uri'=>$this->uri,'trace'=>1));
+            $response = $client->__doRequest($this->xml, $this->url, 'doAuthorization', 1);
 
-            $response = $client->response;
-
-            $timer->addTime();
+            //Retreive info from the request (header, user ...)
+            $header = $this->getHeader($client->__getLastResponseHeaders());
+            $infosUser = $this->retreiveUserInfos($this->request);
             $elapsedTime = $timer->getElapsedTime();
 
-            //Functions to retreive infos to save in db
-            $header = $this->getHeader($response);
-            $infosUser = $this->retreiveUserInfos($request);
-
+            //Http code 200 success, 500 failure ...
             $code = $header['code'][1];
-            
-            //Query to save response in RequestInitPlex table
-            $saveResponse = new RequestInitPlex();
-            $saveResponse->setDate(date('Y-m-d H:i:s'));
-            $saveResponse->setUserCulture($infosUser['culture']);
-            $saveResponse->setUserIp($infosUser['ip']);
-            $saveResponse->setUserAgent($infosUser['userAgent']);
-            $saveResponse->setUserFolder($infosUser['folder']);
-            $saveResponse->setElapsedTime($elapsedTime);
-            $saveResponse->setHeader(serialize($header));
-            $saveResponse->setResponseCode($code);
-            $saveResponse->setResponseRaw($header['raw']);
 
-            //Checking response code and take approprivate action
-            switch ($code) {
-                case 200:
-                    $sTId = $this->getStId($response, $user);
-                    $saveResponse->setStid($sTId);
-                    $return = true;
-                    break;
-
-                case 500:
-                    $return = false;
-                    break;
-
-                default:
-                    break;
+            //If code not 200 -> redirect to error page and save in plexErrorLog
+            if($code != 200){
+                $this->redirectIfServerError($code, $this->request->getPostParameters(), $response);
             }
-
-            //Save query
-            try{
-                $saveResponse->save();
-            }  catch(Doctrine_Exception $e){
-                
-            }      
-       
-        }else{
-            $return = true;
+            
+            //Save RequestInitPlex
+            $xmlResponse = simplexml_load_string($this->removeSoapEnvelop($response));
+            $sessionTokenId = (string)$xmlResponse->SessionTokenId;
+            $saveResponse = new RequestInitPlex();
+            $saveResponse->advancedSave($infosUser, $header, $elapsedTime, $sessionTokenId);
+            $user->setAttribute('sTId',$sessionTokenId);
+            $user->setAttribute('sTId_time', (time() + sfConfig::get('app_plexSession_duration')));
         }
-
-        ini_restore('error_reporting');
-
-        $this->return = $return;
-        
     }
 
     protected function defineParams($i = 0)
     {
+
+        $i = sfConfig::get('plex_ipm');
+
         if($i == 0){
             $this->url = sfConfig::get('app_plex_url');
+            $this->location = sfConfig::get('app_plex_location');
+            $this->uri = sfConfig::get('app_plex_uri');
             $this->username = sfConfig::get('app_plex_username');
             $this->password = sfConfig::get('app_plex_password');
             $this->transactionId = sfConfig::get('app_plex_transactionId');
@@ -128,12 +92,24 @@ abstract class PlexRequest{
             $this->partnerId = sfConfig::get('app_plex_partnerId');
         }else if($i==1){
             $this->url = sfConfig::get('app_plex2_url');
+            $this->location = sfConfig::get('app_plex2_location');
+            $this->uri = sfConfig::get('app_plex2_uri');
             $this->username = sfConfig::get('app_plex2_username');
             $this->password = sfConfig::get('app_plex2_password');
             $this->transactionId = sfConfig::get('app_plex2_transactionId');
             $this->systemName = sfConfig::get('app_plex2_systemName');
             $this->companyId = sfConfig::get('app_plex2_companyId');
             $this->partnerId = sfConfig::get('app_plex2_partnerId');
+        }else if($i==2){
+            $this->url = sfConfig::get('app_plex3_url');
+            $this->location = sfConfig::get('app_plex3_location');
+            $this->uri = sfConfig::get('app_plex3_uri');
+            $this->username = sfConfig::get('app_plex3_username');
+            $this->password = sfConfig::get('app_plex3_password');
+            $this->transactionId = sfConfig::get('app_plex3_transactionId');
+            $this->systemName = sfConfig::get('app_plex3_systemName');
+            $this->companyId = sfConfig::get('app_plex3_companyId');
+            $this->partnerId = sfConfig::get('app_plex3_partnerId');
         }
         
     }
@@ -155,27 +131,36 @@ abstract class PlexRequest{
                             </soapenv:Envelope>
                             ";
 
-         return $string;
+         //echo htmlentities($string);
+         //exit;
 
+         return $string;
     }
 
+    /**
+     * Parse header string and return an array with header info.
+     * @param string $response
+     * @return array
+     */
     protected function getHeader($response) {
 
-        //Check the header response and choose the action depending on the status of the response.
-        $responseSplit = preg_split('#charset=utf-8#', $response);
-        //$header = $responseSplit[0].'charset=utf-8';
-        $header = preg_split('#(\r\n|\n)#', $responseSplit[0]);
+        $header = preg_split('#(\r\n|\n)#', $response);
         $tmp['code'] = explode(' ', $header[0]);
         $tmp['date'] = Utils::formatDateResponse($header[1]);
         $tmp['server'] = trim(substr($header[2], strpos($header[2], ' ')+1));
-        $tmp['raw'] = $responseSplit[0];
+        $tmp['raw'] = $response;
 
         return $tmp;
-
     }
 
+    /**
+     * Take a sfWebRequest and return different info about the http header
+     * @param sfWebRequest $request
+     * @return array
+     */
     protected function retreiveUserInfos($request)
     {
+
         $path = $request->getHttpHeader('info','path');
         $path = explode('/', $path);
         $userCulture = $path[1];
@@ -187,10 +172,15 @@ abstract class PlexRequest{
         $tmp['date'] = $request->getHttpHeader('Date');
         $tmp['folder'] = $request->getCookie('hypertech_user_folder');
 
-
         return $tmp;
     }
 
+    /**
+     * Not in use anymore - to delete for production
+     * @param <type> $response
+     * @param <type> $user
+     * @return <type> 
+     */
     protected function getStId($response, $user)
     {
          $pattern = '#\<SessionTokenId\>.+\<\/SessionTokenId\>#';
@@ -202,6 +192,107 @@ abstract class PlexRequest{
          $user->setAttribute('sTId_time', (time() + sfConfig::get('app_plexSession_duration')));
 
          return $sessionTokenId;
+    }
+
+    /**
+     * Remove the soap envelop from the plex Response
+     * @param string $string
+     * @return string
+     */
+    protected function removeSoapEnvelop($string){
+
+        $pattern = '#<soapenv:Body>.+</soapenv:Body>#';
+        preg_match_all($pattern, $string, $matchArray);
+
+        if(empty($matchArray)){
+
+            $infos = array();
+            $infos['message'] = 'Error removingSoapEnvelop ';
+            $infos['code'] = null;
+            $infos['filename'] = null;
+            $infos['parameters'] = $this->paramFactory;
+            $infos['response'] = $string;
+
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getLogger()->alert('redirectIfServerError function called in plexRequest');
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+            sfContext::getInstance()->getController()->forward('error', 'plexError');
+
+        }
+
+        return '<?xml version="1.0" encoding="utf-8"?>'.substr($matchArray[0][0], strlen('<soapenv:Body>'),- strlen('</soapenv:Body>'));
+
+    }
+
+    /**
+     * Redirect controller and dispatch plex.responsexml_error event to save in sfErrorLog
+     * @param int $code
+     * @param array $parameters
+     * @param string $response
+     */
+    protected function redirectIfServerError($code, $parameters, $response){
+
+        $infos = array();
+        $infos['message'] = 'Error plex: '.$code.' sent back by server';
+        $infos['code'] = $code;
+        $infos['filename'] = null;
+        $infos['parameters'] = $parameters;
+        $infos['response'] = $response;
+
+        $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+        sfContext::getInstance()->getLogger()->alert('redirectIfServerError function called in plexRequest');
+        sfContext::getInstance()->getEventDispatcher()->notify($event);
+        sfContext::getInstance()->getController()->forward('error', 'plexError');
+        exit;
+        
+    }
+
+    public function setURL($url){
+        $this->url = $url;
+    }
+
+    public function executeRequest() {
+
+        $timer = sfTimerManager::getTimer('PlexRequest');
+
+        $client = new SoapClient(null,array('location'=>$this->location,'uri'=>$this->uri, 'trace'=>1));
+        $response = $client->__doRequest($this->xml, $this->url, 'doAuthorization', 1);
+
+        $header = $this->getHeader($client->__getLastResponseHeaders());
+        $infosUser = $this->retreiveUserInfos($this->request);
+        $elapsedTime = $timer->getElapsedTime();
+
+        //Http code 200 success, 500 failure ...
+        $code = $header['code'][1];
+
+        //If code not 200 -> redirect to error page and save in plexErrorLog
+        if($code != 200){
+            $this->redirectIfServerError($code, $this->request->getPostParameters(), $response);
+        }
+
+        $this->response = ($this->removeSoapEnvelop($response));
+
+        //If cant' create SimpleXMLObject
+        if (simplexml_load_string($this->response) === false){
+
+            $infos = array();
+            $infos['message'] = 'Error XML: plexResponse cannot be create a simpleXMLObject.';
+            $infos['code'] = 500;
+            $infos['filename'] = null;
+            $infos['parameters'] = $this->request->getPostParameters();
+            $infos['response'] = $this->response;
+
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getLogger()->alert('executeRequest function called in plexRequest');
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+            sfContext::getInstance()->getController()->forward('error', 'plexError');
+            exit;
+            
+        }
+
+        $timer->addTime();
+
+        return $this->response;
     }
 
 }

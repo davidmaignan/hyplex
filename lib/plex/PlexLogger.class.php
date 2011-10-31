@@ -14,106 +14,40 @@ class PlexLogger {
 
     static public function logResponse(sfEvent $event)
     {
-        /*
-        $datas = array();
-        $datas['type'] = $this->type;
-        $datas['infosUser'] = $this->infoUser;
-        $datas['header'] = $this->header;
-        $datas['code']= $this->responseCode;
-        $datas['userFolder'] = $this->getFilename();
-         * 
-         */
-        $datas = $event['datas'];
-        $type = $datas['type'];
+        
+        $object = $event['this'];
 
-        //print_r($datas);
-        //break;
-        /*
-        if($datas['code'] == 0){
-            $times = sfTimerManager::getTimers();
-            $time_plex = $times['PlexRequest']->getElapsedTime();
-            $totalTime = 0;
-            $t = $times['PlexResponse'];
-            $totalTime += $t->getElapsedTime();
-            $t = $times['ParseResponse'];
-            $totalTime += $t->getElapsedTime();
-            $t = $times['AnalyseResponse'];
-            $totalTime += $t->getElapsedTime();
-        }else{
-            $times = sfTimerManager::getTimers();
-            $time_plex = $times['PlexRequest']->getElapsedTime();
-            $totalTime = 0;
-        }
-        */
+        //Datas to save
+        $userInfos = $object->retreiveUserInfos();
+        $filename = $object->filename;
+        $parameters = PlexParsing::retreiveParameters($filename);
+        $folder = sfConfig::get('sf_user_folder');
+        $folder = explode('/', $folder);
+        $folder = end($folder);
 
+        $times = sfTimerManager::getTimers();
        
-        //var_dump($datas);
-
-        $tmp = explode('/', sfConfig::get('sf_user_folder'));
-
-
-        $folder = $tmp[count($tmp)-1];
-
-        switch($type){
-            case 'hotelSimple':
-                $filename = sfConfig::get('sf_user_folder').'/hotel/'.$datas['filename'].'.raw';
-                break;
-            default:
-                $filename = sfConfig::get('sf_user_folder').'/'.$datas['filename'].'.raw';
-                break;
-        }
-        //echo $filename;
-        //var_dump(file_exists($filename));
-
-        //$filename = $datas['filename'];
-
-        //var_dump(file_exists($datas['userFolder']));
-        if(file_exists($filename)){
-            $content_raw = file_get_contents($filename);
-        }else{
-            $content_raw = null;
-        }
-
-        //var_dump($content_raw);
-        //break;
-
-        if(file_exists($filename.'.plex')){
-            $content_processed = file_get_contents($filename.'.plex');
-        }else{
-            $content_processed = null;
-        }
-        //echo $content_raw;
-       
-
         try {
             Doctrine::getConnectionByTableName('sfErrorLog');
             
             $requestPlex = new RequestPlex();
             $requestPlex->setDate(date('Y-m-d H:i:s'));
-            $requestPlex->setType($datas['type']);
+            $requestPlex->setType($object->type);
             $requestPlex->setUserCulture(sfContext::getInstance()->getUser()->getCulture());
-            $requestPlex->setUserIp($datas['infosUser']['ip']);
-            $requestPlex->setUserAgent($datas['infosUser']['userAgent']);
-            $requestPlex->setSearchInfos(serialize($datas['params']));
+            $requestPlex->setUserIp($userInfos['ip']);
+            $requestPlex->setUserAgent($userInfos['userAgent']);
+            $requestPlex->setSearchInfos(serialize($parameters));
             $requestPlex->setUserFolder($folder);
             $requestPlex->setFilename($filename);
-            $requestPlex->setResponseRaw($content_raw);
-            $requestPlex->setHeader(serialize($datas['header']));
-            $requestPlex->setHeaderRaw($datas['header']['raw']);
-            $requestPlex->setResponseCode($datas['code']);
-            $requestPlex->setElapsedPlexRequest($time_plex);
-            $requestPlex->setResponseProcessed($content_processed);
-            $requestPlex->setElapsedProcessResponse($totalTime);
+            $requestPlex->setResponseCode($object->responseCode);
+            $requestPlex->setElapsedTime($times);
             $requestPlex->save();
 
-
         }  catch (Doctrine_Exception $e){
-            
+            //echo 'Error doctrine';
         }
 
-        //echo 'PlexLogger: logResponse';
-        //break;
-
+       
     }
 
 }

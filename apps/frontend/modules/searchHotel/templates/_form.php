@@ -1,15 +1,15 @@
 <?php use_helper('I18n'); ?>
 <?php use_stylesheet('form'); ?>
 
-<?php use_javascript('jquery.autocomplete.min.js'); ?>
-<?php use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
-<?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
+<?php //use_javascript('jquery.autocomplete.min.js'); ?>
+<?php //use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
+<?php //use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
 
-<?php use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
-<?php use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
+<?php //use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
+<?php //use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
 
-<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-<?php use_stylesheet('jquery.autocomplete.css'); ?>
+<?php //use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
+<?php //use_stylesheet('jquery.autocomplete.css'); ?>
 
 <?php use_javascript('search/searchHotel'); ?>
 
@@ -23,7 +23,7 @@ if ($form->hasGlobalErrors()) {
 
 
 <style>
-    table.hotel-form-table td{
+    table.form-error td{
         padding-right: 10px;
     }
 
@@ -43,50 +43,36 @@ if ($form->hasGlobalErrors()) {
         <h3 class="form-index"><?php echo __('Travel details'); ?></h3>
         <table class="form-error">
             <tr>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['wherebox']->renderLabel(); ?></li>
-                        <li><?php echo $form['wherebox']; ?><br /><br /></li>
-                        <li><?php echo $form['wherebox']->renderError(); ?></li>
-                    </ul>
-
-                </td>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['checkin_date']->renderLabel(); ?></li>
-                        <li><?php echo $form['checkin_date']; ?><br /><br /></li>
-                        <li><?php echo $form['checkin_date']->renderError(); ?></li>
-                    </ul>
-
-                </td>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['checkout_date']->renderLabel(); ?></li>
-                        <li><?php echo $form['checkout_date']; ?><br /><br /></li>
-                        <li><?php echo $form['checkout_date']->renderError(); ?></li>
-                    </ul>
-
-                </td>
+                <td class="prepend-top"><?php echo $form['wherebox']->renderLabel(); ?></td>
+                <td class="prepend-top"><?php echo $form['checkin_date']->renderLabel(); ?></td>
+                <td class="prepend-top"><?php echo $form['checkout_date']->renderLabel(); ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $form['wherebox']; ?></td>
+                <td><?php echo $form['checkin_date']; ?></td>
+                <td><?php echo $form['checkout_date']; ?></td>
+            </tr>
+            <tr>
+                <td><?php echo $form['wherebox']->renderError(); ?></td>
+                <td><?php echo $form['checkin_date']->renderError(); ?></td>
+                <td><?php echo $form['checkout_date']->renderError(); ?></td>
             </tr>
         </table>
         <hr class="space2"/>
         <h3 class="form-index"><?php echo __('Room details'); ?></h3>
         <?php foreach ($form['newRooms'] as $key => $f): ?>
-            <div id="room-container-<?php echo $key ?>" class="room-container">
+            <div id="room-container-<?php echo $key ?>" class="room-container <?php echo ($key != 1)? 'bordered': ''; ?>">
                 <table id="room-1" class="hotel-form-table">
                     <tr>
-                        <td style="vertical-align: top; padding-top: 25px;  width: 50px;" class="label">Room:</td>
-                        <td style="vertical-align: top; width: 80px;">
-                            <ul>
-                                <li><?php echo $f['number_adults']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_adults']; ?></li>
-                            </ul>
-                        </td>
-                        <td style="vertical-align: top;">
-                            <ul>
-                                <li><?php echo $f['number_children']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_children']; ?></li>
-                            </ul>
+                        <td></td>
+                        <td style="width: 80px;"><?php echo $f['number_adults']->renderLabel(); ?></td>
+                        <td><?php echo $f['number_children']->renderLabel(); ?></td>
+                    </tr>
+                    <tr>
+                        <td class="label" style="vertical-align: middle;">Room:</td>
+                        <td><?php echo $f['number_adults']; ?></td>
+                        <td style="vertical-align: top; padding-left: 10px;">
+                            <?php echo $f['number_children']->render(array('class'=>'hotel-children-age medium')); ?>
                         </td>
                         <td style="width: 250px;">
                             <div id="child-container-<?php echo $key; ?>">
@@ -98,7 +84,7 @@ if ($form->hasGlobalErrors()) {
                             </div>
 
                         </td>
-                        <td style="vertical-align: top; padding-top: 25px; width: 50px;">
+                        <td style="vertical-align: middle; width: 70px;">
                             <?php if($key != 1): ?>
                             <a href="#" id="room-delete-<?php echo $key ?>" onclick="do_delete(this);" class="remove-small"><?php echo __('remove'); ?></a>
                             <?php endif; ?>
@@ -110,10 +96,10 @@ if ($form->hasGlobalErrors()) {
 
         <div id="extrarooms" ></div>
         <br />
-        <button id="add_picture" type="button">More rooms</button>
+        <button id="add_picture" type="button" class="info">More rooms</button>
 
         <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="search" />
+            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
         </div>
         <?php echo $form['type']; ?>
         <?php echo $form['_csrf_token']; ?>
@@ -157,11 +143,12 @@ if ($form->hasGlobalErrors()) {
     });
 
     function activateChildDropMenu(){
-        $('.numbChildDropMenu').change(function(){
+        $('.hotel-children-age').change(function(){
             var name = $(this).closest('div.room-container').attr('id');
             name = name.charAt(name.length-1);
             var roomNumber = name.charAt(name.length-1);
             var target = '#child-container-'+roomNumber;
+
             $(target).html(add_children(roomNumber,this.value));
         });
     }

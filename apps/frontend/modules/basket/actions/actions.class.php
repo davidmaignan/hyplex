@@ -17,29 +17,35 @@ class basketActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    //$this->forward('default', 'module');
 
       $this->plexBasket = PlexBasket::getInstance();
-
       $this->flight = $this->plexBasket->getFlight();
+      $this->parameters = array();
 
-      //var_dump($this->flight);
-      //exit;
 
       if($this->flight !== null){
          $this->flightParameters = PlexParsing::retreiveParameters($this->plexBasket->getFlightFilename());
+         $this->parameters['flight'] = $this->flightParameters;
       }
 
       $this->hotel = $this->plexBasket->getHotel();
 
       if($this->hotel !== null){
           $this->hotelParameters = PlexParsing::retreiveParameters($this->plexBasket->getHotelFilename());
+          $this->parameters['hotel'] = $this->hotelParameters;
       }
 
-      //$this->rooms = $this->plexBasket->getRooms();
 
-      //var_dump($fligthParameters);
-      //exit;
+  }
+
+  public function executeRemoveDataBooking(sfWebRequest $request){
+
+      $plexBasket = PlexBasket::getInstance();
+
+      $plexBasket->arHotelBooking = array();
+
+      $this->redirect('basket/index');
+
   }
 
   public function executeRemove(sfWebRequest $request){
@@ -49,9 +55,6 @@ class basketActions extends sfActions
       $plexBasket = PlexBasket::getInstance();
       $plexBasket->remove($type);
 
-
-      //var_dump($type);
-      //exit;
 
       $this->redirect('basket/index');
 

@@ -34,7 +34,7 @@ class PlexFlightReturnRequest extends PlexRequest implements PlexRequestInterfac
         $sessionTokenId = sfContext::getInstance()->getUser()->getAttribute('sTId');
 
         //Retrieve the connection parameters
-        $this->defineParams(1);
+        $this->defineParams();
 
         $paramFactory = $this->paramFactory;
 
@@ -114,6 +114,8 @@ class PlexFlightReturnRequest extends PlexRequest implements PlexRequestInterfac
         return $this->xml;
     }
 
+
+    /*
     public function executeRequest() {
 
         $timer = sfTimerManager::getTimer('PlexRequest');
@@ -135,6 +137,6 @@ class PlexFlightReturnRequest extends PlexRequest implements PlexRequestInterfac
 
         return $this->response;
     }
-
+    */
 
 }

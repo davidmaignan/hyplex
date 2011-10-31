@@ -11,9 +11,6 @@ class myUser extends sfGuardSecurityUser
         //$this->dispatcher->notify(new sfEvent($this, 'user.cache_folder'));
 
         //First request - create attribute to keep the searches
-       
-
-
     }
 
     public function isFirstRequest($boolean = null)
@@ -98,6 +95,56 @@ class myUser extends sfGuardSecurityUser
         // combine the credential and the permission check
         return (parent::hasCredential($credential, $useAnd) || parent::hasPermission($credential));
     }
-    
+
+    public function getCSRFToken($class){
+        $secret = sfConfig::get('sf_csrf_secret');
+        $csrf_token = md5($secret.session_id().get_class($class));
+        return $csrf_token;
+    }
+
+
+    public function getLastFilename(){
+
+        $prevSearch = $this->getAttribute('prevSearch');
+
+        return is_array($prevSearch)? end($prevSearch):null;
+
+    }
+
+
+    public function addBookingId($bookingId){
+
+        $prevBooking = $this->setAttribute('prevBooking', $bookingId);
+
+        return true;
+
+        if(is_null($prevBooking)){
+
+            $prevBooking = array($bookingId);
+            $this->setAttribute('prevBooking', $prevBooking);
+
+        }else if(is_array($prevBooking)){
+            array_push($prevBooking , $bookingId);
+            $this->setAttribute('prevBooking', $prevBooking);
+
+        }else{
+            throw new Exception('An error has occured in sfUser addBooking function. Cannot recognize attribute prevBooking.');
+        }
+    }
+
+    public function getLastBookingId(){
+
+        $prevBooking = $this->getAttribute('prevBooking');
+
+        return $prevBooking;
+
+        if(is_array($prevBooking)){
+            return end($prevBooking);
+        }else{
+            throw new Exception('An error has occured in sfUser getLastBookingId. Cannot recognize attribute prevBooking.');
+        }
+
+    }
+
 
 }

@@ -3,11 +3,10 @@
 <?php use_javascript('myScript.js'); ?>
 <?php use_javascript('functions.js'); ?>
 
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
+<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
 <?php use_stylesheet('grid'); ?>
 <?php use_stylesheet('typography'); ?>
 <?php use_stylesheet('form'); ?>
-<?php use_stylesheet('flightResult'); ?>
 
 <?php use_javascript('debugger/ADS-final-verbose.js'); ?>
 <?php use_javascript('debugger/myLogger.js'); ?>
@@ -27,14 +26,11 @@
     <?php include_partial('summary',array('parameters'=>$parameters,'nbrHotels'=>$filterResponse->nbrTotalHotels)); ?>
 </div>
 
-
-
-
 <div class="span-7">
     <?php echo html_entity_decode($filterFormFinal); ?>
 </div>
 
-<div class="span-18 last" style="width: 715px;">
+<div class="span-18 last">
 
     <div id="form" class="span-18 last hide">
         <?php include_partial('searchHotel/form', array('form'=>$form)); ?>
@@ -49,9 +45,8 @@
             <li><a id="backToResults" class="hotelResult-tabs"><?php echo __('Back to results'); ?></a></li>
         </ul>
     </div>
-    <hr class="space2" />
-
-    <div id="hotelListResult">
+    <div style="clear: both;"></div>
+    <div id="hotelListResult" class="prepend-top">
         <?php include_partial('sorting'); ?>
         <hr class="space2" />
         <div id="Results">
@@ -72,7 +67,7 @@
             <li class="off">Unfiltered</li>
             <li class="viewed">Viewed</li>
             <li class="viewedoff">Unfiltered viewed</li>
-            <li class="last"><a class="resetGmap">Reset map</a></li>
+            <li class="last"><a class="resetGmap remove right">Reset map</a></li>
         </ul>
         <hr />
         <ul id="gMapTips">
@@ -98,7 +93,10 @@
 
 </div>
 
+<<<<<<< HEAD
 <?php //include_component('basket', 'index', array()); ?>
+=======
+>>>>>>> release-1.1
 
 <script>
 

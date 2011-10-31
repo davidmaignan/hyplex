@@ -1,76 +1,379 @@
-<?php use_javascript('jquery-1.5.1.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
-<?php use_javascript('functions.js'); ?>
-
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
-
-<!-- Carousel -->
-<?php use_javascript('carousel.js'); ?>
-<?php use_stylesheet('carousel'); ?>
-
-<?php use_javascript('debugger/ADS-final-verbose.js'); ?>
-<?php use_javascript('debugger/myLogger.js'); ?>
-
 <hr />
+
+
+<style>
+    table td{
+        border: 1px solid #aaaaaa;
+        padding: 8px;
+    }
+</style>
 
 <?php
 
-$culture = $sf_user->getCulture();
+$filename = sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'rawplexresponse' . DIRECTORY_SEPARATOR . 'hotel_1.xml';
 
-echo $culture;
 
-$filename = sfConfig::get('sf_cache_dir').'/city/city_'.$culture.'.txt';
-
-var_dump(file_exists($filename));
-
-$handle = fopen($filename, 'r');
-
-$cities = array();
+$simpleXML = true;
 
 
 
+if($simpleXML){
+    
+    $arObjs = array();
 
-while(!feof($handle)){
+    $timer = sfTimerManager::getTimer('simpleXML');
+    $xml = simplexml_load_file($filename);
 
-    $data = explode(':', fgets($handle));
+    $timer->addTime();
 
-    $cities[$data[0]] = $data[1];
+    //echo $timer->getElapsedTime().'<br />';
 
+    foreach ($xml->HotelInfos->children() as $key => $value) {
 
+        $hotelSimple = new HotelSimpleObj($value, $filename);
+        //$hotelSimple->latitude = $arMarkers['hotels'][$hotelSimple->id]['latitude'];
+        //$hotelSimple->longitude = $arMarkers['hotels'][$hotelSimple->id]['longitude'];
+        array_push($arObjs, $hotelSimple);
+    }
+
+    $timer->addTime();
 }
 
-fclose($handle);
+//echo $timer->getElapsedTime();
 
-$start = 000;
-$end = 2000+$start;
 
-$ar_cities_issues = array();
+$xmlReader = true;
 
-//print_r($cities);
+if($xmlReader){
 
-for($i=$start;$i<$end;$i++){
+    $arObjs2 = array();
 
-    if(array_key_exists($i, $cities)){
+    $timer = sfTimerManager::getTimer('XMLReader');
 
-        $q = Doctrine::getTable('city')->findOneBy('id', $i);
 
-        if(!empty($q)){
-             echo $q->getName();
-            echo ': ';
-            echo $cities[$i];
-            echo "<br />";
-            $q->setName($cities[$i],$culture);
-            //$q->save();
+    $xr = new XMLReader();
+    $xr->open($filename);
+
+    $timer->addTime();
+
+    /*
+    //echo $timer->getElapsedTime().'<br />';
+    while ($xr->read() && $xr->name !== 'HotelInfos');
+
+    while ($xr->read()) {
+
+        if (XMLReader::ELEMENT == $xr->nodeType) {
+
+            switch ($xr->localName) {
+                case 'HotelInfo':
+                $node = new SimpleXMLElement($xr->readOuterXML());
+                $hotelSimple = new HotelSimpleObj($node, $filename);
+                //$hotelSimple->latitude = $arMarkers['hotels'][$hotelSimple->id]['latitude'];
+                //$hotelSimple->longitude = $arMarkers['hotels'][$hotelSimple->id]['longitude'];
+                array_push($arObjs2, $hotelSimple);
+                
+                break;
+            }
+        }
+    }
+
+    $timer->addTime();
+     */
+
+    $doc = new DOMDocument;
+
+    while ($xr->read() && $xr->name !== 'HotelInfo');
+
+
+    while ($xr->name === 'HotelInfo')
+    {
+        //echo 'here';
+        //$node = new SimpleXMLElement($z->readOuterXML());
+        //$node = simplexml_import_dom($doc->importNode($xr->expand(), true));
+        //$hotelSimple = new HotelSimpleObj($node, $filename);
+        //array_push($arObjs2, $hotelSimple);
+        //var_dump($node);
+
+        $hotel = new HotelSimpleObj();
+
+        while($xr->read() && $xr->depth > 2){
+
+            //echo $xr->localName.'<br />';
+
+            if (XMLReader::ELEMENT == $xr->nodeType) {
+
+                switch ($xr->localName) {
+
+                    case 'HotelId':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->id = $xr->value;
+                        break;
+
+                    case 'HotelName':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->name = $xr->value;
+                        break;
+
+                    case 'HotelChain':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->hotelChain = $xr->value;
+                        break;
+
+                    case 'StarRating':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->setStarRating(HotelSimpleObj::renameStarRating($xr->value));
+                        break;
+
+                    case 'Location':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->location = $xr->value;
+                        break;
+
+                    case 'DisplayPriority':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->displayPriority = $xr->value;
+                        break;
+
+                    case 'IsOurPick':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->isOurPick = $xr->value;
+                        break;
+                    
+                    case 'BaseImageLink':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->baseImageLink = $xr->value;
+                        break;
+
+                    case 'PropertyType':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->propertyType = $xr->value;
+                        break;
+
+                    case 'HotelDescription':
+                        $xr->read();
+                        //echo $xr->value. ' - ';
+                        $hotel->hotelDescription = $xr->value;
+                        break;
+
+                    case 'HotelAddress':
+                        $hotel->hotelAddress = setAddress($xr);
+                        break;
+
+                    case 'HotelFacilities':
+                        $hotel->hotelFacilities = setFacilities($xr);
+                        break;
+
+                    case 'RoomResponses':
+                        $hotel->arRooms = setRooms($xr);
+                        break;
+                }
+
+            }
+
+            
         }
 
-    }else{
-        array_push($ar_cities_issues, $i);
+        array_push($arObjs2, $hotel);
+        // now you can use $node without going insane about parsing
+        //var_dump($node);
+
+        // go to next <product />
+        $xr->next('HotelInfo');
     }
+
+     
+    $timer->addTime();
+
+}
+
+
+
+//echo $timer->getElapsedTime();
+
+$times = sfTimerManager::getTimers();
+
+//var_dump($times);
+
+
+echo "<table border=1 >";
+if($simpleXML){
+    echo "<tr>";
+    echo "<td>SimpleXML</td>";
+    echo "<td>" . $times['simpleXML']->getElapsedTime(). "</td>";
+    echo "<td>" .count($arObjs) . "</td>";
+    echo "<td>". $arObjs[10]->getInfos() . "</td>";
+    echo "</tr>";
+}
+if($xmlReader){
+    echo "<tr>";
+    echo "<td>XMLReader</td>";
+    echo "<td>" . $times['XMLReader']->getElapsedTime(). "</td>";
+    echo "<td>" .count($arObjs2) . "</td>";
+    echo "<td>". $arObjs2[10]->getInfos() . "</td>";
+    echo "</tr>";
+}
+echo "</table>";
+
+//echo "<pre>";
+//print_r($arObjs2[0]);
+
+
+function setAddress($xr){
+
+    $arAddress = array();
+
+    while($xr->read() && $xr->localName != 'HotelAddress'){
+
+
+        if (XMLReader::ELEMENT == $xr->nodeType) {
+
+            switch ($xr->localName) {
+                case 'Street1':
+                    $xr->read();
+                    $arAddress['Street1'] = $xr->value;
+                    break;
+
+                case 'Street2':
+                    $xr->read();
+                    $arAddress['Street2'] = $xr->value;
+                    break;
+
+                case 'City':
+                    $xr->read();
+                    $arAddress['City'] = $xr->value;
+                    break;
+
+                case 'StateProvince':
+                    $xr->read();
+                    $arAddress['StateProvince'] = $xr->value;
+                    break;
+
+                case 'Country':
+                    $xr->read();
+                    $arAddress['Country'] = $xr->value;
+                    break;
+
+                case 'PostalCode':
+                    $xr->read();
+                    $arAddress['PostalCode'] = $xr->value;
+                    break;
+
+                default:
+                    break;
+            }
+            
+        }
+
+    }
+
+    return $arAddress;
+
+}
+
+
+function setFacilities($xr){
+
+    $arValues = array();
+    $arKeys = array();
+   
+    while($xr->read() && $xr->localName != 'HotelFacilities'){
+
+        if($xr->localName == 'FacilityName'){
+            $xr->read();
+            array_push($arKeys, $xr->value);
+        }
+
+        if($xr->localName == 'FacilityAvailable'){
+            $xr->read();
+            array_push($arValues, $xr->value);
+        }
+
+    }
+
+    return array_combine($arKeys, $arValues);
     
 }
-echo "<hr />";
-echo "Issues: ";
-print_r($ar_cities_issues);
+
+function setRooms($xr){
+
+    $arRooms = array();
+    $arKeys = array();
+
+    while($xr->read() && $xr->localName != 'RoomResponses'){
+
+        if (XMLReader::ELEMENT == $xr->nodeType) {
+
+            switch ($xr->localName) {
+                case 'UniqueRoomRequestId':
+                    $xr->read();
+                    array_push($arKeys, $xr->value);
+                    break;
+
+                case 'RoomTypeInfos':
+                    array_push($arRooms, setRoomsType($xr));
+
+
+                default:
+                    break;
+            }
+
+
+            //echo $xr->localName.' | '.$xr->depth;
+            //echo ' | ';
+            //$xr->read();
+            //echo $xr->value;
+            //echo "<br />";
+        }
+
+    }
+    //var_dump($arKeys);
+    //var_dump($arRooms);
+
+    return array_combine($arKeys, $arRooms);
+
+    
+}
+
+function setRoomsType($xr){
+
+    $doc = new DOMDocument;
+
+
+    $ar = array();
+
+
+    while($xr->read() && $xr->localName != 'RoomResponse'){
+
+        if (XMLReader::ELEMENT == $xr->nodeType) {
+
+
+            switch ($xr->localName) {
+                case 'RoomTypeInfo':
+
+                    $node = simplexml_import_dom($doc->importNode($xr->expand(), true));
+                    $hotelRoomObj = new HotelRoomObj($node);
+                    //var_dump($hotelRoomObj);
+                    array_push($ar , $hotelRoomObj);
+                    //echo $xr->localName. ' | '.$xr->depth . ' | ';
+                    //$xr->read();
+                    //echo $xr->value;
+                    //echo "<br />";
+                    break;
+            }
+
+        }
+    }
+
+    
+    return $ar;
+    
+}

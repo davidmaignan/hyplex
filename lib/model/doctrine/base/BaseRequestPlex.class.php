@@ -19,45 +19,42 @@
  * @property clob $response_raw
  * @property int $response_code
  * @property clob $response_processed
- * @property decimal $elapsed_plex_request
- * @property decimal $elapsed_process_response
+ * @property object $elapsed_time
  * 
- * @method timestamp   getDate()                     Returns the current record's "date" value
- * @method string      getType()                     Returns the current record's "type" value
- * @method string      getSearchInfos()              Returns the current record's "search_infos" value
- * @method string      getUserCulture()              Returns the current record's "user_culture" value
- * @method string      getUserIp()                   Returns the current record's "user_ip" value
- * @method string      getUserAgent()                Returns the current record's "user_agent" value
- * @method string      getUserFolder()               Returns the current record's "user_folder" value
- * @method string      getFilename()                 Returns the current record's "filename" value
- * @method string      getUserInfo()                 Returns the current record's "user_info" value
- * @method string      getHeader()                   Returns the current record's "header" value
- * @method string      getHeaderRaw()                Returns the current record's "header_raw" value
- * @method clob        getResponseRaw()              Returns the current record's "response_raw" value
- * @method int         getResponseCode()             Returns the current record's "response_code" value
- * @method clob        getResponseProcessed()        Returns the current record's "response_processed" value
- * @method decimal     getElapsedPlexRequest()       Returns the current record's "elapsed_plex_request" value
- * @method decimal     getElapsedProcessResponse()   Returns the current record's "elapsed_process_response" value
- * @method RequestPlex setDate()                     Sets the current record's "date" value
- * @method RequestPlex setType()                     Sets the current record's "type" value
- * @method RequestPlex setSearchInfos()              Sets the current record's "search_infos" value
- * @method RequestPlex setUserCulture()              Sets the current record's "user_culture" value
- * @method RequestPlex setUserIp()                   Sets the current record's "user_ip" value
- * @method RequestPlex setUserAgent()                Sets the current record's "user_agent" value
- * @method RequestPlex setUserFolder()               Sets the current record's "user_folder" value
- * @method RequestPlex setFilename()                 Sets the current record's "filename" value
- * @method RequestPlex setUserInfo()                 Sets the current record's "user_info" value
- * @method RequestPlex setHeader()                   Sets the current record's "header" value
- * @method RequestPlex setHeaderRaw()                Sets the current record's "header_raw" value
- * @method RequestPlex setResponseRaw()              Sets the current record's "response_raw" value
- * @method RequestPlex setResponseCode()             Sets the current record's "response_code" value
- * @method RequestPlex setResponseProcessed()        Sets the current record's "response_processed" value
- * @method RequestPlex setElapsedPlexRequest()       Sets the current record's "elapsed_plex_request" value
- * @method RequestPlex setElapsedProcessResponse()   Sets the current record's "elapsed_process_response" value
+ * @method timestamp   getDate()               Returns the current record's "date" value
+ * @method string      getType()               Returns the current record's "type" value
+ * @method string      getSearchInfos()        Returns the current record's "search_infos" value
+ * @method string      getUserCulture()        Returns the current record's "user_culture" value
+ * @method string      getUserIp()             Returns the current record's "user_ip" value
+ * @method string      getUserAgent()          Returns the current record's "user_agent" value
+ * @method string      getUserFolder()         Returns the current record's "user_folder" value
+ * @method string      getFilename()           Returns the current record's "filename" value
+ * @method string      getUserInfo()           Returns the current record's "user_info" value
+ * @method string      getHeader()             Returns the current record's "header" value
+ * @method string      getHeaderRaw()          Returns the current record's "header_raw" value
+ * @method clob        getResponseRaw()        Returns the current record's "response_raw" value
+ * @method int         getResponseCode()       Returns the current record's "response_code" value
+ * @method clob        getResponseProcessed()  Returns the current record's "response_processed" value
+ * @method object      getElapsedTime()        Returns the current record's "elapsed_time" value
+ * @method RequestPlex setDate()               Sets the current record's "date" value
+ * @method RequestPlex setType()               Sets the current record's "type" value
+ * @method RequestPlex setSearchInfos()        Sets the current record's "search_infos" value
+ * @method RequestPlex setUserCulture()        Sets the current record's "user_culture" value
+ * @method RequestPlex setUserIp()             Sets the current record's "user_ip" value
+ * @method RequestPlex setUserAgent()          Sets the current record's "user_agent" value
+ * @method RequestPlex setUserFolder()         Sets the current record's "user_folder" value
+ * @method RequestPlex setFilename()           Sets the current record's "filename" value
+ * @method RequestPlex setUserInfo()           Sets the current record's "user_info" value
+ * @method RequestPlex setHeader()             Sets the current record's "header" value
+ * @method RequestPlex setHeaderRaw()          Sets the current record's "header_raw" value
+ * @method RequestPlex setResponseRaw()        Sets the current record's "response_raw" value
+ * @method RequestPlex setResponseCode()       Sets the current record's "response_code" value
+ * @method RequestPlex setResponseProcessed()  Sets the current record's "response_processed" value
+ * @method RequestPlex setElapsedTime()        Sets the current record's "elapsed_time" value
  * 
  * @package    hyplexdemo
  * @subpackage model
- * @author     Your name here
+ * @author     David Maignan
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseRequestPlex extends sfDoctrineRecord
@@ -126,15 +123,8 @@ abstract class BaseRequestPlex extends sfDoctrineRecord
         $this->hasColumn('response_processed', 'clob', null, array(
              'type' => 'clob',
              ));
-        $this->hasColumn('elapsed_plex_request', 'decimal', null, array(
-             'type' => 'decimal',
-             'notnull' => true,
-             'scale' => 14,
-             ));
-        $this->hasColumn('elapsed_process_response', 'decimal', null, array(
-             'type' => 'decimal',
-             'notnull' => true,
-             'scale' => 14,
+        $this->hasColumn('elapsed_time', 'object', null, array(
+             'type' => 'object',
              ));
 
         $this->option('collate', 'utf8_unicode_ci');

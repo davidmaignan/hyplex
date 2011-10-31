@@ -32,13 +32,45 @@ class PlexFilterHotel implements PlexFilterInterface{
         $this->filename = $filename;
         $this->type = $type;
 
-        $this->arObjs = $this->parseFile($this->getFilameFullPath() . '.plex');
+        $this->arObjs = $this->parseFile($this->getFilameFullPath('plex'));
         
         
     }
 
-    public function getFilameFullPath(){
-        return sfConfig::get('sf_user_folder').'/hotel/'.$this->filename;
+    public function getFilameFullPath($type = ''){
+
+
+        switch ($type) {
+            case 'plex':
+                $file = 'plexResponse.plex';
+                break;
+
+            case 'filters':
+                $file = 'plexResponse.filters';
+                break;
+
+            case 'markers':
+                $file = 'plexResponse.markers';
+                break;
+
+            case 'raw':
+                $file = 'plexResponse.raw';
+                break;
+
+            case 'xml':
+                $file = 'plexResponse.xml';
+                break;
+
+            default:
+                $file = null;
+                break;
+        }
+
+
+
+        return sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.
+                'hotel'.DIRECTORY_SEPARATOR.
+                $this->filename.DIRECTORY_SEPARATOR.$file;
     }
 
     protected function parseFile($filename){
@@ -48,8 +80,6 @@ class PlexFilterHotel implements PlexFilterInterface{
         }
 
         $content = file_get_contents($filename);
-
-        //echo $content;
 
         $ar = array();
 
@@ -65,7 +95,7 @@ class PlexFilterHotel implements PlexFilterInterface{
     }
 
     public function  getDatasForFilterForm() {
-        $content = file_get_contents($this->getFilameFullPath().'.filters');
+        $content = file_get_contents($this->getFilameFullPath('filters'));
         $datas = unserialize($content);
         return $datas;
 

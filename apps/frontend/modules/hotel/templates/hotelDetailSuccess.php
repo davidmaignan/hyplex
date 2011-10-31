@@ -21,10 +21,18 @@
             <ul>
                 <li id="hotel-price" class="hotel-price"><?php echo __('select a room'); ?></li>
                 <li class="hotel-price-total">
-                    Total for <?php echo $parameters->getNumberRooms(); ?> rooms, <?php echo $parameters->getNumberNights();?> nights
+                    Total for
+                    <?php echo format_number_choice(
+                    '[0]|[1]1 room | |(1,+Inf]%1% rooms | ', array(
+                        '%1%' => $parameters->getNumberRooms()), $parameters->getNumberRooms())
+                    ?>
+                    <?php echo format_number_choice(
+                    '[0]|[1]1 night|(1,+Inf]%1% nights', array(
+                        '%1%' => $parameters->getNumberNights()), $parameters->getNumberNights()) ?>
+
                 </li>
                 
-                <li><input type="submit" value="Book now" class="search"/></li>
+                <li><input type="submit" value="Book now" class="search right"/></li>
 
             </ul>
             
@@ -36,41 +44,36 @@
     <hr class="space3" />
     <div class="" style="padding:0px;">
 
-        <ul id="tabs">
-            <li><a href="#" class="selected hotel-tab" id="tab-info"><?php echo __('Information') ?></a></li>
-            <li><a href="#" class="hotel-tab" id="tab-rate"><?php echo __('Rooms & Rates') ?></a></li>
-            <li><a href="#" class="hotel-tab" onclick="return false;" id="tab-map"><?php echo __('Map') ?></a></li>
-            <li><a href="#" class="hotel-tab" onclick="return false;" id="tab-review"><?php echo __('Reviews') ?></a></li>
-        </ul>
-
+        <div class="span-18 append-bottom" id="tab-viewing">
+            <ul>
+                <li><a id="tab-info" class="view-information hotel-tab selected"><?php echo __('Information') ?></a></li>
+                <li><a onclick="return false;" id="tab-map" class="view-map hotel-tab"><?php echo __('Map') ?></a></li>
+                <li><a onclick="return false;" id="tab-review" class="hotel-tab view-reviews"><?php echo __('Reviews'); ?></a></li>
+            </ul>
+        </div>
+       
         <hr class="space2" />
+
+
         <div id="tab-data-info" class="hotel-tab-data">
             <h2 class="title"><?php echo __('Information') ?></h2>
 
-            <div id="images">
-
-                <div id="main-image">
-                    <?php echo image_tag('../uploads/hotels/dummy/1.jpg', array('class'=>'normal', 'alt'=>"no pic")); ?>
-                </div>
-
-                <div id="list-thumbs">
-                    <ul>
-                        <li><a><?php echo image_tag('../uploads/hotels/dummy/1th.jpg', array('class'=>'thumb')) ?></a></li>
-                        <li<a><?php echo image_tag('../uploads/hotels/dummy/2th.jpg', array('class'=>'thumb')) ?></a></li>
-                        <li><a><?php echo image_tag('../uploads/hotels/dummy/3th.jpg', array('class'=>'thumb')) ?></a></li>
-                        <li><a><?php echo image_tag('../uploads/hotels/dummy/1th.jpg', array('class'=>'thumb')) ?></a></li>
-                        <li><a><?php echo image_tag('../uploads/hotels/dummy/2th.jpg', array('class'=>'thumb')) ?></a></li>
-                        <li><a><?php echo image_tag('../uploads/hotels/dummy/2th.jpg', array('class'=>'thumb')) ?></a></li>
-                        <li><a><?php echo image_tag('../uploads/hotels/dummy/2th.jpg', array('class'=>'thumb')) ?></a></li>
-                        <li><a><?php echo image_tag('../uploads/hotels/dummy/3th.jpg', array('class'=>'thumb')) ?></a></li>
-                    </ul>
-                </div>
-                <div id="hotel-description">
-                    <p class="small"><?php echo html_entity_decode($hotel->getFullDescription()); ?></p>
-                </div>
-                <p class="small"><?php //echo ($hotel->getFullDescription()); ?></p>
-
+            <div id="images" class="span-18">
+                <?php echo image_tag('tmp/hotel_gallery.jpg'); ?>
+                
             </div>
+            <div id="hotel-description" class="span-18">
+                <p class="small"><?php echo html_entity_decode($hotel->getFullDescription()); ?></p>
+            </div>
+            <hr class="space3" />
+            <div class="prepend-top">
+                <h2 class="title"><?php echo __('Rooms & Rates') ?></h2>
+            </div>
+
+            <?php include_partial('room',array('hotel'=>$hotel)); ?>
+
+            <hr class="space3" />
+
             <hr class="space3" />
 
             <?php $hotelFacilites = $hotel->getFullFacilities(); ?>
@@ -148,20 +151,10 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-
-
-       <div id="tab-data-rate" class="hotel-tab-data">
-            <div>
-                <h2 class="title"><?php echo __('Rooms & Rates') ?></h2>
-            </div>
-
-            <?php include_partial('room',array('hotel'=>$hotel)); ?>
             
-            <hr class="space3" />
-
         </div>
-
+            
+       
 
         <div id="tab-data-map" class="hotel-tab-data">
 
@@ -257,16 +250,6 @@
     </div>
 </div>
 
-<style>
-
-
-    /* Table rates ------------------------------------------ */
-
-    /* Table rates */
-
-    
-
-</style>
 
 <script type="text/javascript">
 
@@ -274,7 +257,8 @@
 
   var hotelLatitude = parseFloat(hotelCoordinates.latitude);
   var hotelLongitude = parseFloat(hotelCoordinates.longitude);
-  var zoomLevel = parseFloat(hotelCoordinates.zoomlevel);
+  var zoomLevel = 14;
+      //parseFloat(hotelCoordinates.zoomlevel);
 
   var mapInitializedHotelDetail = false;
 
@@ -306,11 +290,11 @@
         
         google.maps.event.addListener(map, 'click', function() {
 
-          if (map.getZoom() <= 12) {
+          if (map.getZoom() <= 14) {
             map.setZoom(17);
             map.setCenter(latlng);
           } else {
-            map.setZoom(12);
+            map.setZoom(14);
             map.setCenter(latlng);
           }
             

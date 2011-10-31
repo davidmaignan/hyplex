@@ -19,6 +19,3 @@ default:
 
   has_layout:     true
   layout:         layout
-
-  components:
-    columnLeft:      [columnLeft, default]

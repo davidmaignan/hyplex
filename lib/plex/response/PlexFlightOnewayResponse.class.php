@@ -21,23 +21,24 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
 
         $responseData = $this->responseData;
 
-        //print_r($responseData);
-        //break;
-
         $timer = sfTimerManager::getTimer('ParseResponse');
 
-        //Parse the response if Success
-        $start = strpos($responseData, '<AirInfos>');
-        $end = strrpos($responseData, '</AirInfos>');
+        $xml = simplexml_load_file($this->getFilename('xml'));
 
+        //This case should not happened - it's already checked during the PlexHotelRequest response
+        if ($xml === false) {
 
+        }
+
+        $timer->addTime();
+
+        /*
         //If can't find tags AirInfos. xml empty or badly formatted
         if($start === false || $end === false)
         {
             $infos = array();
-            $infos['message'] = 'Error while building xml: cannot find tags AirInfos';
-            $infos['filename'] = $this->getFilename();
-            $infos['plexResponse'] = file_get_contents($this->getFilename());
+            $infos['message'] = 'Error XML: can\'t find tags AirInfos';
+            $infos['filename'] = $this->getFilename().'plexResponse.raw';
             $infos['parameters'] = $this->request->getPostParameters();
 
             $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
@@ -57,15 +58,16 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
         //unlink($this->getFilename());
 
         $timer->addTime();
+         * 
+         */
 
-        
     }
 
     public function analyseResponse() {
         $timer = sfTimerManager::getTimer('AnalyseResponse');
 
         //Create the file to save search parameters and the list of serialize flightReturnObjects.
-        $file = $this->getFilename() . '.xml';
+        $file = $this->getFilename('xml');
         $content = file_get_contents($file);
 
         //Retreive the xml file from the plex request
@@ -75,7 +77,7 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
             $infos = array();
             $infos['message'] = 'Error while building xml';
             $infos['filename'] = $this->getFilename();
-            $infos['plexResponse'] = file_get_contents($this->getFilename());
+            $infos['plexResponse'] = file_get_contents($this->getFilename('xml'));
             $infos['parameters'] = $this->request->getPostParameters();
 
             $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
@@ -85,7 +87,7 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
         }
 
 
-        foreach ($xml->children() as $value) {
+        foreach ($xml->AirInfos->children() as $value) {
 
             //Create the flightOnewayObj
             $flightOneway = new FlightOnewayObj();
@@ -152,7 +154,7 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
         $listAirports = Doctrine::getTable('City')->getListAirportByCode($this->listKeysAirports);
 
         // Save the FlightReturnObjects in plex file
-        $handle = fopen($this->getFilename() . '.plex', 'wb');
+        $handle = fopen($this->getFilename('plex'), 'wb');
         foreach($this->arObjs as $flightReturn){
             $flightReturn->setAirportInfo($listAirports);
             fwrite($handle, serialize($flightReturn) . "\r\n --- " . "\r\n");
@@ -161,27 +163,15 @@ class PlexFlightOnewayResponse extends PlexResponse implements PlexResponseInter
         chmod($this->getFilename() . '.plex', 0777);
 
         
-
-        //Create and/or add info request / might have to modify it to save some extra info (min price, max price, airlines ...) -> to define by tomi
+        //Add new request to request file
         PlexParsing::addNewRequest($this->filename, $this->type, $this->paramFactory);
 
         //Delete the xml file
-        //unlink($this->getFilename().'.xml');
-        
-
-        $datas = array();
-        $datas['type'] = $this->type;
-        $datas['infosUser'] = $this->retreiveUserInfos($this->request);
-        $datas['header'] = $this->getHeader();
-        $datas['code']= $this->responseCode;
-        $datas['userFolder'] = sfConfig::get('sf_user_folder');
-        $datas['filename'] = $this->filename;
-        $datas['params'] = $this->paramFactory;
+        //unlink($this->getFilename('xml'));
 
         //Save info in db
-        $event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
+        $event = new sfEvent($this, 'plex.response_success', array('this' => $this));
         sfContext::getInstance()->getEventDispatcher()->notify($event);
-
     }
 
     public function sendResponse() {

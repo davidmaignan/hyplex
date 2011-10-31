@@ -18,6 +18,8 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
     public function  __construct($type, $filename, $page, $filters) {
 
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date','I18n','Text'));
+
         parent::__construct($type, $filename, $page, $filters);
 
         $this->filters = $filters;
@@ -36,8 +38,10 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
         //$this->nbrHotels = count($this->arObjs);
 
+        if(!is_null($page)){
+            $this->paginate($page);
+        }
         
-        $this->paginate($page);
     }
 
 
@@ -54,7 +58,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         
         //var_dump($filters);
 
-        $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename.'.filters';
+        $filename = $this->getFilameFullPath('filters');
         //Check filters and filename.filters
         if(file_exists($filename)){
             $content = file_get_contents($filename);
@@ -550,10 +554,6 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         return $tmp;
     }
 
-
-
-
-
     private function loadFilterFile(){
 
 
@@ -563,7 +563,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
     public function displayFilterForm(){
 
         //Load datas 
-        $filename = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.'hotel'.DIRECTORY_SEPARATOR.$this->filename.'.filters';
+        $filename = $this->getFilameFullPath('filters');
 
         if(file_exists($filename)){
             $content = file_get_contents($filename);
@@ -606,7 +606,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         $frmStr .= '<h4 style="float: left;" id="star_rating">' . __("Star rating") . '</h4>';
         $frmStr .= '<a href="" class="remove-small right reset-star hide">reset</a></div>';
         $frmStr .= '<div class="box-2">';
-        $frmStr .= '<table style="width: 100%;">';
+        $frmStr .= '<table>';
         $frmStr .= '<thead><tr>
                     <th></th>
                     <th></th>
@@ -686,7 +686,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
             $frmStr .= '<tr class="'.(($jeton > 10)?'location2':'' ).' location_tr" id="location_'.$key.'_tr" >';
             $frmStr .= '<td>';
             $frmStr .= $frm->addInput('checkbox', 'location['.$key.']', 1, array('checked' => 'checked', 'class' => 'filterHotelCheckbox locationCheckbox', 'id' => 'location_'.$key));
-            $frmStr .= '<label for=location_' . $key . '>'.str_replace('_', ' ', $key).'</label></td>';
+            $frmStr .= '<label for=location_' . $key . '>'.truncate_text(str_replace('_', ' ', $key),20).'</label></td>';
             $frmStr .= '<td  style="font-size: 90%; "><a href="'.  url_for1('filter_hotel_form').'" id="filter-location-link-'.$key.'" class="filter-location-link" >'.count($value['list']).'</a></td>';
             $frmStr .= '<td  style="text-align: right;font-size: 90%; ">'.
                         $this->getLinkAccordingToNumberOfResponse($value['min']).
@@ -723,11 +723,16 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
                     </thead>';
         $frmStr .= '<tbody>';
         $jeton = 0;
+
+
+        
+
+
         foreach($arFilterDatas['chain'] as $key=>$value){
             $frmStr .= '<tr class="'.(($jeton > 10)?'chain2':'').' chain_tr" id="chain_'.$key.'_tr" >';
             $frmStr .= '<td>';
             $frmStr .= $frm->addInput('checkbox', 'chain['.$key.']', 1, array('checked' => 'checked', 'class' => 'filterHotelCheckbox chainCheckbox', 'id' => 'chain_'.$key));
-            $frmStr .= '<label for=location_' . $key . '>'.str_replace('_', ' ', $key).'</label></td>';
+            $frmStr .= '<label for=location_' . $key . '>'.$this->getChainName($key).'</label></td>';
             $frmStr .= '<td  style="font-size: 90%; "><a href="'.  url_for1('filter_hotel_form').'" id="filter-chain-link-'.$key.'" class="filter-chain-link" >'.count($value['list']).'</a></td>';
             $frmStr .= '<td  style="text-align: right;font-size: 90%; ">'.
                         $this->getLinkAccordingToNumberOfResponse($value['min']).
@@ -775,10 +780,22 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
     }
 
+    private function getChainName($key){
+        $hotelChains = Utils::createHotelchainArray();
+
+        if($key == '00'){
+            return 'independant';
+        }else{
+            return truncate_text($hotelChains[$key][0], 20);
+        }
+
+
+    }
+
     private function getGmapImageStatic(){
 
-        $filename = $this->getFilameFullPath();
-        $content = file_get_contents($filename.'.markers');
+        $filename = $this->getFilameFullPath('markers');
+        $content = file_get_contents($filename);
         $arMarkers = unserialize($content);
 
 

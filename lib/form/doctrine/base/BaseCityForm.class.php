@@ -7,7 +7,7 @@
  *
  * @package    hyplexdemo
  * @subpackage form
- * @author     Your name here
+ * @author     David Maignan
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
  */
 abstract class BaseCityForm extends BaseFormDoctrine
@@ -22,6 +22,7 @@ abstract class BaseCityForm extends BaseFormDoctrine
       'state_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('State'), 'add_empty' => true)),
       'cache'        => new sfWidgetFormInputCheckbox(),
       'archived'     => new sfWidgetFormInputCheckbox(),
+      'rank'         => new sfWidgetFormInputText(),
       'metropolitan' => new sfWidgetFormInputCheckbox(),
       'latitude'     => new sfWidgetFormInputText(),
       'longitude'    => new sfWidgetFormInputText(),
@@ -37,6 +38,7 @@ abstract class BaseCityForm extends BaseFormDoctrine
       'state_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('State'), 'required' => false)),
       'cache'        => new sfValidatorBoolean(array('required' => false)),
       'archived'     => new sfValidatorBoolean(array('required' => false)),
+      'rank'         => new sfValidatorInteger(array('required' => false)),
       'metropolitan' => new sfValidatorBoolean(array('required' => false)),
       'latitude'     => new sfValidatorNumber(array('required' => false)),
       'longitude'    => new sfValidatorNumber(array('required' => false)),

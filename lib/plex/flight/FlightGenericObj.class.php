@@ -12,6 +12,27 @@
 class FlightGenericObj {
 
 
+    public function getToStringHeader(){
+        $string = '<thead>
+                        <tr>
+                            <th>Compagnie</th>
+                            <th></th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Leaves</th>
+                            <th>at</th>
+                            <th>Arrives</th>
+                            <th>at</th>
+                            <th>stops</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    ';
+
+        return $string;
+    }
+
+    
     
     /*
      * Calculate the number of stops in inbound and outbound
@@ -167,6 +188,7 @@ class FlightGenericObj {
 
     }
 
+
     public function getAirline(){
         if (count($this->arAirlines) > 1) {
             return 'Multiple airlines';
@@ -240,5 +262,62 @@ class FlightGenericObj {
         return $string;
     }
 
+
+    /**
+     * Function to retreive the search parameters
+     * @param string $filename
+     * @return flightparameter object
+     */
+    public function getPassengerInfo($filename){
+        $parameters = PlexParsing::retreiveParameters($filename);
+        
+        $passengersString =  format_number_choice(
+                '[0]|[1]1 adult|(1,+Inf]%1% adults',
+                array('%1%' => $parameters->getAdults()), $parameters->getAdults());
+
+        if($parameters->getChildren() || $parameters->getInfants()) $passengersString.= ', ';
+
+        $passengersString .= format_number_choice(
+                '[0]|[1]1 child|(1,+Inf]%1% children',
+                array('%1%' => $parameters->getChildren()), $parameters->getChildren());
+
+        if($parameters->getInfants()) $passengersString.= ', ';
+        
+        $passengersString .= format_number_choice(
+                '[0]|[1]1 infant (travel on laps)|(1,+Inf]%1% infants (travel on laps)',
+                array('%1%' => $parameters->getInfants()), $parameters->getInfants());
+
+        return $passengersString;
+    }
+
+
+    /**
+     * Return Origin or Destination airport formatted: LAX - Los Angeles [CA], USA
+     * @param string $culture
+     * @return string
+     */
+    public function getOriginOrDestination($way, $culture = 'en_US'){
+
+        $string = '';
+
+        if($way == 'origin'){
+            $code = $this->SegmentOutbound->DepartureFrom;
+        }else{
+            $code = $this->SegmentOutbound->ArrivalTo;
+        }
+        //$codeFrom = $this->SegmentOutbound->DepartureFrom;
+        
+
+        //var_dump($this->arAirport);
+
+        $string = truncate_text($this->arAirport[$code][$culture]['name'], 15) .' ('.$code.'),  ' .
+                    $this->arAirport[$code][$culture]['city_name']. ' ';
+        $string .= isset($this->arAirport[$code]['state'])? ' ['.$this->arAirport[$code]['state'].'], ': '';
+
+        $string .= $this->arAirport[$code][$culture]['country'];
+
+
+        return $string;
+    }
+
 }
-?>

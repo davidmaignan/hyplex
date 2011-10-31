@@ -11,7 +11,9 @@
  */
 class HotelGenericObj {
 
-    //Variables
+    private $filename;
+
+    //public
     public $id;
     public $name;
     public $hotelChain;
@@ -21,8 +23,6 @@ class HotelGenericObj {
     public $isOurPick;
     public $baseImageLink;
     public $propertyType;
-    public $hotelDescription;
-    public $hotelFullDescription;
     public $hotelAddress = array();
     public $hotelFacilities = array();
     public $hotelFullFacilities = array();
@@ -33,6 +33,12 @@ class HotelGenericObj {
     public $maxPrice;
     public $numRooms = array();
     public $arCoordinates = array();
+    public $hotelDescription;
+    public $hotelFullDescription;
+    
+    public function getId(){
+        return $this->id;
+    }
 
     public function getAddress(){
 
@@ -42,18 +48,37 @@ class HotelGenericObj {
         return $string;
 
     }
-    
-    public function getFullAddress(){
 
-        $string = $this->hotelAddress['Street1'].' ';
-        $string .= ($this->hotelAddress['Street2'])? ", {$this->hotelAddress['Street2']} ": ', ';
+
+    /**
+     * Return address full or half full
+     * @param boolean if true return with street otherwise only city, state, country
+     * @return string
+     */
+    public function getFullAddress($bool = true){
+
+        $string = '';
+
+        if($bool){
+            $string .= $this->hotelAddress['Street1'].' ';
+            $string .= ($this->hotelAddress['Street2'])? ", {$this->hotelAddress['Street2']} ": ', ';
+        }
+
         $string .= $this->hotelAddress['City'];
         $string .= ($this->hotelAddress['StateProvince'])? " [{$this->hotelAddress['StateProvince']}] ": '';
-        $string .= ' - '.$this->hotelAddress['PostalCode'].', '.$this->hotelAddress['Country'];
+
+        //Add postcode if full address
+        if($bool){
+            $string .= ' - '.$this->hotelAddress['PostalCode'];
+        }
+        
+        $string .= ', '.$this->hotelAddress['Country'];
 
         return $string;
 
     }
+
+
 
 
 
@@ -71,12 +96,12 @@ class HotelGenericObj {
 
     public function getFacilities(){
 
-        $arImages = array('Parking'=>'parking','Restaurant'=>'restaurant','Internet Access'=>'internet','Pool'=>'pool','Fitness Center'=>'gym');
+        $arImages = array('Parking'=>'parking','Restaurant'=>'restaurant','Internet Access'=>'wifi','Pool'=>'pool','Fitness Center'=>'gym');
 
         $string = "";
         foreach ($this->hotelFacilities as $key => $value) {
             $val = ($value == 'No')? 'off': 'on';
-            $string .= image_tag('icons/'.$arImages[$key].'_'.$val.'.png', array('alt'=>'No '.$key, 'class'=>'facilities-icon'));
+            $string .= image_tag('mobico/'.$arImages[$key].'_'.$val.'.gif', array('alt'=>'No '.$key, 'class'=>'facilities-icon'));
         }
         return $string;
 
@@ -132,7 +157,11 @@ class HotelGenericObj {
 
     }
 
+    public function getParameters(){
 
+        return PlexParsing::retreiveParameters($this->filename);
+
+    }
 
 
 }

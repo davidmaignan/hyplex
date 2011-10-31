@@ -28,7 +28,7 @@ class sessionActions extends sfActions
 
   public function executeRenewStid(sfWebRequest $request){
 
-      $keepAliveRequest = new PlexKeepAliveRequest($this->getUser()->getAttribute('sTId'));
+      $keepAliveRequest = new PlexKeepAliveRequest($this->getUser()->getAttribute('sTId'), $request);
       
       $response = $keepAliveRequest->executeRequest();
 

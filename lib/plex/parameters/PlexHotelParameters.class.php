@@ -1,12 +1,8 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of PlexHotelParameters
- *
+ * 
  * @author david
  */
 abstract class PlexHotelParameters extends PlexParameters implements ParametersInterface {
@@ -17,11 +13,18 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
     public function  __construct($type, $params, $culture) {
         parent::__construct($type, $params, $culture);
     }
-
+    /**
+     * Get CheckinDate
+     * @return string (Y-m-d format)
+     */
     public function getCheckinDate() {
         return $this->checkin_date;
     }
 
+    /**
+     * Get CheckoutDate
+     * @return string (Y-m-d format)
+     */
     public function getCheckoutDate() {
         return $this->checkout_date;
     }
@@ -42,7 +45,7 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
         return $ar;
     }
     
-    /*
+    /**
      * Return a string formatted city_name [state], country, airport_name (airport_code)
      * e.q: London, United Kingdom, Heathrow (LHR)
      * @return string
@@ -58,11 +61,10 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
 
     }
 
-    /*
+    /**
      * Return the number of adults
      * @return int
      */
-
     public function getAdults() {
         if (!isset($this->number_adults)) {
             throw new Exception('PlexFlightParameters: you must define a number of adults');
@@ -70,6 +72,11 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
         return $this->number_adults;
     }
 
+
+    /**
+     * Get number of adults by adding number_adults for each rooms in arRooms array
+     * @return int
+     */
     public function getNumberAdults() {
         
         $total = 0;
@@ -81,6 +88,10 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
 
     }
 
+    /**
+     * Get number of children by adding number_children for each rooms in arRooms array
+     * @return int
+     */
     public function getNumberChildren() {
 
         $total = 0;
@@ -92,10 +103,18 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
 
     }
 
+    /**
+     * Get the number of rooms by counting the number of entries in arRooms array
+     * @return int
+     */
     public function getNumberRooms(){
         return count($this->arRooms);
     }
 
+    /**
+     * Get Number of nights between checkin and checkout dates
+     * @return integer
+     */
     public function getNumberNights(){
 
         $sStartDate = date("Y-m-d", strtotime($this->checkin_date));
@@ -123,11 +142,69 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
             if (!empty($aDays)){
                 return count($aDays);
             }
-                
         }
-        
     }
 
+    
+    public function getTypeRenamed(){
+
+        return 'hotel';
+
+        switch($this->type){
+
+            case 'flightReturn':
+                return 'round trip';
+                break;
+            case 'flightOneway':
+                return 'one way';
+                break;
+
+            case 'flightMulti':
+                return 'multiple destination itinary';
+                break;
+        }
+
+    }
+
+     public function displayParamsIphone() {
+        $string = $this->getOrigin();
+        $string .= __(' to ');
+        $string .= $this->getDestination();
+        $string .= ' - ';
+        $string .= format_date($this->getCheckinDate(), 'p');
+        $string .= ' - ';
+        $string .= format_date($this->getReturnDate(), 'p');
+
+        return $string;
+    }
+
+
+    public function getDates(){
+
+        $string = format_date($this->getCheckinDate(), 'flight');
+        $string .= ' - ';
+        $string .= format_date($this->getCheckoutDate(), 'flight');
+
+        return $string;
+    }
+
+    /**
+     * Get the children ages
+     * @return array with children age sorted ascending
+     */
+    public function getChildrenAge(){
+
+        $tmp = array();
+
+        foreach($this->childrenAge as $child){
+            array_push($tmp , (int)$child['age']);
+        }
+        
+        sort($tmp);
+
+        return $tmp;
+    }
+    
 
 }
 

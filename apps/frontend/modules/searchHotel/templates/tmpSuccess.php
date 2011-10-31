@@ -1,3 +1,6 @@
+<h1>Tmp</h1>
 <?php
-echo $form;
+var_dump($form->getErrorSchema()->getErrors());
+var_dump($form->renderGlobalErrors());
+
 ?>

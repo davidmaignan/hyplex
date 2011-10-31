@@ -1,6 +1,60 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+vacation_interest_country:
+  url: /:sf_culture/vacations-interest/country
+  param: { module: vacationInterest, action: country }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+vacation_interest:
+  url: /:sf_culture/vacations-interest/area
+  param: { module: vacationInterest, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+feature_deals:
+  url: /:sf_culture/feature-deals
+  param: { module: topDestination, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+promotionalBanner:
+  url: /:sf_culture/promotion
+  param: { module: promotionalBanner, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+autocomplete:
+  url: /:sf_culture/autocomplete/searchAirportComplete2
+  param: { module: autocomplete, action: searchAirportComplete2 }
+
+booking_check_address:
+  url: /:sf_culture/check-out/check-address-and-payement-information
+  param: { module: booking, action: setAddress }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+booking_address:
+  url: /:sf_culture/check-out/address-and-payement-information
+  param: { module: booking, action: getAddress }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+booking_passenger:
+  url: /:sf_culture/check-out/check-passenger-informations
+  param: { module: booking, action: setPassenger }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+checkout:
+  url: /:sf_culture/check-out/passengers-informations
+  param: { module: booking, action: getPassenger }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+previous_hotel:
+  url: /:sf_culture/previous-hotel-search/:wherebox/:checkin_date/:checkout_date
+  param: { module: prevSearch, action: previousHotelSearch }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+previous_search:
+  url: /:sf_culture/previous-search/:filename
+  param: { module: prevSearch, action: previousSearch }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 basket_remove:
   url: /:sf_culture/basket/remove/:type
   param: { module: basket, action: remove }
@@ -57,7 +111,7 @@ hotel_simple:
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 search_hotel_form:
-  url: /:sf_culture/search/hotel/invalid/
+  url: /:sf_culture/search/hotel/validation/
   param: { module: searchHotel, action: create }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
@@ -65,6 +119,12 @@ multidestination:
   url: /:sf_culture/multidestination/index
   param: { module: multidestination, action: index }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_package:
+  url: /:sf_culture/search/package/
+  param: { module: searchPackage, action: index }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
 
 package:
   url: /:sf_culture/package/
@@ -146,9 +206,35 @@ multipleDestination:
   param: { module: searchFlight, action: multipleDestination }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
+search_car:
+  url: /:sf_culture/search/car/
+  param: { module: searchCar, action: index }
+  requirements:
+    sf_culture: (?:en_US|fr_FR|zh_CN)
+
+search_package_form:
+  url: /:sf_culture/search/package/validation/*
+  param: { module: searchPackage, action: create }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_car_form:
+  url: /:sf_culture/search/car/validation/*
+  param: { module: searchCar, action: create }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 search_flight_form:
-  url: /:sf_culture/search/flight/invalid/
+  url: /:sf_culture/search/flight/validation/*
   param: { module: searchFlight, action: create }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_hotel_again:
+  url: /:sf_culture/search-hotel-again/:filename
+  param: { module: searchHotel, action: searchAgain }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+search_flight_again:
+  url: /:sf_culture/search-flight-again/:filename
+  param: { module: searchFlight, action: searchAgain }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 search_flight:
@@ -176,9 +262,6 @@ sf_guard_signin:
   url: /signin
   param: { module: sfGuardAuth, action: signin }
 
-sf_guard_signout:
-  url: /signout
-  param: { module: sfGuardAuth, action: signout }
 
 # generic rules
 # please, remove them by adding more specific rules
@@ -186,7 +269,6 @@ sf_guard_signout:
 reset:
   url: /:sf_culture/reset
   param: { module: main , action: reset }
-
 
 default_index:
   url:   /:module

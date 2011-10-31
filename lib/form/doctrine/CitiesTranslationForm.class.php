@@ -12,5 +12,6 @@ class CitiesTranslationForm extends BaseCitiesTranslationForm
 {
   public function configure()
   {
+      unset($this['slug']);
   }
 }
