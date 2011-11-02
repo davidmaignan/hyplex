@@ -1,5 +1,5 @@
 <div id="sorting">
-    <span>Sort by: </span>
+    <span><?php echo __('Sort by')?>: </span>
     <ul>
         <li class="level-1 selected">
             <div class="level-2">
@@ -7,7 +7,7 @@
                 <a id="sort_price_asc" class="selected asc">asc</a>
             </div>
             <div class="level-3">
-                Price
+                <?php echo __('Price') ?>
             </div>
 
         </li>
@@ -17,7 +17,7 @@
                 <a id="sort_airline_asc" class="asc">asc</a>
             </div>
             <div class="level-3">
-                Airline
+                <?php echo __('Airline') ?>
             </div>
 
         </li>
@@ -27,7 +27,7 @@
                 <a id="sort_landing_asc" class="asc">asc</a>
             </div>
             <div class="level-3">
-                Landing
+                <?php echo __('Landing') ?>
             </div>
 
         </li>
@@ -37,7 +37,7 @@
                 <a id="sort_takeoff_asc" class="asc">asc</a>
             </div>
             <div class="level-3">
-                Take off
+                <?php echo __('Take off') ?>
             </div>
 
         </li>
@@ -47,10 +47,9 @@
                 <a id="sort_stops_asc" class="asc">asc</a>
             </div>
             <div class="level-3">
-                Stops
+               <?php echo __('Stops') ?>
             </div>
         </li>
-        <?php //include_partial('include/pagination', array('total' => $total, 'page' => $page)); ?>
     </ul>
 
 </div>

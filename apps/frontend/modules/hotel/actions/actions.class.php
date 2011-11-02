@@ -480,10 +480,7 @@ class hotelActions extends sfActions
 
         $prevSearches = $this->getUser()->getAttribute('prevSearch');
         $prevSearche = end($prevSearches);
-<<<<<<< HEAD
 
-=======
->>>>>>> release-1.1
         $filename = $prevSearche['filename'];
 
 

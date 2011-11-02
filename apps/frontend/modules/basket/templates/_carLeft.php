@@ -2,7 +2,7 @@
     <td class="icon">
         <?php echo image_tag('mobico/car_on.png'); ?>
     </td>
-    <td><?php echo ucfirst(__('car')) ?></td>
+    <td><?php echo __('Car') ?></td>
     <td class="sub-total">
         <?php echo format_currency(1289.35, sfConfig::get('app_currency')); ?>
     </td>

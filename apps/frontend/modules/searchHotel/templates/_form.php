@@ -59,22 +59,27 @@ if ($form->hasGlobalErrors()) {
             </tr>
         </table>
         <hr class="space2"/>
-        <h3 class="form-index"><?php echo __('Room details'); ?></h3>
+        <h3 class="form-index prepend-top"><?php echo __('Room details'); ?></h3>
         <?php foreach ($form['newRooms'] as $key => $f): ?>
             <div id="room-container-<?php echo $key ?>" class="room-container <?php echo ($key != 1)? 'bordered': ''; ?>">
                 <table id="room-1" class="hotel-form-table">
                     <tr>
-                        <td></td>
-                        <td style="width: 80px;"><?php echo $f['number_adults']->renderLabel(); ?></td>
-                        <td><?php echo $f['number_children']->renderLabel(); ?></td>
-                    </tr>
-                    <tr>
-                        <td class="label" style="vertical-align: middle;">Room:</td>
-                        <td><?php echo $f['number_adults']; ?></td>
-                        <td style="vertical-align: top; padding-left: 10px;">
-                            <?php echo $f['number_children']->render(array('class'=>'hotel-children-age medium')); ?>
+                        <td class="label" style="padding: 30px 10px 0 0;"><?php echo __('room')?>:</td>
+                        <td>
+                            <ul>
+                                <li><?php echo $f['number_adults']->renderLabel(); ?></li>
+                                <li><?php echo $f['number_adults']; ?></li>
+                            </ul>
                         </td>
-                        <td style="width: 250px;">
+                        <td style="padding-left: 10px;">
+                            <ul>
+                                <li><?php echo $f['number_children']->renderLabel(); ?></li>
+                                <li><?php echo $f['number_children']->render(array(
+                                    'class'=>'hotel-children-age medium')); ?>
+                                </li>
+                            </ul>
+                        </td>
+                        <td style="width: 250px; padding-left: 10px;">
                             <div id="child-container-<?php echo $key; ?>">
                             <?php foreach ($form['childrenAge'] as $k => $f): ?>
                             <?php if ($k[0] == $key): ?>
@@ -96,7 +101,7 @@ if ($form->hasGlobalErrors()) {
 
         <div id="extrarooms" ></div>
         <br />
-        <button id="add_picture" type="button" class="info">More rooms</button>
+        <button id="add_picture" type="button" class="info"><?php echo __('add room') ?></button>
 
         <div class="span-8 last right">
             <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />

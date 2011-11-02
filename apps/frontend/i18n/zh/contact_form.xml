@@ -8,9 +8,13 @@
         <source>About Hypertech</source>
         <target>A propos de Hypertech</target>
       </trans-unit>
-       <trans-unit>
+      <trans-unit>
         <source>Required.</source>
         <target>必需。</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Invalid.</source>
+        <target>无效的。</target>
       </trans-unit>
       <trans-unit>
         <source>Round-trip</source>
@@ -109,6 +113,10 @@
         <target>儿童（2-12）</target>
       </trans-unit>
       <trans-unit>
+        <source>Children (0-17)</source>
+        <target>儿童（0-17）</target>
+      </trans-unit>
+      <trans-unit>
         <source>Cabin</source>
         <target>机舱</target>
       </trans-unit>
@@ -131,6 +139,18 @@
       <trans-unit>
         <source>Please enter a return date</source>
         <target>请输入返回日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Unrecognized destination, please check and re-enter</source>
+        <target>无法识别的目的地，请检查并重新输入</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a checkin date</source>
+        <target>请输入签入日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a checkout date</source>
+        <target>请输入的退房日期</target>
       </trans-unit>
       <trans-unit>
         <source>Departure date %value% does not match the format (yyyy-mm-dd)</source>
@@ -156,7 +176,18 @@
         <source>Departure date must be before than Return date</source>
         <target>出发日期之前，必须比返回日期</target>
       </trans-unit>
-
+      <trans-unit>
+        <source>Wherebox</source>
+        <target>目的地</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Checkin date</source>
+        <target>日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Checkout date</source>
+        <target>结帐日期</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -1,5 +1,4 @@
-<?php use_helper('I18n'); ?>
-<?php use_stylesheet('form'); ?>
+<?php use_javascript('search/searchPackage'); ?>
 
 <form action="<?php echo url_for('@search_package_form') ?>" method="post" id="package-form-index">
     <fieldset>

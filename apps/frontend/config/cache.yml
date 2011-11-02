@@ -2,21 +2,35 @@
 # http://www.symfony-project.org/reference/1_4/en/09-Cache
 
 _topHeader:
+  contextual: true
   enabled:     true
   with_layout: false
   lifetime:    86400
 
 _header:
+  contextual: true
   enabled:     true
-  with_layout: false
+  with_layout: true
   lifetime:    86400
 
 _navigation:
+  contextual: true
   enabled:     true
-  with_layout: false
+  with_layout: true
   lifetime:    86400
 
 _footer:
+  contextual: true
   enabled:     true
+  with_layout: true
+  lifetime:    86400
+
+_language:
+  enabled:     false
+  with_layout: false
+  lifetime:    86400
+
+_connection:
+  enabled:     false
   with_layout: false
   lifetime:    86400

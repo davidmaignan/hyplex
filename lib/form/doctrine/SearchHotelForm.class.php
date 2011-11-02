@@ -74,7 +74,7 @@ class SearchHotelForm extends sfForm {
                     ), array(
                 'required' => true,
                     ), array(
-                'required' => 'Please enter a return date'
+                'required' => 'Please enter a checkout date'
             )));
 
 
@@ -118,7 +118,7 @@ class SearchHotelForm extends sfForm {
             'number_children' => 'Children (0-17)',
         ));
 
-
+        $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
         $this->widgetSchema->setNameFormat('search_hotel[%s]');
         $this->validatorSchema->setOption('allow_extra_fields', true);
     }

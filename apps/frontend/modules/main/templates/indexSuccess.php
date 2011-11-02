@@ -1,28 +1,14 @@
-<?php use_javascript('jquery-1.6.2.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.16.custom.min.js'); ?>
-<?php use_javascript('myScript'); ?>
-<?php use_javascript('functions.js'); ?>
-
 <?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
-<?php use_javascript('jquery.maskedinput.js');?>
-<?php use_javascript('search/searchFlight'); ?>
-<?php use_javascript('search/searchHotel'); ?>
-<?php use_javascript('search/searchPackage'); ?>
+<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
+<?php //use_javascript('jquery.maskedinput.js');?>
+
 <?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
 
 <?php //use_javascript('search/airport_list_'.$sf_user->getCulture().'.js'); ?>
-<?php //use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js'); ?>
-
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
-<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
+<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js'); ?>
 
 <?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
 <?php //use_javascript('debugger/myLogger.js'); ?>
-
-<?php use_helper('Date', 'Number', 'I18n'); ?>
 
 <style type="text/css">
     #dialog-message{
@@ -65,38 +51,7 @@
     </div>
     <hr class="space3" />
     <div class="span-9 prepend-top border">
-<<<<<<< HEAD
-
-        
-
-        <h2 class="title"><?php echo __('Previous searches'); ?></h2>
-        <div class=" span-9">
-            <?php for($i=0;$i<5;$i++): ?>
-            <table class="prev-searches">
-                <tr class="<?php echo (fmod($i, 2) == 0)? 'bg-1': 'bg-2' ?>">
-                    <td rowspan="2" style="font-weight: bold;">
-                        Flight return
-                    </td>
-
-                    <td><a href="#">LAX - JFK</a>
-
-                    <td>&bull; Sep 15 - Sep 17
-                    </td>
-                    <td rowspan="2" style="width: 60px; text-align: center;">
-                        <a>Modify</a><br />
-                        
-                    </td>
-                </tr>
-                <tr class="<?php echo (fmod($i, 2) == 0)? 'bg-1': 'bg-2' ?>">
-                    <td colspan="2">2 adults, 1 infant</td>
-                </tr>
-            </table>
-            <?php endfor; ?>
-        </div>
-=======
         <?php include_component('prevSearch', 'index', array()); ?>
-        
->>>>>>> release-1.1
     </div>
 
 </div>
@@ -106,37 +61,8 @@
 
 <?php include_component('promotionalBanner', 'index'); ?>
 <?php include_component('topdestination', 'index'); ?>
+<?php include_component('promotionalBanner','featureDealsIndex'); ?>
 
-    <div class="span-8 prepend-top append-bottom" id="featureDeals">
-        <h2 class="title"><?php echo __('Feature deals'); ?><a href="#" id="featureDeals-rss">RSS</a></h2>
-        <?php echo image_tag('tmp/feature_deals.jpg'); ?>
-        <select name="featureDeals" class="append-bottom">
-            <option>Hypertech selection</option>
-            <option>Christmas specials</options>
-            <option>Winter breaks specials</options>
-            <option>Sunshine deals</option>
-        </select>
-        <table>
-            <tr><td><a>Sheraton Waikiki resort</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-            <tr class="desc">
-            <td colspan="2">
-                <?php echo image_tag('tmp/feature_deals_1.jpg', array('class'=>'left'));?>
-                    <p>Your request has been sent, but you can always change your mind.</p>
-            </td>
-            </tr>
-            <tr><td><a>Europe - Italy</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-            <tr><td><a>Discover South America</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-            <tr class="last"><td><a>Surfing in Hawai</a></td><td class="bold color2"><?php echo format_currency(rand(267, 999), sfConfig::get('app_currency')); ?></td></tr>
-        </table>
-        <div style="clear:both;"></div>
-        <?php //endforeach; ?>
-        <ul class="paginator">
-            <li><a href="#" class="selected"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-            <li><a href="#"></a></li>
-        </ul>
-    </div>
     <div class="span-8 last prepend-top append-bottom" id="specialInterest">
         <h2 class="title"><?php echo __('Vacations by interest'); ?></h2>
         <?php echo image_tag('tmp/special_interest_1.jpg'); ?>
@@ -156,14 +82,16 @@
         </div>
     </div>
     <div class="span-8 last prepend-top" id="newsletter-signup">
-        <h2 class="smaller">Get deals in your inbox!<br />Sign up for Hypertech Email</h2>
+        <h2 class="smaller">
+            <?php echo __('Get deals in your inbox!') ?><br />
+            <?php echo __('Sign up for Hypertech E-promotions') ?><br /></h2>
         <table>
             <tr>
                 <td>
                     <input type="text" name="newsletter_signup" value="enter you email" />
                 </td>
                 <td>
-                    <input type="submit" value="sign in" class="blue small" style="float: left;" />
+                    <input type="submit" value="<?php echo ucwords( __('sign in')) ?>" class="blue small" style="float: left;" />
                 </td>
             </tr>
         </table>

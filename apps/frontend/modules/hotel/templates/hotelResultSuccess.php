@@ -93,11 +93,6 @@
 
 </div>
 
-<<<<<<< HEAD
-<?php //include_component('basket', 'index', array()); ?>
-=======
->>>>>>> release-1.1
-
 <script>
 
 $('document').ready(function(){

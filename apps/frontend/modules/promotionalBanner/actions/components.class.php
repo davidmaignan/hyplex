@@ -17,10 +17,11 @@ class promotionalBannerComponents extends sfComponents
   */
   public function executeIndex(sfWebRequest $request)
   {
-      //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->getActivePromotions($this->getUser()->getCulture());
-      //$this->promotionalBanners = json_encode($promotionalBanners);
 
-      
-      //sfView::NONE;
   }
+
+  public function executeFeatureDealsIndex(sfWebRequest $request){
+      
+  }
+
 }

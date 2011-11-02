@@ -105,12 +105,20 @@
         <target>Enfants (2-12)</target>
       </trans-unit>
       <trans-unit>
+        <source>Children (0-17)</source>
+        <target>Enfants (0-17)</target>
+      </trans-unit>
+      <trans-unit>
         <source>Cabin</source>
         <target>Classe</target>
       </trans-unit>
       <trans-unit>
         <source>Required.</source>
         <target>Requis.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Invalid.</source>
+        <target>non valide</target>
       </trans-unit>
       <trans-unit>
         <source>Choose one type of ticket</source>
@@ -122,7 +130,11 @@
       </trans-unit>
       <trans-unit>
         <source>Unrecognized To airport, please check and re-enter</source>
-        <target>Veuillez saisir une ville de destination</target>
+        <target>Veuillez saisir une ville d'arrivée</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Unrecognized destination, please check and re-enter</source>
+        <target>Veuillez saisir une destination</target>
       </trans-unit>
       <trans-unit>
         <source>Please enter a departure date</source>
@@ -130,7 +142,15 @@
       </trans-unit>
       <trans-unit>
         <source>Please enter a return date</source>
+        <target>Veuillez saisir une date de retour</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a checkin date</source>
         <target>Veuillez saisir une date d'arrivée</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a checkout date</source>
+        <target>Veuillez saisir une date de départ</target>
       </trans-unit>
       <trans-unit>
         <source>Departure date %value% does not match the format (yyyy-mm-dd)</source>
@@ -221,20 +241,16 @@
         <target>Vol de nuit</target>
       </trans-unit>
       <trans-unit>
-        <source></source>
-        <target></target>
+        <source>Wherebox</source>
+        <target>Destination</target>
       </trans-unit>
       <trans-unit>
-        <source></source>
-        <target></target>
+        <source>Checkin date</source>
+        <target>Arrivée</target>
       </trans-unit>
       <trans-unit>
-        <source></source>
-        <target></target>
-      </trans-unit>
-      <trans-unit>
-        <source></source>
-        <target></target>
+        <source>Checkout date</source>
+        <target>Départ</target>
       </trans-unit>
       <trans-unit>
         <source></source>

@@ -1,3 +1,5 @@
+<?php use_javascript('search/searchHotel'); ?>
+
 <form action="<?php echo url_for('@search_hotel_form') ?>" method="post" id="hotel-form-index">
     <fieldset>
         <h3 class="form-index"><?php echo __('Travel details'); ?></h3>

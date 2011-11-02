@@ -31,34 +31,12 @@
     }
 
 
-
-    #footer dl {
-        margin-bottom:5px;
-        border-bottom: 1px solid #777777;
-        height: 60px;
+    #footer .deals{
+        line-height: 14px;
     }
 
-    #footer dl dt {
-        color: #acacac;
-        float:left;
-        font-weight:bold;
-        margin-right:3px;
-        margin-top: 4px;
-        width: 80px;
-    }
-
-    #footer dd .desc{
-        width: 165px;
-        float: left;
-        font-size: 95%;
-        color: #acacac;
-
-    }
-
-    #footer dd .price{
-        width: 45px;
-        float: left;
-
+    .deals img{
+        padding:0 5px 14px 0;
     }
 
     #footer #disclaimer{
@@ -99,25 +77,30 @@ use_helper('Number','Text','Date');
             <?php $arDatas = array('mexico', 'tahiti', 'carribean', 'hawaii'); ?>
 
             <div class="span-8">
-                <h2 class="title">Latest deals</h2>
+                <h2 class="title"><?php echo __('Latest deals') ?></h2>
+                <table class="deals">
                 <?php for ($i = 0; $i < 4; $i++): ?>
                 <?php $val = $arDatas[rand(0, count($arDatas) - 1)]; ?>
-                    <dl class="deals">
-                        <dt><?php echo image_tag('tmp/' . $val . '.png', array('width' => '70px')); ?> </dt>
-                        <dd>
-                            <h3><?php echo ucfirst($val); ?></h3>
-                            <div class="desc">4 nights in 4 stars for 2 adults, lorem ipsum etc</div>
-                            <div class="price">
-                            <?php echo format_currency(rand(300, 600), sfConfig::get('app_currency')) ?>
-                        </div>
-                    </dd>
-                </dl>
+                    
+                        <tr>
+                            <td><?php echo image_tag('tmp/' . $val . '.png', array('width' => '70px')); ?></td>
+                            <td>
+                                <ul>
+                                    <li class="bold white append-bottom2"><a href='#'><?php echo ucfirst($val); ?></a></li>
+                                    <li class="smaller">4 nights in 4 stars for 2 adults, lorem ipsum etc</li>
+                                </ul>
+                            </td>
+                            <td class="prepend-top bold">
+                                <?php echo format_currency(rand(300, 600), sfConfig::get('app_currency')) ?>
+                            </td>
+                        </tr>
+                        
                 <?php endfor; ?>
-
-                        </div>
+                </table>
+            </div>
 
                         <div class="span-4">
-                            <h2 class="title">Partner sites</h2>
+                            <h2 class="title"><?php echo __('Partner sites') ?></h2>
                             <ul id="">
                                 <li><a href="#"><?php echo __('Disney World Resort'); ?></a></li>
                                 <li><a href="#"><?php echo __('Bahamas Tourism Board'); ?></a></li>
@@ -130,7 +113,7 @@ use_helper('Number','Text','Date');
                         </div>
 
                         <div class="span-4">
-                            <h2 class="title">More sections</h2>
+                            <h2 class="title"><?php echo __('More sections') ?></h2>
                             <ul id="">
                                 <li><a href="#"><?php echo __('All inclusive'); ?></a></li>
                                 <li><a href="#"><?php echo __('Collections'); ?></a></li>
@@ -144,7 +127,7 @@ use_helper('Number','Text','Date');
                         </div>
 
                         <div class="span-4">
-                            <h2 class="title">Updates</h2>
+                            <h2 class="title"><?php echo __('Updates') ?></h2>
                             <ul id="">
                                 <li class="rss"><a href="#"><?php echo __('RSS feeds'); ?></a></li>
                                 <li class="twitter"><a href="#"><?php echo __('Hypertech on Twitter'); ?></a></li>
@@ -155,7 +138,7 @@ use_helper('Number','Text','Date');
                         </div>
 
                         <div class="span-4 last">
-                            <h2 class="title">Home</h2>
+                            <h2 class="title"><?php echo __('Home') ?></h2>
                             <ul id="">
                                 <li><a href="#"><?php echo __('About us'); ?></a></li>
                                 <li><a href="#"><?php echo __('My bookings'); ?></a></li>

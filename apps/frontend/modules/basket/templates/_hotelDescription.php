@@ -14,10 +14,10 @@
                 ?></li>
 
             <li class="hotel-address"><?php echo $result->getFullAddress(); ?></li>
-            <li class="hotel-desc">Location: <span class="bold"><?php echo $result->location; ?></span></li>
+            <li class="hotel-desc"><?php echo __("Location")?>: <span class="bold"><?php echo $result->location; ?></span></li>
         </ul>
         <ul class="hotel-temptation">
-            <li class="prepend-top show-map"><a class="hotel-show-map" href="#">Map</a></li>
+            <li class="prepend-top show-map"><a class="hotel-show-map" href="#"><?php echo __('Map') ?></a></li>
         </ul>
     </div>
     <div class="span-6 last" style="width: 218px;">

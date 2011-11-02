@@ -1,25 +1,14 @@
-<?php use_helper('I18n'); ?>
-<?php use_stylesheet('form'); ?>
+<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js'); ?>
+<?php use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
+<?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
+<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
 
-<?php //use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
-<?php //use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
-
-<?php
-if ($form->hasGlobalErrors()) {
-    //echo $form->renderGlobalErrors();
-}
-?>
+<?php use_javascript('search/datepicker_'.$sf_user->getCulture().'.js'); ?>
+<?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
+<?php use_javascript('search/searchFlight.js'); ?>
 
 <style>
 
-    table{
-        width: 100%;
-    }
-
-    td{
-        border:0px solid #ddd;
-        padding-bottom:2px;
-    }
     td.prepend-top{
         padding-top: 10px;
     }
@@ -54,7 +43,7 @@ if ($form->hasGlobalErrors()) {
                     <td class="prepend-top" colspan="2">
                         <?php echo $form['origin']->renderLabel(); ?>
                     </td>
-                    <td colspan="2">
+                    <td class="prepend-top" colspan="2">
                         <?php echo $form['destination']->renderLabel(); ?>
                     </td>
                 </tr>
@@ -82,9 +71,9 @@ if ($form->hasGlobalErrors()) {
                 </tr>
                 <tr>
                     <td class="prepend-top"><?php echo $form['depart_date']->renderLabel(); ?></td>
-                    <td><?php echo $form['depart_time']->renderLabel(); ?></td>
-                    <td class="return-date"><?php echo $form['return_date']->renderLabel(); ?></td>
-                    <td class="return-date"><?php echo $form['return_time']->renderLabel(); ?></td>
+                    <td class="prepend-top"><?php echo $form['depart_time']->renderLabel(); ?></td>
+                    <td class="prepend-top return-date"><?php echo $form['return_date']->renderLabel(); ?></td>
+                    <td class="prepend-top return-date"><?php echo $form['return_time']->renderLabel(); ?></td>
                 </tr>
                 <tr>
                     <td><?php echo $form['depart_date'] ?></td>
@@ -99,7 +88,7 @@ if ($form->hasGlobalErrors()) {
                     <td class="small return-time"><?php echo $form['return_time']->renderError() ?></td>
                 </tr>
                 <tr>
-                    <td colspan="4">
+                    <td class="prepend-top" colspan="4">
                         <h3 class="form-index"><?php echo __('Flight options'); ?></h3>
                     </td>
                 </tr>
@@ -128,7 +117,7 @@ if ($form->hasGlobalErrors()) {
                     <td colspan="2" id="prefered-airlines-list"></td>
                 </tr>
                 <tr>
-                    <td  colspan="4">
+                    <td class="prepend-top"   colspan="4">
                         <h3 class="form-index"><?php echo __('Passengers informations'); ?></h3>
                     </td>
                 </tr>

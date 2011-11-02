@@ -23,7 +23,6 @@ class FlightOnewayParameters extends PlexFlightParameters implements ParametersI
     public function getDates(){
 
         $string = format_date($this->getDepartDate(), 'flight');
-        
 
         return $string;
     }

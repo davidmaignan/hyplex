@@ -13,9 +13,9 @@ default:
     #robots:       index, follow
 
   #stylesheets:    [main.css, frontend_temp.css, typography.css]
-  stylesheets:    [grid, typography]
+  stylesheets:    [grid, typography, custom-theme/jquery-ui-1.8.16.custom.css]
 
-  javascripts:    []
+  javascripts:    [jquery-1.6.2.min.js, jquery-ui-1.8.16.custom.min.js, myScript, functions]
 
   has_layout:     true
   layout:         layout
