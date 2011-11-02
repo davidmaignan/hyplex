@@ -57,9 +57,10 @@ TopDestination:
   actAs:
     Timestampable: ~
     I18n:
-      fields: [name]
+      fields: [name, description]
   columns:
     name:                    { type: string(255), notnull: true }
+    description:             { type: string(4000), notnull: true }
     filename:                { type: string(255), notnull: true }
     rank:                    { type: integer, notnull: true }
     start_at:                { type: timestamp }

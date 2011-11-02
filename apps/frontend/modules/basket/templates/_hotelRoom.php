@@ -2,9 +2,9 @@
     <table class="rates">
         <thead>
             <tr>
-                <th>Room type</th>
+                <th><?php echo __('Room type') ?></th>
                 <?php foreach ($hotel->getRoomIds() as $value): ?>
-                    <th style="width: 140px; text-align: center;"><?php echo $value; ?></th>
+                    <th style="width: 140px; text-align: center;"><?php echo __($value) ?></th>
                 <?php endforeach; ?>
                 </tr>
             </thead>

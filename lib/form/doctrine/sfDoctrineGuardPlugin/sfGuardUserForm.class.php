@@ -13,5 +13,6 @@ class sfGuardUserForm extends PluginsfGuardUserForm
   public function configure()
   {
       $this->useFields(array('username', 'first_name','last_name','email_address','password','is_active','is_super_admin','groups_list','permissions_list'));
+      
   }
 }

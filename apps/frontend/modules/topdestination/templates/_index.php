@@ -13,18 +13,18 @@
             
 
         <div class="top-destination">
-            <?php echo image_tag('../uploads/images/top_destination/0.jpg'); ?>
-            <h2>Barcelona</h2>
+            <?php echo image_tag('../uploads/images/top_destination/3.jpg'); ?>
+            <h2><?php echo __('Venice') ?></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli.</p>
         </div>
         <div class="top-destination">
-            <?php echo image_tag('../uploads/images/top_destination/1.jpg'); ?>
-            <h2>Los Angeles</h2>
+            <?php echo image_tag('../uploads/images/top_destination/4.jpg'); ?>
+            <h2><?php echo __('New York') ?></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli.</p>
         </div>
         <div class="top-destination-last">
             <?php echo image_tag('../uploads/images/top_destination/2.jpg'); ?>
-            <h2>Las Vegas</h2>
+            <h2><?php echo __('Las Vegas') ?></h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing eli.</p>
         </div>
     <div style="clear:both;"></div>

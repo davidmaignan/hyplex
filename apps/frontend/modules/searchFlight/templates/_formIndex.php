@@ -1,5 +1,4 @@
-<?php use_helper('I18n'); ?>
-<?php use_stylesheet('form'); ?>
+<?php use_javascript('search/searchFlight'); ?>
 
 <form action="<?php echo url_for('@search_flight_form') ?>" method="post" id="flight-form-index">
     <fieldset>

@@ -16,6 +16,17 @@ abstract class PlexFlightParameters extends PlexParameters {
     public $arOrigin = array();
     public $arDestination = array();
 
+    public $arTypeRenamed = array('flightReturn'=>array(
+        'en_US'=>'round trip',
+        'fr_FR'=>'aller/retour',
+        'zh_CN'=>'往返'
+    ),
+        'flightOneway'=>array(
+        'en_US'=>'one way',
+        'fr_FR'=>'aller simple',
+        'zh_CN'=>'单'
+    ));
+
     public function  __construct($type, $params, $culture) {
 
         parent::__construct($type, $params, $culture);
@@ -319,19 +330,8 @@ abstract class PlexFlightParameters extends PlexParameters {
 
     public function getTypeRenamed(){
 
-        switch($this->type){
-
-            case 'flightReturn':
-                return 'round trip';
-                break;
-            case 'flightOneway':
-                return 'one way';
-                break;
-
-            case 'flightMulti':
-                return 'multiple destination itinary';
-                break;
-        }
+        $culture = sfContext::getInstance()->getUser()->getCulture();
+        return $this->arTypeRenamed[$this->type][$culture];
 
     }
 

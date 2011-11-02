@@ -1,5 +1,5 @@
 <tr class="basket-list-header active basket-hotel">
-    <td><?php echo ucfirst(__('hotel')) ?></td>
+    <td><?php echo __('Hotel') ?></td>
     <td colspan="2" class="sub-total">
         <?php echo format_currency($hotel->getTotalPrice(), sfConfig::get('app_currency')); ?>
     </td>
@@ -9,11 +9,12 @@
         <ul class="sub-list">
             <li>
                 <?php echo format_number_choice(
-                        '[0]|[1]1 night  |(1,+Inf]%1% nights  ', array('%1%' => $hotelParameters->getNumberNights()), $hotelParameters->getNumberNights()) ?>
-                in <?php echo $hotelParameters->getWhereBoxBasketPage(); ?>
+                        '[0]|[1]1 night |(1,+Inf]%1% nights ', array('%1%' => $hotelParameters->getNumberNights()), $hotelParameters->getNumberNights()) ?>
+                <?php echo __('in') ?>
+                <?php echo $hotelParameters->getWhereBoxBasketPage($sf_user->getCulture()); ?>
             </li>
-            <li>Checkin: <?php echo format_date($hotelParameters->getCheckinDate(), 'd'); ?>
-            <li>Checkout: <?php echo format_date($hotelParameters->getCheckoutDate(), 'd'); ?></li>
+            <li><?php echo __('Check-in') ?>: <?php echo format_date($hotelParameters->getCheckinDate(), 'd'); ?>
+            <li><?php echo __('Check-out') ?>: <?php echo format_date($hotelParameters->getCheckoutDate(), 'd'); ?></li>
         </ul>
     </td>
 </tr>
@@ -22,7 +23,7 @@
 
 <tr class="basket-list">
     <td colspan="2">
-        &bull; <?php echo ucfirst(__('room'))?>
+        &bull; <?php echo __('room')?>
         <?php echo $key+1 ?>:
         <?php echo format_number_choice(
         '[0]|[1]1 adult, |(1,+Inf]%1% adults, ', array('%1%' => $room['number_adults']), $room['number_adults']) ?>

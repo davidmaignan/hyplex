@@ -1,14 +1,59 @@
 <?php use_helper('I18N') ?>
-<div class="span-8 append-bottom">
+<div class="span-10 append-bottom">
 <form action="<?php echo url_for('@sf_guard_signin') ?>" method="post">
   <table>
     <tbody>
-      <?php echo $form ?>
+        <tr>
+            <td class="smaller">
+                <?php echo __('Username', null, 'sf_guard') ?>
+            </td>
+            <td>
+                <?php echo $form['username']->render(array('class'=>'small')); ?>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <?php echo $form['username']->renderError(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="smaller">
+                <?php echo __('Password', null, 'sf_guard') ?>
+            </td>
+            <td>
+                <?php echo $form['password']->render(array('class'=>'small')); ?>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <?php echo $form['password']->renderError(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td class="smaller">
+                <?php echo __('Remember', null, 'sf_guard') ?>
+            </td>
+            <td>
+                <?php echo $form['remember']; ?>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <?php echo $form['remember']->renderError(); ?>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2"><?php echo $form['_csrf_token'] ?></td>
+        </tr>
+      
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="2">
-          <input type="submit" value="<?php echo __('Signin', null, 'sf_guard') ?>" />
+        <td colspan="2" style="padding-right: 20px;">
+          <input type="submit" class="blue right" value="<?php echo __('Signin', null, 'sf_guard') ?>" />
           
           <?php $routes = $sf_context->getRouting()->getRoutes() ?>
           <?php if (isset($routes['sf_guard_forgot_password'])): ?>
@@ -24,3 +69,12 @@
   </table>
 </form>
 </div>
+<hr class="space3" />
+
+<style>
+    table td{
+        vertical-align: middle;
+        padding-right: 20px;
+    }
+</style>
+

@@ -36,7 +36,7 @@
         <tr class="basket-list-total">
             <td colspan="2">
                 <ul>
-                    <li><?php echo ucfirst(__('total')) ?></li>
+                    <li><?php echo __('Total') ?></li>
                     <li class="sub-person"><?php //echo ucfirst(__('price per person')) ?></li>
                 </ul>
             </td>

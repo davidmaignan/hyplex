@@ -9,9 +9,7 @@
 <?php //use_stylesheet('typography'); ?>
 <?php //use_stylesheet('form'); ?>
 
-<!-- Carousel -->
-<?php //use_javascript('carousel.js'); ?>
-<?php use_stylesheet('carousel'); ?>
+
 
 <script type="text/javascript">
     var promotionalBanners = null;<?php //echo $sf_data->get('promotionalBanners', ESC_RAW); ?>

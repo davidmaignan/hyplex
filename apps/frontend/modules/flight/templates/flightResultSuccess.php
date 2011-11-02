@@ -1,22 +1,9 @@
-<?php use_javascript('jquery-1.5.1.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
-<?php use_javascript('myScript.js'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
-
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
 <?php use_stylesheet('flightResult'); ?>
-
-<?php use_javascript('functions.js'); ?>
-<?php //use_javascript('search/searchFlight.js'); ?>
 <?php use_javascript('flight/flightResult.js'); ?>
 
+<?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
+<?php //use_javascript('debugger/myLogger.js'); ?>
 
-<?php use_javascript('debugger/ADS-final-verbose.js'); ?>
-<?php use_javascript('debugger/myLogger.js'); ?>
-
-<?php use_helper('Date', 'Number', 'I18n', 'Text'); ?>
 
 <script type="text/javascript">
     var filterValues = <?php echo $sf_data->get('filterValues', ESC_RAW); ?>
@@ -67,9 +54,9 @@
     <div class="span-19 shadow append-bottom" id="tab-viewing">
        
         <ul>
-            <li><a href="#" class="view-list selected">List</a></li>
-            <li><a href="#" class="view-chart">Chart</a></li>
-            <li><a href="#" class="view-matrix" id="matrix-btn">Matrix</a></li>
+            <li><a href="#" class="view-list selected"><?php echo __('List') ?></a></li>
+            <li><a href="#" class="view-chart"><?php echo __('Chart') ?></a></li>
+            <li><a href="#" class="view-matrix" id="matrix-btn"><?php echo __('Matrix') ?></a></li>
         </ul>
     </div>
 

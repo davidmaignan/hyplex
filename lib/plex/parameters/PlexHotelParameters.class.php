@@ -9,6 +9,12 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
     //put your code here
 
     public $arRooms = array();
+    public $arTypeRenamed = array('hotelSimple'=>array(
+        'en_US'=>'hotel',
+        'fr_FR'=>'hôtel',
+        'zh_CN'=>'酒店'
+    ));
+
 
     public function  __construct($type, $params, $culture) {
         parent::__construct($type, $params, $culture);
@@ -148,22 +154,10 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
     
     public function getTypeRenamed(){
 
-        return 'hotel';
+        $culture = sfContext::getInstance()->getUser()->getCulture();
+        return $this->arTypeRenamed[$this->type][$culture];
 
-        switch($this->type){
-
-            case 'flightReturn':
-                return 'round trip';
-                break;
-            case 'flightOneway':
-                return 'one way';
-                break;
-
-            case 'flightMulti':
-                return 'multiple destination itinary';
-                break;
-        }
-
+        
     }
 
      public function displayParamsIphone() {

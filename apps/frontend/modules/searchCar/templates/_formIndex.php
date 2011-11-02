@@ -1,6 +1,3 @@
-<?php use_helper('I18n'); ?>
-<?php use_stylesheet('form'); ?>
-
 <?php use_javascript('search/searchCar') ?>
 
 <style>

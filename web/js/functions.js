@@ -378,6 +378,7 @@ function activateSorting(){
 function activateFilterBox(){
 
     $('.filter-box').click(function(){
+
         var value = $(this).attr('class');
 
         switch (true) {
@@ -1488,7 +1489,7 @@ function ActivateCompareHotelBtn(){
 
         var hotels = $('.hotel-thumb.selected');
 
-        if(hotels.length <2 || hotels.lenght >5){
+        if(hotels.length <2 || hotels.length >5){
             $.gritter.add({
                 title: 'Hotels to compare',
                 text: 'You can compare a minimum of 2 hotels and a maximum of 4 hotels!',

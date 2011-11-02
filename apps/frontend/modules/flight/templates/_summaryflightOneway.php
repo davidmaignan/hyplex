@@ -1,8 +1,4 @@
-<?php
-//echo '<pre>';
-//print_r($parameters);
-?>
-<h1>
+<h1 style="font-weight: normal;">
     <?php echo __('%total% flights found for a %s% from %s1% to %s2%' ,
             array(  '%total%'=> $total,
                     '%s%' => $parameters->getTypeRenamed(),

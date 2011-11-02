@@ -37,7 +37,7 @@ class ChildAgeForm extends sfForm {
         //)));
 
         $this->validatorSchema->setOption('allow_extra_fields', true);
-        $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('hotel_form');
+        $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
 
     }
 }

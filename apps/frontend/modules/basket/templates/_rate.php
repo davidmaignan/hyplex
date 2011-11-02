@@ -2,13 +2,13 @@
     <td class="room-rate-name">
         <ul>
             <li class="rate-name"><?php echo $k; ?></li>
-            <li class="rate-links"><a href="#" class="rate-description">View description</a>
+            <li class="rate-links"><a href="#" class="rate-description"><?php echo __('View description') ?></a>
                 <a class="termsConditions" onclick="return false;"
                    href="<?php echo url_for('hotel_terms_conditions',
                                             array('slug'=>  Utils::slugify($hotel->name, ''),
                                                   'termsConditionId'=> $rate['termsConditionId'],
                                                 'filename'=>  PlexBasket::getInstance()->getHotelFilename())) ?>">
-                    Terms & conditions</a></li>
+                    <?php echo __('Terms & conditions') ?></a></li>
         </ul>
         <div class="rate-description-content hide prepend-top">
             <?php echo $rate['RateDescription']; ?>

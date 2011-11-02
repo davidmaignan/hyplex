@@ -14,7 +14,7 @@
 
 <?php include_partial('include/dialog_message'); ?>
 
-<h1 class="title append-bottom">Your basket</h1>
+<h1 class="title append-bottom"><?php echo __('Your basket') ?></h1>
 <hr class="space2" />
 <?php include_component('basket', 'checkOut') ?>
 
@@ -24,7 +24,7 @@
     <hr class="space3" />
     <?php if(isset($flight)): ?>
     <div id="flight" class="basket-data-container">
-        <h2 class="flight"><?php echo ucwords(__('flight')); ?></h2>
+        <h2 class="flight"><?php echo __('Flight'); ?></h2>
         
         <div class="span-18 bg-grey flight-box-details">
             <div class="padded">
@@ -39,7 +39,7 @@
             
             <a href="<?php echo url_for('flight_modified',array('filename'=>PlexBasket::getInstance()->getFlightFilename())) ?>"
                class="action button blue basket-flight-link right center">
-                    <?php echo ucfirst(__('change flight')) ?>
+                    <?php echo __('change flight') ?>
             </a>
             
         </div>
@@ -51,14 +51,14 @@
     <?php if(isset($hotel)): ?>
 
     <div id="hotel" class="basket-data-container">
-        <h2 class="hotel"><?php echo ucwords(__('Hotel')); ?></h2>
+        <h2 class="hotel"><?php echo __('Hotel'); ?></h2>
             <?php include_partial('hotelDescription', array('result'=>$hotel)); ?>
             <?php include_partial('hotelRoom',array('hotel'=>$hotel)); ?>
         <div class="smaller">
 
             <a href="<?php echo url_for('hotel_modified',array('filename'=>PlexBasket::getInstance()->getHotelFilename())) ?>"
                class="action button blue basket-flight-link right center">
-                    <?php echo ucfirst(__('change hotel')) ?>
+                    <?php echo __('change hotel') ?>
             </a>
 
         </div>
@@ -67,7 +67,7 @@
 
     <?php if(isset($extras)): ?>
     <div id="extras" class="basket-data-container hide">
-        <h2 class="title extras"><?php echo ucwords(__('Extras')); ?></h2>
+        <h2 class="title extras"><?php echo __('Extras'); ?></h2>
     </div>
     <?php endif; ?>
 
@@ -76,7 +76,7 @@
     <?php if(isset($car)): ?>
     <div id="car" class="basket-data-container">
         
-        <h2 class="title car"><?php echo ucwords(__('Car')); ?></h2>
+        <h2 class="title car"><?php echo __('Car'); ?></h2>
        
         
     </div>
@@ -87,7 +87,7 @@
     <?php if(isset($excursions)): ?>
     <div id="excursions" class="basket-data-container">
        
-        <h2 class="title excursions"><?php echo ucwords(__('Excursions information')); ?></h2>
+        <h2 class="title excursions"><?php echo __('Excursions'); ?></h2>
        
         
     </div>
