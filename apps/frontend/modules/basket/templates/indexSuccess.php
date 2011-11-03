@@ -31,7 +31,9 @@
                 <table class="flight-details">
                     <?php include_partial('flight/segmentOutbound', array('result'=>$flight)) ?>
                     <tr><td colspan="6" class="border-bottom"></td></tr>
+                    <?php if($flight->getType() == 'flightReturn'):?>
                     <?php include_partial('flight/segmentInbound', array('result'=>$flight)) ?>
+                    <?php endif; ?>
                 </table>
             </div>
         </div>
@@ -92,6 +94,11 @@
         
     </div>
     <?php endif; ?>
+
+    <div class="span-18 right last">
+        <a href="<?php echo url_for('@checkout')?>" class="button action right bigger"><?php echo __('checkout');?></a>
+    </div>
+
 </div>
 
 <hr class="space3" />

@@ -33,11 +33,14 @@
     }
 
 
-
     select{
         margin-top: 3px;
     }
 
+    table.passengers td{
+        vertical-align: middle;
+    }
+    
     table.passengers td.first{
         padding-right: 6px;
         width: 100px;
@@ -63,8 +66,10 @@
 
     <div class="span-18 last">
 
-        <h2 class="title">Passengers information</h2>
-        <p class="notice">All traveler information must match exactly what is on the government-issued ID you use when traveling.</p>
+        <h2 class="flight"><?php echo __('Passengers information') ?></h2>
+        <p class="">
+           <?php echo __('All traveler information must match exactly what is on the government-issued ID you use when traveling.') ?>
+        </p>
 
                 <?php if ($form->hasGlobalErrors()): ?>
                     <ul class="error-global">
@@ -77,7 +82,7 @@
                 <form action="<?php echo url_for('@booking_passenger') ?>" method="post">
 
                 <?php if(isset($form['adults'])):?>
-                <h2 class="title prepend-top">Adults</h2>
+                <h2 class="title prepend-top small"><?php echo __('Adults') ?></h2>
                 <?php foreach ($form['adults'] as $key => $f): ?>
                 <?php include_partial('formPassenger',array('f'=>$f, 'key'=>$key, 'type'=>'adult')); ?>
                 <?php endforeach; ?>
@@ -85,7 +90,7 @@
                 <hr class="space2" />
                 
                 <?php if(count($form['children'])>0):?>
-                <h2 class="title prepend-top">Children</h2>
+                <h2 class="title prepend-top"><?php echo __('Children') ?></h2>
                 <?php foreach ($form['children'] as $key => $f): ?>
                 <?php include_partial('formPassenger',array('f'=>$f, 'key'=>$key,'type'=>'child')); ?>
                 <?php endforeach; ?>
@@ -93,7 +98,7 @@
                 <?php echo $form['_csrf_token']; ?>
 
                 <div class="span-8 last right append-bottom">
-                    <input type="submit" value="<?php echo __('next'); ?>" class="blue right" />
+                    <input type="submit" value="<?php echo __('Next'); ?>" class="blue right" />
                 </div>
         </form>
     </div>

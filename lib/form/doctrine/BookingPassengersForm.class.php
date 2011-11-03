@@ -23,6 +23,7 @@ class BookingPassengersForm extends sfForm {
         $this->widgetSchema->setNameFormat('booking_passengers[%s]');
         $this->validatorSchema->setOption('allow_extra_fields', true);
 
+        $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
         $this->validatorSchema->setPostValidator( new sfValidatorCallback(array('callback'=>
             array($this,'checkChildrenAges')), array()));
 
@@ -78,10 +79,25 @@ class BookingPassengersForm extends sfForm {
         if($childrenAges['flight']['age'] != $childrenAgesForm['flight'] && !empty($childrenAges['flight'])){
 
             //Expected
+            //var_dump($childrenAgesForm['ages']);
+            //var_dump($childrenAges['flight']);
+            //exit;
+
+            $expected = Utils::getChildrenInfantsStringForFlight($childrenAges['flight']['age']);
+
+            //echo $expected;
+
+            $given = Utils::getChildrenInfantsStringForFlight($childrenAgesForm['ages']);
+            //echo "<br /> ";
+            //echo $given;
+
+            //exit;
+
+            /*
             $expected = '';
 
             $expected .=  format_number_choice(
-                    '[0]|[1]child between 2 and 12|(1,+Inf]%1% children between 2 and 12',
+                    '[0]|[1]1 child between 2 and 12|(1,+Inf]%1% children between 2 and 12',
                     array('%1%' =>$childrenAges['flight']['age']['children']),
                     $childrenAges['flight']['age']['children']
             );
@@ -91,6 +107,7 @@ class BookingPassengersForm extends sfForm {
                     array('%1%' =>$childrenAges['flight']['age']['infants']),
                     $childrenAges['flight']['age']['infants']
             );
+             
 
             $given = '';
             foreach($childrenAgesForm['ages'] as $key=>$age){
@@ -98,20 +115,22 @@ class BookingPassengersForm extends sfForm {
                 if($key < count($childrenAgesForm['ages'])-2){
                     $given .= ', ';
                 }else if($key < count($childrenAgesForm['ages'])-1){
-                    $given .= ' and ';
+                    $given .= __(' and ');
                 }
             }
 
             $given2 = format_number_choice(
-                    '[0]|[1]child aged %2%|(1,+Inf]%1% children aged %2%',
+                    '[0]|[1]1 child aged %2%|(1,+Inf]%1% children aged %2%',
                     array('%1%' =>count($childrenAgesForm['ages']), '%2%' => $given),
                     count($childrenAgesForm['ages'])
             );
+             * 
+             */
             
+            $flightErrorMsg = __("This flight is priced for %1% at the time of travel but you entered %2%",
+                    array('%1%'=>$expected, '%2%'=>$given));
 
-
-            throw new sfValidatorError($validator, "Error with children date of birth.<br/> 
-                    This flight is priced for $expected at the time of travel but you entered $given2");
+            throw new sfValidatorError($validator, $flightErrorMsg);
         }
 
         //$childrenAgesValues = $childrenAges['hotel']['age'];
@@ -126,7 +145,20 @@ class BookingPassengersForm extends sfForm {
         sort($childrenAgesForm['hotel']);
 
         if($childrenAges['hotel']['age'] != $childrenAgesForm['hotel'] && !empty($childrenAges['hotel']['age'])){
-             $hotelGiven = '';
+
+            //var_dump($childrenAgesForm['hotel']);
+            //exit;
+
+            $hotelGiven = Utils::getChildrenInfantsStringForFlight($childrenAgesForm['hotel']);
+            //echo $hotelGiven;
+
+            $hotelExpected = Utils::getChildrenInfantsStringForFlight($childrenAges['hotel']['age']);
+
+            //echo $hotelExpected;
+            //exit;
+
+            /*
+            $hotelGiven = '';
             foreach($childrenAgesForm['hotel'] as $key=>$v){
                 $hotelGiven .= $v;
                 if($key < count($childrenAgesForm['hotel'])-2){
@@ -146,10 +178,12 @@ class BookingPassengersForm extends sfForm {
                 }
             }
 
-            
+             * 
+             */
+             $hotelErrorMsg = __("This hotel is priced for %1% at the time of travel but you entered %2%",
+                    array('%1%'=>$hotelExpected, '%2%'=>$hotelGiven));
 
-            throw new sfValidatorError($validator, "Error with children date of birth.<br/> Hotel was priced for
-                children ages $hotelExpected at the time of travel but you entered ages $hotelGiven");
+            throw new sfValidatorError($validator,$hotelErrorMsg);
         }
         
 

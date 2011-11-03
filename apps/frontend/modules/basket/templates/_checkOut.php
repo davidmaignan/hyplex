@@ -48,11 +48,11 @@
                     <li class="sub-person">
                         <?php //echo format_currency(rand(2999,8999)/3,  sfConfig::get('app_currency')); ?>
                     </li>
+                    <li><?php echo link_to1('checkout', '@checkout',array('class'=>'action button small right')); ?></li>
                 </ul>
 
             </td>
         </tr>
-
     </table>
 
     <a href="<?php echo url_for('basket/removeDataBooking') ?>">Remove data booking</a>

@@ -4,6 +4,42 @@
   <file source-language="EN" target-language="fr" datatype="plaintext" original="messages" date="2011-11-01T17:24:44Z" product-name="messages">
     <header/>
     <body>
+      <trans-unit id="32">
+        <source>[0]|[1]1 adult|(1,+Inf]%1% adults</source>
+        <target>[0]|[1]1 adulte|(1,+Inf]%1% adultes</target>
+      </trans-unit>
+      <trans-unit id="33">
+        <source>[0]|[1]1 child|(1,+Inf]%1% children</source>
+        <target>[0]|[1]1 enfant|(1,+Inf]%1% enfants</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>[0]|[1]1 infant|(1,+Inf]%1% infants</source>
+        <target>[0]|[1]1 bébé|(1,+Inf]%1% bébés</target>
+      </trans-unit>
+      <trans-unit id="34">
+        <source>[0]|[1]aged %1% year old|(1,+Inf]aged %1% years old</source>
+        <target>[0]|[1]agé de %1% an|(1,+Inf]agés de %1% ans</target>
+      </trans-unit>
+      <trans-unit>
+          <source>[0]|[1]1 child between 2 and 12 years old|(1,+Inf]%1% children between 2 and 12 years old</source>
+          <target>[0]|[1]1 enfant entre 2 et 12 ans|(1,+Inf]%1% enfants entre 2 et 12 ans</target>
+      </trans-unit>
+      <trans-unit>
+          <source>[0]|[1]1 infant under 2 years old|(1,+Inf]%1% infants under 2 years old</source>
+          <target>[0]|[1]1 bébé de moins de 2 ans|(1,+Inf]%1% bébés de moins de 2 ans</target>
+      </trans-unit>
+      <trans-unit>
+          <source>[0]|[1]1 child %2%|(1,+Inf]%1% children %2%</source>
+          <target>[0]|[1]1 enfant %2%|(1,+Inf]%1% enfants %2%</target>
+      </trans-unit>
+      <trans-unit>
+          <source>This hotel is priced for %1% at the time of travel but you entered %2%</source>
+          <target>L'hotel est reserve pour %1% mais vous avez saisi %2%</target>
+      </trans-unit>
+      <trans-unit>
+          <source>This flight is priced for %1% at the time of travel but you entered %2%</source>
+          <target>Ce vol est valable pour %1% et vous avez saisi %2%</target>
+      </trans-unit>
       <trans-unit id="1">
         <source>About Hypertech</source>
         <target>A propos de Hypertech</target>
@@ -429,18 +465,6 @@
         <target>et retour</target>
       </trans-unit>
       <trans-unit>
-        <source>[0]|[1]1 adult | |(1,+Inf]%1% adults | </source>
-        <target>[0]|[1]1 adulte | |(1,+Inf]%1% adultes | </target>
-      </trans-unit>
-      <trans-unit>
-        <source>[0]|[1]1 child | |(1,+Inf]%1% children | </source>
-        <target>[0]|[1]1 enfant | |(1,+Inf]%1% enfants | </target>
-      </trans-unit>
-      <trans-unit>
-        <source>[0]|[1]1 infant | |(1,+Inf]%1% infants | </source>
-        <target>[0]|[1]1 bébé | |(1,+Inf]%1% bébés | </target>
-      </trans-unit>
-      <trans-unit>
         <source>[0]Hotel found in %2%|[1]%1% Hotel found in %2%|(1,+Inf] %1% Hotels found in %2%</source>
         <target>[0]Hôtel trouvé à %2%|[1]%1% Hôtel trouvé à %2%|(1,+Inf] %1% Hôtels trouvés à %2%</target>
       </trans-unit>
@@ -572,18 +596,6 @@
         <source>flight</source>
         <target/>
       </trans-unit>
-      <trans-unit id="32">
-        <source>[0]|[1]1 adult |(1,+Inf]%1% adults </source>
-        <target>[0]|[1]1 adulte |(1,+Inf]%1% adultes </target>
-      </trans-unit>
-      <trans-unit id="33">
-        <source>[0]|[1]1 child |(1,+Inf]%1% children </source>
-        <target>[0]|[1]1 enfant |(1,+Inf]%1% enfants </target>
-      </trans-unit>
-      <trans-unit id="34">
-        <source>[0]|[1]1 infant |(1,+Inf]%1% infants </source>
-        <target>[0]|[1]1 bébé |(1,+Inf]%1% bébés </target>
-      </trans-unit>
       <trans-unit id="35">
         <source>Your basket contains the following items:</source>
         <target>Votre panier contient: </target>
@@ -599,14 +611,6 @@
       <trans-unit id="38">
         <source>room</source>
         <target>chambre</target>
-      </trans-unit>
-      <trans-unit id="39">
-        <source>[0]|[1]1 adult, |(1,+Inf]%1% adults, </source>
-        <target>[0]|[1]1 adulte, |(1,+Inf]%1% adultes, </target>
-      </trans-unit>
-      <trans-unit id="40">
-        <source>[0]|[1]1 child |(1,+Inf]%1% children </source>
-        <target>[0]|[1]1 enfant |(1,+Inf]%1% enfants </target>
       </trans-unit>
       <trans-unit id="41">
         <source>aged</source>
@@ -698,15 +702,15 @@
       </trans-unit>
       <trans-unit id="63">
         <source>age</source>
-        <target/>
+        <target>age</target>
       </trans-unit>
       <trans-unit id="64">
         <source>Frequent Flyer programm</source>
-        <target/>
+        <target>Programme de fidélité</target>
       </trans-unit>
       <trans-unit id="65">
         <source>Special request</source>
-        <target/>
+        <target>Requêtes / assistance</target>
       </trans-unit>
       <trans-unit id="66">
         <source>[0,1] year old|(2,+Inf]%1% years old</source>
@@ -714,19 +718,19 @@
       </trans-unit>
       <trans-unit id="67">
         <source>%1%: </source>
-        <target/>
+        <target>%1%: </target>
       </trans-unit>
       <trans-unit id="68">
-        <source>next</source>
-        <target/>
+        <source>Next</source>
+        <target>Suivant</target>
       </trans-unit>
       <trans-unit id="69">
         <source>Missing info</source>
-        <target/>
+        <target>Information manquante</target>
       </trans-unit>
       <trans-unit id="70">
         <source>Missing flight</source>
-        <target/>
+        <target></target>
       </trans-unit>
       <trans-unit id="71">
         <source>Missing hotel room rate</source>
@@ -762,7 +766,7 @@
       </trans-unit>
       <trans-unit id="78">
         <source> stop</source>
-        <target/>
+        <target> escale</target>
       </trans-unit>
       <trans-unit id="79">
         <source>%total% flights found for a %s% from %s1% to %s2%</source>
@@ -1120,45 +1124,25 @@
         <source>Basket empty</source>
         <target>Panier vide</target>
       </trans-unit>
-      <trans-unit id="13">
-        <source>[0]|[1]1 child, |(1,+Inf]%1% children, </source>
-        <target>[0]|[1]1 enfant, |(1,+Inf]%1% enfants, </target>
+      <trans-unit>
+        <source>The number of infants can't exceed the number of adults</source>
+        <target>Le nombre de bébés ne peut excéder le nombre d'adultes</target>
       </trans-unit>
-      <trans-unit id="3">
-        <source>[0]|[1]1 child |(1,+Inf]%1% children  </source>
-        <target>[0]|[1]1 enfant |(1,+Inf]%1% enfants  </target>
+      <trans-unit>
+          <source> and </source>
+          <target> et </target>
       </trans-unit>
-      <trans-unit id="2">
-        <source>[0]|[1]1 adult, |(1,+Inf]%1% adults, </source>
-        <target>[0]|[1]1 adulte, |(1,+Inf]%1% adultes, </target>
+      <trans-unit>
+          <source>Payement</source>
+          <target>Payement</target>
       </trans-unit>
-      <trans-unit id="1">
-        <source>[0]|[1]1 child, |(1,+Inf]%1% children,  </source>
-        <target/>
+      <trans-unit>
+          <source>Please supply the cardholder's billing address as listed on the credit/debit card statement.</source>
+          <target>Veuillez fournir l'adresse du titulaire de la carte comme indiquez sur l'un des relevé de la carte.</target>
       </trans-unit>
-      <trans-unit id="2">
-        <source>[0]|[1]1 infant  |(1,+Inf]%1% infants  </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="3">
-        <source>[0]|[1]1 adult  |(1,+Inf]%1% adults  </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="4">
-        <source>[0]|[1]1 infant|(1,+Inf]%1% infants</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="5">
-        <source>[0]|[1]1 adult,  |(1,+Inf]%1% adults, </source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="6">
-        <source>[0]|[1]1 infant  |(1,+Inf]%1% infants</source>
-        <target/>
-      </trans-unit>
-      <trans-unit id="1">
-        <source>[0]|[1]1 infant |(1,+Inf]%1% infants</source>
-        <target/>
+      <trans-unit>
+          <source>Please supply a valid email address and telephone. A confirmation will be sent to this email.</source>
+          <target>Veuillez fournir un email valide ainsi qu'un numero de téléphone. Une confirmation sera envoyée à cette addresse.</target>
       </trans-unit>
     </body>
   </file>

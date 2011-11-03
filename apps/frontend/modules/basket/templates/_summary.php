@@ -25,17 +25,16 @@
         <td>
             <ul class="normal">
                 <li><?php echo format_date($parameters['flight']->getDepartDate(), 'P')?></li>
+                <?php if($parameters['flight']->getType() == 'flightReturn'): ?>
                 <li><?php echo format_date($parameters['flight']->getReturnDate(), 'P') ?></li>
+                <?php endif; ?>
             </ul>
         </td>
         <td>
-
-            <?php echo format_number_choice(
-                '[0]|[1]1 adult, |(1,+Inf]%1% adults, ', array('%1%' => $parameters['flight']->getAdults()), $parameters['flight']->getAdults()) ?>
-            <?php echo format_number_choice(
-                '[0]|[1]1 child, |(1,+Inf]%1% children, ', array('%1%' => $parameters['flight']->getChildren()), $parameters['flight']->getChildren()) ?>
-            <?php echo format_number_choice(
-                '[0]|[1]1 infant|(1,+Inf]%1% infants', array('%1%' => $parameters['flight']->getInfants()), $parameters['flight']->getInfants()) ?>
+            <?php echo Utils::getAdultChildInfantString(
+                    $parameters['flight']->getAdults(),
+                    $parameters['flight']->getChildren(),
+                    $parameters['flight']->getInfants()); ?>
         </td>
         <td class="">
             <ul>
@@ -67,20 +66,14 @@
 
             <ul>
                 <?php foreach($parameters['hotel']->arRooms as $key=>$room): ?>
-                <li><?php echo __('room').' '.$key ?>:
-                    <?php echo format_number_choice(
-                    '[0]|[1]1 adult, |(1,+Inf]%1% adults, ', array('%1%' => $room['number_adults']), $room['number_adults']) ?>
-                    <?php echo format_number_choice(
-                        '[0]|[1]1 child |(1,+Inf]%1% children ', array('%1%' => $room['number_children']), $room['number_children']) ?>
+                <li><?php echo __('room').' '.($key+1) ?>: 
+                    <?php echo Utils::getAdultChildInfantString(
+                    $room['number_adults'],
+                    $room['number_children'],0); ?>
 
-                    <?php if($room['number_children']>0):?>
-                    <?php echo __('aged') ?> (
-                    <?php foreach($room['children_age'] as $k=>$child):?>
-                       <?php echo $child['age'] ?>
-                        <?php echo (($k < $room['number_children']-1)? ',': ''); ?>
-                    <?php endforeach; ?>
-                        )
-                    <?php endif; ?>
+                    <?php echo Utils::getChildrenAgeString($room['children_age']) ?>
+                    
+                    
                 </li>
                 <?php endforeach; ?>
             </ul>

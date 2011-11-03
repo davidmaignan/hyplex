@@ -46,7 +46,7 @@ class PassengerAdultForm extends BasePassengerForm
                 'required' => 'Choose a gender')));
 
 
-     $this->setWidget('dob', new sfWidgetFormInputText(array(),array('class'=>'dob span-3','value'=>'1970-10-10')));
+     $this->setWidget('dob', new sfWidgetFormInputText(array(),array('class'=>'dob span-3')));
      $this->setWidget('airline_code', new sfWidgetFormInputText(array(),array('class'=>'airline_code')));     
 
      $this->setWidget('meal_preference', new sfWidgetFormSelect(array(
@@ -69,16 +69,11 @@ class PassengerAdultForm extends BasePassengerForm
          new sfValidatorDate(array(
              'date_format' => '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/',
              'date_output' => 'Y-m-d',
-         ), array(
-             'bad_format' => 'Return date %value% does not match the format (yyyy-mm-dd)'
-         ))
-         ),
-             array(
-
-             ),array()));
+         ), array('bad_format' => 'Return date %value% does not match the format (yyyy-mm-dd)'))
+         ), array(),array()));
 
      $this->validatorSchema->setOption('allow_extra_fields', true);
-
+     $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
      $this->setWidget('first_name', new sfWidgetFormInput(array(), array('value'=>'test')));
      $this->setWidget('last_name', new sfWidgetFormInput(array(), array('value'=>'test')));
 
@@ -86,18 +81,18 @@ class PassengerAdultForm extends BasePassengerForm
 
   public function checkDOB($validator, $values)
   {
-    //ob_start();
-    //var_dump($values);
+    ob_start();
+    
     $dob = explode('-', $values);
 
     if($values == ''){
-        $error = new sfValidatorError($validator, 'dob');
+        $error = new sfValidatorError($validator, 'dob invalid');
         throw new sfValidatorErrorSchema($validator, array('invalid' => $error));
     }
 
-    if(!@checkdate($dob[1], $dob[2], $dob[0])){
-        $error = new sfValidatorError($validator, 'dob');
-        throw new sfValidatorErrorSchema($validator, array('invalid' => $error));
+    if(!@checkdate( $dob[1], $dob[2], $dob[0])){
+        $error = new sfValidatorError($validator, 'dob invalid');
+        throw new sfValidatorErrorSchema($validator, array($error));
     }
 
     $currentDate = date("Y-m-d");// current date
@@ -105,7 +100,7 @@ class PassengerAdultForm extends BasePassengerForm
 
     if($values > date('Y-m-d',$less18)){
         $error = new sfValidatorError($validator, 'You must be at least 18 years old');
-        throw new sfValidatorErrorSchema($validator, array('invalid' => $error));
+        throw new sfValidatorErrorSchema($validator, array($error));
     }
     
     // password is correct, return the clean values

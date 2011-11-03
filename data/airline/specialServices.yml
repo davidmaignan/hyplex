@@ -3,3 +3,15 @@ en_US:
   WCHR: Wheelchair
   BLND: Blind, need assist
   DEAF: Deaf, need assist
+
+fr_FR:
+  '': ''
+  WCHR: Fauteuil roulant
+  BLND: Aveugle, aide requise
+  DEAF: Sourd, aide requise
+
+zh_CN:
+  '': ''
+  WCHR: 轮椅
+  BLND: 盲，需要协助
+  DEAF: 聋人，需要协助

@@ -125,6 +125,10 @@
         <target>Veuillez choisir un type de billet</target>
       </trans-unit>
       <trans-unit>
+        <source>Choose one type of card</source>
+        <target>Veuillez choisir un type de carte</target>
+      </trans-unit>
+      <trans-unit>
         <source>Unrecognized From airport, please check and re-enter</source>
         <target>Veuillez saisir une ville de départ.</target>
       </trans-unit>
@@ -177,8 +181,8 @@
         <target>Vous devez sélectionner un age pour tous les enfants</target>
       </trans-unit>
       <trans-unit>
-        <source>The number of infants in lap can't exceed the number of adults</source>
-        <target>Le nombre d'enfants sur genoux ne peut excéder le nombre d'adultes</target>
+        <source>The number of infants can't exceed the number of adults</source>
+        <target>Le nombre de bébés ne peut excéder le nombre d'adultes</target>
       </trans-unit>
       <trans-unit>
         <source>"%value%" is not a valid date</source>
@@ -253,6 +257,122 @@
         <target>Départ</target>
       </trans-unit>
       <trans-unit>
+        <source>Title</source>
+        <target>Titre</target>
+      </trans-unit>
+      <trans-unit>
+        <source>First name</source>
+        <target>Prénom</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Middle name</source>
+        <target>Second prénom</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Last name</source>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Gender</source>
+        <target>Sexe</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Date of birth</source>
+        <target>Date de naissance</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Frequent flyer number</source>
+        <target>Programme de fidélité</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Special assistance</source>
+        <target>Assistance</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Meal preference</source>
+        <target>Préférence de repas</target>
+      </trans-unit>
+      <trans-unit>
+        <source>male</source>
+        <target>homme</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Credit card type</source>
+        <target>Type de carte</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Credit card number</source>
+        <target>Numéro de carte</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Expiration date</source>
+        <target>Date d'expiration</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Email</source>
+        <target>Email</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Email again</source>
+        <target>Confirmation email</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Telephone</source>
+        <target>Téléphone</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Password</source>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Password again</source>
+        <target>Confirmation mot de passe</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Address 1</source>
+        <target>Adresse 1</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Address 2</source>
+        <target>Adresse 2</target>
+      </trans-unit>
+      <trans-unit>
+        <source>City</source>
+        <target>Ville</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Postcode</source>
+        <target>Code postal</target>
+      </trans-unit>
+      <trans-unit>
+        <source>State</source>
+        <target>Etat</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Country</source>
+        <target>Pays</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Choose a gender</source>
+        <target>Requis.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>You must be at least 18 years old</source>
+        <target>Vous devez avoir au moins 18 ans</target>
+      </trans-unit>
+      <trans-unit>
+        <source>dob invalid</source>
+        <target>date invalide</target>
+      </trans-unit>
+      <trans-unit>
+        <source>You must provide the expiration date for your credit card</source>
+        <target>Veuillez saisir la date d'expiration de votre carte</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Invalid credit card number</source>
+        <target>Numero de carte non valide</target>
+      </trans-unit>
+      <trans-unit>
         <source></source>
         <target></target>
       </trans-unit>
@@ -260,9 +380,14 @@
         <source></source>
         <target></target>
       </trans-unit>
-
-
-
+      <trans-unit>
+        <source></source>
+        <target></target>
+      </trans-unit>
+      <trans-unit>
+        <source></source>
+        <target></target>
+      </trans-unit>
     </body>
   </file>
 </xliff>
