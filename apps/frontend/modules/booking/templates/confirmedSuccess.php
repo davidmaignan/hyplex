@@ -87,12 +87,12 @@ h2.hotel{
 
 <hr class="space2" />
 <div class="span-5">
-    <div class="box-1">Need Help ?</div>
+    <div class="box-1"><?php echo __('Need Help ?') ?></div>
     <div class="box-2">
         <ul>
-            <li class="print"><a>Print this page</a></li>
-            <li class="send"><a>Send by email</a></li>
-            <li class="savePDF"><a>Save as PDF</a></li>
+            <li class="print"><a><?php echo __('Print this page') ?></a></li>
+            <li class="send"><a><?php echo __('Send by email') ?></a></li>
+            <li class="savePDF"><a><?php echo __('Save as PDF') ?></a></li>
         </ul>
     </div>
 </div>
@@ -140,7 +140,7 @@ h2.hotel{
             <td style="width: 180px;"><?php echo __('Full name') ?></td>
             <td><?php echo __('dob') ?></td>
             <td><?php echo __('age') ?></td>
-            <td><?php echo __('Frequent Flyer programm') ?></td>
+            <td><?php echo __('frequent flyer programm') ?></td>
             <td><?php echo __('Special request') ?></td>
         </tr>
         <?php foreach($booking->getPassengers() as $passenger): ?>

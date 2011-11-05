@@ -4,7 +4,7 @@
     </td>
     <td><?php echo __('Car') ?></td>
     <td class="sub-total">
-        <?php echo format_currency(1289.35, sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice(1999) ?>
     </td>
 </tr>
 <tr class="basket-list">
@@ -28,7 +28,7 @@
         &bull; Satellite Radio
     </td>
     <td class="sub-total">
-        <?php echo format_currency(199.00, sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice(1999) ?>
     </td>
 </tr>
 <tr class="basket-list">
@@ -36,7 +36,7 @@
         &bull; Bicycle Rack
     </td>
     <td class="sub-total">
-        <?php echo format_currency(199.00, sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice(1999) ?>
     </td>
 </tr>
 <tr class="basket-list">
@@ -44,7 +44,7 @@
         &bull; GPS navigation system
     </td>
     <td class="sub-total">
-        <?php echo format_currency(199.00, sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice(1999) ?>
     </td>
 </tr>
 <tr class="basket-list"><td colspan="3"></td></tr>

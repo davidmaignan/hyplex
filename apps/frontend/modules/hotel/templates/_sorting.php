@@ -1,5 +1,5 @@
 <div id="sorting">
-    <span>Sort by: </span>
+    <span><?php echo __('Sort by')?>: </span>
     <ul>
         <li class="level-1 selected">
             <div class="level-2">
@@ -7,7 +7,7 @@
                 <a id="our_pick_asc" class="selected asc">asc</a>
             </div>
             <div class="level-3">
-                Favorites
+                <?php echo __('Favorites') ?>
             </div>
 
         </li>
@@ -17,7 +17,7 @@
                 <a id="sort_name_asc" class="asc">asc</a>
             </div>
             <div class="level-3">
-                Name
+                <?php echo __('Name') ?>
             </div>
 
         </li>
@@ -27,7 +27,7 @@
                 <a id="sort_starRating_asc" class="asc">asc</a>
             </div>
             <div class="level-3">
-                Star rating
+                <?php echo __('Star rating') ?>
             </div>
 
         </li>
@@ -37,7 +37,7 @@
                 <a id="sort_price_asc" class="asc">asc</a>
             </div>
             <div class="level-3">
-                Price
+                <?php echo __('Price') ?>
             </div>
 
         </li>

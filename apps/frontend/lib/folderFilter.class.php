@@ -53,8 +53,6 @@ class folderFilter extends sfFilter {
                     $log->warning('folder exists and cookie too. PERFECT');
                     $user->setAttribute('folder', $cookie);
                     sfConfig::set('sf_user_folder', $folder );
-                    //Utils::retreivePrevSearch($user);
-                    
 
                 }else{
                     $log->alert('folder Filter has detected the cookie but the folder does not exist anymore');
@@ -134,6 +132,7 @@ class folderFilter extends sfFilter {
 
         if(is_null($cookieCulture) || $cookieCulture != $user->getCulture())
         {
+            $cookieDuration = sfConfig::get('app_cookie_duration');
             $response->setcookie('hypertech_culture', $user->getCulture(), time()+$cookieDuration);
         }
     }

@@ -334,7 +334,7 @@ class SearchFlightForm extends sfForm {
 
 
         if ($nbInfants > $values['number_adults']) {
-            throw new sfValidatorError($validator, "The number of infants can't exceed the number of adults");
+            throw new sfValidatorError($validator, __("The number of infants can't exceed the number of adults"));
         }
 
         //break;

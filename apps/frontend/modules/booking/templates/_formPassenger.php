@@ -1,4 +1,4 @@
-<h6 class="append-bottom small bold color2"><?php echo ucfirst(__($type)). ' ' .($key+1) ?></h6>
+<h6 class="append-bottom smaller bold color2"><?php echo __($type). ' ' .($key+1) ?></h6>
 <div class="span-18" style="border-bottom: 1px dotted #aaaaaa; padding-bottom: 18px; margin-bottom: 6px;">
     <div class="span-11" style="border-right: 1px dotted #aaaaaa;">
     <table class="passengers append-bottom">

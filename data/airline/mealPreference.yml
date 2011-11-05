@@ -9,3 +9,27 @@ en_US:
   LSML: Low Sodium
   MOML: Muslim
   VGML: Vegetarian
+
+fr_FR:
+  '': ''
+  BLML: Fade
+  DBML: Diabétique
+  HNML: Hindou
+  KSML: Kascher
+  LCML: Faible en calories
+  LFML: Faible en cholestérol
+  LSML: Faible teneur en sodium
+  MOML: Musulman
+  VGML: Végétarien
+
+zh_CN:
+  '': ''
+  BLML: 布兰德
+  DBML: 糖尿病
+  HNML: 印度教
+  KSML: 犹太
+  LCML: 低热量
+  LFML: 低胆固醇
+  LSML: 低钠
+  MOML: 穆斯林
+  VGML: 素

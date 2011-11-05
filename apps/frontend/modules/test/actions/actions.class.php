@@ -455,4 +455,11 @@ class testActions extends sfActions
         
     }
 
+    public function executeTranslation(sfWebRequest $request){
+
+        
+
+        
+    }
+
 }

@@ -883,5 +883,157 @@ class Utils {
         
     }
 
+    static function getAdultChildInfantString($nbrAdults, $nbrChildren, $nbrInfants, $separator = ', '){
+
+
+        $string = '';
+
+        $string .= format_number_choice( '[0]|[1]1 adult|(1,+Inf]%1% adults',
+                                         array('%1%' =>$nbrAdults), $nbrAdults);
+
+        if($nbrChildren){
+
+            $string .= $separator;
+            $string .= format_number_choice( '[0]|[1]1 child|(1,+Inf]%1% children',
+                                         array('%1%' =>$nbrChildren), $nbrChildren);
+
+        }
+
+        if($nbrInfants){
+
+            $string .= $separator;
+            $string .= format_number_choice( '[0]|[1]1 infant|(1,+Inf]%1% infants',
+                                         array('%1%' =>$nbrInfants), $nbrInfants);
+        }
+
+        return $string;
+
+    }
+
+    /**
+     *
+     * @param array 
+     * @param <type> $separator
+     * @return <type>
+     */
+    static function getChildrenAgeString($ar, $separator = ', '){
+
+        $totalYears = 0;
+        $string = '';
+
+        $tmp = array();
+
+        foreach($ar as $key=>$value){
+            array_push($tmp,$value['age']);
+            $totalYears += $value['age'];
+            //$string .= $separator;
+        }
+
+        sort($tmp);
+
+        foreach($tmp as $k=>$v){
+            $string .= $v;
+            $string .= ($k ==  count($tmp)-2)? __(' and '):$separator;
+        }
+
+        $string = substr($string, 0,-2);
+
+        return format_number_choice( '[0]|[1]aged %1% year old|(1,+Inf]aged %1% years old',
+                               array('%1%' =>$string),
+                               ($totalYears/count($ar)));
+
+
+    }
+
+    static function getChildrenAgeString2($ar, $separator = ', '){
+
+        sort($ar);
+
+        foreach($ar as $k=>$v){
+            $string .= $v;
+            $string .= ($k ==  count($tmp)-2)? __(' and '):$separator;
+        }
+
+        $string = substr($string, 0,-2);
+
+        return format_number_choice( '[0]|[1]aged %1% year old|(1,+Inf]aged %1% years old',
+                               array('%1%' =>$string),
+                               (array_sum($ar)/count($ar)));
+    }
+
+
+
+
+    static function getChildrenInfantsStringForFlight($ar){
+
+
+        if(isset($ar['children'])){
+
+            $string = '';
+
+            if($ar['children']){
+                $string .= format_number_choice(
+                        '[0]|[1]1 child between 2 and 12 years old|(1,+Inf]%1% children between 2 and 12 years old',
+                         array('%1%'=>$ar['children']),
+                         $ar['children']);
+            }
+
+            if($ar['infants']){
+
+                if($string != ''){
+                    $string .= __(' and ');
+                }
+
+                $string .= format_number_choice(
+                            '[0]|[1]1 infant under 2 years old|(1,+Inf]%1% infants under 2 years old',
+                         array('%1%'=>$ar['infants']),
+                         $ar['infants']);
+
+            }
+
+            return $string;
+
+        }else{
+
+            $stringAged = self::getChildrenAgeString2($ar);
+            //echo "<br />";
+            //echo $stringAged;
+
+            return format_number_choice(
+                        '[0]|[1]1 child %2%|(1,+Inf]%1% children %2%',
+                         array('%1%'=>count($ar),
+                               '%2%'=> $stringAged),
+                         count($ar));
+
+        }
+
+        
+    }
+
+
+    static function getNightString($nbrNights){
+        return format_number_choice( '[0]|[1]1 night|(1,+Inf]%1% nights',
+                                         array('%1%' =>$nbrNights), $nbrNights);
+    }
+
+    static function getNumberRoomsString($nbrRooms){
+        return format_number_choice( '[0]|[1]1 room|(1,+Inf]%1% rooms',
+                                         array('%1%' =>$nbrRooms), $nbrRooms);
+    }
+
+
+    /**
+     * Function to calculate the price depending on a currency and return
+     * a priced formatted form a specific culture.
+     * @param float $amount
+     * @return string
+     */
+    static function getPrice($amount){
+
+        $currency = sfConfig::get('app_currency');
+        return format_currency($amount, $currency);
+
+    }
+
 }
 

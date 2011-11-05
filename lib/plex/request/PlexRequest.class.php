@@ -161,13 +161,13 @@ abstract class PlexRequest{
     protected function retreiveUserInfos($request)
     {
 
-        $path = $request->getHttpHeader('info','path');
-        $path = explode('/', $path);
-        $userCulture = $path[1];
+        //$path = $request->getHttpHeader('info','path');
+        //$path = explode('/', $path);
+        //$userCulture = $path[1];
 
         $tmp = array();
         $tmp['ip'] = $request->getHttpHeader('addr','remote');
-        $tmp['culture'] = $userCulture;
+        $tmp['culture'] = null;
         $tmp['userAgent'] = $request->getHttpHeader('user-Agent');
         $tmp['date'] = $request->getHttpHeader('Date');
         $tmp['folder'] = $request->getCookie('hypertech_user_folder');

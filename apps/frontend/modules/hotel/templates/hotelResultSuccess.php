@@ -1,21 +1,21 @@
-<?php use_javascript('jquery-1.5.1.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
-<?php use_javascript('myScript.js'); ?>
-<?php use_javascript('functions.js'); ?>
+<?php //use_javascript('jquery-1.5.1.min.js'); ?>
+<?php //use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
+<?php //use_javascript('myScript.js'); ?>
+<?php //use_javascript('functions.js'); ?>
 
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
+<?php //use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
+<?php //use_stylesheet('grid'); ?>
+<?php //use_stylesheet('typography'); ?>
+<?php //use_stylesheet('form'); ?>
 
-<?php use_javascript('debugger/ADS-final-verbose.js'); ?>
-<?php use_javascript('debugger/myLogger.js'); ?>
+<?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
+<?php //use_javascript('debugger/myLogger.js'); ?>
 
 <!-- for gmap -->
 <?php use_javascript('gmap/infobubble-compiled'); ?>
 <?php use_javascript('gmap/markerclusterer_packed'); ?>
 <?php include_partial('include/dialog_message'); ?>
-<?php use_helper('Date','Number','I18n','Text'); ?>
+
 
 <script type="text/javascript">
     var filterValues = <?php echo $sf_data->get('filterValues', ESC_RAW); ?>;
@@ -42,6 +42,7 @@
             <li><a id="tab-hotels-list" class="view-list hotelResult-tabs selected"><?php echo __('List') ?></a></li>
             <li><a id="tab-hotels-map"class="view-map hotelResult-tabs"><?php echo __('Map') ?></a></li>
             <li><a id="tab-hotels-viewed"class="view-hotel hotelResult-tabs"><?php echo __('Viewed Hotels') ?></a></li>
+            <li><a id="tab-hotels-details"class="view-hotel hotelResult-tabs"><?php echo __('Hotel details') ?></a></li>
             <li><a id="backToResults" class="hotelResult-tabs"><?php echo __('Back to results'); ?></a></li>
         </ul>
     </div>
@@ -83,8 +84,11 @@
         <h2 class="title"><?php echo __('My viewed hotels'); ?></h2>
         <div id="viewedHotelsContainer"> </div>
         <hr />
-        <a class="select center" id="viewedHotelsCompare" href="<?php echo url_for('hotel_compare'); ?>"><?php echo ucfirst(__('compare')); ?></a>
+        <a class="select center" id="viewedHotelsCompare" href="<?php echo url_for('hotel_compare'); ?>">
+        <?php echo __('compare'); ?></a>
     </div>
+
+    <div id="hotelDetailsResult"></div>
 
     <div id="compareHotels" class="span-18"></div>
 

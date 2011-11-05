@@ -56,20 +56,12 @@ class flightActions extends sfActions {
 
         $this->redirect($url);
 
-
-
     }
 
     /*
      * Return Flight section
      */
     public function executeFlightResult(sfWebRequest $request) {
-
-
-        //var_dump($this->getUser()->hasFlash('filename'));
-        //var_dump($this->getUser()->getFlash('filename'));
-        //exit;
-
 
         switch (true) {
               case  $this->getUser()->hasFlash('filename'):
@@ -85,31 +77,11 @@ class flightActions extends sfActions {
                   $this->filename = $prevSearche['filename'];
                   break;
           }
-
-        //ob_start();
-        //var_dump($this->filename);
-        //exit;
-          /*
-
-        if(!$request->hasParameter('filename')){
-            $prevSearches = $this->getUser()->getAttribute('prevSearch');
-            $prevSearche = $prevSearches[count($prevSearches) - 1];
-            $this->filename = $prevSearche['file'];
-        }else{
-            $this->filename = $request->getParameter('filename');
-        }
-        */
-
           
         $this->page = 1;
 
         //Retrieve the search parameters.
         $this->parameters = PlexParsing::retreiveParameters($this->filename);
-
-        //var_dump($this->parameters);
-        //exit;
-        //echo $this->parameters->getType();
-        //break;
 
         $filteredResponse = PlexFilterResponseFactory::factory(
                         $this->parameters->getType(), $this->filename, $this->page, array()
@@ -151,12 +123,10 @@ class flightActions extends sfActions {
         switch ($this->parameters->getType()) {
             case 'flightReturn':
                 $this->type = 'flightReturn';
-                //$this->setTemplate('flightResult');
                 break;
 
             case 'flightOneway':
                 $this->type = 'flightOneway';
-                //$this->setTemplate('flightOneway');
                 break;
 
             default:
@@ -165,8 +135,6 @@ class flightActions extends sfActions {
 
         $this->setTemplate('flightResult');
 
-        //$this->setTemplate('test');
-        //sfConfig::set('sf_escaping_strategy', false);
     }
 
     public function executeFilterFlight(sfWebRequest $request) {
@@ -211,12 +179,6 @@ class flightActions extends sfActions {
         }
 
         $this->redirect('error/missingFlight');
-    }
-
-    public function executeModifyFlight(sfWebRequest $request){
-
-
-
     }
 
 }

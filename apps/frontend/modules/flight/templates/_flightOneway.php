@@ -5,14 +5,14 @@
             <?php echo html_entity_decode($result->getAirlineIcon()); ?><br />
             <?php echo (count($result->arAirlines) > 1)? __('multiple airlines'): $result->SegmentOutbound->Airline; ?>
         </div>
-        <div class="flight-data" >
+        <div class="flight-data prepend-top" >
             <table>
                 <thead>
                     <tr>
-                        <th colspan="3"><?php echo ucfirst(__('departure')) ?></th>
-                        <th colspan="3"><?php echo ucfirst(__('arrival')) ?></th>
-                        <th><?php echo ucfirst(__('stops')) ?></th>
-                        <th><?php echo ucfirst(__('duration')) ?></th>
+                        <th colspan="3"><?php echo __('Departure') ?></th>
+                        <th colspan="3"><?php echo __('Arrival') ?></th>
+                        <th><?php echo __('Stops') ?></th>
+                        <th><?php echo __('Duration') ?></th>
                     </tr>
                 </thead>
                 <?php include_partial('flight/segment', array('segment'=>$result->SegmentOutbound)); ?>

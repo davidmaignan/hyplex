@@ -54,7 +54,7 @@ abstract class PlexParameters {
 
         switch($this->type){
 
-            case 'HotelSimple':
+            case 'hotelSimple':
             array_push($ar, $this->wherebox);
             break;
 
@@ -62,8 +62,6 @@ abstract class PlexParameters {
             array_push($ar, $this->originCode);
             array_push($ar, $this->destinationCode);
             break;
-
-
 
         }
 

@@ -60,6 +60,9 @@ class mainActions extends sfActions {
         $this->getUser()->setAttribute('sTId_time', null);
         $this->getUser()->setAttribute('first_request', null);
 
+        $basket = PlexBasket::getInstance();
+        $basket->reset();
+
         $this->redirect('main/index');
 
 

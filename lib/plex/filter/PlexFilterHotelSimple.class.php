@@ -767,8 +767,8 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         $frmStr .= '<div class="box-1">';
         $frmStr .= "<h4>" . __("Narrow results") . "</h4></div>";
         $frmStr .= '<div class="box-2">';
-        $frmStr .= '<p id="infoFilterResult">'.$this->nbrTotalHotels. __(' hotels found').'</p>';
-        $frmStr .= '<a href="'.$_SERVER['PHP_SELF'].'"  class="remove none" id="clearFiltersAll">'. __('Clear selected filter').'</a>';
+        $frmStr .= '<p id="infoFilterResult" class="bigger">'.$this->nbrTotalHotels. __(' hotels found').'</p>';
+        $frmStr .= '<a href="'.$_SERVER['PHP_SELF'].'"  class="remove bigger none" id="clearFiltersAll">'. __('Clear selected filter').'</a>';
         $frmStr .= '</div>';
 
 

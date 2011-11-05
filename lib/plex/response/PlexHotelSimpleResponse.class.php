@@ -27,52 +27,9 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
 
         }
 
-        //var_dump($xml);
-        //exit;
-
-
-        /*
-          $timer = sfTimerManager::getTimer('ParseResponse');
-
-          //Parse the response if Success
-          $start = strpos($responseData, '<HotelInfos>');
-          $end = strrpos($responseData, '</HotelInfos>');
-          //break;
-
-          //If can't find tags AirInfos. xml empty or badly formatted
-          if($star === false || $end === false)
-          {
-
-          $infos = array();
-          $infos['message'] = 'Error XML: can\'t find tags HotelInfos';
-          $infos['filename'] = $this->getFilename().'plexResponse.raw';
-          $infos['parameters'] = $this->request->getPostParameters();
-          $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
-          sfContext::getInstance()->getEventDispatcher()->notify($event);
-          sfContext::getInstance()->getController()->forward('error', 'plexError');
-
-          }else{
-
-          $body = trim(substr($responseData, $start, $end - $start + 13));
-          $data = '<?xml version="1.0" encoding="utf-8"?>' . $body;
-          $filename = $this->getFilename('xml');
-          file_put_contents($filename, $data);
-          chmod($filename, 0777);
-
-          }
-         *
-         */
-
-        //Delete the raw response.
-        //unlink($this->getFilename());
-
         $timer->addTime();
 
         //Create file for google map markers
-        //Parse the response if Success
-        $start = strpos($responseData, '<GoogleMapInfo>');
-        $end = strrpos($responseData, '</GoogleMapInfo>');
-
         $googleMapInfo = $xml->GoogleMapInfo;
 
         //var_dump($googleMapInfo);
@@ -80,7 +37,6 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
         $arMarkers = array();
 
         foreach ($googleMapInfo->{'MapLatLon'}->children() as $key => $value) {
-
             $arMarkers[strtolower((string) $key)] = (string) $value;
         }
 
@@ -89,7 +45,6 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
         foreach ($googleMapInfo->{'MarkerInfos'}->{'MarkerInfo'} as $value) {
 
             $datas = (array) $value;
-
             $tmp = array();
             $tmp['name'] = $datas['MarkerName'];
             $latlong = array($datas['MarkerLatLon']);
@@ -154,87 +109,6 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
             $hotelSimple->longitude = $arMarkers['hotels'][$hotelSimple->id]['longitude'];
             array_push($this->arObjs, $hotelSimple);
         }
-
-        /*
-          //Loop through the xml for each flight
-          foreach ($arHotels['HotelInfo'] as $value) {
-          //foreach ($xml->children() as $value) {
-
-          echo $value;
-
-          $hotelSimple = new HotelSimpleObj();
-          $hotelSimple->setFilename($this->getFilename());
-
-          foreach ($value as $key => $value) {
-
-          switch ($key) {
-
-          case (in_array($key , $arSimpleFields)):
-          $keyModified = $this->renameXMLTag($key);
-          $hotelSimple->$keyModified = ((string)$value == '')?'00':(string)$value;
-          break;
-
-          case 'StarRating':
-          $keyModified = $this->renameXMLTag($key);
-          $v = (string)$value;
-          $hotelSimple->$keyModified = self::renameStarRating($v);
-          break;
-
-
-          case 'BaseImageLink':
-          $keyModified = $this->renameXMLTag($key);
-          $val = (string)$value;
-          //If no value is given to pic -> replace with generic no image available
-          $hotelSimple->$keyModified = ($val == '')? '/no_image_available.png': $val;
-
-          case 'HotelAddress':
-
-          foreach($value->children() as $t=>$u){
-          $hotelSimple->hotelAddress[$t] = (string)$u;
-          }
-
-          break;
-
-          case 'HotelFacilities':
-
-          foreach ($value as $v) {
-          $hotelSimple->hotelFacilities[(string)$v->{'FacilityName'}] = (string)$v->{'FacilityAvailable'} ;
-          }
-          break;
-
-          case 'RoomResponses':
-          $hotelSimple->arRooms = $this->createRoomArray($value);
-          $hotelSimple->arRoomsType = $this->createRoomTypeArray($value);
-
-          break;
-
-          default:
-
-          break;
-          }
-
-          }
-
-          //Add latitude and longitude
-          $hotelSimple->latitude = $arMarkers['hotels'][$hotelSimple->id]['latitude'];
-          $hotelSimple->longitude = $arMarkers['hotels'][$hotelSimple->id]['longitude'];
-
-          //Create array with min/max price
-          $hotelSimple->getMinMaxPrice();
-
-          array_push($this->listChains, $hotelSimple->chain);
-          $this->listChains = array_unique($this->listChains);
-
-          array_push($this->arObjs, $hotelSimple);
-
-          echo 'here';
-
-          echo count($this->arObjs);
-
-          exit;
-
-          }
-         */
 
         // Save the HotelSimpleObjects in plex file
         $handle = fopen($this->getFilename('plex'), 'wb');
@@ -395,7 +269,7 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
 
         //Save filters in file
         file_put_contents($this->getFilename('filters'), serialize($arFilters));
-        chmod($this->getFilename() . '.filters', 0777);
+        chmod($this->getFilename('filters'), 0777);
     }
 
     protected function createRoomArray($datas) {

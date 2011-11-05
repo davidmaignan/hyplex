@@ -545,8 +545,17 @@ select{
     padding:8px 23px;
 }
 
+.button.padded{
+    padding:5px 12px;
+}
+
 input.small, .button.action.small{
     font-size: 80%;
+    margin-top:5px;
+}
+
+input.smaller, .button.action.smaller{
+    font-size: 70%;
     margin-top:5px;
 }
 

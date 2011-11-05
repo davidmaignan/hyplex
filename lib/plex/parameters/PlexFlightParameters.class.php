@@ -17,13 +17,13 @@ abstract class PlexFlightParameters extends PlexParameters {
     public $arDestination = array();
 
     public $arTypeRenamed = array('flightReturn'=>array(
-        'en_US'=>'round trip',
-        'fr_FR'=>'aller/retour',
+        'en_US'=>'Round trip',
+        'fr_FR'=>'Aller/retour',
         'zh_CN'=>'往返'
     ),
         'flightOneway'=>array(
-        'en_US'=>'one way',
-        'fr_FR'=>'aller simple',
+        'en_US'=>'One way',
+        'fr_FR'=>'Aller simple',
         'zh_CN'=>'单'
     ));
 

@@ -39,7 +39,13 @@ class PassengerChildForm extends PassengerAdultForm
              ),array(),array(
          )));
 
+        $this->widgetSchema->setLabels(array(
+            'salutation' => 'Title',
+            'dob'=>'Date of birth',
+            'airline_code'=>'Airline'
+     ));
 
+        $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
     }
 
 

@@ -12,13 +12,22 @@ class AddressForm extends BaseAddressForm
 {
 
   public static $arCards = array('Mastercard', 'Visa', 'American Express');
+  //public static $arCards = array('Mastercard', 'Visa', 'American Express');
+
+  static public function getCreditCardsArray(){
+
+     $cardsFile = sfConfig::get('sf_data_dir').DIRECTORY_SEPARATOR.'misc'.DIRECTORY_SEPARATOR.'creditCard.yml';
+     $arCards = sfYaml::load($cardsFile);
+     return $arCards;
+
+  }
 
   public function configure()
   {
 
      unset($this['id']);
 
-     $arCards = sfConfig::get('app_creditcard_accepted');
+     $arCards = self::getCreditCardsArray();
 
      $keys = range(date('Y'), date('Y',strtotime(date('Y') . " +15 years")));
      $yearValues = range(date('Y'), date('Y',strtotime(date('Y') . " +15 years")));
@@ -46,7 +55,7 @@ class AddressForm extends BaseAddressForm
 
      /*Credit card type*/
      $this->setWidget('credit_card_type', new sfWidgetFormSelectRadio(array(
-                'choices' => self::$arCards,
+                'choices' => $arCards,
                 'default'=>0), array(
                 'class' => 'inline')));
 
@@ -62,7 +71,7 @@ class AddressForm extends BaseAddressForm
 
      /*Credit card type*/
      $this->setValidator('credit_card_type', new sfValidatorChoice(array(
-                'choices' => array_keys(self::$arCards)), array(
+                'choices' => array_keys($arCards)), array(
                 'required' => 'Choose one type of card')));
 
      /*Email*/
@@ -104,8 +113,9 @@ class AddressForm extends BaseAddressForm
          'invalid' => '%value% is not valid or incomplete'
      )));
 
+     $this->widgetSchema->setNameFormat('address[%s]');
      $this->setValidator('country', new sfValidatorString(array(), array()));
-
+     $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
      $this->validatorSchema->setOption('allow_extra_fields', true);
   }
 
@@ -147,7 +157,9 @@ class AddressForm extends BaseAddressForm
 
         if(isset($values['credit_card_type']) && isset($values['credit_card_number'])){
 
-            $credit_card_type = self::$arCards[$values['credit_card_type']];
+            $arCards = self::getCreditCardsArray();
+
+            $credit_card_type = $arCards[$values['credit_card_type']];
             $credit_card_number = $values['credit_card_number'];
             $check = Utils::checkCreditCard($credit_card_number, $credit_card_type, $errornumber, $errortext);
             if(!$check){

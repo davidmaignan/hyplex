@@ -657,7 +657,7 @@ function initializeGmapDestination(bool){
             //$('#gmapInfoBubble').show();
             $('#gmapInfoBubble-id').html(this.name);
             $('#gmapInfoBubble-desc').html(this.desc);
-            $('#gmapInfoBubble-img').attr('src', 'http://hyplexdemo/images/tmp/'+this.image);
+            $('#gmapInfoBubble-img').attr('src', '/images/tmp/'+this.image);
         });
 
         google.maps.event.addListener(marker, 'mouseout', function() {

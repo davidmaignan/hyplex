@@ -6,6 +6,7 @@ airline:
     prefix_path:          /:sf_culture/airline
     column:               id
     with_wildcard_routes: true
+    requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 city_metro:
   class: sfDoctrineRouteCollection
@@ -110,13 +111,20 @@ sf_guard_user:
     prefix_path:          /:sf_culture/user
     column:               id
     with_wildcard_routes: true
+    requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 # default rules
+
+localized_homepage:
+  url:   /:sf_culture/
+  param: { module: dashboard, action: index }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 homepage:
-  url:   /:sf_culture
+  url:   /
   param: { module: dashboard, action: index }
 
 # generic rules

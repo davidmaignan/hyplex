@@ -19,19 +19,21 @@
                             <?php include_partial('prevSearch/flightPassenger', array('flightParameters'=>$parameters)); ?>
                             <?php elseif($prevSearches[$i]['type'] == 'hotelSimple'): ?>
                             <?php include_partial('prevSearch/hotelPassenger', array('hotelParameters'=>$parameters)); ?>
+                            <?php elseif($prevSearches[$i]['type'] == 'flightSimple'): ?>
+                            <?php include_partial('prevSearch/flightPassenger', array('flightParameters'=>$parameters)); ?>
                             <?php endif; ?>
                         </li>
                     </ul>
 
                 </td>
                 <td style="text-align: center;">
-                    <?php $route = ($prevSearches[$i]['type'] == 'flightReturn')? 'flight_modified_search':'hotel_modified_search'?>
+                    <?php $route = ($prevSearches[$i]['type'] == 'flightReturn' || $prevSearches[$i]['type'] == 'flightOneway')? 'flight_modified_search':'hotel_modified_search'?>
                     <a href="<?php echo url_for($route,array('filename'=>$prevSearches[$i]['file'])) ?>"
                         class="">
                         <?php echo __('modify') ?>
                     </a>
 
-                    <?php $route = ($prevSearches[$i]['type'] == 'flightReturn')? 'search_flight_again':'search_hotel_again'?>
+                    <?php $route = ($prevSearches[$i]['type'] == 'flightReturn' || $prevSearches[$i]['type'] == 'flightOneway')? 'search_flight_again':'search_hotel_again'?>
                     <br /><br />
                     <a href="<?php echo url_for($route,array('filename'=>$prevSearches[$i]['file'])) ?>"
                        class="button action blue" style="font-size: 70%;">

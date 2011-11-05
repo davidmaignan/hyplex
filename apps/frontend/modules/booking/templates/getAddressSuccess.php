@@ -1,14 +1,3 @@
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
-<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-
-<?php use_javascript('jquery-1.6.2.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.16.custom.min.js'); ?>
-<?php use_javascript('myScript'); ?>
-<?php use_javascript('functions.js'); ?>
-
 
 <?php
 //Get the password if the are valid
@@ -46,12 +35,13 @@ if(isset($parameters['address'])){
     <div class="span-18 last">
 
         <form action="<?php echo url_for('@booking_check_address') ?>" method="post">
-            <h1>Payement & Billing information</h1>
-            <h2 class="title">Credit card information</h2>
+            <h2 class="flight"><?php echo __('Payement & Billing information') ?></h2>
+            <hr class="space3" />
+            <h2 class="title small"><?php echo __('Credit card information') ?></h2>
             <table class="append-bottom">
                 <tr>
-                    <td style="width: 200px; padding-bottom: 8px;"><?php echo $form['credit_card_type']->renderLabel(); ?></td>
-                    <td>
+                    <td class="append-bottom" style="width: 200px; padding-bottom: 20px;"><?php echo $form['credit_card_type']->renderLabel(); ?></td>
+                    <td colspan="2">
                         <ul>
                             <li><?php echo $form['credit_card_type']->render(); ?></li>
                             <li><?php echo $form['credit_card_type']->renderError(); ?></li>
@@ -66,7 +56,7 @@ if(isset($parameters['address'])){
                             <li><?php echo $form['credit_card_number']->renderError(); ?></li>
                         </ul>
                     </td>
-                    <td class="smaller">
+                    <td class="smallest bg-2">
                         <ul>
                             <li>Amex: 3400 0000 0000 009</li>
                             <li>MasterCard: 5500 0000 0000 0004</li>
@@ -85,9 +75,8 @@ if(isset($parameters['address'])){
                 </tr>
             </table>
 
-            <h2 class="title prepend-top">Contact information</h2>
-            <p>Please supply a valid email address and telephone. A confirmation will be sent to this email.
-               Check your spam folder in case you can't see the confirmation once your payement will be confirmed.</p>
+            <h2 class="title small prepend-top">Contact information</h2>
+            <p><?php echo __('Please supply a valid email address and telephone. A confirmation will be sent to this email.')?></p>
             <table>
                 <tr>
                     <td style="width: 200px;"><?php echo $form['email']->renderLabel(); ?></td>
@@ -135,8 +124,8 @@ if(isset($parameters['address'])){
                     </td>
                 </tr>
             </table>
-            <h2 class="title prepend-top">Address information</h2>
-            <p>Please supply the cardholder's billing address as listed on the credit/debit card statement. </p>
+            <h2 class="title small prepend-top">Address information</h2>
+            <p><?php echo __("Please supply the cardholder's billing address as listed on the credit/debit card statement.") ?> </p>
             <table>
                 <tr>
                     <td style="width: 200px;"><?php echo $form['address_1']->renderLabel(); ?></td>
@@ -204,7 +193,7 @@ if(isset($parameters['address'])){
 
 
             <div class="span-8 last right append-bottom">
-                <input type="submit" value="<?php echo __('next'); ?>" class="blue right" />
+                <input type="submit" value="<?php echo __('Payement'); ?>" class="blue right" />
             </div>
 
         </form>

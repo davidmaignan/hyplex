@@ -22,7 +22,7 @@ var mapInitialized = false;
 
 var autoCompleteURL;
 
-//var gMapHotel_starRating = [];
+var divHotelTarget = '#Results';
 
 //Function to check if element is in_array.
 if (!Array.prototype.indexOf)
@@ -64,8 +64,7 @@ function preg_quote( str ) {
 }
 
 
-
- function highlight2( data, search ){
+function highlight2( data, search ){
 
     var values = search.split(' ');
 
@@ -174,8 +173,6 @@ function formatAirportString(row)
 {
     var str = '';
 
-    
-
     for(var i in row){
         //ADS.log.write(row[i]);
     }
@@ -227,8 +224,7 @@ function formatAirportStringNoComma(row)
 }
 
 
-function sendFilterRequest(target)
-{
+function sendFilterRequest(target){
 
     var url;
     var page;
@@ -250,7 +246,7 @@ function sendFilterRequest(target)
     var datas = $('#filterForm').serialize();
 
     //retreive the sorting value
-    //var sorting = target.attr('id');
+    
     var sorting = $('#sorting a.selected').attr('id');
     datas += '&sortBy='+sorting;
 
@@ -282,11 +278,10 @@ function sendFilterRequest(target)
 
         var classes = target.attr('class');
 
-        //ADS.log.write(classes);
-
         //Special case if hotel name link clicked show div for displaying hotel detail page
         if(classes.search(/(hotelNameDetailAjaxLink2)/) > -1 || classes.search(/(hotelNameDetailAjaxLink)/) > -1){
-            showHideHotelDivs(0);
+            showHideHotelDivs(4);
+            divHotelTarget = "#hotelDetailsResult";
         }
 
        
@@ -299,7 +294,6 @@ function sendFilterRequest(target)
     }
 
     //alert(url);
-
     //ADS.log.write(url);
 
     //If hotel detail show tabs back to result
@@ -337,22 +331,25 @@ function onRequestFailure(msg)
 //Function when ajax request is successfull
 function onRequest2Success(msg){
     
-    $('#Results').html(msg);
     $("#dialog-message").dialog( "destroy" );
+    $(divHotelTarget).html(msg);
+
+    unbindAllEvents();
+
+    activateHotelNameDescriptionCall();
     activateFlightDetails();
     activateSorting();
     activatePagination();
-    activateHotelGallery();
     activateFilterBox();  //Yellow box filter
-    activateHotelNameDescriptionCall();
     hotelShowMap();
-
-    
-    
+    //ADS.log.write('onRequest2Success');
 }
 
 //Function to activate links in the pagination list
 function activatePagination(){
+
+    
+
     $('.page-link').click(function(){
         sendFilterRequest($(this));
         return false;
@@ -361,6 +358,7 @@ function activatePagination(){
 
 //Function for sorting
 function activateSorting(){
+
     $('#sorting a').click(function(){
 
         $('#sorting a').removeClass('selected');
@@ -414,9 +412,19 @@ function activateFilterBox(){
 
 //Hotels --------------------------------------------------------------- //
 
+function unbindAllEvents(){
+    $("a.hotelNameDetailAjaxLink").unbind('click');
+    $("a.hotelNameDetailAjaxLink2").unbind('click');
+    $("#sorting a").unbind('click');
+    $(".filter-box").unbind('click');
+    $(".page-link").unbind('click');
+    $('.hotel-show-map').unbind('click');
+}
+
 
 //Function for link on the hotel name
 function activateHotelNameDescriptionCall(){
+
     $('a.hotelNameDetailAjaxLink').click(function(){
             sendFilterRequest($(this));
             return false;
@@ -425,6 +433,7 @@ function activateHotelNameDescriptionCall(){
 
 //Function for link on the hotel name in viewed tabs
 function activateHotelNameDescriptionCall2(){
+    
     $('a.hotelNameDetailAjaxLink2').click(function(){
             sendFilterRequest($(this));
             return false;
@@ -453,7 +462,6 @@ function activateHotelFilteringLinks(){
 }
 
 //Function to show/hide location and
-
 function activateShowHideLocationChain(){
 
     $('.show-location').toggle(function(){
@@ -583,30 +591,6 @@ function ResetAverageNightlyRateSlider(min,max,posMin,posMax,minRange,maxRange){
             }
     });
 
-    /*
-
-    $("#slider_average_nigthlyRate").slider2( "destroy" );
-    $("#slider_average_nigthlyRate").slider2({
-        range: true,
-        min: min,
-        max: max,
-        posMin: posMin,
-        posMax: posMax,
-        values: [minRange, maxRange],
-        slide: function(event, ui) {
-            $("#average_nigthlyRate").val(ui.values[0] + ' - ' + ui.values[1]);
-            $("#info_average_nigthlyRate").html(ui.values[0] + ' - ' + ui.values[1]);
-        }
-    });
-
-    $( "#slider_average_nigthlyRate").slider2({
-           stop: function(event, ui) {
-                $('#average_nightly_rate').next('a.remove-small').show();
-                sendFilterRequest($(this));
-            }
-    });
-
-    */
 };
 
 
@@ -655,43 +639,6 @@ function showHideMarkers(){
            changeMarkerIcon(markers[i],'off');
         }
     }
-
-
-    /*
-
-    //retreive the data from the filterForm
-    var datas = $('#filterForm').serializeArray();
-
-    var filterDatas = [];
-
-    for(var i in datas){
-        var name = datas[i].name;
-        var value = name.slice(name.indexOf('[') + 1).split(']');
-        value = value.slice(0, -1);
-        if(value != ''){
-            filterDatas.push(value);
-        }
-    }
-
-    for(var i in markers){
-
-       //ADS.log.write(markers[i].chain);
-
-       if(!in_array(markers[i].starRating, filterDatas)){
-           changeMarkerIcon(markers[i],false);
-       }
-
-       if(!in_array(markers[i].location, filterDatas)){
-           changeMarkerIcon(markers[i],false);
-       }
-
-       if(!in_array(markers[i].chain, filterDatas)){
-           changeMarkerIcon(markers[i],false);
-       }
-
-    }
-
-    */
 
 };
 
@@ -742,6 +689,10 @@ function activateHotelTabulation(){
                     showHideHotelDivs(2);
                     break;
 
+                case(value.search(/(details)/)> -1):
+                    showHideHotelDivs(4);
+                    break;
+
                 default:
                     //ADS.log.write('show list');
                     showHideHotelDivs(0);
@@ -760,6 +711,7 @@ function showHideHotelDivs($val){
     
     switch($val){
         case 0:
+            $('#hotelDetailsResult').hide();
             $('#hotelListResult').show();
             $('#gMapHotels').hide();
             $('#viewedHotels').hide();
@@ -770,6 +722,7 @@ function showHideHotelDivs($val){
         break;
 
         case 1:
+            $('#hotelDetailsResult').hide();
             $('#hotelListResult').hide();
             $('#gMapHotels').show();
             $('#viewedHotels').hide();
@@ -780,6 +733,7 @@ function showHideHotelDivs($val){
         break;
 
         case 2:
+            $('#hotelDetailsResult').hide();
             $('#viewedHotels').show();
             $('#hotelListResult').hide();
             $('#gMapHotels').hide();
@@ -790,6 +744,7 @@ function showHideHotelDivs($val){
         break;
 
         case 3:
+            $('#hotelDetailsResult').hide();
             $('#viewedHotels').hide();
             $('#hotelListResult').hide();
             $('#gMapHotels').hide();
@@ -798,6 +753,17 @@ function showHideHotelDivs($val){
             $('#tab-hotels-viewed').addClass('selected');
             $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
 
+            break;
+
+        case 4:
+            $('#hotelDetailsResult').show();
+            $('#viewedHotels').hide();
+            $('#hotelListResult').hide();
+            $('#gMapHotels').hide();
+            $('#compareHotels').hide();
+            $('.hotelResult-tabs').removeClass('selected');
+            $('#tab-hotels-details').addClass('selected');
+            $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
             break;
 
     }
@@ -918,16 +884,6 @@ function initializeGmapHotels(bool){
        
     //Add markers
     var hotels = gMapHotels.hotels;
-
-    //gMapBounds = new google.maps.LatLngBounds();
-
-    /*
-    for(var i in hotels)
-    {
-        addMarker(i,hotels[i]);
-    }
-    */
-    //alert(gMapBounds.getCenter());
     
     gMapResultPage.fitBounds(gMapBounds);
 
@@ -940,7 +896,6 @@ function initializeGmapHotels(bool){
         if(zoom < 18){
             this.setZoom(zoom+1);
         }
-        //ADS.log.write(zoom);
 
     });
 
@@ -956,14 +911,8 @@ function createMarkerArray(){
 
      for(var i in hotels)
      {
-        //ADS.log.write(i);
-        //addMarker(i,hotels[i]);
-        //ADS.log.write(hotels[i].name);
         createMarker(i, hotels[i]);
      }
-
-   
-
 }
 
 function createMarker(id, a){
@@ -986,8 +935,7 @@ function createMarker(id, a){
     });
 
     markers.push(marker);
-
-
+    
     addMarkerFunctionality(marker, id, a);
     
 }
@@ -1019,11 +967,7 @@ function addMarkerFunctionality(marker, id, a){
         {
             infoBubbleHotel.close();
         }
-        //if (infoBubbleHotel) {
-            //do something
-            //infoBubbleHotel.close();
-        //}
-        
+
         createInfoBubble(this.message, getInfoBubblePosition(this));
     });
 
@@ -1129,190 +1073,7 @@ function getInfoBubblePosition(marker){
 
 }
 
-/*
-function addMarker(id, a){
 
-    //ADS.log.write(a.name);
-    
-    var latitude = parseFloat(a.latitude);
-    var longitude = parseFloat(a.longitude);
-
-    var myLatlng = new google.maps.LatLng(latitude, longitude);
-
-    var markerImage = '/images/gmap/marker-hotel-on.png';
-    gMapBounds.extend(myLatlng);
-
-    var marker = new google.maps.Marker({
-        position: myLatlng,
-        map: gMapResultPage,
-        title:a.name,
-        draggable: false,
-        icon: markerImage
-        //animation: google.maps.Animation.DROP
-    });
-
-    markers.push(marker);
-
-    attachSecretMessage(marker, id, a);
-    
-}
-
-function attachSecretMessage(marker, id, a) {
-
-    var content = '<div class="infoHotelBubble"><ul>';
-    content += '<li class="title">'+a.name+'</span>';
-    content += '<li class="starRating"><img src="/icons/'+a.starRating+'stars.png" /></li>';
-    content += '</ul><div style="clear: both;"></div>';
-    content += '<div class="desc"><img src="'+a.image+'" class="small-pic" />short description will comes here</div>';
-    content += '<div style="clear: both; "></div>'
-    content += '<div class="info-rates">'+ a.numberRates+' rates starting at <span class="minPrice"> '+a.minPrice+'</span></div>';
-    content += '</div>';
-
-    marker.message = content;
-    marker.id = id;
-
-    var host = window.location.href.slice(0, window.location.href.indexOf('hotel/'));
-    marker.link = host+'/hotel-detail/'+a.slug;
-
-    //var message = ["This","is","the","secret","message"];
-    
-    google.maps.event.addListener(marker, 'mouseover', function(event){
-        InfoBubbleScript(this);
-    });
-
-    google.maps.event.addListener(marker, 'mouseout', function() {
-        infoBubbleHotel.close();
-    });
-
-    google.maps.event.addListener(marker,'rightclick', function(){
-        gMapResultPage.setCenter(this.getPosition());
-        var zoom = gMapResultPage.getZoom();
-        gMapResultPage.setZoom(14);
-    });
-
-    google.maps.event.addListener(marker,'dblclick', function(){
-       var panoramaOptions = {
-              position: marker.getPosition(),
-              enableCloseButton: true,
-              scrollwheel: false,
-              pov: {
-                heading: 34,
-                pitch: 10,
-                zoom: 0
-              }
-            };
-        var panorama = new  google.maps.StreetViewPanorama(document.getElementById("gMapHotels_canvas"),panoramaOptions);
-        gMapResultPage.setStreetView(panorama);
-    });
-
-    google.maps.event.addListener(marker,'click',function(){
-        showHideHotelDivs(0);
-        sendFilterRequest(this);
-        return false;
-    });
-    
-}
-
-function InfoBubbleScript(marker){
-
-        //ADS.log.writeRaw(this.getPosition());
-
-        //Position of the marker
-        var markerLatLng = marker.getPosition();
-        var mapWidth = 715;
-        var mapHeight = 650;
-
-        //Define the lat and lng of infoBubble
-        var boundsNorthEast = gMapResultPage.getBounds().getNorthEast();
-        var boundsSouthWest = gMapResultPage.getBounds().getSouthWest();
-
-        var gMapHeight = Math.abs(boundsNorthEast.lat()) - Math.abs(boundsSouthWest.lat());
-        var gMapWidth = Math.abs(boundsNorthEast.lng()) - Math.abs(boundsSouthWest.lng());
-
-        //ADS.log.write(gMapWidth);
-
-        var pxPerWidth = Math.abs(gMapWidth)/(mapWidth);
-        var pxPerHeight = Math.abs(gMapHeight)/(mapHeight);
-
-        //ADS.log.write(pxPerWidth);
-        //ADS.log.write(pxPerWidth);
-        //ADS.log.write(pxPerHeight);
-        //Map size width: 715 px ; height: 650px;
-
-        var heightExtra = 0;
-        var widthExtra = 0;
-
-        var newLongitude;
-        var newLatitude;
-
-        var checkHeight = Math.abs(Math.abs(markerLatLng.lat()) - Math.abs(boundsNorthEast.lat()));
-        var checkWidthWest = Math.abs(Math.abs(markerLatLng.lng()) - Math.abs(boundsSouthWest.lng()));
-
-        //ADS.log.write('checkWidthWest: '+ checkWidthWest);
-        //ADS.log.write(pxPerWidth);
-        //ADS.log.write('quotient: '+checkWidthWest/pxPerWidth);
-
-
-        //Height of window bubble
-        if(checkHeight/pxPerHeight < 125){
-            heightExtra = -120* pxPerHeight;
-        }else{
-            heightExtra = 25* pxPerHeight;
-        }
-
-        if(checkWidthWest/pxPerWidth < 35){
-            newLongitude = markerLatLng.lng() +  130*pxPerWidth;
-        }else if(checkWidthWest/pxPerWidth < 145){
-            newLongitude = markerLatLng.lng() +  65*pxPerWidth;
-        }else if(checkWidthWest/pxPerWidth > 528){
-            newLongitude =  boundsNorthEast.lng() - 190 * pxPerWidth;
-        }else{
-            newLongitude = markerLatLng.lng();
-        }
-
-
-        //-116.12239884765626
-
-        //ADS.log.write(boundsLng);
-        //ADS.log.write(newLongitude);
-
-        //if(Math.abs(newLongitude) - Math.abs(boundsLng) < (windowWidth*zoom)/8){
-        //    newLongitude = boundsLng - (windowWidth*zoom)/8;
-        //}
-
-        newLatitude = markerLatLng.lat() + heightExtra;
-        //var newLongitude = widthExtra;
-
-        var infoBubbleLatlng = new google.maps.LatLng(newLatitude, newLongitude);
-
-        createInfoBubbleHotel(infoBubbleLatlng,marker.message,marker);
-}
-
-function createInfoBubbleHotel(position, message, marker){
-
-    infoBubbleHotel = new InfoBubble({
-      map: gMapResultPage,
-      content: message,
-      position: position,
-      shadowStyle: 0,
-      padding: 0,
-      backgroundColor: 'rgb(235,235,235)',
-      borderRadius: 0,
-      arrowSize: 1,
-      borderWidth: 1,
-      borderColor: '#FFFFFF',
-      disableAutoPan: true,
-      hideCloseButton: true,
-      arrowPosition: 30,
-      backgroundClassName: 'phoney',
-      arrowStyle: 2
-    });
-
-
-    infoBubbleHotel.open();
-    //alert('createInfoBubbleHotel');
-}
-*/
 function hotelShowMap(){
 
     $('.hotel-show-map').click(function(){
@@ -1490,6 +1251,9 @@ function ActivateCompareHotelBtn(){
         var hotels = $('.hotel-thumb.selected');
 
         if(hotels.length <2 || hotels.length >5){
+
+            $("#dialog-message").dialog( "destroy" );
+
             $.gritter.add({
                 title: 'Hotels to compare',
                 text: 'You can compare a minimum of 2 hotels and a maximum of 4 hotels!',
@@ -1544,7 +1308,7 @@ function onCompareRequestSuccess(msg){
 
 function onCompareRequestFailure(msg){
     $("#dialog-message").dialog( "destroy" );
-    alert('onCompareRequestFailure');
+    alert('Failure to compare');
 }
 
 

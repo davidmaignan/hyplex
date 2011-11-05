@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file source-language="EN" target-language="zh" datatype="plaintext" original="messages" date="2011-04-02T01:29:14Z" product-name="messages">
+    <header/>
+    <body>
+      <trans-unit id="1">
+        <source>About Hypertech</source>
+        <target>A propos de Hypertech</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Required.</source>
+        <target>必需。</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Invalid.</source>
+        <target>无效的。</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Round-trip</source>
+        <target>来回</target>
+      </trans-unit>
+      <trans-unit>
+        <source>One-way</source>
+        <target>单程</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Open-Jaw</source>
+        <target>开口</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Economy</source>
+        <target>经济舱</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Business class</source>
+        <target>商务舱</target>
+      </trans-unit>
+      <trans-unit>
+        <source>First class</source>
+        <target>第一类</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Multi-city</source>
+        <target>多城市</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Weekend</source>
+        <target>周末</target>
+      </trans-unit>
+      <trans-unit>
+        <source>From</source>
+        <target>从</target>
+      </trans-unit>
+      <trans-unit>
+        <source>To</source>
+        <target>要</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Leaving from</source>
+        <target>从离开</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Going to</source>
+        <target>去</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Departing</source>
+        <target>出发</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Returning</source>
+        <target>选举</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Depart</source>
+        <target>终</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Return</source>
+        <target>返回</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Time (depart)</source>
+        <target>时间（出发）</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Time (return)</source>
+        <target>时间（返回）</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Non-stops only</source>
+        <target>直航</target>
+      </trans-unit>
+      <trans-unit>
+        <source>My dates are flexible</source>
+        <target>我的日期是灵活</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Adults</source>
+        <target>成人</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Children</source>
+        <target>儿童</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Infants (0-2)</source>
+        <target>婴儿（0-2）</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Children (2-12)</source>
+        <target>儿童（2-12）</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Children (0-17)</source>
+        <target>儿童（0-17）</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Cabin</source>
+        <target>机舱</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Choose one type of ticket</source>
+        <target>选择一个类型的车票</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Unrecognized From airport, please check and re-enter</source>
+        <target>请输入出发城市.</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Unrecognized To airport, please check and re-enter</source>
+        <target>请输入目的地城市</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a departure date</source>
+        <target>请输入出发日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a return date</source>
+        <target>请输入返回日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Unrecognized destination, please check and re-enter</source>
+        <target>无法识别的目的地，请检查并重新输入</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a checkin date</source>
+        <target>请输入签入日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Please enter a checkout date</source>
+        <target>请输入的退房日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Departure date %value% does not match the format (yyyy-mm-dd)</source>
+        <target>出发日期 %value% 格式不匹配 (yyyy-mm-dd)</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Return date %value% does not match the format (yyyy-mm-dd)</source>
+        <target>返回日期 %value% 格式不匹配 (yyyy-mm-dd)</target>
+      </trans-unit>
+      <trans-unit>
+        <source>"%value%" is not a valid date</source>
+        <target>"%value%" 是不是有效的日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>The number of infants can't exceed the number of adults</source>
+        <target>婴幼儿的数量不能超过成年人数量</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Prefered airlines</source>
+        <target>首选的航空公司</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Departure date must be before than Return date</source>
+        <target>出发日期之前，必须比返回日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Wherebox</source>
+        <target>目的地</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Checkin date</source>
+        <target>日期</target>
+      </trans-unit>
+      <trans-unit>
+        <source>Checkout date</source>
+        <target>结帐日期</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
