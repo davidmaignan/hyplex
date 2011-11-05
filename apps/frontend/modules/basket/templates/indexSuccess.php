@@ -1,16 +1,6 @@
-<?php use_helper('Number', 'Text', 'I18n', 'Date');?>
 
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
 <?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
 <?php use_stylesheet('flightResult'); ?>
-
-<?php use_javascript('jquery-1.6.2.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.16.custom.min.js'); ?>
-<?php use_javascript('myScript'); ?>
-<?php use_javascript('functions.js'); ?>
 
 <?php include_partial('include/dialog_message'); ?>
 
@@ -31,7 +21,7 @@
                 <table class="flight-details">
                     <?php include_partial('flight/segmentOutbound', array('result'=>$flight)) ?>
                     <tr><td colspan="6" class="border-bottom"></td></tr>
-                    <?php if($flight->getType() == 'flightReturn'):?>
+                    <?php if($flightParameters->getType() == 'flightReturn'):?>
                     <?php include_partial('flight/segmentInbound', array('result'=>$flight)) ?>
                     <?php endif; ?>
                 </table>

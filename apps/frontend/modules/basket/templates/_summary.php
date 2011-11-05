@@ -1,5 +1,3 @@
-
-
 <div class="span-18" style="width: 693px ;padding: 10px; border: 2px solid #cecece; background-color: #f8f8f6">
 
 <h4 class="append-bottom bold"> <?php echo __('Your basket contains the following items:') ?></h4>
@@ -10,7 +8,6 @@
 
 
 <table class="smaller">
-
     <?php if(isset($parameters['flight'])): ?>
     <tr class="append-bottom">
         <td>

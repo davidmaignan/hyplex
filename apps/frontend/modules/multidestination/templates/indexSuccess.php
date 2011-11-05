@@ -1,12 +1,10 @@
-<?php use_javascript('jquery-1.5.1.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
-<?php use_javascript('myScript'); ?>
-<?php use_javascript('functions.js'); ?>
-
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
-
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
+<?php //use_javascript('jquery-1.5.1.min.js'); ?>
+<?php //use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
+<?php //use_javascript('myScript'); ?>
+<?php //use_javascript('functions.js'); ?>
+<?php //use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
+<?php //use_stylesheet('grid'); ?>
+<?php //use_stylesheet('typography'); ?>
 
 <style>
 
@@ -55,13 +53,13 @@
 </div>
 
 <div style="clear:both;"></div>
-<script>
+
+
+<script type="text/javascript">
 
 var target;
 
 function sendDestinationRequest(elt){
-
-        
 
         if(elt.id == 'citySelect'){
 
@@ -130,11 +128,9 @@ function sendDestinationRequest(elt){
              $('#city').empty();
         }
 
-        
 
         datas += '&value='+elt.value;
 
-        //alert(datas);
 
         var url = '../multidestination/ajaxDestination';
         
@@ -142,54 +138,18 @@ function sendDestinationRequest(elt){
             type: "post",
             url: url,
             data: datas,
-            success: onRequestSuccess,
-            error: onRequestFailure
+            success: function(msg){
+                target.html(msg);
+            },
+            error: function(){
+                alert('An error has occured!');
+            }
         });
         
 
     }
 
-    function onRequestFailure(msg)
-    {
-        alert('An error has occured and I cannot ');
-        switch (transport.status) {
-            case 403:
-                // 403 specific handler
-                break;
-
-            case 404:
-            // 404 specific handler
-    }
-}
-
-
-
-function onRequestSuccess(msg)
-{
-    //alert('here');
-    //$( "#dialog-message" ).dialog( "destroy" );
-
-    
-
-    target.html(msg);
-
-    //activateFlightDetails();
-
-    //alert(msg);
-
-    // handle the response
-    /*$('partial').innerHTML = transport.responseText;
-    $('partial').setOpacity(0);
-    new Effect.Opacity('partial', {
-        from: 0,
-        to: 1,
-        duration: 0.5
-    });
-    //alert($$('#preloader'));
-    $('preloader').hide();
-    animatePanelLinks();
-    createPagination();*/
-}
+   
 
 
 

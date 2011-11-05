@@ -30,7 +30,7 @@ class PlexResponse {
     public $responseData;
     public $responseCode;
     
-    /*
+    /**
      * Constructor creates a unique file to save the raw response from Plex
      * This id is the key to link all the further request with the same information.
      *
@@ -129,13 +129,13 @@ class PlexResponse {
             $request = $this->request;
         }
 
-        $path = $request->getHttpHeader('info', 'path');
-        $path = explode('/', $path);
-        $userCulture = $path[1];
+        //$path = $request->getHttpHeader('info', 'path');
+        //$path = explode('/', $path);
+        //$userCulture = $path[1];
 
         $tmp = array();
         $tmp['ip'] = $request->getHttpHeader('addr', 'remote');
-        $tmp['culture'] = $userCulture;
+        $tmp['culture'] = null;
         $tmp['userAgent'] = $request->getHttpHeader('user-Agent');
         $tmp['date'] = $request->getHttpHeader('Date');
         $tmp['folder'] = $request->getCookie('hypertech_user_folder');

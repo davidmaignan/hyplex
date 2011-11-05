@@ -634,10 +634,15 @@ a.only{
     margin-top: 5px;
 }
 
+.hotel-price-window li{
+    display: block;
+    text-align: right;
+    
+}
+
 .hotel-price{
     font-size: 170%;
     font-weight: bold;
-    float: right;
     display:block;
     width: 150px;
     text-align: right;
@@ -646,9 +651,7 @@ a.only{
 .hotel-price-total{
     font-size: 80%;
     color: #888888;
-    float: right;
-    margin: 6px 0;
-    display:block;
+    margin: 6px 0 18px;
 }
 
 .hotel-temptation{
@@ -1458,8 +1461,6 @@ form.location2{
 
 
 /* Basket ------------------------------------------------------------------*/
-
-
 #basket{
     position: absolute;
     bottom: -310px;
@@ -1536,7 +1537,6 @@ li.link-excursion{
 #basket li.active{
     background-color: #deded0;
 }
-
 
 #list-icon{
     margin:0;
@@ -1842,4 +1842,13 @@ li.link-excursion{
 #data-container td{
     background: none;
     font-weight: normal;
+}
+
+/* Result Page */
+
+.entourage{
+    border: 1px solid #a3b9cb;
+    border-left: none;
+    border-right: none;
+    padding: 6px 0;
 }

@@ -23,12 +23,10 @@
 
         <?php $class = 'none'; ?>
         <?php $i++; ?>
-        <?php endforeach; ?>
-
-        <tfoot>
-            <tr>
-                <td colspan="<?php echo $colspan ?>"><input type="submit" value="Book Now" class="right"/></td>
-            </tr>
-        </tfoot>
+        <?php endforeach; ?>        
     </table>
+</div>
+
+<div class="span-19 last">
+    <input type="submit" value="<?php echo __('Book now')?>" class="right blue"/>
 </div>

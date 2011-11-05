@@ -1,15 +1,14 @@
 <tr class="basket-list-header active basket-hotel">
     <td><?php echo __('Hotel') ?></td>
     <td colspan="2" class="sub-total">
-        <?php echo format_currency($hotel->getTotalPrice(), sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice($hotel->getTotalPrice()) ?>
     </td>
 </tr>
 <tr class="basket-list">
     <td colspan="3">
         <ul class="sub-list">
             <li>
-                <?php echo format_number_choice(
-                        '[0]|[1]1 night |(1,+Inf]%1% nights ', array('%1%' => $hotelParameters->getNumberNights()), $hotelParameters->getNumberNights()) ?>
+                <?php echo Utils::getNightString($hotelParameters->getNumberNights()) ?>
                 <?php echo __('in') ?>
                 <?php echo $hotelParameters->getWhereBoxBasketPage($sf_user->getCulture()); ?>
             </li>
@@ -27,7 +26,7 @@
         <?php echo Utils::getAdultChildInfantString($room['number_adults'],$room['number_children']);?>
     </td>
     <td class="sub-total">
-        <?php echo format_currency($hotel->getPrice($key, true), sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice($hotel->getPrice($key, true)) ?>
     </td>
 </tr>
 

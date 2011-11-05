@@ -1,15 +1,4 @@
-<?php use_helper('Date', 'Number', 'I18n', 'Text'); ?>
-<?php
-error_reporting(E_ALL);
-ini_set('display_errors', '1');
-?>
-
-<h1><?php ucfirst(__('Hotel Comparison')) ?></h1>
-
-<style>
-    
-
-</style>
+<h1><?php __('Hotel Comparison') ?></h1>
 
 <table id="hotelComparison">
     
@@ -83,14 +72,14 @@ ini_set('display_errors', '1');
                         <tr>
                             <td class="style1">min</td>
                             <td class="style2">
-                                <?php echo format_currency($hotel->arMinMaxPrice[$room]['min'], sfConfig::get('app_currency')); ?>
+                                <?php echo Utils::getPrice($hotel->arMinMaxPrice[$room]['min']); ?>
                             </td>
                             <td class="style1"></td>
                         </tr>
                          <tr>
                              <td class="style1">max</td>
                              <td class="style2">
-                                <?php echo format_currency($hotel->arMinMaxPrice[$room]['max'], sfConfig::get('app_currency')); ?>
+                                <?php echo Utils::getPrice($hotel->arMinMaxPrice[$room]['max']); ?>
                             </td>
                             <td class="style1"></td>
                         </tr>
@@ -98,8 +87,6 @@ ini_set('display_errors', '1');
                 </td>
             <?php endforeach; ?>
         </tr>
-
-
 
         <?php endforeach; ?>
 
@@ -153,7 +140,6 @@ ini_set('display_errors', '1');
                     <?php endforeach; ?>
                 </ul>
 
-                <?php //var_dump($hotel->getFullFacilitiesListSorted()); ?>
             </td>
         <?php endforeach; ?>
         </tr>

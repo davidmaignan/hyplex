@@ -1,5 +1,3 @@
-<?php use_helper('Text'); ?>
-
 <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
 
 <div class="span-18 append-bottom">
@@ -10,15 +8,10 @@
 <?php endforeach; ?>
 </div>
 
-<div class="span-18">
-<?php //echo $sf_data->get('filterToDeactivateJson', ESC_RAW); ?>
-</div>
-
 <?php
-$pricesRange = $sf_request->getParameter('average_nigthlyRate');
-$pricesRange = explode('-', $pricesRange);
-$pricesRange = array_map('trim', $pricesRange);
-//var_dump($pricesRange);
+    $pricesRange = $sf_request->getParameter('average_nigthlyRate');
+    $pricesRange = explode('-', $pricesRange);
+    $pricesRange = array_map('trim', $pricesRange);
 ?>
 
 <script type="text/javascript">
@@ -28,12 +21,11 @@ $pricesRange = array_map('trim', $pricesRange);
     markerFiltered = <?php echo $sf_data->get('markerFiltered', ESC_RAW); ?>;
 </script>
 
-<?php //echo $sf_data->get('markerFiltered', ESC_RAW); ?>
-
 <?php foreach ($results as $key => $result): ?>
 <?php include_partial('hotel', array('result' => $result)); ?>
 <?php endforeach; ?>
 <hr />
+
 <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
 
 <script type="text/javascript">
@@ -135,17 +127,13 @@ $pricesRange = array_map('trim', $pricesRange);
         activateFilterBox();
 
         //alert('here');
-        ResetAverageNightlyRateSlider(minPrice, maxPrice, posMin, posMax, minRange, maxRange);
+        //ResetAverageNightlyRateSlider(minPrice, maxPrice, posMin, posMax, minRange, maxRange);
 
         //Active show map btn in hotel box
         hotelShowMap();
 
 
-        
-
     });
 
-
-    
 
 </script>

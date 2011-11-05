@@ -1,7 +1,7 @@
 <tr class="basket-list-header active basket-flight">
     <td><?php echo __('Flight') ?></td>
     <td colspan="2" class="sub-total">
-        <?php echo format_currency($flight->TotalPrice, sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice($flight->TotalPrice) ?>
     </td>
 </tr>
 <tr class="basket-list">
@@ -16,7 +16,7 @@
 
     </td>
     <td class="sub-total">
-        <?php echo format_currency($flight->TotalPrice, sfConfig::get('app_currency')); ?>
+        <?php echo Utils::getPrice($flight->TotalPrice) ?>
     </td>
 </tr>
 <tr class="basket-list">

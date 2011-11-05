@@ -355,8 +355,8 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
         $frmStr .= '<div class="box-2">';
         $frmStr .= '<table>';
         $frmStr .= '<thead><tr>
-                    <th class="bold">' . __("Take-off") . '</th>
-                    <th class="right small" >' . __("Depart flight") . '</th>
+                    <th class="bold left">' . __("Take-off") . '</th>
+                    <th class="right" >' . __("Depart flight") . '</th>
                     </thead>';
         //$frmStr .= '<h3>' . __("Take-off") . '<span class="small right">' . __("Depart flight") . '</span></h3>';
         $frmStr .= '<tbody><tr>';
@@ -373,8 +373,8 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
 
         $frmStr .= '<table>';
         $frmStr .= '<thead><tr>
-                    <th class="bold">' . __("Take-off") . '</th>
-                    <th class="right smaller" >' . __("Return flight") . '</th>
+                    <th class="bold left">' . __("Take-off") . '</th>
+                    <th class="right" >' . __("Return flight") . '</th>
                     </thead>';
         //$frmStr .= '<h3>' . __("Take-off") . '<span class="small right">' . __("Depart flight") . '</span></h3>';
         $frmStr .= '<tbody><tr>';

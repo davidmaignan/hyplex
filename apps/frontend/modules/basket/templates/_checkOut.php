@@ -1,8 +1,5 @@
-<?php use_helper('Text','Date','Number','I18n') ?>
-
 <div class="span-7">
     <table id="basket-summary">
-
         <?php if(isset($flight)): ?>
         <?php include_partial('basket/flightLeft', array('flight'=>$flight,'flightParameters'=>$flightParameters)) ?>
         <?php else: ?>
@@ -40,22 +37,19 @@
                     <li class="sub-person"><?php //echo ucfirst(__('price per person')) ?></li>
                 </ul>
             </td>
-            <td class="total">
+            <td class="total" style="min-width: 100px;">
                 <ul>
                     <li>
-                        <?php echo format_currency($plexBasket->getTotalPrice(),  sfConfig::get('app_currency')); ?>
+                        <?php echo Utils::getPrice($plexBasket->getTotalPrice()) ?>
                     </li>
                     <li class="sub-person">
                         <?php //echo format_currency(rand(2999,8999)/3,  sfConfig::get('app_currency')); ?>
                     </li>
-                    <li><?php echo link_to1('checkout', '@checkout',array('class'=>'action button small right')); ?></li>
+                    <li><?php echo link_to1(__('checkout'), '@checkout',array('class'=>'action button small right')); ?></li>
                 </ul>
-
             </td>
         </tr>
     </table>
-
-    <a href="<?php echo url_for('basket/removeDataBooking') ?>">Remove data booking</a>
-
-
+    <hr class="space3" />
+    <a class="small blue prepend-top" href="<?php echo url_for('basket/removeDataBooking') ?>">Remove data booking</a>
 </div>

@@ -6,5 +6,10 @@ security:  ~
 
 # insert your own filters here
 
+folder:
+  class: cookieFilter
+
 cache:     ~
 execution: ~
+
+

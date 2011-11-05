@@ -1010,5 +1010,30 @@ class Utils {
         
     }
 
+
+    static function getNightString($nbrNights){
+        return format_number_choice( '[0]|[1]1 night|(1,+Inf]%1% nights',
+                                         array('%1%' =>$nbrNights), $nbrNights);
+    }
+
+    static function getNumberRoomsString($nbrRooms){
+        return format_number_choice( '[0]|[1]1 room|(1,+Inf]%1% rooms',
+                                         array('%1%' =>$nbrRooms), $nbrRooms);
+    }
+
+
+    /**
+     * Function to calculate the price depending on a currency and return
+     * a priced formatted form a specific culture.
+     * @param float $amount
+     * @return string
+     */
+    static function getPrice($amount){
+
+        $currency = sfConfig::get('app_currency');
+        return format_currency($amount, $currency);
+
+    }
+
 }
 

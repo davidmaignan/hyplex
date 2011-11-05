@@ -1,5 +1,5 @@
 <?php if(!empty($result->termsConditions)): ?>
-    <span class="term-condition-title"><?php echo ucwords(__('terms & conditions')) ?></span>
+    <span class="term-condition-title"><?php echo __('Terms & conditions') ?></span>
     <?php foreach($result->termsConditions as $value): ?>
     &bull; <?php echo str_replace('<br>', '. ', $value) ?>
     <?php endforeach; ?>

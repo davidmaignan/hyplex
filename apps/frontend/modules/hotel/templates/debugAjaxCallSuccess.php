@@ -1,1 +1,0 @@
-<?php include_partial('debug',array('results'=>$results)); ?>

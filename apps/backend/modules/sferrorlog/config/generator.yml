@@ -15,7 +15,7 @@ generator:
       actions: ~
       fields:  ~
       list:   
-        display: [id, type, class_name, message, module_name, action_name, exception_object ]
+        display: [id, type, class_name, message, module_name, action_name, uri, exception_object ]
       filter:  ~
       form:    ~
       edit:    ~

@@ -186,16 +186,13 @@ class hotelActions extends sfActions
     public function executeFilterHotel(sfWebRequest $request){
 
         $this->parameters = $request->getPostParameters();
-
         $this->page = $request->getPostParameter('page');
-
-        //var_dump($this->parameters);
         
-
         //Which link or checkbox is clicked will determine which checkbox to disabled
         $class = $request->getPostParameter('class');
-        
+
         //var_dump($class);
+        //exit;
 
         $type = $request->getPostParameter('type');
         $filename = $request->getPostParameter('filename');
@@ -204,14 +201,8 @@ class hotelActions extends sfActions
         );
 
         $this->filterResponse = $filteredResponse;
-
         $this->results = $filteredResponse->filteredObjs;
-
         $this->type = $request->getPostParameter('type');
-
-        //sfConfig::set('sf_escaping_strategy', false);
-
-        //$this->filterToDeactivate = $this->filterResponse->arFilterToDeactivate;
 
         //Remove in the array the fields which should not be applied to disabled the checkbox in the filter form
         switch (true) {
@@ -231,7 +222,7 @@ class hotelActions extends sfActions
                  $this->filterToDeactivate = $filteredResponse->createArFilterToDeactivate('chain');
                  break;
 
-            case(preg_match('#(slider)|(price)#i', $class) >0):
+            case(preg_match('#(slider)|(price)|(page-link)#i', $class) >0):
                  
                  //unset($this->filterToDeactivate['chain']);
                  $this->filterToDeactivate = $filteredResponse->createArFilterToDeactivate('slider');
@@ -239,15 +230,9 @@ class hotelActions extends sfActions
 
         }
 
-        //break;
         $this->filterToDeactivateJson = json_encode($this->filterToDeactivate);
 
-
-        $this->markerFiltered = json_encode($filteredResponse->filteredObjGmap);
-        //If debug
-        //$this->setTemplate('debugAjaxCall');
-        
-
+        $this->markerFiltered = json_encode($filteredResponse->filteredObjGmap);        
     }
 
     public function executeTermsConditions(sfWebRequest $request){

@@ -4,4 +4,7 @@
 # default values
 all:
   languages:
-    available: [zh_CN, fr_FR , en_US]
+    available: [en_US, fr_FR, zh_CN]
+
+  cookie:
+    duration: 260000

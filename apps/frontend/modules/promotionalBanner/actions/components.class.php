@@ -24,4 +24,8 @@ class promotionalBannerComponents extends sfComponents
       
   }
 
+  public function executeSpecialInterestIndex(sfWebRequest $request){
+      
+  }
+
 }

@@ -13,9 +13,9 @@ default:
     #robots:       index, follow
 
   #stylesheets:    [main.css, frontend_temp.css, typography.css]
-  stylesheets:    [grid, typography, custom-theme/jquery-ui-1.8.16.custom.css]
+  stylesheets:    [grid, typography, custom-theme/jquery-ui-1.8.16.custom.css, jquery.gritter.css]
 
-  javascripts:    [jquery-1.6.2.min.js, jquery-ui-1.8.16.custom.min.js, myScript, functions]
+  javascripts:    [jquery-1.5.1.min.js, jquery-ui-1.8.16.custom.min.js, myScript, functions, jquery.gritter.min.js]
 
   has_layout:     true
   layout:         layout

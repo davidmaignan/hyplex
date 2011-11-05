@@ -13,9 +13,7 @@
         <div class="rate-description-content hide prepend-top">
             <?php echo $rate['RateDescription']; ?>
         </div>
-        <div class="term-condition-content prepend-top">
-            
-        </div>
+        <div class="term-condition-content prepend-top"></div>
     </td>
 
     <?php foreach($hotel->getRoomIds() as $arRoomId): ?>
@@ -25,15 +23,17 @@
             <ul>
                 <li>
                    <span class="price-per-night center" style="display: block;">
-                        <?php echo format_currency($rate[$arRoomId]['AvgPricePerNight'], sfConfig::get('app_currency')); ?>
+                        <?php echo Utils::getPrice($rate[$arRoomId]['AvgPricePerNight']) ?>
                     </span>
 
                 </li>
                 <li class="price-total">
-                    Total: <span class="price-total"><?php echo $rate[$arRoomId]['TotalPrice'] ?></span>
+                    Total:
+                    <span class="price-total">
+                        <?php echo Utils::getPrice($rate[$arRoomId]['TotalPrice']) ?>
+                    </span>
                 </li>
             </ul>
-
         </td>
 
         <?php else: ?>

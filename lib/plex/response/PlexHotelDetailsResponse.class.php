@@ -12,8 +12,9 @@
 class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInterface {
     //put your code here
 
-    private $hotel;
+    
 
+    private $hotel;
 
     public function  __construct(HotelSimpleObj $hotel, $response, $request, $filename) {
 
@@ -30,8 +31,7 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
      * Get the filename for this response
      * @return string the fullpath to the response xml
      */
-    public function getFilename() {
-
+    public function getFilename($type = '') {
 
         $path = sfConfig::get('sf_user_folder').DIRECTORY_SEPARATOR.
                 'hotel'.DIRECTORY_SEPARATOR.
@@ -41,6 +41,8 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
         //return $this->filename;
     }
 
+
+    
     public function  analyseResponse() {
 
     }

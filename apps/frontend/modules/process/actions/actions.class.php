@@ -172,40 +172,45 @@ class processActions extends sfActions
       $finalResponse->analyseResponse();
 
 
+      //If flight search - check airline exits in system / add new ones
+      if(preg_match('#flight#', $type) >0){
 
+          //Check airlines and add new ones.
+          $airlines = Utils::createAirlineArray();
+          $newAirlines = array_diff_key($finalResponse->listAirlines, $airlines);
 
-      //Check airlines and add new ones.
-      $airlines = Utils::createAirlineArray();
-      $newAirlines = array_diff_key($finalResponse->listAirlines, $airlines);
+          if(!empty($newAirlines)){
+              unset($GLOBALS['airlines']);
+              $q = Doctrine::getTable('airline')->savelist($newAirlines);
+              unlink($fileAirline = sfConfig::get('sf_data_dir') . '/airline/airlines.yml');
+              Utils::createAirlineArray();
+          }
 
-      if(!empty($newAirlines)){
-          unset($GLOBALS['airlines']);
-          $q = Doctrine::getTable('airline')->savelist($newAirlines);
-          unlink($fileAirline = sfConfig::get('sf_data_dir') . '/airline/airlines.yml');
-          Utils::createAirlineArray();
       }
 
+      //If hotel search - Check hotelChain is in system / add new ones
+      if($type == 'hotelSimple'){
 
-      //Check hotelChain and add new ones
-      $hotelChains = Utils::createHotelchainArray();
-      
-      $listChains = $finalResponse->listChains;
+          $hotelChains = Utils::createHotelchainArray();
+          $listChains = $finalResponse->listChains;
 
-      //Remove key 00 for independant hotel
-      $key = array_search('00', $listChains);
-      if($key !== false){
-          unset($listChains[$key]);
+          //Remove key 00 for independant hotel
+          $key = array_search('00', $listChains);
+          if($key !== false){
+              unset($listChains[$key]);
+          }
+
+          $newHotelChain = array_diff($listChains, array_keys($hotelChains));
+
+
+          if(!empty($newHotelChain)){
+              unset($GLOBALS['hotelchain']);
+              $q = Doctrine::getTable('hotelchain')->savelist($newHotelChain);
+              unlink($fileHotelchain = sfConfig::get('sf_data_dir') . '/hotel/hotelChains.yml');
+              Utils::createHotelchainArray();
+          }
+
       }
-
-      $newHotelChain = array_diff($listChains, array_keys($hotelChains));
-
-
-      if(!empty($newHotelChain)){
-          unset($GLOBALS['hotelchain']);
-          $q = Doctrine::getTable('hotelchain')->savelist($newHotelChain);
-          unlink($fileHotelchain = sfConfig::get('sf_data_dir') . '/hotel/hotelChains.yml');
-          Utils::createHotelchainArray();
-      }  
 
       //Redirection 
       switch ($type) {

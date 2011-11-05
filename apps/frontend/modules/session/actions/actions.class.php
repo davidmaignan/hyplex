@@ -21,31 +21,21 @@ class sessionActions extends sfActions
   }
 
   public function executeTest(sfWebRequest $request){
-
       return $this->renderText('test session');
-
   }
 
   public function executeRenewStid(sfWebRequest $request){
 
       $keepAliveRequest = new PlexKeepAliveRequest($this->getUser()->getAttribute('sTId'), $request);
-      
       $response = $keepAliveRequest->executeRequest();
-
       $finalResponse = new PlexKeepAliveResponse($response);
 
       $finalResponse->checkResponseCode();
       $code = $finalResponse->responseCode;
 
-      
-
       switch ($code) {
           case 0:
-
               $this->getUser()->setAttribute('sTId_time', (time() + sfConfig::get('app_plexSession_duration')));
-              
-
-              //return sfView::SUCCESS;
               break;
 
           default:
@@ -58,17 +48,7 @@ class sessionActions extends sfActions
       $restTime = ($restTime > 0)?$restTime:0;
 
       $this->url = $this->generateUrl('session_renew', array('time'=> $restTime));
-      //var_dump($this->url);
-
-      //return $this->renderText($code);
-
-      //echo html_entity_decode($response);
-      //exit;
-
-      //return $this->renderText(htmlentities($response));
 
   }
-
-
 
 }
