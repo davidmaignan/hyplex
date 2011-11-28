@@ -66,16 +66,9 @@ class sfValidatorDate extends sfValidatorBase
    */
   protected function doClean($value)
   {
-
-    //var_dump($value);
-    
     // check date format
     if (is_string($value) && $regex = $this->getOption('date_format'))
     {
-
-        //echo 'here';
-        //exit;
-
       if (!preg_match($regex, $value, $match))
       {
         throw new sfValidatorError($this, 'bad_format', array('value' => $value, 'date_format' => $this->getOption('date_format_error') ? $this->getOption('date_format_error') : $this->getOption('date_format')));
@@ -83,8 +76,6 @@ class sfValidatorDate extends sfValidatorBase
 
       $value = $match;
     }
-
-    //exit;
 
     // convert array to date string
     if (is_array($value))
@@ -195,10 +186,9 @@ class sfValidatorDate extends sfValidatorBase
       (!isset($value['month']) || !$value['month'] ? 1 : 0) +
       (!isset($value['day']) || !$value['day'] ? 1 : 0)
     ;
-
     if ($empties > 0 && $empties < 3)
     {
-      throw new sfValidatorError($this, 'invalid ', array('value' => $value));
+      throw new sfValidatorError($this, 'invalid', array('value' => $value));
     }
     else if (3 == $empties)
     {
