@@ -46,7 +46,7 @@ class PlexFilterFlight {
 
     public function __construct($type, $filename, $page, $filters) {
 
-        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag'));
+        //sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag'));
 
         $this->filename = $filename;
         $this->type = $type;

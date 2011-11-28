@@ -62,7 +62,8 @@ abstract class PlexRequest{
 
             //If code not 200 -> redirect to error page and save in plexErrorLog
             if($code != 200){
-                $this->redirectIfServerError($code, $this->request->getPostParameters(), $response);
+                $rawResponse = $client->__getLastResponseHeaders()."\n".$response;
+                $this->redirectIfServerError($code, $this->request->getPostParameters(), $rawResponse);
             }
             
             //Save RequestInitPlex
@@ -267,7 +268,8 @@ abstract class PlexRequest{
 
         //If code not 200 -> redirect to error page and save in plexErrorLog
         if($code != 200){
-            $this->redirectIfServerError($code, $this->request->getPostParameters(), $response);
+            $rawResponse = $client->__getLastResponseHeaders()."\n".$response;
+            $this->redirectIfServerError($code, $this->request->getPostParameters(),$rawResponse);
         }
 
         $this->response = ($this->removeSoapEnvelop($response));

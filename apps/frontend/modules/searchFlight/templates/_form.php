@@ -1,14 +1,17 @@
-<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js'); ?>
+<?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
+
+<?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
+<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
+<?php endif; ?>
+
+<?php use_javascript('search/searchFlight'); ?>
+
 <?php use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
 <?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
 <?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
 
-<?php use_javascript('search/datepicker_'.$sf_user->getCulture().'.js'); ?>
-<?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
-<?php use_javascript('search/searchFlight.js'); ?>
 
 <style>
-
     td.prepend-top{
         padding-top: 10px;
     }
@@ -16,7 +19,6 @@
     td.error{
 
     }
-
 </style>
 
 <div class="span-15" id="form-index" >

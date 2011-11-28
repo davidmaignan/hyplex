@@ -8,7 +8,7 @@ var myHeight = 0;
 
 $('document').ready(function(){
 
-    $('input.search, a.search, a.add, a.select').click(function(){
+    $('input[type=submit], a.button, a.add, a.select').click(function(){
          $( "#dialog-message" ).dialog({
             modal: true,
             buttons: {

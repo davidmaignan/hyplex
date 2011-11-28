@@ -5,8 +5,6 @@
 
 <?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
 
-<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
-
 <?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
 <?php //use_javascript('debugger/myLogger.js'); ?>
 
@@ -22,23 +20,23 @@
                 <li><a href="#" class="form-tab" id="package-tab"><?php echo __('Package'); ?></a></li>
             </ul>
             <div id="flight-form">
-                <?php include_partial('searchFlight/formIndex', array('form' => $flightForm)); ?>
+                <?php //include_partial('searchFlight/formIndex', array('form' => $flightForm)); ?>
             </div>
             <div id="hotel-form" class="">
-                <?php include_partial('searchHotel/formIndex', array('form' => $hotelForm)); ?>
+                <?php //include_partial('searchHotel/formIndex', array('form' => $hotelForm)); ?>
             </div>
             <div id="car-form">
-                <?php include_partial('searchCar/formIndex',array('form'=>$carForm)); ?>
+                <?php //include_partial('searchCar/formIndex',array('form'=>$carForm)); ?>
             </div>
             <div id="package-form" class="hide">
-                <?php include_partial('searchPackage/formIndex',array('form'=>$packageForm)); ?>
+                <?php //include_partial('searchPackage/formIndex',array('form'=>$packageForm)); ?>
             </div>
     </div>
 
     <hr class="space3" />
     
     <div class="span-9 prepend-top border">
-        <?php include_component('prevSearch', 'index', array()); ?>
+        <?php //include_component('prevSearch', 'index', array()); ?>
     </div>
 
 </div>

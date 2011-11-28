@@ -107,6 +107,7 @@
     </div>
 </div>
 
+<?php echo $sf_data->get('hotelCoordinates', ESC_RAW); ?>
 
 <script type="text/javascript">
 

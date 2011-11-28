@@ -14,7 +14,7 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
 
     public function __construct($type, $filename, $page, $filters) {
 
-        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date','I18n','Text'));
+        //sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date','Text', 'Url'));
 
         parent::__construct($type, $filename, $page, $filters);
 

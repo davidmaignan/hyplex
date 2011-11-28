@@ -42,7 +42,7 @@ class FlightReturnObj extends FlightGenericObj {
 
     public function __construct() {
 
-        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag', 'Date'));
+        //sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'I18N', 'Url', 'Asset', 'Tag', 'Date'));
     }
 
     public function setClass($value) {

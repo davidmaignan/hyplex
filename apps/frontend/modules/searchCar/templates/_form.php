@@ -1,24 +1,8 @@
-<?php use_helper('I18n'); ?>
-<?php use_stylesheet('form'); ?>
+<?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
+<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
+<?php endif; ?>
 
-<?php //use_javascript('jquery.autocomplete.min.js'); ?>
-<?php //use_javascript('fancybox/jquery.mousewheel-3.0.4.pack.js'); ?>
-<?php //use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
-
-<?php //use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
-<?php //use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
-
-<?php //use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-<?php //use_stylesheet('jquery.autocomplete.css'); ?>
-
-
-<?php
-if ($form->hasGlobalErrors()) {
-    //echo $form->renderGlobalErrors();
-}
-?>
-
-<?php //use_javascript('search/searchHotel'); ?>
+<?php use_javascript('search/searchCar'); ?>
 
 
 <style>

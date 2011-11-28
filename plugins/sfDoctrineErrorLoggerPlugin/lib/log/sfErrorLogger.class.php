@@ -105,7 +105,6 @@ class sfErrorLogger {
             
         }
 
-    
     }
 
     static public function phpError(sfEvent $event){

@@ -19,10 +19,10 @@ class mainActions extends sfActions {
 
         //throw new Exception('artificial error');
 
-        $this->flightForm = new SearchFlightForm();
-        $this->hotelForm = new SearchHotelForm();
-        $this->carForm = new SearchCarForm();
-        $this->packageForm = new SearchPackageForm();
+        //$this->flightForm = new SearchFlightForm();
+        //$this->hotelForm = new SearchHotelForm();
+        //$this->carForm = new SearchCarForm();
+        //$this->packageForm = new SearchPackageForm();
 
         //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->findAll()->toArray();
         //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->getActivePromotions($this->getUser()->getCulture())->execute()->toArray();
@@ -30,9 +30,9 @@ class mainActions extends sfActions {
 
         if($request->getRequestFormat() == 'iphone' || $request->getRequestFormat('ipad'))
         {
-            $this->setLayout('layout');
-            $this->form = new sfFormLanguage($this->getUser(), array('languages' => array('en', 'fr','zh')));
-            $this->flightForm = new SearchFlightIpadForm();
+            //$this->setLayout('layout');
+            //$this->form = new sfFormLanguage($this->getUser(), array('languages' => array('en', 'fr','zh')));
+            //$this->flightForm = new SearchFlightIpadForm();
         }
         
         

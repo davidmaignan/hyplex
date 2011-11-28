@@ -12,3 +12,6 @@ delete:
 
 save:
   credentials: [admin]
+
+new:
+  credentials: [admin]

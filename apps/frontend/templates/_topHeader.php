@@ -16,8 +16,7 @@
             <?php include_partial('global/currency'); ?>
         </div>
         <div class="span-5 right">
-           <?php include_partial('global/connection') ?>
+           <?php //include_partial('global/connection') ?>
         </div>
     </div>
-    <?php //echo image_tag('generic/top-header.jpg'); ?>
 </div>

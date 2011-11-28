@@ -192,19 +192,13 @@ div.append-bottom2, .append-bottom2 {
     border-top: none;
 }
 
-#language ul li a, #currency ul li a{
-    color: #333;
-
-}
-
+#language ul li a, #currency ul li a{ color: #333;}
 #language ul li:hover, #currency ul li:hover{
     background-color: #efefef;
     color: #222222;
 }
 
-#language ul li a:hover, #currency ul li a:hover{
-    color: #f26522;
-}
+#language ul li a:hover, #currency ul li a:hover{color: #f26522;}
 
 /* HEADER NAVIGATION ------------------------------------------ */
 

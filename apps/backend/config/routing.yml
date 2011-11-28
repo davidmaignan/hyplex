@@ -1,3 +1,13 @@
+promotional_banner:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                PromotionalBanner
+    module:               promotionalBanner
+    prefix_path:          /:sf_culture/promotionalBanner
+    column:               id
+    with_wildcard_routes: true
+    requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 airline:
   class: sfDoctrineRouteCollection
   options:
@@ -102,6 +112,25 @@ request_plex:
     column:               id
     with_wildcard_routes: true
 
+sf_guard_group:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardGroup
+    module:               sfGuardGroup
+    prefix_path:          /:sf_culture/groups
+    column:               id
+    with_wildcard_routes: true
+    requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+sf_guard_permission:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                sfGuardPermission
+    module:               sfGuardPermission
+    prefix_path:          /:sf_culture/permissions
+    column:               id
+    with_wildcard_routes: true
+    requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 sf_guard_user:
   class: sfDoctrineRouteCollection

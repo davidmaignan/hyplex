@@ -50,6 +50,13 @@ select{
     border-bottom: 1px solid #0c4878;
 }
 
+#user{
+    float: right;
+    margin: 12px 10px 0 10px;
+    color: #444444;
+    font-weight: bold;
+}
+
 /* LANGUAGE DROP MENU */
 
 #language-container{
@@ -196,4 +203,9 @@ ul.plain li img{
 
 a.pms-doc-link{
     font-size: 80%;
+}
+
+
+table{
+    border: none;
 }

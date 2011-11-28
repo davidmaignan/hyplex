@@ -9,20 +9,20 @@ remember_me:
 security:  ~
 
 # insert your own filters here
-folder:
-  class: folderFilter
+#folder:
+#  class: folderFilter
 
-plexSession:
-  class: plexSessionFilter
+#plexSession:
+#  class: plexSessionFilter
 
-historic:
-  class: historicFilter
+#historic:
+#  class: historicFilter
 
-error:
-  class: errorFilter
+#error:
+#  class: errorFilter
 
-javascript:
-  class: javascriptFilter
+#javascript:
+#  class: javascriptFilter
 
 cache:     ~
 execution: ~

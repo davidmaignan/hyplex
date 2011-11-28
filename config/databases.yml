@@ -2,6 +2,7 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=hyplexdemo;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock'
+      #dsn: 'mysql:host=localhost;dbname=hyplexdemo;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock'
+      dsn: 'mysql:host=localhost;dbname=hyplexdemo;'
       username: david
       password: camper

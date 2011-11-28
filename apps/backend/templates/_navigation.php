@@ -2,7 +2,7 @@
 
 <div id="myslidemenu" class="jqueryslidemenu">
     <ul>
-        <li><a href="#">CMS</a>
+        <li><a href="#">Datas</a>
             <ul>
                 <li><?php echo link_to(__('Area'), '@area'); ?></li>
                 <li><?php echo link_to(__('Country'), '@country'); ?></li>
@@ -12,7 +12,11 @@
                 <li><?php echo link_to(__('Airline'), '@airline'); ?></li>
             </ul>
         </li>
-         <li><a href="#">CMS</a></li>
+        <li><a href="#">CMS</a>
+            <ul>
+                <li><?php echo link_to(__('Promotional banner'), '@promotional_banner'); ?></li>
+            </ul>
+        </li>
         <li><a href="#">Logs</a>
             <ul>
                 <li><?php echo link_to(__('Initial request'), 'request_init_plex'); ?></li>

@@ -18,6 +18,8 @@ class processActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
 
+      
+
       //$this->getUser()->setAttribute('sTId', null);
 
       //Debuggind mode
@@ -52,6 +54,7 @@ class processActions extends sfActions
 
       $paramFactory = PlexParametersFactory::factory($type, $parameters, $this->getUser()->getCulture());
 
+      
      
       //$searchParametersArray = $paramFactory->getParametersArray($this->getUser()->getCulture());
       //If error in parameter class
@@ -67,6 +70,8 @@ class processActions extends sfActions
 
       }
 
+      
+
       if($debug === false){
       
           //Create PlexRequest Object - Generate a sessionTokenId or reuse cached one
@@ -74,6 +79,8 @@ class processActions extends sfActions
 
           //Build xml with search parameters
           $plexRequest->buildXML();
+
+          
           $response = $plexRequest->executeRequest();
 
       }else{

@@ -15,7 +15,7 @@
 <?php use_javascript('gmap/infobubble-compiled'); ?>
 <?php use_javascript('gmap/markerclusterer_packed'); ?>
 <?php include_partial('include/dialog_message'); ?>
-
+<?php echo $sf_data->get('gMapHotels',ESC_RAW); ?>
 
 <script type="text/javascript">
     var filterValues = <?php echo $sf_data->get('filterValues', ESC_RAW); ?>;

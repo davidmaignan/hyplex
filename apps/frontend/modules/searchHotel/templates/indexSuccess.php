@@ -1,22 +1,5 @@
-<?php use_javascript('jquery-1.6.2.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.16.custom.min.js'); ?>
-<?php use_javascript('myScript'); ?>
-<?php use_javascript('functions.js'); ?>
-<?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
-<?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
-
-<?php use_javascript('search/searchHotel'); ?>
-
-
-<?php use_javascript('debugger/ADS-final-verbose.js'); ?>
-<?php use_javascript('debugger/myLogger.js'); ?>
-
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
-<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-
+<?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
+<?php //use_javascript('debugger/myLogger.js'); ?>
 
 <style type="text/css">
     #dialog-message{
@@ -25,6 +8,7 @@
     }
 </style>
 
+<?php include_partial('include/dialog_message') ?>
 
 <div id="dialog-message" title="<?php echo __('You have sent a request') ?>">
     <p style="text-align: center;"><?php echo image_tag('generic/ajax-loader.gif', array('alt' => '')) ?></p>

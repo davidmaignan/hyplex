@@ -1,18 +1,4 @@
-<?php use_stylesheet('grid'); ?>
-<?php use_stylesheet('typography'); ?>
-<?php use_stylesheet('form'); ?>
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.16.custom.css'); ?>
-<?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-
-<?php use_javascript('jquery-1.6.2.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.16.custom.min.js'); ?>
-<?php use_javascript('myScript'); ?>
-<?php use_javascript('functions.js'); ?>
-
-<?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
 <?php use_javascript('jquery.maskedinput.js');?>
-<?php //use_javascript('search/searchFlight'); ?>
-<?php //use_javascript('search/searchHotel'); ?>
 <?php use_javascript('search/airlines.js'); ?>
 
 
@@ -124,28 +110,6 @@
                         yearRange: '1900:2011',
                         maxDate: "0"
             });
-
-
-            var projects = [
-                {
-                    value: "jquery",
-                    label: "jQuery",
-                    desc: "the write less, do more, JavaScript library",
-                    icon: "jquery_32x32.png"
-                },
-                {
-                    value: "jquery-ui",
-                    label: "jQuery UI",
-                    desc: "the official user interface library for jQuery",
-                    icon: "jqueryui_32x32.png"
-                },
-                {
-                    value: "sizzlejs",
-                    label: "Sizzle JS",
-                    desc: "a pure-JavaScript CSS selector engine",
-                    icon: "sizzlejs_32x32.png"
-                }
-            ];
 
             $( ".airline_code" ).autocomplete({
                 autoFocus: true,

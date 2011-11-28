@@ -1,14 +1,6 @@
-<?php use_helper('I18n'); ?>
-<?php use_stylesheet('form'); ?>
-
-<?php //use_javascript('search/airport_list_' . $sf_user->getCulture() . '.js'); ?>
-<?php //use_javascript('search/datepicker_' . $sf_user->getCulture() . '.js'); ?>
-
-<?php
-if ($form->hasGlobalErrors()) {
-    //echo $form->renderGlobalErrors();
-}
-?>
+<?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
+<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
+<?php endif; ?>
 
 <style>
 

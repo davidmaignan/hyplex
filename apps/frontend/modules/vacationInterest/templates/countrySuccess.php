@@ -300,17 +300,13 @@
                             </div>
                             <div class="span-11 last">
                                 <ul class="hotel-list">
-                                    <li class="hotel-name">
-                                        <a href="#"><?php echo $pick['title'] ?></a>
-                            </li>
-                            <li class="hotel-address">
-                            <?php echo $pick['desc'] ?>
-                            </li>
-                        </ul>
-                        <ul class="hotel-temptation">
-                            <li class="show-map"><a href="#">Map</a></li>
-                            <li class="bookmark"><a href="#"><?php echo __('Bookmark'); ?></a><li>
-                        </ul>
+                                    <li class="hotel-name"><a href="#"><?php echo $pick['title'] ?></a></li>
+                                    <li class="hotel-address"><?php echo $pick['desc'] ?></li>
+                                </ul>
+                                <ul class="hotel-temptation">
+                                    <li class="show-map"><a href="#">Map</a></li>
+                                    <li class="bookmark"><a href="#"><?php echo __('Bookmark'); ?></a><li>
+                                </ul>
                             </div>
                         </div>
                         <?php endforeach; ?>

@@ -1,3 +1,7 @@
+<?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
+<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
+<?php endif; ?>
+
 <?php use_javascript('search/searchFlight'); ?>
 
 <form action="<?php echo url_for('@search_flight_form') ?>" method="post" id="flight-form-index">

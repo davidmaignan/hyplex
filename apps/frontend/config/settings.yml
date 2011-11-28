@@ -11,7 +11,7 @@ dev:
   .settings:
     error_reporting:        <?php echo (E_ALL | E_STRICT)."\n" ?>
     web_debug:              true
-    cache:                  true
+    cache:                  false
     no_script_name:         false
     etag:                   false
 
@@ -51,7 +51,7 @@ all:
     i18n: true
     charset: utf-8
 
-    standard_helpers: [Partial, Cache, I18N, Date, Number, Text]
+    standard_helpers: [Partial, Cache, I18N, Url, Asset, Tag, Date, Number, Text]
 
   .actions:
     error_404_module:       error     # To be called when a 404 error is raised

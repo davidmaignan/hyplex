@@ -1,5 +1,12 @@
+<?php   require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.
+        'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
 <?php use_javascript('search/searchHotel'); ?>
+
+<?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
 <?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
+<?php endif; ?>
+
+<?php use_javascript('search/searchHotel'); ?>
 
 <style>
     table.form-error td{

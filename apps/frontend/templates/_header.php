@@ -13,6 +13,6 @@
     
 </div>
 <div class="span-9 last right prepend-top" id="phoneInfo">
-    <p class="left">Speak to one of our<br /> expert travel advisors</p>
+    
     <p class="right" id="phoneBox"><?php echo sfConfig::get('app_telephone'); ?></p>
 </div>

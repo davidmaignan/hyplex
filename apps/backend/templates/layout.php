@@ -10,7 +10,8 @@
   </head>
   <body>
     <div id="header">
-            <?php echo image_tag('generic/logo_beta.png', array('width' => '220px')); ?>
+            <?php echo image_tag('generic/logo_beta.png', array('width' => '220px', 'style'=>'float:left;')); ?>
+        
             <div id="language-container">
                 <?php use_helper('I18nUrl') ?>
                 <div id="language">
@@ -32,11 +33,16 @@
                         </ul>
                     </div>
                 </div>
+            <div id="user">
+                <?php if ($sf_user->isAuthenticated()): ?>
+                <?php echo 'Welcome, ' .$sf_user->getUsername(); ?>
+                <?php endif; ?>
+            </div>
             </div>
             <?php //if ($sf_user->isAuthenticated()): ?>
                 <?php include_partial('global/navigation'); ?>
             <?php //endif; ?>
-            <div id="content">
+        <div id="content">
 
             <?php echo $sf_content ?>
         </div>

@@ -18,12 +18,21 @@ class PromotionalBannerTranslationForm extends BasePromotionalBannerTranslationF
                     'config' => 'theme_advanced_buttons1: "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,styleselect,formatselect,fontselect,fontsizeselect"',
                 ));
 
+      /*
       $this->widgetSchema['message'] = new sfWidgetFormTextareaTinyMCE(array(
                     'width' => 550,
                     'height' => 250,
                     'theme'=>'advanced',
                     'config' => '',
                     'skin' => "o2k7",
+                ));
+       * 
+       */
+
+      $this->widgetSchema['message'] = new sfWidgetFormTextareaTinyMCE(array(
+                    'width' => 550,
+                    'height' => 250,
+                    'theme'=>'advanced'
                 ));
 
 
