@@ -31,7 +31,7 @@
         </div>
         <h5><?php echo __('Room details'); ?></h5>
         <?php foreach ($form['newRooms'] as $key => $f): ?>
-            <?php include_partial('searchHotel/room_html5', array('f'=>$f));?>
+            <?php include_partial('searchHotel/room_html5', array('f'=>$f, 'form'=>$form));?>
         <?php endforeach; ?>
         <div id="extrarooms" ></div>
         

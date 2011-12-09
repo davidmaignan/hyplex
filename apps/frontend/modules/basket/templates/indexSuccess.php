@@ -1,6 +1,6 @@
 
 <?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
-<?php use_stylesheet('flightResult'); ?>
+<?php //use_stylesheet('flightResult'); ?>
 
 <?php include_partial('include/dialog_message'); ?>
 
@@ -14,7 +14,7 @@
     <hr class="space" />
     <?php if(isset($flight)): ?>
     <div id="flight" class="basket-data-container">
-        <h2 class="flight"><?php echo __('Flight'); ?></h2>
+        <h2 class="title"><?php echo __('Flight'); ?></h2>
         
         <div class="span-17 bg-grey flight-box-details">
             <div class="padded">

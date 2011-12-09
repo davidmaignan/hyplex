@@ -62,6 +62,25 @@
     right: 0;
     left: auto;
 }
+
+.ad-gallery .ad-image-wrapper .ad-prev .ad-prev-image, .ad-gallery .ad-image-wrapper .ad-next .ad-next-image {
+    background: url(http://hyplexdemo/images/ad-gallery/ad_prev.png);
+    width: 30px;
+    height: 30px;
+    display: none;
+    position: absolute;
+    top: 47%;
+    left: 0;
+    z-index: 201;
+}
+.ad-gallery .ad-image-wrapper .ad-next .ad-next-image {
+    background: url(http://hyplexdemo/images/ad-gallery/ad_next.png);
+    width: 30px;
+    height: 30px;
+    right: 0;
+    left: auto;
+}
+
 .ad-gallery .ad-image-wrapper .ad-image {
     position: absolute;
     overflow: hidden;

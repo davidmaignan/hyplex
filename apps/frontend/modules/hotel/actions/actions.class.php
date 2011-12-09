@@ -10,15 +10,7 @@
  */
 class hotelActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
-  {
-    //$this->forward('default', 'module');
-  }
+
 
   public function executeHotelModified(sfWebRequest $request){
 
@@ -35,10 +27,7 @@ class hotelActions extends sfActions
         PlexParsing::moveSearchToTheEnd($this->getUser(), $filename);
 
         $this->redirect($url);
-
   }
-
-
 
 
   public function executeHotelResult(sfWebRequest $request){
@@ -58,19 +47,8 @@ class hotelActions extends sfActions
               break;
       }
 
-      /*
-      if(!$request->hasParameter('filename')){
-            $prevSearches = $this->getUser()->getAttribute('prevSearch');
-            $prevSearche = $prevSearches[count($prevSearches) - 1];
-            $this->filename = $prevSearche['file'];
-      }else{
-            
-      }
-      */
 
-      
       $filename = $this->filename;
-
       $this->page = 1;
 
       //Retrieve the search parameters.
@@ -172,7 +150,12 @@ class hotelActions extends sfActions
         //return $this->renderText('filter');
 
         $this->parameters = $request->getPostParameters();
-        $this->page = $request->getPostParameter('page');
+        $this->page = (int)$request->getPostParameter('page');
+        
+        //var_dump($this->parameters);
+        //var_dump($this->page);
+        
+        //exit;
         
         //Which link or checkbox is clicked will determine which checkbox to disabled
         $class = $request->getPostParameter('class');
@@ -318,7 +301,7 @@ class hotelActions extends sfActions
     public function executeHotelDetail(sfWebRequest $request){
 
         
-
+        
         $debug = false;
 
         $slug = $request->getParameter('slug');
@@ -348,6 +331,8 @@ class hotelActions extends sfActions
                 }
             }
         }
+        
+        
 
         //Hotel detail file name path
         $hotelDetailFile = PlexParsing::getFullPathToFolder('hotel', $filename).$hotel->id.'.xml';
@@ -355,15 +340,21 @@ class hotelActions extends sfActions
         //var_dump($hotelDetailFile);
 
         if(!file_exists($hotelDetailFile)){
+            
+            
 
             //Hotel detail request
             $plexRequest = new PlexHotelDetailsRequest($hotel, $request, $filename, $this->getUser());
             $plexRequest->buildXML();
-            $response = $plexRequest->executeRequest();            
+            $response = $plexRequest->executeRequest();
+            
+            
 
             $finalResponse = new PlexHotelDetailsResponse($hotel, $response, $request, $filename);
             $finalResponse->checkResponseCode();
             $code = $finalResponse->responseCode;
+            
+            
 
             switch ($code) {
 
@@ -383,7 +374,8 @@ class hotelActions extends sfActions
                       $datas['userFolder'] = sfConfig::get('sf_user_folder');
                       $datas['filename'] = $finalResponse->filename;
                       $datas['params'] = $paramFactory;
-
+                      
+                      
                       //Save info in db
                       $event = new sfEvent($this, 'plex.response_success', array('datas' => $datas));
                       sfContext::getInstance()->getEventDispatcher()->notify($event);
@@ -393,13 +385,9 @@ class hotelActions extends sfActions
                       break;
 
                 }
-
-
+                
 
                 $this->hotel = $finalResponse->getHotel();
-
-                //var_dump($this->hotel);
-                //exit;
 
                 //Rewrite the file to get the hotel object with the data received from the plex request.
                 $content = file_get_contents($file);
@@ -427,6 +415,7 @@ class hotelActions extends sfActions
   
         $this->hotelCoordinates = json_encode($this->hotel->arCoordinates);
         $this->slugName = Utils::slugify($this->hotel->getName());
+        
         
     }
 

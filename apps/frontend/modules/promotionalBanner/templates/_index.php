@@ -46,6 +46,7 @@
     $('document').ready(function(){
 
         var galleries = $('#gallery').adGallery({
+            'loader_image': '/images/ad-gallery/loader.gif',
             'display_back_and_forward': false,
             'width': 608,
             'height': 260,

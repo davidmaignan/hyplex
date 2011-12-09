@@ -380,12 +380,8 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
 
 
         //Get min max prices.
-        //echo count($this->filteredObjs);
         reset($this->filteredObjs);
         $firstHotel = current($this->filteredObjs);
-
-        //echo $firstHotel;
-
 
         $this->arFilterToDeactivate['prices']['min'] = $firstHotel->minPrice;
 
@@ -608,7 +604,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         $frmStr .= '<h4 id="location">'. __('Location') . '<a href="" class="remove-small right reset-location hide">reset</a></h4>';
         $frmStr .= '<div class="box-content">';
         $frmStr .= '<ul style="font-size: 90%">';
-        
+        $jeton = 0;
         foreach ($arFilterDatas['location'] as $key => $value) {
             $frmStr .= '<li class="location_tr" id="location_' . $key . '_tr" >';
             $frmStr .= '<span class="span-3">';
@@ -632,6 +628,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         $frmStr .= '<div class="box-content">';
         $frmStr .= '<ul style="font-size: 90%">';
         
+        $jeton = 0;
         foreach ($arFilterDatas['chain'] as $key => $value) {
             $frmStr .= '<li class="chain_tr" id="chain_' . $key . '_tr" >';
             $frmStr .= '<span class="span-3">';

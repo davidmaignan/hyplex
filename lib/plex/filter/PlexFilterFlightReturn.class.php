@@ -328,8 +328,9 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
         $frmStr .= "<h4>" . __("Stops") . "</h4>";
         $frmStr .= '<div class="box-content">';
         $frmStr .= '<ul>';
+        
         foreach ($this->stopsFields as $key => $value) {
-            if($value['price']){
+            if(isset($value['price'])){
                 $frmStr .= '<li><span class="span-4 last">';
                 $frmStr .= $frm->addInput($value[0], $key, 1, array('checked' => 'checked', 'class'=>'FilterCheckbox','id' => $key));
                 $frmStr .= '<label for="' . $key . '">' . __($value[1]) . '</label>';

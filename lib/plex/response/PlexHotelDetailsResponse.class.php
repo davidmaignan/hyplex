@@ -104,13 +104,17 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
         $timer = sfTimerManager::getTimer('ParseResponse');
 
         //Parse the response for - HotelDescription, AllHotelImageLinks, AllHotelFacilities        
-        $xml = simplexml_load_string($this->response);        
+        $xml = simplexml_load_string($this->response); 
+        
+        
         
         if((array)$xml->HotelDescription){
             $data = html_entity_decode((string)$xml->HotelDescription);
             $this->hotel->setFullDescription($data);
         }else{
             $infos = array();
+            $infos['code'] = 811;
+            $infos['response'] = $this->response;
             $infos['message'] = 'Error hotel description: '. $this->hotel->id .' doesn\'t have any description';
             $infos['filename'] = $this->getFilename();
             $infos['plexResponse'] = file_get_contents($this->getFilename());
@@ -126,6 +130,8 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
             $this->hotel->setFullFacilities(($xmlFacilities));
         }else{
             $infos = array();
+            $infos['code'] = 812;
+            $infos['response'] = $this->response;
             $infos['message'] = 'Error hotel facilities: '. $this->hotel->id .' doesn\'t have any facilities';
             $infos['filename'] = $this->getFilename();
             $infos['plexResponse'] = file_get_contents($this->getFilename());
@@ -141,6 +147,8 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
             //$this->hotel->setFullFacilities(($xmlFacilities));
         }else{
             $infos = array();
+            $infos['code'] = 813;
+            $infos['response'] = $this->response;
             $infos['message'] = 'Error hotel images: '. $this->hotel->id .' doesn\'t have any images';
             $infos['filename'] = $this->getFilename();
             $infos['plexResponse'] = file_get_contents($this->getFilename());
@@ -156,6 +164,8 @@ class PlexHotelDetailsResponse extends PlexResponse implements PlexResponseInter
             $this->hotel->setCoordinates($xml->GoogleMapInfo->MapLatLon);
         }else{
             $infos = array();
+            $infos['code'] = 814;
+            $infos['response'] = $this->response;
             $infos['message'] = 'Error hotel latLong: '. $this->hotel->id .' doesn\'t have any latLong info';
             $infos['filename'] = $this->getFilename();
             $infos['plexResponse'] = file_get_contents($this->getFilename());

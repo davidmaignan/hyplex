@@ -8,7 +8,7 @@
 <?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
 <?php //use_javascript('debugger/myLogger.js'); ?>
 
-<?php //include_partial('include/dialog_message'); ?>
+<?php include_partial('include/dialog_message'); ?>
 
 <section class="span-9">
     <h2 class="hide">Search</h2>

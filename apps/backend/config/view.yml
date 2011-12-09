@@ -12,7 +12,7 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [/sfDoctrinePlugin/css/global.css, /sfDoctrinePlugin/css/default.css, main.css, admin.css, custom-theme/jquery-ui-1.8.16.custom.css, dropmenu/jqueryslidemenu.css ]
+  stylesheets:    [/sfDoctrinePlugin/css/global.css, /sfDoctrinePlugin/css/default.css, admin.css, custom-theme/jquery-ui-1.8.16.custom.css, dropmenu/jqueryslidemenu.css ]
 
   javascripts:    [jquery-1.6.2.min.js, jquery-ui-1.8.16.custom.min.js, dropmenu/jqueryslidemenu.js, tiny_mce/tiny_mce.js]
 
