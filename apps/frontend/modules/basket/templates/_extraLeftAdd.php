@@ -1,6 +1,7 @@
-<tr class="basket-list-header non-active">
-    <td><?php echo __('Extras') ?></td>
-    <td colspan="2" class="sub-total">
-        <a href="#" class="add"><?php echo __('Add'); ?></a>
+<tr class="header_1 bold">
+    <td class="span-6"><?php echo __('Extras') ?></td>
+    <td colspan="2" class="text-right blue1">
+        <a href="<?php //echo url_for('search_hotel_complementary') ?>" class="add">
+        <?php echo __('Add'); ?></a>
     </td>
 </tr>

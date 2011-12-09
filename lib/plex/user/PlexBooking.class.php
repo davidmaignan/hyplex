@@ -97,6 +97,13 @@ class PlexBooking {
     public function getAddress(){
         return $this->address;
     }
+    
+    public function getHotelParameters(){
+        
+        return PlexParsing::retreiveParameters($this->getHotelFilename());
+        
+        
+    }
   
 
 }

@@ -1,4 +1,4 @@
-<h2 class="title"><?php echo __('Your previous searches'); ?></h2>
+<h2 class="title2"><?php echo __('Your previous searches'); ?></h2>
 <div>
     <table class="prev-searches">
         <?php $i=0; ?>

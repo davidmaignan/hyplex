@@ -1,0 +1,52 @@
+/* 
+    Document   : main
+    Created on : Nov 28, 2011, 5:40:37 PM
+    Author     : david
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+#form-index, #form-search{
+    border: 1px solid #97d1f4;
+    border: 1px solid white;
+    background-color: #eff7fd;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #e2f2fd, #eff7fd);
+    -moz-box-shadow: 0px 0px 2px #333;
+    -webkit-box-shadow: 0px 0px 2px #333;
+    box-shadow: 0px 0px 2px #333;
+    padding-bottom: 8px;
+    border-radius: 2px;
+}
+
+#tabs-form{
+    border:1px solid white;;
+    overflow: hidden;
+}
+
+#tabs-form li{
+    display: inline;
+}
+
+#tabs-form li a{
+    height: 32px;
+    width:86px;
+    display:block;
+    background-color: #3488c3;
+    float: left;
+    text-align: center;
+    line-height: 32px;
+    font-size: 110%;
+    letter-spacing: .01em;
+    margin-right: 1px;
+    color: white;
+}
+
+#tabs-form .form-tab-last{
+    margin: 0;
+    width:87px;
+}
+
+#tabs-form a.selected{
+    background-color: #0c4878;
+    color:white;
+}

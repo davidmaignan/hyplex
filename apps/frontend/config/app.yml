@@ -53,7 +53,8 @@ all:
     duration: 260000
 
   plexSession:
-    duration: 900
+#    duration: 900
+    duration: 300
 
   layout:
     template: test
@@ -74,3 +75,5 @@ all:
 
   creditcard:
     accepted: [Mastercard, Visa, American Express]
+    
+  totalPerPage: 10

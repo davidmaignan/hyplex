@@ -1,0 +1,146 @@
+/* 
+    Document   : header
+    Created on : Nov 28, 2011, 2:50:10 PM
+    Author     : david
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+h1.body{
+    display: none;
+}
+
+div#top-header{
+    height: 30px;
+    -moz-box-shadow: -3px 0px 3px #333;
+    -webkit-box-shadow: -3px 0px 3px #333;
+    box-shadow: -3px 0px 3px #333;
+    border-bottom: 1px solid white;
+    background: #0c4878;
+    abackground-image: -moz-linear-gradient(0% 100% 90deg, #0c4878, #186cb4);
+    color: white;
+}
+
+nav#top-nav{
+    float: left;
+    height: 30px;
+    display: block;
+    width: 500px;
+}
+
+nav#top-nav h2{
+    display: none;
+}
+
+nav#top-nav a{
+    border: 0px solid red;
+    display: block;
+    float: left;
+    line-height: 28px;
+    margin-right: 22px;
+    color: #beddf8;
+}
+
+nav#top-nav a:hover, #login a:hover{
+    color: white;
+}
+
+
+div#language, div#currency {width: 100px; float: left; position: absolute; margin-left: 400px; z-index: 100}
+div#language ul, div#currency ul{margin:0;padding: 4px 0 0 0px; list-style: none; }
+div#language ul:hover, div#currency ul:hover{background-color: #eff7fd;color: #0c4878}
+div#language img, div#currency img{margin-right: 5px;}
+div#language li.selected, div#currency li.selected{background: none; display: block; padding-left: 5px;}
+div#language li, div#currency li{
+    border: 0px solid red;
+    height: 26px;
+    background-color: #eff7fd;
+}
+div#language li a, div#currency li a{color: #0c4878; width: 100%; display: block; height: 26px; padding: 3px 0 0 5px }
+div#language li a:hover, div#currency li a:hover{color: #ED145B;}
+div#currency{width: 60px; margin-left: 510px;}
+
+#language li.hide:hover, #currency li.hide:hover{background-color: #a3b9cb;}
+
+div#login{
+    height: 30px;
+    overflow: hidden;
+    float: right;
+    text-align: right;
+}
+
+div#login a{
+    height: 30px;
+    display: block;
+    padding:5px;
+    color: #beddf8;
+}
+
+/* header */
+
+section#header{
+    width: 980px;
+    margin: 0 auto;
+}
+
+h2#logo{
+    text-indent: -1000px;
+    width: 300px;
+    height: 50px;
+    display: block;
+    background: url('http://hyplexdemo/images/generic/logo_beta_265.png') no-repeat left top;
+}
+
+div#phoneInfo #phoneBox{
+    width: 136px;
+    height: 36px;
+    display: block;
+    background: url('http://hyplexdemo/images/generic/telephone.png') no-repeat left top;
+    padding: 3px 0 0 60px;
+    font-size: 18.3px;
+    font-weight: bold;
+    color: white;
+    float: right;
+    margin-top:8px;
+}
+
+
+/* main nav */
+
+nav#main-nav{
+    height: 35px;
+    border: 1px solid white;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 3px;
+    box-shadow: 0 0 2px #777777;
+    margin: 0;
+    background-color: #0c4878;
+    background-image: -moz-linear-gradient(25% 100% 90deg, #0c4878, #186cb4);
+    padding:0;
+}
+
+nav#main-nav h2{display: none;}
+
+
+nav#main-nav a{
+    color: white;
+    height: 35px;
+    display: block;
+    float: left;
+    padding: 0 20px;
+    line-height: 34px;
+    font-size: 120%;
+    border-right: 1px solid #a3b9cb;
+    
+}
+
+nav#main-nav a:hover{
+    background-color: #beddf8;
+    color: #0c4878;
+    border-right: 1px solid #beddf8;
+}
+
+nav#main-nav a.border-left{
+    border-left: 1px solid #a3b9cb;
+}

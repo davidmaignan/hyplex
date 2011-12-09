@@ -31,4 +31,3 @@
     </tbody>
 </table>
 
-<div style="clear:both;" ></div>

@@ -1,0 +1,17 @@
+/* 
+    Document   : font
+    Created on : Nov 16, 2011, 6:17:05 PM
+    Author     : david
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+span.fontface.big{font-size: 28px;}
+h3.fontface{font: 22px/28px 'ArvoRegular', Arial, sans-serif;letter-spacing: 0;}
+h4.fontface{font-size: 16px; padding-bottom: 0px;}
+.fontface{font: 22px/28px 'ArvoRegular', Arial, sans-serif;letter-spacing: 0;}
+.fontface2{font: 16px/16px 'ArvoRegular', Arial, sans-serif}

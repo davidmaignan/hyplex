@@ -32,17 +32,16 @@ if(isset($parameters['address'])){
         <?php include_component('basket', 'checkOut'); ?>
     </div>
 
-    <div class="span-18 last">
+    <div class="span-17 prepend-1 last">
 
         <form action="<?php echo url_for('@booking_check_address') ?>" method="post">
-            <h2 class="flight"><?php echo __('Payement & Billing information') ?></h2>
-            <hr class="space3" />
-            <h2 class="title small"><?php echo __('Credit card information') ?></h2>
-            <table class="append-bottom">
+            <h1 class="flight"><?php echo __('Payement & Billing information') ?></h1>
+            <h2 class="title"><?php echo __('Credit card information') ?></h2>
+            <table class="middle append-bottom">
                 <tr>
-                    <td class="append-bottom" style="width: 200px; padding-bottom: 20px;"><?php echo $form['credit_card_type']->renderLabel(); ?></td>
+                    <td class="span-4 append-bottom"><?php echo $form['credit_card_type']->renderLabel(); ?></td>
                     <td colspan="2">
-                        <ul>
+                        <ul class="none">
                             <li><?php echo $form['credit_card_type']->render(); ?></li>
                             <li><?php echo $form['credit_card_type']->renderError(); ?></li>
                         </ul>
@@ -51,13 +50,13 @@ if(isset($parameters['address'])){
                 <tr>
                     <td><?php echo $form['credit_card_number']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            <li><?php echo $form['credit_card_number']; ?><br /><br /></li>
+                        <ul class="none">
+                            <li><?php echo $form['credit_card_number']->render(array('class'=>'text span-5')); ?><br /><br /></li>
                             <li><?php echo $form['credit_card_number']->renderError(); ?></li>
                         </ul>
                     </td>
-                    <td class="smallest bg-2">
-                        <ul>
+                    <td class="">
+                        <ul class="none">
                             <li>Amex: 3400 0000 0000 009</li>
                             <li>MasterCard: 5500 0000 0000 0004</li>
                             <li>Visa: 4111 1111 1111 1111</li>
@@ -67,7 +66,7 @@ if(isset($parameters['address'])){
                 <tr>
                     <td><?php echo $form['expiration_date']->renderLabel(); ?></td>
                     <td>
-                        <ul>
+                        <ul class="none">
                             <li><?php echo $form['expiration_date']; ?></li>
                             <li><?php echo $form['expiration_date']->renderError(); ?></li>
                         </ul>
@@ -75,115 +74,88 @@ if(isset($parameters['address'])){
                 </tr>
             </table>
 
-            <h2 class="title small prepend-top">Contact information</h2>
+            <h2 class="title">Contact information</h2>
             <p><?php echo __('Please supply a valid email address and telephone. A confirmation will be sent to this email.')?></p>
-            <table>
+            <table class="middle">
                 <tr>
-                    <td style="width: 200px;"><?php echo $form['email']->renderLabel(); ?></td>
+                    <td class="span-4"><?php echo $form['email']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            <li><?php echo $form['email']; ?></li>
-                            <li><?php echo $form['email']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['email']->render(array('class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['email']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px;"><?php echo $form['email_again']->renderLabel(); ?></td>
+                    <td><?php echo $form['email_again']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            <li><?php echo $form['email_again']; ?></li>
-                            <li><?php echo $form['email_again']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['email_again']->render(array('class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['email_again']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px;"><?php echo $form['telephone']->renderLabel(); ?></td>
+                    <td><?php echo $form['telephone']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            <li><?php echo $form['telephone']; ?></li>
-                            <li><?php echo $form['telephone']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['telephone']->render(array('class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['telephone']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px;"><?php echo $form['password']->renderLabel(); ?></td>
+                    <td><?php echo $form['password']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            <li><?php echo $form['password']->render(array('value' => $password)); ?></li>
-                            <li><?php echo $form['password']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['password']->render(array('value' => $password, 'class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['password']->renderError(); ?></li>
                     </td>
                 </tr>
                 <tr>
-                    <td style="width: 200px;"><?php echo $form['password_again']->renderLabel(); ?></td>
+                    <td><?php echo $form['password_again']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            <li><?php echo $form['password_again']->render(array('value' => $password_again)); ?></li>
-                            <li><?php echo $form['password_again']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['password_again']->render(array('value' => $password_again, 'class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['password_again']->renderError(); ?>
                     </td>
                 </tr>
             </table>
-            <h2 class="title small prepend-top">Address information</h2>
+            <h2 class="title">Address information</h2>
             <p><?php echo __("Please supply the cardholder's billing address as listed on the credit/debit card statement.") ?> </p>
-            <table>
+            <table class="middle">
                 <tr>
-                    <td style="width: 200px;"><?php echo $form['address_1']->renderLabel(); ?></td>
+                    <td class="span-4"><?php echo $form['address_1']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            <li><?php echo $form['address_1']->render(array('class'=>'medium')); ?></li>
-                            <li><?php echo $form['address_1']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['address_1']->render(array('class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['address_1']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
                     <td><?php echo $form['address_2']->renderLabel(); ?></td>
-                    <td>
-                        <ul>
-                            
-                            <li><?php echo $form['address_2']->render(array('class'=>'medium')); ?></li>
-                            <li><?php echo $form['address_2']->renderError(); ?></li>
-                        </ul>
+                    <td>    
+                        <?php echo $form['address_2']->render(array('class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['address_2']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
                     <td><?php echo $form['city']->renderLabel(); ?></td>
-                    <td>
-                        <ul>
-                            
-                            <li><?php echo $form['city']->render(array('class'=>'medium')); ?></li>
-                            <li><?php echo $form['city']->renderError(); ?></li>
-                        </ul>
+                    <td>    
+                        <?php echo $form['city']->render(array('class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['city']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
                     <td><?php echo $form['postcode']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            
-                            <li><?php echo $form['postcode']; ?></li>
-                            <li><?php echo $form['postcode']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['postcode']->render(array('class'=>'text span-5'));; ?><br /><br />
+                        <?php echo $form['postcode']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
                     <td><?php echo $form['state']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            
-                            <li><?php echo $form['state']->render(array('class'=>'medium')); ?></li>
-                            <li><?php echo $form['state']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['state']->render(array('class'=>'text span-5')); ?><br /><br />
+                        <?php echo $form['state']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
                     <td><?php echo $form['country']->renderLabel(); ?></td>
                     <td>
-                        <ul>
-                            
-                            <li><?php echo $form['country']->render(array('class'=>'medium')); ?></li>
-                            <li><?php echo $form['country']->renderError(); ?></li>
-                        </ul>
+                        <?php echo $form['country']->render(array('class'=>'text span-5s')); ?><br /><br />
+                       <?php echo $form['country']->renderError(); ?>
                     </td>
                 </tr>
             </table>
@@ -193,7 +165,7 @@ if(isset($parameters['address'])){
 
 
             <div class="span-8 last right append-bottom">
-                <input type="submit" value="<?php echo __('Payement'); ?>" class="blue right" />
+                <input type="submit" value="<?php echo __('Payement'); ?>" class="blue bigger right" />
             </div>
 
         </form>

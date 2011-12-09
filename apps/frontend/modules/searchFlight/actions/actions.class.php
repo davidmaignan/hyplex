@@ -229,7 +229,7 @@ class searchFlightActions extends sfActions {
 
             //var_dump($originValidation);
             //var_dump($destinationValidation);
-            //break;
+            //exit;
 
             //ob_start();
             //echo "<pre>";

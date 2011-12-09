@@ -1,8 +1,4 @@
 <?php
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of PlexParsing
@@ -22,6 +18,7 @@ class PlexParsing {
     static public function retreiveParameters($filename) {
         $array = explode('/', $filename);
 
+
         if(!file_exists(sfConfig::get('sf_user_folder') . '/request')){
             throw new Exception('No file request exist in the user folder: '.sfConfig::get('sf_user_folder'));
         }
@@ -39,10 +36,8 @@ class PlexParsing {
 
         $data = explode('|', $data);
         $data = unserialize($data[3]);
-
-        //var_dump($data);
-        //break;
-
+        
+        
         return $data;
     }
 

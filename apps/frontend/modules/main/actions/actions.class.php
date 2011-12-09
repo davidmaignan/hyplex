@@ -19,9 +19,9 @@ class mainActions extends sfActions {
 
         //throw new Exception('artificial error');
 
-        //$this->flightForm = new SearchFlightForm();
-        //$this->hotelForm = new SearchHotelForm();
-        //$this->carForm = new SearchCarForm();
+        $this->flightForm = new SearchFlightForm();
+        $this->hotelForm = new SearchHotelForm();
+        $this->carForm = new SearchCarForm();
         //$this->packageForm = new SearchPackageForm();
 
         //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->findAll()->toArray();

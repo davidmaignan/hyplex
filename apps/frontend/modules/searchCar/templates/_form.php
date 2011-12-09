@@ -15,7 +15,7 @@
 <div class="span-15" id="form-index" >
 
 <form action="<?php echo url_for('@search_car_form') ?>" method="post" id="hotel-form-index">
-    <fieldset>
+    <fieldset class="type1">
         <?php if($form->hasGlobalErrors()): ?>
             <ul class="error-global">
                <?php foreach ($form->getGlobalErrors() as $name => $error): ?>
@@ -23,8 +23,8 @@
                 <?php endforeach; ?>
             </ul>
             <?php endif; ?>
-        <h3 class="form-index"><?php echo __('Search details'); ?></h3>
-        <table class="form-error">
+        <h5><?php echo __('Search details'); ?></h5>
+        <table class="form">
             <tr>
                 <td colspan="4">
                     <ul class="inline">
@@ -33,48 +33,40 @@
                     </ul>
                 </td>
             </tr>
-            <tr class="topPadding">
-                <td class="prepend-top" colspan="2" style="padding-top:13px;">
+            <tr>
+                <td colspan="2">
                     <?php echo $form['location1']->renderLabel(); ?>
                 </td>
-                <td class="prepend-top" colspan="2">
+                <td colspan="2">
                    <?php echo $form['location2']->renderLabel(); ?>
-                
+                </td>
             </tr>
             <tr>
-                 <td colspan="2"><?php echo $form['location1']; ?></td>
-                 <td colspan="2"><?php echo $form['location2']; ?></td>
+                 <td colspan="2"><?php echo $form['location1']->render(array('class'=>'text span-5')); ?></td>
+                 <td colspan="2"><?php echo $form['location2']->render(array('class'=>'text span-5')); ?></td>
             </tr>
             <tr>
-                <td  colspan="2"><?php echo $form['location1']->renderError(); ?></td>
+                <td colspan="2"><?php echo $form['location1']->renderError(); ?></td>
 
-                <td  colspan="2"><?php echo $form['location2']->renderError(); ?></td>
+                <td colspan="2"><?php echo $form['location2']->renderError(); ?></td>
                
             </tr>
             <tr>
-                <td style="padding-top: 8px;">
-                    <ul>
-                        <li><?php echo $form['pickup_date']->renderLabel(); ?></li>
-                        <li><?php echo $form['pickup_date']; ?><br /><br /></li>
-                    </ul>
+                <td>
+                    <?php echo $form['pickup_date']->renderLabel(); ?><br />
+                    <?php echo $form['pickup_date']->render(array('class'=>'text span-3')); ?>
                 </td>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['pickup_hour']->renderLabel(); ?></li>
-                        <li><?php echo $form['pickup_hour']; ?><br /><br /></li>
-                    </ul>
+                <td>
+                    <?php echo $form['pickup_hour']->renderLabel(); ?><br />
+                    <?php echo $form['pickup_hour']; ?>
                 </td>
-                <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['dropoff_date']->renderLabel(); ?></li>
-                        <li><?php echo $form['dropoff_date']; ?><br /><br /></li>
-                    </ul>
+                <td>
+                    <?php echo $form['dropoff_date']->renderLabel(); ?><br />
+                    <?php echo $form['dropoff_date']->render(array('class'=>'text span-3')); ?>
                 </td>
-                 <td class="prepend-top">
-                    <ul>
-                        <li><?php echo $form['dropoff_hour']->renderLabel(); ?></li>
-                        <li><?php echo $form['dropoff_hour']; ?><br /><br /></li>
-                    </ul>
+                 <td>
+                    <?php echo $form['dropoff_hour']->renderLabel(); ?><br />
+                    <?php echo $form['dropoff_hour']; ?>
                 </td>
             </tr>
             <tr>
@@ -88,7 +80,7 @@
         <hr class="space2"/>
 
         <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
+            <input type="submit" value="<?php echo __('search'); ?>" class="blue right bigger" />
         </div>
         <?php echo $form['type']; ?>
         <?php echo $form['_csrf_token']; ?>

@@ -1,0 +1,1116 @@
+/* 
+    Document   : custom.ss
+    Created on : Nov 7, 2011, 8:34:59 AM
+    Author     : david
+    Description:
+        Customization of blueprint css
+
+--------------------------------------------------------------------------------------- */
+
+.hidden{overflow: hidden;}
+.overflow{overflow: auto;}
+
+.noMargin{margin: 0;}
+.noPadding{padding: 0;}
+.minMargin{margin-bottom: 2px;}
+.marginLeft{margin-left: 1px;}
+.paddingTop{padding-top:8px;}
+.paddingTop2{padding-top:4px;}
+ul.marginRight li{margin-right: 10px;}
+ul.marged li{margin: 7px;}
+
+
+table{border-collapse: collapse;}
+table.narrow td{padding: 0px}
+td{vertical-align: top;}
+td.center, div.center, th.center{text-align: center}
+td.middle{vertical-align: middle;}
+td.bottom{vertical-align: bottom; }
+td.text-right, div.text-right{text-align: right;}
+div.right{float:right}
+
+
+._35{width: 35px; float: left; display: block;}
+._55{width: 55px; float: left; display: block;}
+._90{width: 90px; }
+._110{width: 110px; }
+._120{width: 120px; }
+._150{width: 150px; }
+
+hr.dotted{background: none;}
+hr.blue2{border-color:#a3b9cb}
+hr.space1{margin-bottom: 2px; border: none;visibility:hidden;}
+.separator{height: 1px; display: block; float: left; background-color: #a3b9cb;}
+
+div.box1, div.box1-2{
+    border: 1px solid #E5E5E5;
+    background-color:#F5F5F5 ;
+    clear: both;
+}
+
+div.box1-2{
+    border-width: 2px;
+    padding: 8px 13px;
+
+}
+
+
+div.box2, table.box2{
+    border-color: white;
+    box-shadow: 0 0 2px #777777;
+}
+
+ul.marged, ol.marged {margin:0 1.5em 1.5em 0;padding-left:1.5em;}
+
+
+/* Generic style --------------------------------------------------------------------------------------- */
+
+.bold{font-weight: bold;}
+.blue1{color:#0c4878}
+.blue2{color:#a3b9cb}
+.blue3{color:#beddf8}
+.blue4{color:#e0edf8}
+.color2{color:#ED145B;}
+.white{color: white}
+
+.grey1{color: #858585;}
+.grey2{color: #aaaaaa;}
+.grey3{color: #cdcdcd;}
+
+.grey0{color: #353535;}
+
+.bg1{background-color:#e8e8e2}
+.bg2{background-color:#f6f6f0}
+.bg3{background-color:#aaaaaa}
+.bg4{background-color:#adfecd}
+
+.hide{display: none;}
+
+ul.none{list-style: none; margin:0 ;padding:0}
+ul.none li{width: auto; height: auto;}
+
+ul.inline{margin: 0; padding: 0; clear: both;}
+ul.inline li{display: inline; list-style: none; float: left;}
+li.inline{display: inline}
+ul.entourage{border: 1px solid #CECECE; border-left: none; border-right: none; overflow: auto; padding: 5px 0; margin: 0;}
+ul.entourage li{display: inline; list-style: none; float: left; margin-right: 6px;}
+
+img.bordered{border: 1px solid #efefef; padding:2px;}
+img.bordered2{border: 1px solid #aaaaaa; padding:2px;}
+img.shadow{box-shadow: 0 0 2px #777777; border:1px solid white;}
+
+dl.type-1 { margin-bottom:50px; margin-top: 10px;}
+dl.type-1 dt {float:left; margin-right:4px; padding: 0 5px 0 0;width:80px;}
+dl.type-1 dd { margin:0; padding:2px 0;}
+
+
+
+/* Table styles */
+table.style1{
+    border: 1px solid #cdcdcd;
+    font-size: 120%;
+}
+
+table.style1 td{
+    padding: 8px;
+}
+
+table.style1 tr.header_1{
+    border: 1px solid #cdcdcd;
+    background-color: #F8F8F6;
+    background-image: none;
+}
+
+table.style1 tr.footer_1{
+    border: 1px solid #cdcdcd;
+    background-color: #E0EDF8;
+    background-image: none;
+}
+
+tr.bold td{
+    font-weight: bold;
+}
+
+
+/* Typography --------------------------------------------------------------------------------------- */
+
+body{color: #333333;}
+
+a{color: #0c4878; text-decoration: none; cursor: pointer; cursor: hand;}
+a:hover{color: #ED145B}
+
+a.remove{background: white url('../images/icons/12-em-cross.png') no-repeat 6px 4px;
+         padding:0px 8px 1px 22px;
+         -moz-border-radius: 12px;
+         -webkit-border-radius: 12px;
+         border-radius: 12px;
+         border: 1px solid white;
+}
+
+a.remove:hover{border-color: #a3b9cb; background-color:#a3b9cb; color: white }
+
+a.search-magnifier {
+    background: url("../images/famfamfam/magnifier_1.png") no-repeat scroll 3px 3px transparent;
+    border: 0 solid red;
+    display: block;
+    float: left;
+    height: 24px;
+    margin: 4px 0 0 8px;
+    overflow: hidden;
+    text-indent: -200px;
+    width: 25px;
+}
+
+a.add {
+    background: url("../images/famfamfam/add-transparent.png") no-repeat scroll 4px 3px white;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 90%;
+    font-weight: normal;
+
+    padding: 2px 8px 4px 25px;
+}
+a.add:hover {
+    background-image: url("../images/famfamfam/add.png");
+    border-color: #a3b9cb; 
+    background-color:#a3b9cb;
+    color: white
+}
+
+a.search-magnifier:hover {
+    background-image: url("../images/famfamfam/magnifier_go.png");
+}
+
+a.print, a.send, a.savePDF{
+    height: 25px;
+    display: block;
+    line-height: 26px;
+    padding-left: 22px;
+    overflow: hidden;
+    background: url('../images/famfamfam/printer.png') no-repeat left 4px;
+}
+
+a.send{
+    background-image: url('../images/famfamfam/email.png');
+}
+
+a.savePDF{
+    background-image: url('../images/famfamfam/page_white_acrobat.png');
+}
+
+.big{font-size: 115%; line-height: inherit;}
+.bigger{font-size: 150%;line-height: inherit;}
+.biggest{font-size: 172%;line-height: inherit;}
+.biggest2{font-size: 192%;line-height: inherit;}
+.biggest3{font-size: 232%;line-height: inherit;}
+
+button.big{font-size: 110%;}
+button.bigger{font-size: 120%;}
+button.biggest{font-size: 142%;}
+
+.price{
+    font-weight: bold;
+    font-size: 147%;
+    color: #0c4878;
+    text-align: right;
+}
+
+.small{font-size: 95%; margin-bottom: 5px; line-height: inherit;}
+.smaller{font-size: 87%;line-height: inherit;}
+.smallest{font-size: 72%;line-height: inherit;}
+
+button.small{font-size: 95%;}
+button.smaller{font-size: 87%;}
+button.smallest{font-size: 72%;}
+
+.dotted, .dotted2{
+    border-bottom: 1px dotted #0c4878;
+    padding-bottom: 4px;
+    margin: 2px 0 4px;
+}
+.dotted2{border-color:#a3b9cb}
+
+
+/* Titles */
+h2.flight, h2.hotel, h2.car{
+    border-bottom:1px solid #0c4878;
+    border-bottom-color: #a3b9cb;
+    color: #0c4878;
+    padding-bottom: 2px;
+    background: url('../images/mobico/flight-blue.png') no-repeat left top;
+}
+
+.title{border-bottom: 1px solid #CECECE; padding: 4px;}
+.title2{
+    font: 18px/18px 'ArvoRegular', Arial, sans-serif;letter-spacing: 0;
+    border-bottom: 1px solid #CECECE;
+    padding: 4px;
+    color: #0c4878
+}
+
+.options-title{
+    font: 14px/14px 'ArvoRegular', Arial, sans-serif;
+    color: #0c4878;
+    border-bottom: 1px solid #CECECE;
+    padding: 4px 0 4px 35px;
+    background: url('../images/mobico/dining-options.png') no-repeat left top;
+    margin-bottom: 3px;
+    margin-top: 12px;
+}
+
+.room-options{background: url('../images/mobico/room.png') no-repeat left top; padding-left: 35px;}
+.dining-options{background: url('../images/mobico/dining-options.png') no-repeat left top; padding-left: 35px;}
+.tour-activity{background: url('../images/mobico/tour-activity.png') no-repeat left top; padding-left: 35px;}
+.car-options{background: url('../images/mobico/car.png') no-repeat left top; padding-left: 35px;}
+.protection{background: url('../images/mobico/protection.png') no-repeat left 10px; padding-left: 35px;}
+
+
+
+
+.checked, .checked-small{background: url('../images/icons/24-em-check.png') no-repeat left top; padding-left: 30px;}
+.checked-small{background-image: url('../images/icons/16-em-check.png'); list-style: none;}
+
+/* top header --------------------------------------------------------------------------------------- 
+
+#top-header{
+    height: 30px;
+    -moz-box-shadow: -3px 0px 3px #333;
+    -webkit-box-shadow: -3px 0px 3px #333;
+    box-shadow: -3px 0px 3px #333;
+    border-bottom: 1px solid white;
+    background: #0c4878;
+    abackground-image: -moz-linear-gradient(0% 100% 90deg, #0c4878, #186cb4);
+    color: white;
+}
+
+#top-header ul{margin:4px 0 0 0; padding: 0;}
+#top-header a{color: white; margin-right: 12px;}
+#top-header a:hover{color: #beddf8;}
+
+#language, #currency {width: 100px; float: left; position: absolute; margin-left: 400px; z-index: 100}
+#language ul, #currency ul{margin:0;padding: 4px 0 0 0px; }
+#language ul:hover, #currency ul:hover{background-color: #eff7fd;color: #0c4878}
+#language img, #currency img{margin-right: 5px;}
+#language li.selected, #currency li.selected{background: none; display: block; padding-left: 5px;}
+#language li, #currency li{
+    border: 0px solid red;
+    height: 26px;
+    background-color: #eff7fd;
+    adisplay: none;
+}
+#language li a, #currency li a{color: #0c4878; width: 100%; display: block; height: 26px; padding: 3px 0 0 5px }
+#language li a:hover, #currency li a:hover{color: #ED145B;}
+#currency{width: 60px; margin-left: 510px;}
+
+#language li.hide:hover, #currency li.hide:hover{background-color: #a3b9cb;}
+
+#top-header p{margin-top: 4px;}
+#log-out{margin-left: 10px;}
+
+#phoneInfo #phoneBox{
+    width: 136px;
+    height: 36px;
+    display: block;
+    background: url('../images/telephone.png') no-repeat left top;
+    padding: 3px 0 0 60px;
+    font-size: 18.3px;
+    font-weight: bold;
+    color: white;
+    float: right;
+    margin:0;
+}
+
+#main-nav{
+    height: 35px;
+    border: 1px solid white;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    box-shadow: 0 0 2px #777777;
+    margin: 0;
+    background-color: #0c4878;
+    padding:0;
+}
+
+#main-nav li{
+    display: inline;
+}
+
+#main-nav a{
+    color: white;
+    height: 35px;
+    display: block;
+    float: left;
+    padding: 0 20px;
+    line-height: 34px;
+    font-size: 120%;
+    border-right: 1px solid #a3b9cb;
+}
+
+#main-nav a:hover{
+    background-color: #beddf8;
+    color: #0c4878;
+    border-right: 1px solid #beddf8;
+}
+
+#main-nav a.border-left{
+    border-left: 1px solid #a3b9cb;
+}
+
+.border-top{
+    border-top: 1px solid #aaaaaa;
+    padding-top: 4px;
+}
+
+
+.border-bottom{
+    border-bottom: 1px solid #aaaaaa;
+    padding-bottom: 4px;
+}
+
+
+/* Footer --------------------------------------------------------------------------------------- 
+
+#footer{
+    margin-top: 10px;
+    height: 360px;
+    background: url('../images/bg_footer.gif') repeat-x left top;
+    display: block;
+    width: 100%;
+    color: white;
+    padding-top: 10px;
+    font-size: 100%;
+    line-height: 18px;
+    margin:0;
+}
+
+#footer .title{
+    border-bottom: 1px solid #ababab;
+    padding-bottom: 3px;
+}
+
+#footer h4,#footer h5, #footer h5, #footer p{margin: 0;}
+
+#footer a{
+    color:#ACACAC;
+}
+#footer a:hover{
+    color:white;
+}
+
+#footer ul{margin:10px 0 0 0;padding:0;}
+#footer .colborder{border:none;}
+
+#footer li.rss, #footer li.twitter, #footer li.facebook, #footer li.newsletter{
+    background: url('../images/icons/rss.gif') no-repeat left 4px;
+    padding-left:14px;
+}
+
+#footer li.twitter{
+    background-image: url('../images/icons/twitter.gif');
+}
+
+#footer li.facebook{
+    background-image: url('../images/icons/facebook.gif');
+}
+
+#footer li.newsletter{
+    background-image: url('../images/icons/newsletter.gif');
+}
+
+/* Forms --------------------------------------------------------------------------------------- */
+
+input[type="text"],
+input[type="submit"],
+input[type="reset"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="url"],
+select,
+textarea{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+    margin: 5px 0 0;
+    outline: 0 none;
+    position: relative;
+    border-color: #a3b9cb;
+}
+
+select{ padding: 5px; }
+select.type2{padding: 1px 2px}
+
+.button.action, button.action, input[type=submit], input[type=reset], a.button{
+    background-color: #FF4B9B;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #FF3787, #FF4B9B);
+    border: 1px solid #EB2373;
+    color: #FFFFFF !important;
+    text-shadow: -1px -1px 0 #EB2373;
+    font-family: Arial;
+    -moz-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    padding:2px 18px;
+    letter-spacing: .5px;
+    text-transform: capitalize;
+}
+
+/*
+.button.action.blue, button.action.blue, input[type=submit].blue, a.button.blue{
+    background-color: #186cb4;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #186cb4, #489ce4);
+    border: 1px solid #186cb4;
+    text-shadow: -1px -1px 0 #0c4878;
+}
+*/
+
+.button.action.blue, button.action.blue, input[type=submit].blue, a.button.blue{
+    background-color: #0c4878;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #0c4878, #186cb4);
+    border: 1px solid #0c4878;
+    text-shadow: -1px -1px 0 #0c4878;
+}
+
+.button.action:hover, button.action:hover, input[type=submit]:hover, a.button:hover {
+    background-color: #FF3787;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #EB2373, #FF3787);
+    border-color: #D70F5F;
+    color: #FFFFFF !important;
+    text-shadow: -1px -1px 0 #D70F5F;
+}
+
+a.small{
+    font-size: 80%;
+    padding:0 20px;
+}
+
+.button.action:active, button.action:active {
+    background-color: #D70F5F;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #EB2373, #D70F5F);
+    color: #FFFFFF !important;
+    text-shadow: 1px 1px 0 #D70F5F;
+}
+.button.success, button.success, input.success {
+    background-color: #585858;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #444444, #585858);
+    border: 1px solid #303030;
+    color: #FFFFFF !important;
+    text-shadow: -1px -1px 0 #303030;
+}
+.button.success:hover, button.success:hover, input.success:hover {
+    background-color: #444444;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #303030, #444444);
+    border-color: #1C1C1C;
+    color: #FFFFFF !important;
+    text-shadow: -1px -1px 0 #1C1C1C;
+}
+.button.success:active, button.success:active {
+    background-color: #1C1C1C;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #303030, #1C1C1C);
+    color: #FFFFFF !important;
+    text-shadow: 1px 1px 0 #1C1C1C;
+}
+.button.info, button.info, input.info {
+    background-color: #B5B0A6;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #A19C92, #B5B0A6);
+    border: 1px solid #8D887E;
+    color: #FFFFFF !important;
+    text-shadow: -1px -1px 0 #8D887E;
+    padding: 2px;
+}
+.button.info:hover, button.info:hover, input.info:hover {
+    background-color: #A19C92;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #8D887E, #A19C92);
+    border-color: #79746A;
+    color: #FFFFFF !important;
+    text-shadow: -1px -1px 0 #79746A;
+}
+.button.info:active, button.info:active {
+    background-color: #79746A;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #8D887E, #79746A);
+    color: #FFFFFF !important;
+    text-shadow: 1px 1px 0 #79746A;
+}
+
+fieldset.type1{
+    border: 1px solid #a3b9cb;
+    background-color: #eff7fd;
+    border-radius: 2px 2px 2px 2px;
+    overflow: hidden;
+}
+
+fieldset.type1 h5{
+    font-weight: bold;
+    color:#0c4878;
+    border-bottom: 1px dotted #0c4878;
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+    font-size: 110%;
+}
+
+td{vertical-align: top;}
+table.form td{ margin: 0;padding: 0;}
+table.form2 td{ margin: 0;padding: 4px 4px 0 0;}
+fieldset.type1 ul.radio-list{ list-style: none; padding:0; margin:10px 0; font-weight: bold}
+fieldset.type1 ul.radio-list{ list-style: none; padding:0; margin-right: 0;}
+fieldset.type1 label{font-size: 85%}
+fieldset.type1 ul.radio-list li.inline{ display: inline;}
+div.child-age{float: left; margin-right: 5px;}
+table.number-nights td{padding: 0;}
+table.formRoom{margin: 0;}
+table.passengers tr{
+    border-top: 1px solid #a3b9cb;
+    border-bottom: 1px solid #a3b9cb;
+}
+
+span.error{padding:4px; margin-top: 3px;}
+ul.error_list{list-style: none; margin:0; padding:0; display:table-cell;}
+
+ul.error_list li{
+    color: #B10000;
+    margin:3px 7px 0 0;
+    border: 1px solid #f4c5c6;
+    background-color: #f8e4e5;
+    padding:2px 5px;
+    overflow: visible;
+    font-size: 90%;
+}
+
+a.dest-pop-up{
+    margin: 8px 0 0 4px;
+    float: left;
+}
+
+td.bottom ul.checkbox_list{margin:0 0 4px 0; list-style: none;}
+
+
+.ui-datepicker-trigger{
+    margin: 5px;
+}
+
+/* Filter Form ------------------------------------------------------------------------------- */
+
+#filterForm fieldset{
+    padding: 0;
+    border-color: white;
+    box-shadow: 0 0 2px #777777;
+}
+
+#filterForm h4{
+    background-color: #0c4878;
+    background-image: -moz-linear-gradient(0% 100% 60deg, #0c4878, #186cb4);
+    color: white;
+    font-weight: normal;
+    padding:10px 6px;
+    margin: 0;
+    font: 14px/14px 'ArvoRegular', Arial, sans-serif;letter-spacing: 0;
+}
+
+.slider{
+    margin:3px 10px 8px;
+}
+
+.slider-info{
+    text-align: center;
+    background-color: #f5f5f2;
+    padding: 3px;
+    margin-top: 3px;
+    border-radius: 5px;
+}
+
+.box-header{
+    background-color: #0c4878;
+    background-image: -moz-linear-gradient(0% 100% 60deg, #0c4878, #186cb4);
+    color: white;
+    font-weight: normal;
+    padding:10px 6px;
+    margin: 0;
+}
+
+.box-content{
+    background-color: #D9E5EE;
+    padding: 6px 6px 14px 6px;
+}
+
+.box-content ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+.box-content li{
+    clear: both;
+}
+
+.box-content span.container{
+    margin: 0;
+    float: left;
+}
+
+.box-content label{font-weight: normal;}
+.box-content .min, .box-content .max{float: right; min-width: 60px; text-align: right;}
+.box-content .total{margin-left: 3px}
+
+
+
+/* Flight box --------------------------------------------------------------------------------------- */
+
+
+
+
+/* Flight details box --------------------------------------------------------------------------------------- */
+
+
+/* Hotel --------------------------------------------------------------------------------------- */
+
+.hotel-list-box{border-top: 1px solid #CECECE;padding-top: 8px;}
+
+ul.hotel-box-links a{margin:0 15px 0 0; height: 20px; background-color: red; display: block; float: left;
+                     background: url('../images/icons/bullet_square.gif') no-repeat left 6px; padding-left: 10px;}
+ul.hotel-box-links a.hotel-show-map{padding-left: 20px; background: url('../images/icons/map.png') no-repeat left top;}
+
+
+/* Hotel detail --------------------------------------------------------------------------------------- */
+
+table.rates th{background:none ;}
+table.rates tr td{background: none;}
+table.rates ul{margin: 0; padding:0; list-style: none;}
+table.rates th{
+    font-weight: bold;
+    height: 25px;
+    vertical-align: middle;
+    text-align: left;
+    border-bottom: 1px solid #a3b9cb;
+}
+
+table.rates tr.room-type td{
+    padding-top:10px;
+    padding-bottom:10px;
+    font-weight: bold;
+    font-size: 130%;
+    border-top: 2px solid #c2dae9;
+
+}
+
+table.rates tr.room-rate{border-top: 1px dotted #c2dae9;border-bottom: 1px dotted #c2dae9;}
+li.rate-links a{
+    background: url("../images/icons/bullet_square.gif") no-repeat scroll left 5px transparent;
+    padding-left: 10px; margin-right: 10px;
+}
+
+.odd{background-color: #eff7fd;}
+ul.hotel-amenities{float: left;}
+ul.hotel-amenities li{
+    float: left;
+    width: 200px;
+    margin:0 10px 0 0;
+    list-style-position: inside;
+
+}
+
+ul.hotel-amenities li.last{
+    margin-right: none;
+}
+
+.hotel-information h2,
+.hotel-information h3,
+.hotel-information h4,
+.hotel-information h5,
+.hotel-information h6,
+.hotel-information p{
+    margin: 2px 0 1px;
+}
+
+.hotel-information p{ margin-bottom: 14px;}
+
+.galleria{
+    overflow: visible;
+}
+
+#hotel-map-canvas{
+    width: 670px;
+    height: 400px;
+}
+
+#hotel-total-top{
+    border: 1px solid #E5E5E5;
+    padding: 4px 4px 8px 0;
+    width: 160px;
+    float: right;
+    background-color:#F5F5F5 ;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+}
+
+
+/* Gmap info bubble */
+.infoHotelBubble{
+    overflow: visible;
+    width: 260px;
+    display: block;
+    min-height: 100px;
+    padding: 0px;
+}
+
+.infoHotelBubble ul{
+    background-color: white;
+    overflow: auto;
+    padding: 4px;
+    margin-bottom: 3px;
+
+}
+
+.infoHotelBubble li.title{
+    max-width: 180px;
+    font-weight: bold;
+    color: #0c4878;
+    display: inline;
+    float: left;
+    border:none;
+    padding: 0;
+    margin:0;
+}
+
+.infoHotelBubble li.starRating{
+    font-size: 80%;
+    font-weight: bold;
+    color: #0c4878;
+    float: right;
+    display: inline;
+}
+
+.infoHotelBubble img.small-pic{
+    width: 50px;
+    float: left;
+    margin-right: 5px;
+}
+
+.infoHotelBubble .info-rates{
+    padding: 5px;
+}
+
+.infoHotelBubble span.minPrice{
+    font-weight: bold;
+    color: #0c4878;
+}
+
+
+
+/* Review section */
+.score{
+    background: #0c4878;
+    background-image: -moz-linear-gradient(0% 100% 90deg, #0c4878, #186cb4);
+    color: white;
+    padding: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.score ul{margin:0; padding:0; list-style: none;}
+
+table.review-rating td{padding: 0;}
+td.review-rate{border: 1px solid white; padding-right:6px; background-color: #ececec; width: 100px;}
+div.fill{background-color: #a3b9cb; display: block; height: 17px;}
+
+ul.tags{margin:0; padding:0}
+ul.tags li{display: inline;}
+
+ul.tags li a{
+    float: left;
+    margin: 3px;
+    padding: 1px 7px;
+    display: block;
+    border: 1px solid #a3b9cb;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    font-size: 90%;
+}
+
+
+.review{
+    border-top: 1px solid #CECECE;
+    padding: 15px 0 0 0px;
+}
+
+.review h3{
+    margin: 0 0 4px 0;
+    font-weight: bold;
+    color: #0c4878;
+}
+.rating-heart li{margin-right: 8px;}
+.heart{margin: 0;padding: 0; width: 12px;}
+
+
+
+
+
+
+/* Tabs --------------------------------------------------------------------------------------- */
+
+#tab-viewing {
+    border-bottom: 1px solid #CECECE;
+    height: 35px;
+    line-height: 35px;
+    width: 100%;
+}
+
+#tab-viewing ul{
+
+}
+
+#tab-viewing a{
+    background-color: #F8F8F6;
+    border:1px solid #CECECE;
+    border-bottom: none;
+    display: block;
+    float: left;
+    height: 34px;
+    margin-right: 5px;
+    padding: 0 15px;
+}
+#tab-viewing #backToResults {
+    background: none repeat scroll 0 0 transparent;
+    border: medium none;
+    display: none;
+    float: right;
+    font-weight: bold;
+}
+#tab-viewing a.selected {
+    background-color: white;
+    border-bottom: 1px solid white;
+}
+
+
+
+
+/* Basket --------------------------------------------------------------------------------------- */
+
+#basket-summary{
+    border:1px solid white;
+    abackground-image: -moz-linear-gradient(0% 100% 90deg, #efefef, #ffffff);
+    background-color: #F8F8F6;
+}
+
+#basket-summary.flight-details tr td{
+    border-left:none;
+    border-right:none;
+    border:none;
+}
+
+#basket-summary tr.bg3 td{
+    background-color: #e0edf8;
+    padding: 8px 6px;
+    aborder-bottom: 1px solid white;
+    border-top: 1px solid #a3b9cb;
+    border-bottom: 1px solid #a3b9cb;
+    font-size: 110%;
+}
+
+.border-top{
+    border-top: 1px solid #a3b9cb;
+    padding-top: 4px;
+}
+
+#basket-summary tr.sub-total td{
+    padding-bottom:16px;
+}
+
+
+
+/* Packages --------------------------------------------------------------------------------------- */
+
+#gMapHotels_canvas{
+    height: 650px;
+}
+
+.hotel-map-box{
+    border-bottom: 1px solid #ececec;
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+}
+/* Options --------------------------------------------------------------------------------------- */
+
+
+
+
+/* pagination */
+
+ul.pagination {
+    height: 15px;
+    display: block;
+    font-size: 82%;
+}
+a.page-link, span.page-link{
+    padding: 3px 3px 4px;
+    display: block;
+    float: right;
+    margin-left: 2px;
+    border: 1px solid white;
+    margin-right: 2px;
+    height: 18px;
+}
+
+/* Paginator ------------------------------- */
+
+ul.paginator{
+    float: right;
+}
+
+ul.paginator li{
+    display: inline;
+}
+
+ul.paginator a{
+    background: url('/images/generic/paginator.png') no-repeat -8px top;
+    width: 8px;
+    height: 8px;
+    display: block;
+    float: left;
+    margin-right: 6px;
+    margin-top: 16px;
+}
+
+ul.paginator a.selected{
+    background-position: -8px -8px;
+}
+
+ul.paginator a{
+    float: left;
+}
+
+
+ul.paginator a.next, ul.paginator a.prev{
+    width: 24px;
+    height: 24px;
+    display: block;
+    float: left;
+    text-indent: -1000px;
+    overflow: hidden;
+    background-position: left top;
+    margin-top: 8px;
+    margin-right: 0px;
+}
+
+ul.paginator a.next{
+    background-position: left -40px;
+    margin-right: 4px;
+}
+
+ul.paginator a.prev{
+    background-position: left -16px;
+
+}
+
+
+/* Sorting -----------------------------  */
+
+#sorting{
+    border: 0px solid #dddddd;
+    height: 25px;
+    abackground-color: #ededed;
+    padding: 5px 0;
+    padding-right: 8px;
+}
+
+#sorting span{
+    float: left;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 5px;
+}
+
+#sorting ul li,level-1{
+    display: inline;
+    width: 80px;
+    width: auto !important;
+}
+
+#sorting li.level-1{
+    float: left;
+    margin-right: 20px;
+    margin-left: 10px;
+    padding: 0px 5px 0px 5px;
+    border: 1px solid #ededed;
+    height: 23px;
+    border-radius: 3px 3px 3px 3px;
+}
+
+#sorting li.level-1:hover{
+    border: 1px solid #bbbbbb;
+}
+
+#sorting li.level-1.selected{
+    background-color: white;
+    border: 1px solid #a3b9cb;
+}
+
+#sorting div.level-2{
+    width:20px;
+    float: left;
+}
+
+#sorting div.level-2 a{
+    text-indent: -300px;
+    background: #efefef url('../images/icons/sorting-bullet3.png') no-repeat left top;
+    overflow: hidden;
+    display: block;
+    border: 0px solid red;
+    width: 7px;
+    height: 5px;
+    padding: 0;
+    margin:4px 0;
+}
+
+#sorting div.level-2 a.selected{
+    background-position: left -5px;
+}
+
+#sorting div.level-2 a.asc.selected{
+    background-position: left -10px;
+}
+
+#sorting div.level-2 a.asc{
+    background-position: left -15px;
+}
+
+#sorting div.level-2 a:hover{
+    background-position: left -5px;
+}
+#sorting div.level-2 a.asc:hover{
+    background-position: left -10px;
+}
+
+#sorting div.level-3{
+    float: left;
+    padding-top: 3px;
+}
+
+#sorting ul.level-2 li a{
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    display: block;
+}
+
+#sorting li a.page-link{
+    float: right;
+    padding:2px 3px;
+    margin-right: 4px;
+    border: 1px solid #ededed;
+    display: block;
+    margin-top: 3px;
+}
+
+#sorting a.page-link:hover{
+    border: 1px solid #bbbbbb;
+}

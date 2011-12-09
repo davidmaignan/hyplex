@@ -1,52 +1,42 @@
 <div class="span-7">
-    <table id="basket-summary">
-        <?php if(isset($flight)): ?>
-        <?php include_partial('basket/flightLeft', array('flight'=>$flight,'flightParameters'=>$flightParameters)) ?>
+    <table class="style1">
+        <?php if (isset($flight)): ?>
+            <?php include_partial('basket/flightLeft', array('flight' => $flight, 'flightParameters' => $flightParameters)) ?>
         <?php else: ?>
-        <?php include_partial('basket/flightLeftAdd');?>
+            <?php include_partial('basket/flightLeftAdd'); ?>
         <?php endif; ?>
 
-        <?php if(isset($hotel)): ?>
-        <?php include_partial('basket/hotelLeft', array('hotel'=>$hotel,'hotelParameters'=>$hotelParameters)) ?>
+        <?php if (isset($hotel)): ?>
+            <?php include_partial('basket/hotelLeft', array('hotel' => $hotel, 'hotelParameters' => $hotelParameters)) ?>
         <?php else: ?>
-        <?php include_partial('basket/hotelLeftAdd');?>
+            <?php include_partial('basket/hotelLeftAdd'); ?>
         <?php endif; ?>
 
-         <?php if(isset($extra)): ?>
-        <?php include_partial('basket/extraLeft', array('extra'=>$extra)) ?>
+        <?php if (isset($extra)): ?>
+            <?php include_partial('basket/extraLeft', array('extra' => $extra)) ?>
         <?php else: ?>
-        <?php include_partial('basket/extraLeftAdd');?>
+            <?php include_partial('basket/extraLeftAdd'); ?>
         <?php endif; ?>
 
-        <?php if(isset($car)): ?>
-        <?php include_partial('basket/carLeft', array('car'=>$car,'carParameters'=>$carParameters)) ?>
+        <?php if (isset($car)): ?>
+            <?php include_partial('basket/carLeft', array('car' => $car, 'carParameters' => $carParameters)) ?>
         <?php else: ?>
-        <?php include_partial('basket/carLeftAdd');?>
+            <?php include_partial('basket/carLeftAdd'); ?>
         <?php endif; ?>
 
-        <?php if(isset($excursions)): ?>
-        <?php include_partial('basket/excursionLeft', array('excursions'=>$excursions)) ?>
+        <?php if (isset($excursions)): ?>
+            <?php include_partial('basket/excursionLeft', array('excursions' => $excursions)) ?>
         <?php else: ?>
-        <?php include_partial('basket/excursionLeftAdd');?>
+            <?php include_partial('basket/excursionLeftAdd'); ?>
         <?php endif; ?>
 
-        <tr class="basket-list-total">
+        <tr class="footer_1">
             <td colspan="2">
-                <ul>
-                    <li><?php echo __('Total') ?></li>
-                    <li class="sub-person"><?php //echo ucfirst(__('price per person')) ?></li>
-                </ul>
+                <span class="bold"><?php echo __('Total') ?></span>
             </td>
             <td class="total" style="min-width: 100px;">
-                <ul>
-                    <li>
-                        <?php echo Utils::getPrice($plexBasket->getTotalPrice()) ?>
-                    </li>
-                    <li class="sub-person">
-                        <?php //echo format_currency(rand(2999,8999)/3,  sfConfig::get('app_currency')); ?>
-                    </li>
-                    <li><?php echo link_to1(__('checkout'), '@checkout',array('class'=>'action button small right')); ?></li>
-                </ul>
+                <span class="bold bigger blue1 right"><?php echo Utils::getPrice($plexBasket->getTotalPrice()) ?></span><br /><br />
+                <?php echo link_to1(__('checkout'), '@checkout', array('class' => 'action button small right')); ?>
             </td>
         </tr>
     </table>

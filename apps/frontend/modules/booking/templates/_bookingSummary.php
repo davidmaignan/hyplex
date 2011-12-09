@@ -3,8 +3,8 @@
 //$hotel = $booking->getHotel();
 //var_dump($hotel);
 ?>
-
-<table class="basket-flight">
+<div style="padding: 10px; border: 2px solid #cecece; background-color: #f8f8f6">
+<table>
     <?php if($booking->getFlight()): ?>
     <tr>
         <td><img src="/images/mobico/flight.png" /></td>
@@ -16,7 +16,7 @@
             Depart:<br />
             Return:
         </td>
-        <td>
+        <td class="bold">
             <?php echo format_date($booking->getFlight()->getOriginOrReturnDateOrTime('origin','date'),'D') ?><br />
             <?php echo format_date($booking->getFlight()->getOriginOrReturnDateOrTime('return','date'), 'D') ?>
         </td>
@@ -72,10 +72,9 @@
     </tr>
     <?php endif; ?>
     <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td  colspan="2" class="bold"  style="text-align: right">Total</td>
-        <td class="total bigger" style="width: 100px;"><?php echo format_currency(rand(1999,12999),  sfConfig::get('app_currency')) ?></td>
+        
+        <td  colspan="5" class="bold text-right paddingTop">Total</td>
+        <td class="total bigger text-right border-top" style="width: 100px;"><?php echo format_currency(rand(1999,12999),  sfConfig::get('app_currency')) ?></td>
     </tr>
 </table>
+</div>

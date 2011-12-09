@@ -93,9 +93,9 @@ class FlightGenericObj {
 
     public function getAirportName($code, $culture)
     {
-        $string = $code. '<br />';
-        $string .= $this->arAirport[$code][$culture]['name'];
-        $string .= '<span class="small blue bold"> ('.$this->arAirport[$code][$culture]['city_name'];
+        $string = $code;
+        $string .= ' - '.$this->arAirport[$code][$culture]['name']. '<br />';
+        $string .= '<span class="small blue1 bold"> ('.$this->arAirport[$code][$culture]['city_name'];
         if($this->arAirport[$code]['state'] != ''){
             $string .= ' ['.$this->arAirport[$code]['state'] .']';
         }
@@ -238,9 +238,9 @@ class FlightGenericObj {
         $string = '';
 
         if($airline != $operatingAirline && $operatingAirline != '**'){
-            $string .= '<tr class="border"><td colspan="6" class="notice">';
+            $string .= '<tr class="border"><td colspan="6" class="text-right">';
             $string .= __('Operated by: ');
-            $string .= $data->OperatingAirline;
+            $string .= '<span class="blue1 bold">'.$data->OperatingAirline.'</span>';
             $string .= '</td></tr>';
         }
 

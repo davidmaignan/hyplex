@@ -107,7 +107,7 @@ $('document').ready(function(){
             }
         });
 
-        $( "#price" ).val(maxPrice);
+        $("#price" ).val(maxPrice);
         $("#info_price").html("$"+ minPrice + " - $" + maxPrice);
 
         //Bind all sliders checkbox with click event

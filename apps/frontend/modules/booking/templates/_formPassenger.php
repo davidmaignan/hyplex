@@ -1,7 +1,7 @@
-<h6 class="append-bottom smaller bold color2"><?php echo __($type). ' ' .($key+1) ?></h6>
-<div class="span-18" style="border-bottom: 1px dotted #aaaaaa; padding-bottom: 18px; margin-bottom: 6px;">
+<h4 class=" minMargin bold color2"><?php echo __($type). ' ' .($key+1) ?></h4>
+<div class="span-18">
     <div class="span-11" style="border-right: 1px dotted #aaaaaa;">
-    <table class="passengers append-bottom">
+    <table class="append-bottom">
         <tr>
             <td class="first"><?php echo $f['salutation']->renderLabel(); ?></td>
             <td class="second"><?php echo $f['salutation']; ?></td>
@@ -9,17 +9,17 @@
         </tr>
         <tr>
             <td><?php echo $f['first_name']->renderLabel(); ?></td>
-            <td><?php echo $f['first_name']; ?></td>
+            <td><?php echo $f['first_name']->render(array('class'=>'text span-4')); ?></td>
             <td><?php echo $f['first_name']->renderError(); ?></td>
         </tr>
         <tr>
             <td><?php echo $f['middle_name']->renderLabel(); ?></td>
-            <td><?php echo $f['middle_name']; ?></td>
+            <td><?php echo $f['middle_name']->render(array('class'=>'text span-4')); ?></td>
             <td><?php echo $f['middle_name']->renderError(); ?></td>
         </tr>
         <tr>
             <td><?php echo $f['last_name']->renderLabel(); ?></td>
-            <td><?php echo $f['last_name']; ?></td>
+            <td><?php echo $f['last_name']->render(array('class'=>'text span-4')); ?></td>
             <td><?php echo $f['last_name']->renderError(); ?></td>
         </tr>
         <tr>
@@ -29,7 +29,7 @@
         </tr>
         <tr>
             <td><?php echo $f['dob']->renderLabel(); ?></td>
-            <td><?php echo $f['dob']; ?></td>
+            <td><?php echo $f['dob']->render(array('class'=>'text span-3')); ?></td>
             <td><?php echo $f['dob']->renderError(); ?></td>
         </tr>
     </table>
@@ -39,34 +39,26 @@
         
         <tr>
             <td>
-                <ul>
-                    <li><?php echo $f['frequent_flyer_number']->renderLabel(); ?></li>
-                    <li><?php echo $f['frequent_flyer_number']; ?></li>
-                </ul>
+                <?php echo $f['frequent_flyer_number']->renderLabel(); ?><br />
+                <?php echo $f['frequent_flyer_number']->render(array('class'=>'text span-4')); ?>
             </td>
         </tr>
         <tr>
             <td>
-                <ul>
-                    <li><?php echo $f['airline_code']->renderLabel(); ?></li>
-                    <li><?php echo $f['airline_code']; ?></li>
-                </ul>
+                <?php echo $f['airline_code']->renderLabel(); ?><br />
+                <?php echo $f['airline_code']->render(array('class'=>'text span-4')); ?>
             </td>
         </tr>
         <tr>
             <td>
-                <ul>
-                    <li><?php echo $f['meal_preference']->renderLabel(); ?></li>
-                    <li><?php echo $f['meal_preference']; ?></li>
-                </ul>
+                <?php echo $f['meal_preference']->renderLabel(); ?><br />
+                <?php echo $f['meal_preference']->render(array('class'=>'text span-4')); ?>
             </td>
         </tr>
         <tr>
             <td>
-                <ul>
-                    <li><?php echo $f['special_assistance']->renderLabel(); ?></li>
-                    <li><?php echo $f['special_assistance']; ?></li>
-                </ul>
+                <?php echo $f['special_assistance']->renderLabel(); ?><br />
+                <?php echo $f['special_assistance']; ?>
             </td>
         </tr>
     </table>

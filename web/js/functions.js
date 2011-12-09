@@ -75,13 +75,13 @@ function highlight2( data, search ){
             values[i] = values[i].toLowerCase();
             data = data.replace( new RegExp( "(?!<[^<>]*)("
                 + $.ui.autocomplete.escapeRegex(values[i]) +
-                ")(?![^<>]*>)", "g"), "<strong>" + values[i] + "</strong>" );
+                ")(?![^<>]*>)", "g"), "<span class='strong'>" + values[i] + "</span>" );
             data = data.replace( new RegExp( "(?!<[^<>]*)("
                 + $.ui.autocomplete.escapeRegex(values[i].capitalize()) +
-                ")(?![^<>]*>)", "g"), "<strong>" + values[i].capitalize() + "</strong>" );
+                ")(?![^<>]*>)", "g"), "<span class='strong'>" + values[i].capitalize() + "</span>" );
             data = data.replace( new RegExp( "(?!<[^<>]*)("
                 + $.ui.autocomplete.escapeRegex(values[i].toUpperCase()) +
-                ")(?![^<>]*>)", "g"), "<strong>" + values[i].toUpperCase() + "</strong>" );
+                ")(?![^<>]*>)", "g"), "<span class='strong'>" + values[i].toUpperCase() + "</span>" );
             //data = data.replace( new RegExp( ( values[i].capitalize() ), 'g' ), "<strong>" + values[i].capitalize() + "</strong>" );
         }
 
@@ -163,9 +163,9 @@ function getTimeInSeconds(hour, min, sec)
 function activateFlightDetails(){
 
     $('.flight-link-details').toggle(function(){
-        $(this).closest('.flight-box').next('.flight-box-details').show();
+        $(this).closest('div.flight-box').next('.flight-box-details').show();
     }, function(){
-        $(this).closest('.flight-box').next('.flight-box-details').hide();
+        $(this).closest('div.flight-box').next('.flight-box-details').hide();
     });
 }
 
@@ -254,13 +254,26 @@ function sendFilterRequest(target){
     if(target instanceof google.maps.Marker){
 
         url = target.link;
+        divHotelTarget = "#hotelDetailsResult";
+        showHideHotelDivs(2);
 
     }else{
 
         //If page link clicked - retreive the page value
         if(target.hasClass('page-link')){
+            
             page = target.html();
+            
+            //Special case if prev / next is clicked check id to retreive the number next-xxx or prev-xxx
+            if(page.search(/Prev/)>-1 || page.search(/Next/i)>-1){
+                
+                var id = target.attr('id');
+                var position = id.split('-');
+                page = parseInt(position[1]);
+            }
+            
             showHideHotelDivs(0);
+            
         }else{
             page = 1;
         }
@@ -280,8 +293,8 @@ function sendFilterRequest(target){
 
         //Special case if hotel name link clicked show div for displaying hotel detail page
         if(classes.search(/(hotelNameDetailAjaxLink2)/) > -1 || classes.search(/(hotelNameDetailAjaxLink)/) > -1){
-            showHideHotelDivs(4);
             divHotelTarget = "#hotelDetailsResult";
+            showHideHotelDivs(2);
         }
 
        
@@ -293,13 +306,6 @@ function sendFilterRequest(target){
 
     }
 
-    //alert(url);
-    //ADS.log.write(url);
-
-    //If hotel detail show tabs back to result
-    if(url.search(/(hotel-detail)/) > -1){
-        $('#backToResults').show();
-    }
 
     //Determine which kind of filtering user is doing
     ajaxRequest = $.ajax({
@@ -347,8 +353,6 @@ function onRequest2Success(msg){
 
 //Function to activate links in the pagination list
 function activatePagination(){
-
-    
 
     $('.page-link').click(function(){
         sendFilterRequest($(this));
@@ -454,7 +458,10 @@ function activateResetGmap(){
 
 function activateHotelFilteringLinks(){
     $('a.hotelDetailAjaxLink').click(function(){
+        divHotelTarget = "#hotelDetailsResult";
+        showHideHotelDivs(2);
         sendFilterRequest($(this));
+        
         return false;
     });
 
@@ -484,8 +491,28 @@ function activateShowHideLocationChain(){
 
 //When any checkbox in the hotel filter form is clicked.
 function activateHotelFilteringCheckboxes(){
+
     $('.filterHotelCheckbox').click(function(){
-        $(this).closest('div').prev('div.box-1').children('a.remove-small').show();
+        
+        var value = $(this).attr('class');
+        
+        switch(true){
+            
+            case value.search(/(Star)/i) > -1:
+            $('.reset-star').show();
+            break;
+            
+            case value.search(/(location)/i) > -1:
+            $('.reset-location').show();
+            break;
+            
+            case value.search(/(chain)/i) > -1:
+            $('.reset-chain').show();
+            break;
+            
+        }
+        
+        
         sendFilterRequest($(this));
     });
 }
@@ -493,9 +520,10 @@ function activateHotelFilteringCheckboxes(){
 //When any links in the form is clicked -> display Remove-small btn
 function showRemoveSmallLink(){
     $('#filterForm a').click(function(){
-        $('#infoFilterResult').hide();
-        $('#clearFiltersAll').show();
-        $(this).closest('div').prev('div.box-1').children('a.remove-small').show();
+        //alert('here');
+        //$('#infoFilterResult').hide();
+        //$('#clearFiltersAll').show();
+        $(this).closest('.box-content').prev('h4').children('a.remove-small').show();
 
     });
 }
@@ -539,7 +567,7 @@ function activateResetFilter(){
     //Reset filter btns
         $('a.remove-small').click(function(){
             $(this).hide();
-            var value = $(this).prev('h4').attr('id');
+            var value = $(this).closest('h4').attr('id');
  
             switch (value) {
                 case 'star_rating':
@@ -586,7 +614,7 @@ function ResetAverageNightlyRateSlider(min,max,posMin,posMax,minRange,maxRange){
 
     $( "#slider_average_nigthlyRate").slider({
            stop: function(event, ui) {
-                $('#average_nightly_rate').next('a.remove-small').show();
+                $('a.reset-slider').show();
                 sendFilterRequest($(this));
             }
     });
@@ -670,26 +698,29 @@ function activateHotelTabulation(){
     $('.hotelResult-tabs').click(function(){            
 
             var value = $(this).attr('id');
+            //alert(value);
 
              switch (true) {
+                 
+                case value.search(/list/) > -1:
+                    showHideHotelDivs(0);
+                    break;
+                 
                 case value.search(/(map)/) > -1:
-                    
-                    //ADS.log.write('mapInitialized: '+mapInitialized);
                     initializeGmapHotels(mapInitialized);
                     showHideHotelDivs(1);
                     break;
-
-                case(value.search(/(backToResults)/)>-1):
-                    $(this).hide();
-                    showHideHotelDivs(0);
-                    sendFilterRequest($(this));
-                    break;
-
-                case(value.search(/(viewed)/)>-1):
+                    
+                case(value.search(/(details)/)> -1):
                     showHideHotelDivs(2);
                     break;
+                    
+                case(value.search(/(view)/)>-1):
+                    showHideHotelDivs(3);
+                    break;    
 
-                case(value.search(/(details)/)> -1):
+                case(value.search(/(compare)/)>-1):
+                    
                     showHideHotelDivs(4);
                     break;
 
@@ -697,7 +728,6 @@ function activateHotelTabulation(){
                     //ADS.log.write('show list');
                     showHideHotelDivs(0);
                     break;
-
              }
 
 
@@ -709,60 +739,69 @@ function activateHotelTabulation(){
 
 function showHideHotelDivs($val){
     
+    //alert($val);
+    
     switch($val){
+        
+        //list
         case 0:
-            $('#hotelDetailsResult').hide();
             $('#hotelListResult').show();
             $('#gMapHotels').hide();
+            $('#hotelDetailsResult').hide();
             $('#viewedHotels').hide();
             $('#compareHotels').hide();
             $('.hotelResult-tabs').removeClass('selected');
             $('#tab-hotels-list').addClass('selected');
             $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
         break;
-
+        
+        //map
         case 1:
-            $('#hotelDetailsResult').hide();
             $('#hotelListResult').hide();
             $('#gMapHotels').show();
+            $('#hotelDetailsResult').hide();
             $('#viewedHotels').hide();
             $('#compareHotels').hide();
             $('.hotelResult-tabs').removeClass('selected');
             $('#tab-hotels-map').addClass('selected');
             $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
         break;
-
+        
+        //details
         case 2:
-            $('#hotelDetailsResult').hide();
-            $('#viewedHotels').show();
             $('#hotelListResult').hide();
             $('#gMapHotels').hide();
-            $('#compareHotels').hide();
-            $('.hotelResult-tabs').removeClass('selected');
-            $('#tab-hotels-viewed').addClass('selected');
-            $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
-        break;
-
-        case 3:
-            $('#hotelDetailsResult').hide();
-            $('#viewedHotels').hide();
-            $('#hotelListResult').hide();
-            $('#gMapHotels').hide();
-            $('#compareHotels').show();
-            $('.hotelResult-tabs').removeClass('selected');
-            $('#tab-hotels-viewed').addClass('selected');
-            $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
-
-            break;
-
-        case 4:
             $('#hotelDetailsResult').show();
             $('#viewedHotels').hide();
-            $('#hotelListResult').hide();
-            $('#gMapHotels').hide();
             $('#compareHotels').hide();
             $('.hotelResult-tabs').removeClass('selected');
             $('#tab-hotels-details').addClass('selected');
+            $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
+        break;
+        
+        //viewed
+        case 3:
+            $('#hotelListResult').hide();
+            $('#gMapHotels').hide();
+            $('#hotelDetailsResult').hide();
+            $('#viewedHotels').show();
+            $('#compareHotels').hide();
+            $('.hotelResult-tabs').removeClass('selected');
+            $('#tab-hotels-view').addClass('selected');
+            $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
+
+            break;
+        
+        
+        //compare
+        case 4:
+            $('#hotelListResult').hide();
+            $('#gMapHotels').hide();
+            $('#hotelDetailsResult').hide();
+            $('#viewedHotels').hide();
+            $('#compareHotels').show();
+            $('.hotelResult-tabs').removeClass('selected');
+            $('#tab-hotels-compare').addClass('selected');
             $('html,body').animate({scrollTop: $("#tab-hotels-map").offset().top},'fast');
             break;
 
@@ -1193,16 +1232,16 @@ function activateHotelThumbHover(){
 function activateTermsConditions(){
 
     $('a.rate-description').toggle(function(){
-        $(this).closest('.room-rate-name').children('.rate-description-content').show();
+        $(this).closest('ul.none').siblings('.rate-description-content').show();
     }, function(){
-        $(this).closest('.room-rate-name').children('.rate-description-content').hide();
+        $(this).closest('ul.none').siblings('.rate-description-content').hide();
     });
 
 
     $('a.termsConditions').toggle(function(){
         executeRequestTermsConditions($(this));
     }, function(){
-        $(this).closest('.room-rate-name').children('.term-condition-content').hide();
+        $(this).closest('ul.none').siblings('.term-condition-content').hide();
     });
 
    
@@ -1214,7 +1253,7 @@ function executeRequestTermsConditions(target){
     var preLoader = new Image();
     preLoader.src = '/images/arrowLoader.gif';
 
-    termsConditionsTarget = target.closest('.room-rate-name').children('.term-condition-content');
+    termsConditionsTarget = target.closest('ul.none').siblings('.term-condition-content');
     termsConditionsTarget.append(preLoader);
     
     var url = target.attr('href');
@@ -1271,13 +1310,8 @@ function ActivateCompareHotelBtn(){
         //Retrieve
         var datas = 'hotels=';
         hotels.each(function(){
-
             datas += $(this).attr('id')+',';
-
         });
-
-
-        //alert(datas);
 
         $.ajax({
             type: "post",
@@ -1285,22 +1319,18 @@ function ActivateCompareHotelBtn(){
             data: datas,
             success: onCompareRequestSuccess,
             error: onCompareRequestFailure
-        });
-
-        
+        });        
 
         return false;
 
     });
-
-    
 
 }
 
 function onCompareRequestSuccess(msg){
 
     $("#dialog-message").dialog( "destroy" );
-    showHideHotelDivs(3);
+    showHideHotelDivs(4);
     $('#compareHotels').html(msg);
     //alert(msg);
 
