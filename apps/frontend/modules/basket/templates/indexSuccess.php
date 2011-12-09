@@ -4,19 +4,19 @@
 
 <?php include_partial('include/dialog_message'); ?>
 
-<h1 class="title append-bottom"><?php echo __('Your basket') ?></h1>
-<hr class="space2" />
+<h1 class="title"><?php echo __('Your basket') ?></h1>
+
 <?php include_component('basket', 'checkOut') ?>
 
-<div class="span-18 last">
+<div class="span-17 prepend-1 last">
 
     <?php include_partial('summary',array('parameters'=>$parameters)); ?>
-    <hr class="space3" />
+    <hr class="space" />
     <?php if(isset($flight)): ?>
     <div id="flight" class="basket-data-container">
         <h2 class="flight"><?php echo __('Flight'); ?></h2>
         
-        <div class="span-18 bg-grey flight-box-details">
+        <div class="span-17 bg-grey flight-box-details">
             <div class="padded">
                 <table class="flight-details">
                     <?php include_partial('flight/segmentOutbound', array('result'=>$flight)) ?>
@@ -36,9 +36,10 @@
             
         </div>
     </div>
+    <hr class="space" />
     <?php endif; ?>
 
-    <hr class="space3" />
+    
     
     <?php if(isset($hotel)): ?>
 
@@ -55,22 +56,23 @@
 
         </div>
     </div>
+    <hr class="space" />
     <?php endif; ?>
 
     <?php if(isset($extras)): ?>
     <div id="extras" class="basket-data-container hide">
         <h2 class="title extras"><?php echo __('Extras'); ?></h2>
     </div>
+    <hr class="space" />
     <?php endif; ?>
 
-    <hr class="space3" />
+    
 
     <?php if(isset($car)): ?>
     <div id="car" class="basket-data-container">
         
         <h2 class="title car"><?php echo __('Car'); ?></h2>
        
-        
     </div>
     <?php endif; ?>
 
@@ -91,7 +93,7 @@
 
 </div>
 
-<hr class="space3" />
+<hr class="space" />
 
 <script type="text/javascript">
 
@@ -102,21 +104,3 @@ $('document').ready(function(){
 
 </script>
 
-<style>
-    table.flight-details tr.small td{
-        background-color: #E0EDF8;
-        color: #333333;
-        border:1px solid #CECECE;
-    }
-
-    table.flight-details td{
-        background-color: white;
-        aborder: none;
-        
-    }
-
-    table.flight-details td.title{
-        padding: 9px 0;
-}
-
-</style>

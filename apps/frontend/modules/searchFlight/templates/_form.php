@@ -1,7 +1,7 @@
-<?php require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
+<?php require_once sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'search' . DIRECTORY_SEPARATOR . 'variables.php'; ?>
 
-<?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
-<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
+<?php if (in_array($sf_user->getCulture(), array('fr_FR', 'zh_CN'))): ?>
+    <?php use_javascript('culture/datepicker_' . $sf_user->getCulture() . '.js') ?>
 <?php endif; ?>
 
 <?php use_javascript('search/searchFlight'); ?>
@@ -10,151 +10,118 @@
 <?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js'); ?>
 <?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css'); ?>
 
+<div class="span-15 last">
 
-<style>
-    td.prepend-top{
-        padding-top: 10px;
-    }
+    <?php if ($form->hasGlobalErrors()): ?>
+        <ul class="error-global">
+            <?php foreach ($form->getGlobalErrors() as $name => $error): ?>
+                <li class=""><?php echo $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 
-    td.error{
+    <form id="flight_search_form_2" name="flight_search_form_2" action="<?php echo url_for('@search_flight_form') ?>" method="post" >
 
-    }
-</style>
-
-<div class="span-15" id="form-index" >
-
-    <form action="<?php echo url_for('@search_flight_form') ?>" method="post" id="">
-        <fieldset>
-
-            <?php if($form->hasGlobalErrors()): ?>
-            <ul class="error-global">
-               <?php foreach ($form->getGlobalErrors() as $name => $error): ?>
-                  <li class=""><?php echo $error ?></li>
-                <?php endforeach; ?>
-            </ul>
-            <?php endif; ?>
-
-            <h3 class="form-index"><?php echo __('Trip details'); ?></h3>
-            <table>
+        <fieldset class="type1">
+            <legend></legend>
+            <h5>Trip details</h5>
+            <?php echo $form['oneway']; ?>
+            <br />
+            <table class="form">
                 <tr>
-                    <td colspan="4">
-                        <?php echo $form['oneway']; ?>
+                    <td class="span-7" colspan="2">
+                        <?php echo $form['origin']->renderLabel(); ?><br>
+                        <?php echo $form['origin']->render(array('class' => 'span-6 text')); ?>
+                        <a class="dest-pop-up" href="#"><?php echo image_tag("icons/world.png", array('alt' => 'S')) ?></a>
+                    </td>
+                    <td class="span-7" colspan="2">
+                        <?php echo $form['destination']->renderLabel(); ?><br>
+                        <?php echo $form['destination']->render(array('class' => 'span-6 text')); ?>
+                        <a class="dest-pop-up" href="#"><?php echo image_tag("icons/world.png", array('alt' => 'S')) ?></a>
                     </td>
                 </tr>
                 <tr>
-                    <td class="prepend-top" colspan="2">
-                        <?php echo $form['origin']->renderLabel(); ?>
-                    </td>
-                    <td class="prepend-top" colspan="2">
-                        <?php echo $form['destination']->renderLabel(); ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <?php echo $form['origin']; ?>
-                        <span class="multi-icon">
-                        <a href="<?php echo url_for('multidestination'); ?>" id="origin-0" onclick="return false;" class="multidestination-popup" ><?php echo image_tag('icons/world.png'); ?></a>
-                    </span>
-                    </td>
-                    <td colspan="2">
-                        <?php echo $form['destination']; ?>
-                        <span class="multi-icon">
-                            <a href="<?php echo url_for('multidestination'); ?>" id="destination-0" onclick="return false;" class="multidestination-popup" ><?php echo image_tag('icons/world.png'); ?></a>
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="small" colspan="2" style="width: 49%;">
+                    <td class="span-7" colspan="2">
                         <?php echo $form['origin']->renderError(); ?>
                     </td>
-                    <td class="small" colspan="2" style="width: 49%;">
+                    <td class="span-7" colspan="2">
                         <?php echo $form['destination']->renderError(); ?>
                     </td>
                 </tr>
                 <tr>
-                    <td class="prepend-top"><?php echo $form['depart_date']->renderLabel(); ?></td>
-                    <td class="prepend-top"><?php echo $form['depart_time']->renderLabel(); ?></td>
-                    <td class="prepend-top return-date"><?php echo $form['return_date']->renderLabel(); ?></td>
-                    <td class="prepend-top return-date"><?php echo $form['return_time']->renderLabel(); ?></td>
-                </tr>
-                <tr>
-                    <td><?php echo $form['depart_date'] ?></td>
-                    <td><?php echo $form['depart_time'] ?></td>
-                    <td class="return-date"><?php echo $form['return_date'] ?></td>
-                    <td class="return-time"><?php echo $form['return_time'] ?></td>
-                </tr>
-                <tr>
-                    <td class="small"><?php echo $form['depart_date']->renderError() ?></td>
-                    <td class="small"><?php echo $form['depart_time']->renderError() ?></td>
-                    <td class="small return-date"><?php echo $form['return_date']->renderError() ?></td>
-                    <td class="small return-time"><?php echo $form['return_time']->renderError() ?></td>
-                </tr>
-                <tr>
-                    <td class="prepend-top" colspan="4">
-                        <h3 class="form-index"><?php echo __('Flight options'); ?></h3>
+                    <td class="span-4">
+                        <?php echo $form['depart_date']->renderLabel(); ?><br>
+                        <?php echo $form['depart_date']->render(array('class' => 'span-3 text')); ?>
                     </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <?php echo $form['cabin']->renderLabel(); ?>
+                    <td class="span-3">
+                        <?php echo $form['depart_time']->renderLabel(); ?><br />
+                        <?php echo $form['depart_time']->render(array('class' => 'span-2 text')); ?><br />
                     </td>
-                    <td colspan="2">
-                        <?php echo $form['airline']->renderLabel(); ?>
+                    <td class="span-4">
+                        <?php echo $form['return_date']->renderLabel(); ?><br>
+                        <?php echo $form['return_date']->render(array('class' => 'span-3 text')); ?>
+                    </td>
+                    <td class="span-3">
+                        <?php echo $form['return_time']->renderLabel(); ?><br />
+                        <?php echo $form['return_time']->render(array('class' => 'span-2 text')); ?><br />
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <?php echo $form['cabin']; ?>
+                        <?php echo $form['depart_date']->renderError(); ?>
                     </td>
-                    <td style="vertical-align: top; padding-top: 7px;">
+                    <td>
+                        <?php echo $form['depart_time']->renderError(); ?>
+                    </td>
+                    <td>
+                        <?php echo $form['return_date']->renderError(); ?>
+                    </td>
+                    <td>
+                        <?php echo $form['return_time']->renderError(); ?>
+                    </td>
+                </tr>
+            </table>
+            <h5><?php echo __('Flight options'); ?></h5>
+            <table class="form">
+                <tr>
+                    <td class="span-3">
+                        <?php echo $form['cabin']->renderLabel(); ?><br>
+                        <?php echo $form['cabin']->render(array('class' => 'text span-3')); ?>
+                    </td>
+                    <td class="span-4 bottom">
                         <?php echo $form['prefer_nonstop']->render(); ?>
                     </td>
-                    <td colspan="2">
-                        <?php echo $form['airline']; ?>
+                    <td class="span-7">
+                        <?php echo $form['airline']->renderLabel(); ?><br />
+                        <?php echo $form['airline']->render(array('class' => 'text span-5')); ?>
                     </td>
                 </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td colspan="2" id="prefered-airlines-list"></td>
-                </tr>
-                <tr>
-                    <td class="prepend-top"   colspan="4">
-                        <h3 class="form-index"><?php echo __('Passengers informations'); ?></h3>
-                    </td>
-                </tr>
-                <tr>
-                    <td><?php echo $form['number_adults']->renderLabel(); ?></td>
-                    <td><?php echo $form['number_children']->renderLabel(); ?></td>
-                    <td><?php echo $form['number_infants']->renderLabel(); ?></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td>
-                        <?php echo $form['number_adults']; ?>
-                    </td>
-                    <td>
-                        <?php echo $form['number_children']; ?>
-                    </td>
-                    <td>
-                        <?php echo $form['number_infants']; ?>
-                    </td>
-                    <td></td>
-                </tr>
-
-                <tr>
-                    <td colspan="4">
-                        <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
-                    </td>
-                </tr>
-                <?php echo $form['type']; ?>
-                <?php echo $form['_csrf_token']; ?>
             </table>
-
+            <h5>Passengers details</h5>
+            <table class="form">
+                <tr>
+                    <td class="span-3">
+                        <?php echo $form['number_adults']->renderLabel(); ?><br />
+                        <?php echo $form['number_adults']->render(array('class' => 'span-2')); ?>
+                    </td>
+                    <td  class="span-3">
+                        <?php echo $form['number_children']->renderLabel(); ?><br />
+                        <?php echo $form['number_children']->render(array('class' => 'span-2')); ?>
+                    </td>
+                    <td>
+                        <?php echo $form['number_infants']->renderLabel(); ?><br />
+                        <?php echo $form['number_infants']->render(array('class' => 'span-2')); ?>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" class="blue right bigger" value="search">
+            <?php echo $form['type']; ?>
+            <?php echo $form['_csrf_token']; ?>
         </fieldset>
-    </form>
 
+    </form>
 </div>
+
 
 
 

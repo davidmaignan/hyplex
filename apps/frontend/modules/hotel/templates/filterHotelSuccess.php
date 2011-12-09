@@ -1,5 +1,6 @@
 <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
 
+<?php if(count($filterResponse->arFilterActivated)>0): ?>
 <div class="span-18 append-bottom">
 <?php foreach ($filterResponse->arFilterActivated as $key => $value): ?>
     <div class="filter-box <?php echo $key ?>">
@@ -7,6 +8,7 @@
     </div>
 <?php endforeach; ?>
 </div>
+<?php endif; ?>
 
 <?php
     $pricesRange = $sf_request->getParameter('average_nigthlyRate');
@@ -21,16 +23,23 @@
     markerFiltered = <?php echo $sf_data->get('markerFiltered', ESC_RAW); ?>;
 </script>
 
+
+
 <?php foreach ($results as $key => $result): ?>
 <?php include_partial('hotel', array('result' => $result)); ?>
 <?php endforeach; ?>
+
 <hr />
 
 <?php include_partial('pagination',array('total' => $filterResponse->nbrHotelsToPaginate, 'page' => $page)); ?>
 
+
+
 <script type="text/javascript">
 
     function deactivatFilterCheckBox(){
+        
+        
 
         //If all reset
         var allHidden = false;
@@ -53,7 +62,8 @@
             $('#clearFiltersAll').hide();
             exit;
         };
-
+        
+        
 
         //alert(allHidden);
         //Reset all the checkboxes
@@ -63,7 +73,7 @@
         var starRating = filterToDeactivate.starRating;
 
         //$('#starRating_3_tr').addClass('bg-filter-active');
-        //alert(starRating);
+        //alert(filterToDeactivate);
 
         if(starRating != undefined){
             

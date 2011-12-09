@@ -13,7 +13,8 @@ class frontendConfiguration extends sfApplicationConfiguration {
         $this->dispatcher->connect('plex.response_success', array('PlexLogger','logResponse'));
 
         sfConfig::set('plex_ipm', 2);
-
+       
+        sfConfig::set('totalPerPage', 10);
     }
 
     public function filterRequestParameters(sfEvent $event, $parameters) {

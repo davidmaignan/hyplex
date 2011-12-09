@@ -13,9 +13,18 @@ default:
     #robots:       index, follow
 
   #stylesheets:    [main.css, frontend_temp.css, typography.css]
-  stylesheets:    []
+  stylesheets:    [custom-theme/jquery-ui-1.8.16.custom.css, fancybox/jquery.fancybox-1.3.4.css, font/arvo-fontfacekit/stylesheet.css, font.css, html5/screen_1, html5/generic, html5/header, html5/footer, html5/main, html5/form, html5/custom_1, html5/tmp]
 
-  javascripts:    []
+  javascripts:    [jquery-1.5.1.min.js, jquery-ui-1.8.16.custom.min.js, fancybox/jquery.fancybox-1.3.4.pack.js ,html5/generic.js, functions]
 
   has_layout:     true
   layout:         layout_html5
+
+
+indexSuccess:
+  stylesheets: [mystyle1, mystyle2]
+  javascripts: [search/searchHotel]
+
+flightSuccess:
+  stylesheets: [html5/flightResult]
+  javascripts: [flight/flightResult]

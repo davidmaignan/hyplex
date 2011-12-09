@@ -1,113 +1,85 @@
-<?php   require_once sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'js'.DIRECTORY_SEPARATOR.
-        'search'.DIRECTORY_SEPARATOR.'variables.php'; ?>
+<?php require_once sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR .
+        'search' . DIRECTORY_SEPARATOR . 'variables.php'; ?>
 <?php use_javascript('search/searchHotel'); ?>
 
-<?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
-<?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
+<?php if (in_array($sf_user->getCulture(), array('fr_FR', 'zh_CN'))): ?>
+    <?php use_javascript('culture/datepicker_' . $sf_user->getCulture() . '.js') ?>
 <?php endif; ?>
 
 <?php use_javascript('search/searchHotel'); ?>
 
-<style>
-    table.form-error td{
-        padding-right: 10px;
-    }
-
-</style>
 
 <div class="span-15" id="form-index" >
 
-<form action="<?php echo url_for('@search_hotel_form') ?>" method="post" id="hotel-form-index">
-    <fieldset>
-        <?php if($form->hasGlobalErrors()): ?>
-            <ul class="error-global">
-               <?php foreach ($form->getGlobalErrors() as $name => $error): ?>
-                  <li class=""><?php echo $error ?></li>
-                <?php endforeach; ?>
-            </ul>
-            <?php endif; ?>
-        <h3 class="form-index"><?php echo __('Travel details'); ?></h3>
-        <table class="form-error">
-            <tr>
-                <td class="prepend-top"><?php echo $form['wherebox']->renderLabel(); ?></td>
-                <td class="prepend-top"><?php echo $form['checkin_date']->renderLabel(); ?></td>
-                <td class="prepend-top"><?php echo $form['checkout_date']->renderLabel(); ?></td>
-            </tr>
-            <tr>
-                <td><?php echo $form['wherebox']; ?></td>
-                <td><?php echo $form['checkin_date']; ?></td>
-                <td><?php echo $form['checkout_date']; ?></td>
-            </tr>
-            <tr>
-                <td><?php echo $form['wherebox']->renderError(); ?></td>
-                <td><?php echo $form['checkin_date']->renderError(); ?></td>
-                <td><?php echo $form['checkout_date']->renderError(); ?></td>
-            </tr>
-        </table>
-        <hr class="space2"/>
-        <h3 class="form-index prepend-top"><?php echo __('Room details'); ?></h3>
-        <?php foreach ($form['newRooms'] as $key => $f): ?>
-            <div id="room-container-<?php echo $key ?>" class="room-container <?php echo ($key != 1)? 'bordered': ''; ?>">
-                <table id="room-1" class="hotel-form-table">
-                    <tr>
-                        <td class="label" style="padding: 30px 10px 0 0;"><?php echo __('room')?>:</td>
-                        <td>
-                            <ul>
-                                <li><?php echo $f['number_adults']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_adults']; ?></li>
-                            </ul>
-                        </td>
-                        <td style="padding-left: 10px;">
-                            <ul>
-                                <li><?php echo $f['number_children']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_children']->render(array(
-                                    'class'=>'hotel-children-age medium')); ?>
-                                </li>
-                            </ul>
-                        </td>
-                        <td style="width: 250px; padding-left: 10px;">
-                            <div id="child-container-<?php echo $key; ?>">
-                            <?php foreach ($form['childrenAge'] as $k => $f): ?>
-                            <?php if ($k[0] == $key): ?>
-                            <?php include_partial('searchHotel/addChildAge', array('form' => $form, 'roomNumber' => $k[0], 'i' => $k[2])) ?>
-                            <?php endif; ?>
-                            <?php endforeach; ?>
-                            </div>
+    <?php if ($form->hasGlobalErrors()): ?>
+        <ul class="error-global">
+            <?php foreach ($form->getGlobalErrors() as $name => $error): ?>
+                <li class=""><?php echo $error ?></li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
 
-                        </td>
-                        <td style="vertical-align: middle; width: 70px;">
-                            <?php if($key != 1): ?>
-                            <a href="#" id="room-delete-<?php echo $key ?>" onclick="do_delete(this);" class="remove-small"><?php echo __('remove'); ?></a>
-                            <?php endif; ?>
-                        </td>
-                        </tr>
-                    </table>
-                </div>
-        <?php endforeach; ?>
+    <form action="#" method="post">
+        <fieldset class="type1">
+            <legend></legend>
+            <h5>Travel details</h5>
+            <div>
+                <?php echo $form['type']; ?>
+                <?php echo $form['_csrf_token']; ?>
+            </div>
+            <table class="form">
+                <tr>
+                    <td class="span-7">
+                        <?php echo $form['wherebox']->renderLabel(); ?><br>
+                        <?php echo $form['wherebox']->render(array('class' => 'text span-6')); ?>
+                    </td>
+                    <td class="span-4">
+                        <?php echo $form['checkin_date']->renderLabel(); ?><br>
+                        <?php echo $form['checkin_date']->render(array('class' => 'text span-3')); ?>
+                    </td>
+                    <td  class="span-4">
+                        <?php echo $form['checkout_date']->renderLabel(); ?><br>
+                        <?php echo $form['checkout_date']->render(array('class' => 'text span-3')); ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td><?php echo $form['wherebox']->renderError(); ?></td>
+                    <td><?php echo $form['checkin_date']->renderError(); ?></td>
+                    <td><?php echo $form['checkout_date']->renderError(); ?></td>
+                </tr>
+            </table>
+            
+            <h5><?php echo __('Room details'); ?></h5>
+            
+            <?php foreach ($form['newRooms'] as $key => $f): ?>
+                <?php include_partial('searchHotel/room_html5', array('key'=>$key, 'f' => $f, 'form'=>$form)); ?>
+            <?php endforeach; ?>
+            
+            <div id="extrarooms" ></div>
 
-        <div id="extrarooms" ></div>
-        <br />
-        <button id="add_picture" type="button" class="info"><?php echo __('add room') ?></button>
-
-        <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
-        </div>
-        <?php echo $form['type']; ?>
-        <?php echo $form['_csrf_token']; ?>
-
+            <p class="minMargin">
+                <button class="info" id="add_room" type="button"><?php echo __('More rooms') ?></button>
+            </p>
+            <hr class="dotted blue2"/>
+            <p>
+                <input type="submit" class="blue right bigger" value="search">
+            </p>
         </fieldset>
-        </form>
+    </form>
 
-    </div>
 
+
+
+
+</div>
 
 <script type="text/javascript">
-    var rooms = <?php print_r($form['newRooms']->count() + 1) ?>;
+    var rooms = <?php print_r($form['newRooms']->count()+1) ?>;
 
-    function addRoom(num) {
+    function addRoom(num, url) {
         var r = $.ajax({
             type: 'GET',
-            url: '<?php echo url_for('searchHotel/addRoomForm2') ?>'+'?num='+num,
+            url: url+'?num='+num,
             async: false
         }).responseText;
         return r;
@@ -117,14 +89,24 @@
         var r = $.ajax({
             type: 'GET',
             url: '<?php echo url_for('searchHotel/addChildrenAge') ?>'+'?num='+num+'&roomNumber='+roomNumber,
-            async: false
+        async: false
+        }).responseText;
+        return r;
+    }
+
+    function add_children_package(roomNumber, num) {
+        var r = $.ajax({
+            type: 'GET',
+            url: '<?php echo url_for('searchPackage/addChildrenAge') ?>'+'?num='+num+'&roomNumber='+roomNumber,
+        async: false
         }).responseText;
         return r;
     }
 
     $('document').ready(function() {
-        $('button#add_picture').click(function() {
-            $("#extrarooms").append(addRoom(rooms));
+
+        $('button#add_room').click(function() {
+            $("#extrarooms").append(addRoom(rooms, '<?php echo url_for('searchHotel/addRoomForm') ?>'));
             rooms = rooms + 1;
             activateChildDropMenu();
         });
@@ -134,28 +116,50 @@
     });
 
     function activateChildDropMenu(){
-        $('.hotel-children-age').change(function(){
+
+        $('.package-children-age').change(function(){
+            //alert('here');
             var name = $(this).closest('div.room-container').attr('id');
+
+            var target = $(this).closest('div.room-container').next('.child-container');
+
             name = name.charAt(name.length-1);
             var roomNumber = name.charAt(name.length-1);
-            var target = '#child-container-'+roomNumber;
+            //var target = '#child-container-'+roomNumber;
 
-            $(target).html(add_children(roomNumber,this.value));
+            $(target).html(add_children_package(roomNumber,this.value));
+        });
+
+        
+        $('.hotel-children-age').change(function(){
+            
+            var position = $(this).attr('id').search(/[0-9]/);
+            var roomNumber = $(this).attr('id').substring(position, position+1);
+            if(this.value == 0){
+                $(this).closest('table.form').next('div.info').hide();
+            }else{
+                $(this).closest('table.form').next('div.info').show();
+            }
+            
+            $(this).closest('table.form').next('div.info').children('div.child-age-container').html(add_children(roomNumber,this.value));
         });
     }
 
 
     function do_delete(elt)
     {
+
         var r=confirm("<?php echo __('Are you sure you want to remove this segment'); ?>");
         if (r==true)
-        {
-            var tmp = elt.id;
-            var number = tmp.charAt(tmp.length-1);
-            
-            var name = '#room-container-'+number;
-            $(name).remove();
+        {   
+            $(elt).closest('table.form').prev('hr').remove();
+            $(elt).closest('table.form').next('div.info').remove();
+            $(elt).closest('table.form').remove();
+            return false;
         }
+        
     }
 
 </script>
+
+

@@ -32,7 +32,6 @@ class hotelActions extends sfActions
         ));
 
         //Need to move position to the last one in $this->getUser()->getAttribute('prevSearch') array
-
         PlexParsing::moveSearchToTheEnd($this->getUser(), $filename);
 
         $this->redirect($url);
@@ -44,11 +43,6 @@ class hotelActions extends sfActions
 
   public function executeHotelResult(sfWebRequest $request){
 
-
-      //var_dump($this->getUser()->getFlash('filename'));
-      //exit;
-
-      
       switch (true) {
           case  $this->getUser()->hasFlash('filename'):
               $this->filename = $this->getUser()->getFlash('filename');
@@ -116,7 +110,7 @@ class hotelActions extends sfActions
       $this->results = $filteredResponse->filteredObjs;
 
       //Get the FilterForm and values to set the filters
-      $this->filterFormFinal = $filteredResponse->displayFilterForm();
+      $this->filteredResponse = $filteredResponse;
       
       $this->filterValues = $filteredResponse->getDatasForFilterForm();
       //unset($this->filterValues['starRating']);
@@ -153,24 +147,14 @@ class hotelActions extends sfActions
               }else{
 
                   //fire an event to save in db missing hotel in marker files.
-                  
-
               }
-
           }
-
-
 
       }else{
             //fire an event the marker file is missing
       }
 
       $this->gMapHotels = json_encode($arGmap);
-
-
-      
-
-
 
   }
 
@@ -184,15 +168,14 @@ class hotelActions extends sfActions
     }
 
     public function executeFilterHotel(sfWebRequest $request){
+        
+        //return $this->renderText('filter');
 
         $this->parameters = $request->getPostParameters();
         $this->page = $request->getPostParameter('page');
         
         //Which link or checkbox is clicked will determine which checkbox to disabled
         $class = $request->getPostParameter('class');
-
-        //var_dump($class);
-        //exit;
 
         $type = $request->getPostParameter('type');
         $filename = $request->getPostParameter('filename');
@@ -232,7 +215,9 @@ class hotelActions extends sfActions
 
         $this->filterToDeactivateJson = json_encode($this->filterToDeactivate);
 
-        $this->markerFiltered = json_encode($filteredResponse->filteredObjGmap);        
+        $this->markerFiltered = json_encode($filteredResponse->filteredObjGmap);   
+        
+        //return $this->renderText(count($this->results));
     }
 
     public function executeTermsConditions(sfWebRequest $request){

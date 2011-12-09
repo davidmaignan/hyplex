@@ -1,9 +1,4 @@
-<?php use_stylesheet('flightResult'); ?>
 <?php use_javascript('flight/flightResult.js'); ?>
-
-<?php //use_javascript('debugger/ADS-final-verbose.js'); ?>
-<?php //use_javascript('debugger/myLogger.js'); ?>
-
 
 <script type="text/javascript">
     var filterValues = <?php echo $sf_data->get('filterValues', ESC_RAW); ?>
@@ -16,7 +11,7 @@
 </div>
 
 <div class="span-6 shadow bg-white">
-    <?php echo html_entity_decode($filterFormFinal); ?>
+    <?php echo html_entity_decode($filterResponse->displayFilterForm_html5()); ?>
     <hr class="space3"/>
     <div class="span-6 last">
 
@@ -44,23 +39,23 @@
 
 </div>
 
-<div class="span-19 last">
+<div class="span-18 prepend-1 last">
     <div class="span-15 append-bottom ">
         <div id="form" class="hide">
-            <?php include_partial('searchFlight/form', array('form' => $form, 'parameters' => $parameters)); ?>
-            </div>
+            <?php //include_partial('searchFlight/form', array('form' => $form, 'parameters' => $parameters)); ?>
         </div>
+    </div>
 
-    <div class="span-19 shadow append-bottom" id="tab-viewing">
+    <div class="span-19 shadow" id="tab-viewing">
        
-        <ul>
+        <ul class="none">
             <li><a href="#" class="view-list selected"><?php echo __('List') ?></a></li>
             <li><a href="#" class="view-chart"><?php echo __('Chart') ?></a></li>
             <li><a href="#" class="view-matrix" id="matrix-btn"><?php echo __('Matrix') ?></a></li>
         </ul>
     </div>
 
-    <div class="span-19 append-bottom none" id="matrix">
+    <div class="span-18 prepend-top hide" id="matrix">
         <?php foreach ($matrix as $key => $data): ?>
         <?php include_partial('matrix', array('data' => $data, 'key' => $key)); ?>
         <?php endforeach; ?>
@@ -76,7 +71,7 @@
 
     <?php include_partial('sorting',array('total' => $filterResponse->nbrFlightsToPaginate, 'page' => $page)); ?>
 
-    <hr class="space3" />
+    <hr class="space" />
     <div id="Results">
         <?php foreach ($results as $result): ?>
         <?php include_partial($type, array('result' => $result, 'filename'=>$filename)); ?>
@@ -85,5 +80,5 @@
 
 </div>
 
-<hr class="space3" />
+<hr class="space" />
 

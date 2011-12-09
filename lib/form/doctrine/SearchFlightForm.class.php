@@ -54,7 +54,7 @@ class SearchFlightForm extends sfForm {
 
         //use_helper('I18n');
 
-        sfProjectConfiguration::getActive()->loadHelpers(array('I18n'));
+        //sfProjectConfiguration::getActive()->loadHelpers(array('I18n'));
 
         //self::$arTime = self::generateTimeArray();
         self::$arTime = Utils::generateTimeArray();

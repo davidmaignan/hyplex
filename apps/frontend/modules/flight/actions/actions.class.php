@@ -113,7 +113,7 @@ class flightActions extends sfActions {
         $this->results = $filteredResponse->filteredObjs;
         $this->matrix = $filteredResponse->getMatrix();
         
-        $this->filterFormFinal = $filteredResponse->displayFilterForm();
+        $this->filteredResponse = $filteredResponse;
         $this->filterValues = json_encode($filteredResponse->getDatasForFilterForm());
 
         if ($request->getRequestFormat() == 'iphone') {

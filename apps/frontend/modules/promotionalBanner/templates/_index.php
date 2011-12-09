@@ -1,25 +1,61 @@
-<!-- Carousel -->
+<?php //use_stylesheet('html5/promotionalBanner') ?>
+<?php use_stylesheet('jquery.ad-gallery.css') ?>
+<?php use_javascript('jquery.ad-gallery.js') ?>
 
-<?php //use_javascript('jquery-1.5.1.min.js'); ?>
-<?php //use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
-<?php //use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
-<?php //use_javascript('functions.js'); ?>
-
-<?php //use_stylesheet('grid'); ?>
-<?php //use_stylesheet('typography'); ?>
-<?php //use_stylesheet('form'); ?>
-
-
-
-<script type="text/javascript">
-    var promotionalBanners = null;<?php //echo $sf_data->get('promotionalBanners', ESC_RAW); ?>
-</script>
-
-<div class="span-16 last append-bottom" id="carousel">
-    <div id="">
-        <div id="promotional_container">
-            <?php echo link_to(image_tag('tmp/gallery1.jpg'), '@vacation_interest'); ?>
+<div id="gallery" class="ad-gallery span-15" style="margin-left: 10px;">
+    <div class="ad-image-wrapper box2" style="border: 1px solid white;">
+    </div>
+    <div class="ad-controls hide">
+    </div>
+    <div class="ad-nav">
+        <div class="ad-thumbs">
+            <ul class="ad-thumb-list">
+                <li>
+                    <a href="/uploads/promotionalBanner/1.jpg">
+                        <img src="#" class="image0" title="Las Vegas" alt="" >
+                    </a>
+                </li>
+                <li>
+                    <a href="/uploads/promotionalBanner/2.jpg">
+                        <img src="#" title="Paris" alt="" class="image1">
+                    </a>
+                </li>
+                <li>
+                    <a href="/uploads/promotionalBanner/3.jpg">
+                        <img src="#" title="A title for 11.jpg" longdesc="http://coffeescripter.com" alt="This is a nice, and incredibly descriptive, description of the image 11.jpg" class="image2">
+                    </a>
+                </li>
+                <li>
+                    <a href="/uploads/promotionalBanner/4.jpg">
+                        <img src="#" title="A title for 12.jpg" alt="This is a nice, and incredibly descriptive, description of the image 12.jpg" class="image3">
+                    </a>
+                </li>
+                <li>
+                    <a href="/uploads/promotionalBanner/5.jpg">
+                        <img src="#" title="A title for 13.jpg" alt="This is a nice, and incredibly descriptive, description of the image 13.jpg" class="image4">
+                    </a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>
 
+
+
+<script>
+    $('document').ready(function(){
+
+        var galleries = $('#gallery').adGallery({
+            'display_back_and_forward': false,
+            'width': 608,
+            'height': 260,
+            'enable_keyboard_move': true,
+            effect: 'fade',
+            slideshow: {
+                enable: false
+            }
+        });
+        
+    });
+
+</script>

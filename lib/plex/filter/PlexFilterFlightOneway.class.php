@@ -296,6 +296,107 @@ class PlexFilterFlightOneway extends PlexFilterFlight implements PlexFilterInter
      * Filter form
      */
 
+    public function displayFilterForm_html5() {
+        
+        $frm = new HTML_Form();
+        $frmStr = $frm->startForm(url_for('@filter_flight_form'), 'post', 'filterForm',
+                        array('class' => 'filterForm'));
+        $frmStr .= '<fieldset><legend></legend>';
+        
+        //Hidden fields
+        $frmStr .= $frm->addInput('hidden', 'filename', $this->filename);
+        $frmStr .= $frm->addInput('hidden', 'type', $this->type);
+        
+        //Stops
+        $frmStr .= "<h4>" . __("Stops") . "</h4>";
+        $frmStr .= '<div class="box-content">';
+        $frmStr .= '<ul>';
+        foreach ($this->stopsFields as $key => $value) {
+            if($value['price']){
+                $frmStr .= '<li><span class="span-4 last">';
+                $frmStr .= $frm->addInput($value[0], $key, 1, array('checked' => 'checked', 'class'=>'FilterCheckbox','id' => $key));
+                $frmStr .= '<label for="' . $key . '">' . __($value[1]) . '</label>';
+                $frmStr .= '</span>';
+                $frmStr .= '<span class="min"><a>'. Utils::getPrice($value['price']) .'</a></span>';
+                $frmStr .= '</li>';
+            }
+        }
+        $frmStr .= '</ul>';
+        $frmStr .= '</div>';
+        
+        //Flight times
+        $frmStr .= "<h4>" . __("Flight Times") . "</h4>";
+        $frmStr .= '<div class="box-content">';
+        $frmStr .= '<ul><li><span class="span-4 last bold">';
+        $frmStr .= __('Take-off').'</span><span class="min">'.__('depart').'</span>';
+        $frmStr .= '</li></ul>';
+        
+        foreach ($this->flightTimeFields as $key => $value) {
+            $frmStr .= '<div id="slider_'.$key.'" class="slider" ></div>';
+            $frmStr .= '<div id="info_'.$key.'" class="slider-info append-bottom" ></div>';
+            $frmStr .= $frm->addInput('hidden', $key, '', array('id' => $key));
+        }
+        
+        $frmStr .= '</div>';
+        
+        //Airlines
+        $arAirlines = Utils::createAirlineArray();
+        $frmStr .= "<h4>" . __("Airlines") . "</h4>";
+        $frmStr .= '<div class="box-content">';
+        $frmStr .= '<ul>';
+        foreach ($this->arAirlines as $key => $value) {
+            $tmp = $this->retreiveOnlyOne($value);
+            $frmStr .= '<li><span class="span-4 last">';
+            $frmStr .= $frm->addInput('checkbox', $key, 1, array('checked' => 'checked', 'class' => 'FilterCheckbox', 'id' => $key));
+            $frmStr .= '<label for=' . $key . '>' . truncate_text($arAirlines[$key][0], 20) . '</label>';
+            $frmStr .= '</span>';
+            $frmStr .= '<span class="min"><a>'.Utils::getPrice($tmp['price']) .'</a></span>';
+            $frmStr .= '</li>';
+        }
+        $frmStr .= '</ul>';
+        $frmStr .= '</div>';
+        
+        
+        //Direct flights
+        //Flight times
+        $frmStr .= "<h4>" . __("Flight quality") . "</h4>";
+        $frmStr .= '<div class="box-content">';
+        $frmStr .= '<ul>';
+        
+        foreach ($this->flightQuality as $key => $value) {
+             $frmStr .= '<li><span class="span-4 last">';
+             $frmStr .= $frm->addInput($value[0], $key, $key, array('checked' => 'checked', 'id' => $key));
+             $frmStr .= '<label for=' . $key . '>' . __($value[1]) . '</label>';
+             $frmStr .= '</span></li>';
+        } 
+        $frmStr .= '</ul></div>';
+        
+        
+        $frmStr .= "<h4>" . __("Trip duration") . "</h4>";
+        $frmStr .= '<div class="box-content">';
+        foreach ($this->tripDurationFields as $key => $value) {
+            $frmStr .= '<ul><li><span class="span-4 last">'.__('min').'</span><span class="min">'.__('max').'</span></li></ul>';
+            $frmStr .= '<div id="slider_'.$key.'" class="slider" ></div>';
+            $frmStr .= "<div id=info_$key class=slider-info></div>";
+            $frmStr .= $frm->addInput('hidden', $key, '', array('id' => $key));
+            $frmStr .= "</div>";
+        }
+        
+        $frmStr .= "<h4>" . __("Price") . "</h4>";
+        $frmStr .= '<div class="box-content">';
+        foreach ($this->tripPrice as $key => $value) {
+            $frmStr .= '<ul><li><span class="span-4 last">'.__('min').'</span><span class="min">'.__('max').'</span></li></ul>';
+            $frmStr .= '<div id="slider_'.$key.'" class="slider" ></div>';
+            $frmStr .= "<div id=info_$key class=slider-info></div>";
+            $frmStr .= $frm->addInput('hidden', $key, '', array('id' => $key));
+            $frmStr .= "</div>";
+        }
+        
+        return $frmStr;
+    }
+
+    
+    
     public function displayFilterForm() {
 
         //print($this->filename);

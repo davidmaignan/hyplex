@@ -1,13 +1,11 @@
-<div class="flight-box-price color2">
-    <ul>
-        <li class="price"><?php echo Utils::getPrice($result->TotalPrice) ?></li>
-        <li class="pricePerPerson"><?php echo Utils::getPrice($result->TotalPrice) ?> / person</li>
-        <li class="">
-        <?php echo link_to2(__('select'), 'flight_selected',
-                array(
-                    'filename'=>$filename, 'uniqueReferenceId'=>$result->UniqueReferenceId), array(
-                    'class'=>'button action smaller blue'
-                )) ?>
-        </li>
-    </ul>
-</div>
+<ul class="none">
+    <li class="color2 bold biggest"><?php echo Utils::getPrice($result->TotalPrice) ?></li>
+    <li class="grey1"><?php echo Utils::getPrice($result->TotalPrice) ?> / <?php echo __('person') ?></li>
+    <li class="prepend-top2"><?php
+        echo link_to2(__('select'), 'flight_selected', array(
+            'filename' => $filename, 'uniqueReferenceId' => $result->UniqueReferenceId), array(
+            'class' => 'button action big blue'
+        ))
+    ?>
+    </li>
+</ul>

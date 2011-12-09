@@ -27,5 +27,9 @@ class promotionalBannerComponents extends sfComponents
   public function executeSpecialInterestIndex(sfWebRequest $request){
       
   }
+  
+  public function executeTopDestination(sfWebRequest $request){
+      
+  }
 
 }

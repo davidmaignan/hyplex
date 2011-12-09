@@ -1,32 +1,34 @@
-<div class="hotel-room">
+<div class="span-17 last" id="hotel-rooms-content">
+
+    <h3 class="fontface blue1">Rooms & rates</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     <table class="rates">
         <thead>
             <tr>
-                <th>Room type</th>
+                <th class="big">Room type</th>
                 <?php foreach ($hotel->getRoomIds() as $value): ?>
-                    <th style="width: 140px; text-align: center;"><?php echo $value; ?></th>
+                    <th class="span-3 big"><?php echo $value; ?></th>
                 <?php endforeach; ?>
             </tr>
         </thead>
-        <?php $class = ''; ?>
-        <?php $colspan = count($hotel->getRoomIds())+1; ?>
-        <?php $i = 0; ?>
-        <?php $firstRate = true; ?>
-        <?php foreach ($hotel->arRoomsType as $key => $roomType): ?>
+        <tbody>
+            <?php $class = ''; ?>
+            <?php $colspan = count($hotel->getRoomIds()) + 1; ?>
+            <?php $i = 0; ?>
+            <?php $firstRate = true; ?>
 
-        <?php include_partial('roomType', array('roomType' => $roomType, 'i' => $i, 'class' => $class, 'key' => $key, 'colspan'=>$colspan)) ?>
+            <?php foreach ($hotel->arRoomsType as $key => $roomType): ?>
 
-        <?php foreach ($roomType->arRates as $k => $rate): ?>
-        <?php include_partial('rate', array('rate' => $rate, 'firstRate' => $firstRate, 'k' => $k, 'i' => $i, 'class' => $class, 'hotel' => $hotel)) ?>
-        <?php $firstRate = false; ?>
-        <?php endforeach; ?>
+                <?php include_partial('roomType', array('roomType' => $roomType, 'i' => $i, 'class' => $class, 'key' => $key, 'colspan' => $colspan)) ?>
 
-        <?php $class = 'none'; ?>
-        <?php $i++; ?>
-        <?php endforeach; ?>        
+                <?php foreach ($roomType->arRates as $k => $rate): ?>
+                    <?php include_partial('rate', array('rate' => $rate, 'firstRate' => $firstRate, 'k' => $k, 'i' => $i, 'class' => $class, 'hotel' => $hotel)) ?>
+                    <?php $firstRate = false; ?>
+                <?php endforeach; ?>
+
+                <?php $class = 'none'; ?>
+                <?php $i++; ?>
+            <?php endforeach; ?>  
+        </tbody>
     </table>
-</div>
-
-<div class="span-19 last">
-    <input type="submit" value="<?php echo __('Book now')?>" class="right blue"/>
 </div>

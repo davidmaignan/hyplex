@@ -67,6 +67,12 @@ class PlexBasket {
      * Function to delete all datas from previous booking
      */
     public function reset(){
+        
+        //echo "basket reset is called";
+        //$request = sfContext::getInstance()->getRequest();
+        //$parameters = $request->getParameterHolder();
+        //var_dump($parameters);
+        //exit;
 
         $this->arFlights = array();
         $this->arFlightsArchived = array();

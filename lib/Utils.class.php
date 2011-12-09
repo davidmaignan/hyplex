@@ -1010,7 +1010,6 @@ class Utils {
         
     }
 
-
     static function getNightString($nbrNights){
         return format_number_choice( '[0]|[1]1 night|(1,+Inf]%1% nights',
                                          array('%1%' =>$nbrNights), $nbrNights);
@@ -1030,10 +1029,83 @@ class Utils {
      */
     static function getPrice($amount){
 
+        
         $currency = sfConfig::get('app_currency');
         return format_currency($amount, $currency);
 
     }
+    
+    
+    static function getPagination($total, $page){
+        
+        
+        $jeton = 0;
+        $totalPerPage = sfConfig::get('totalPerPage');
+        $nbrPages = ceil($total / $totalPerPage);
+        
+        $string = '<ul class="inline right">';
+        
+        //Prev
+        $string .= '<li>';
+        $string .= ($page == 1)?'<span class="page-link-prev">&LessLess; Prev</span>': '<a href="" class="page-link" id="prev-'.($page-1).'">&LessLess; Prev</a>';
+        $string .= '</li>';
+        
+        //Always show the first page
+        $string .= '<li>';
+        $string .= ($page == 1)?'<span class="page-link">1</span>': '<a href="" class="page-link">1</a>';
+        $string .= '</li>';
+        
+        if($page > 1+3){
+            
+            
+            $string .= '<li>';
+            $string .= '<span class="page-link-prev"> ...</span>';
+            $string .= '</li>';
+        }
+        
+        $start = ($page-2 <= 2)? 2: $page-2;
+        
+        for($i=$start;$i<$nbrPages;$i++){
+            
+            if($jeton > 4){
+                continue;
+            }
+            
+            $string .= '<li>';
+            $string .= ($page == $i)?
+                '<span class="page-link">'.$i.'</span>': 
+                '<a href="" class="page-link">'.$i.'</a>';
+            $string .= '</li>';
+            
+            $jeton ++;
+        }
+        
+        if($page+3 < $nbrPages){
+            $string .= '<li>';
+            $string .= '<span class="page-link-prev"> ...</span>';
+            $string .= '</li>';
+        }
+
+        //Always show the last page
+        
+        
+        
+        $string .= '<li>';
+        $string .= ($page == $nbrPages)?
+                        '<span class="page-link">'.$nbrPages.'</span>':
+                        '<a href="" class="page-link">'.$nbrPages.'</a>';
+        $string .= '</li>';
+        
+        //Prev
+        $string .= '<li>';
+        $string .= ($page == 1)?'<span class="page-link-next">Next &GreaterGreater;</span>': '<a href="" class="page-link" id="next-'.($page+1).'">Next &GreaterGreater;</a>';
+        $string .= '</li>';
+        
+        $string .= '</ul>';
+        return $string;
+        
+    }
 
 }
+
 

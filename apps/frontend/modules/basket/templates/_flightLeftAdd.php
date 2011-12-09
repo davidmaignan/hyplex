@@ -1,6 +1,7 @@
-<tr class="basket-list-header non-active">
-    <td colspan="2"><?php echo __('flight') ?></td>
-    <td class="sub-total">
-        <a href="<?php echo url_for('search_flight') ?>" class="add"><?php echo __('add'); ?></a>
+<tr class="header_1 bold">
+    <td class="span-6"><?php echo __('Flight') ?></td>
+    <td colspan="2" class="text-right blue1">
+        <a href="<?php echo url_for('search_flight') ?>" class="add">
+        <?php echo __('Add'); ?></a>
     </td>
 </tr>

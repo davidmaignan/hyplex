@@ -50,9 +50,9 @@
         <?php include_component('basket', 'checkOut'); ?>
     </div>
 
-    <div class="span-18 last">
+    <div class="span-17 prepend-1 last">
 
-        <h2 class="flight"><?php echo __('Passengers information') ?></h2>
+        <h2 class="flight fontface"><?php echo __('Passengers information') ?></h2>
         <p class="">
            <?php echo __('All traveler information must match exactly what is on the government-issued ID you use when traveling.') ?>
         </p>
@@ -68,7 +68,7 @@
                 <form action="<?php echo url_for('@booking_passenger') ?>" method="post">
 
                 <?php if(isset($form['adults'])):?>
-                <h2 class="title prepend-top small"><?php echo __('Adults') ?></h2>
+                <h2 class="title"><?php echo __('Adults') ?></h2>
                 <?php foreach ($form['adults'] as $key => $f): ?>
                 <?php include_partial('formPassenger',array('f'=>$f, 'key'=>$key, 'type'=>'adult')); ?>
                 <?php endforeach; ?>
@@ -84,7 +84,7 @@
                 <?php echo $form['_csrf_token']; ?>
 
                 <div class="span-8 last right append-bottom">
-                    <input type="submit" value="<?php echo __('Next'); ?>" class="blue right" />
+                    <input type="submit" value="<?php echo __('Next'); ?>" class="blue bigger right" />
                 </div>
         </form>
     </div>
