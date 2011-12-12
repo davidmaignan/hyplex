@@ -132,6 +132,19 @@ tr.bold td{
     font-weight: bold;
 }
 
+table.style2{
+    border: 1px solid #cdcdcd;
+    font-size: 100%;
+}
+
+table.style2 th{background-color: #eff7fd; border-bottom: 1px solid #cdcdcd}
+
+table.style2 td{
+    border-bottom: 1px dotted #cccccc;
+    padding-bottom: 8px;
+}
+
+table.style2 tr.even td {background:#e5ecf9;}
 
 /* Typography --------------------------------------------------------------------------------------- */
 

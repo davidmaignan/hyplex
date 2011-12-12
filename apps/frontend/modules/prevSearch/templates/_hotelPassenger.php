@@ -1,4 +1,4 @@
-<ul>
+<ul class="none">
     <?php foreach ($hotelParameters->arRooms as $key => $room): ?>
         <li>
 

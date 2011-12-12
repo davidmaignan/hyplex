@@ -337,11 +337,12 @@ abstract class PlexFlightParameters extends PlexParameters {
 
 
     public function getOriginDestination($culture = 'en_US'){
-
+        
+        return $this->arOrigin['code'].' - '.$this->arDestination['code'];
         
         return $this->arOrigin[$culture]['name'] . ' (' .$this->arOrigin['code'] . ') <br />' .
                $this->arDestination[$culture]['name'] . ' (' .$this->arDestination['code'] . ')';
-        //return $this->getOrigin() . ' - '.$this->getDestination();
+        
 
         
     }

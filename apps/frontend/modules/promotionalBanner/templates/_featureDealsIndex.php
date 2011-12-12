@@ -1,6 +1,6 @@
 <section class="prepend-top append-bottom" id="featureDeals">
     <h2 class="title2"><?php echo __('Feature deals'); ?><a href="#" id="featureDeals-rss">RSS</a></h2>
-    <?php echo image_tag('tmp/feature_deals.jpg', array('class' => 'span-7_5')); ?>
+    <?php echo image_tag('tmp/feature_deals.jpg', array('width' => '300px')); ?>
     <select name="featureDeals" class="append-bottom">
         <option>Hypertech selection</option>
         <option>Christmas specials</options>
