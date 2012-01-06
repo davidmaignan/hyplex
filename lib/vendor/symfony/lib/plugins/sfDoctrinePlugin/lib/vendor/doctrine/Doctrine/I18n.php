@@ -42,7 +42,7 @@ class Doctrine_I18n extends Doctrine_Record_Generator
                             'children'      => array(),
                             'i18nField'     => 'lang',
                             'type'          => 'string',
-                            'length'        => 2,
+                            'length'        => 5,
                             'options'       => array(),
                             'cascadeDelete' => true,
                             'appLevelDelete'=> false

@@ -264,7 +264,7 @@ h2.flight, h2.hotel, h2.car{
     border-bottom-color: #a3b9cb;
     color: #0c4878;
     padding-bottom: 2px;
-    background: url('../images/mobico/flight-blue.png') no-repeat left top;
+    background: url('../images/mobico/flight.png') no-repeat left top;
 }
 
 .title{border-bottom: 1px solid #CECECE; padding: 4px;}

@@ -16,4 +16,28 @@ class BookingTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Booking');
     }
+    
+    public function getDailyBookings($start = null, $end = null){
+        
+        if(is_null($start)){
+           $start = new DateTime();
+        }else{
+           $start = new DateTime($start);
+        }
+        
+        if(is_null($end)){
+            $end = new DateTime($start->format('Y-m-d H:i:s'));
+            $end->modify('+1 day');
+        }
+        
+        $q = Doctrine_Query::create()
+                ->from('booking a')
+                ->where('a.created_at > ?', $start->format('Y-m-d'))
+                ->andWhere('a.created_at < ?', $end->format('Y-m-d'))
+                ->execute()
+                ->toArray();
+                
+        return $q;
+        
+    }
 }

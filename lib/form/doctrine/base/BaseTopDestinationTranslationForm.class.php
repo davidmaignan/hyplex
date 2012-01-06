@@ -15,15 +15,17 @@ abstract class BaseTopDestinationTranslationForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'   => new sfWidgetFormInputHidden(),
-      'name' => new sfWidgetFormInputText(),
-      'lang' => new sfWidgetFormInputHidden(),
+      'id'          => new sfWidgetFormInputHidden(),
+      'name'        => new sfWidgetFormInputText(),
+      'description' => new sfWidgetFormTextarea(),
+      'lang'        => new sfWidgetFormInputHidden(),
     ));
 
     $this->setValidators(array(
-      'id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'name' => new sfValidatorString(array('max_length' => 255)),
-      'lang' => new sfValidatorChoice(array('choices' => array($this->getObject()->get('lang')), 'empty_value' => $this->getObject()->get('lang'), 'required' => false)),
+      'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'name'        => new sfValidatorString(array('max_length' => 255)),
+      'description' => new sfValidatorString(array('max_length' => 4000)),
+      'lang'        => new sfValidatorChoice(array('choices' => array($this->getObject()->get('lang')), 'empty_value' => $this->getObject()->get('lang'), 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('top_destination_translation[%s]');

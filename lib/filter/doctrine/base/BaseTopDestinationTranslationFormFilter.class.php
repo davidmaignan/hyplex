@@ -13,11 +13,13 @@ abstract class BaseTopDestinationTranslationFormFilter extends BaseFormFilterDoc
   public function setup()
   {
     $this->setWidgets(array(
-      'name' => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'name'        => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'description' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
-      'name' => new sfValidatorPass(array('required' => false)),
+      'name'        => new sfValidatorPass(array('required' => false)),
+      'description' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('top_destination_translation_filters[%s]');
@@ -37,9 +39,10 @@ abstract class BaseTopDestinationTranslationFormFilter extends BaseFormFilterDoc
   public function getFields()
   {
     return array(
-      'id'   => 'Number',
-      'name' => 'Text',
-      'lang' => 'Text',
+      'id'          => 'Number',
+      'name'        => 'Text',
+      'description' => 'Text',
+      'lang'        => 'Text',
     );
   }
 }

@@ -14,25 +14,31 @@
  * @property State $States
  * @property City $Cities
  * @property Address $Address
+ * @property Historic $Historic
+ * @property IpMapping $IpMapping
  * 
- * @method integer getId()      Returns the current record's "id" value
- * @method string  getCode()    Returns the current record's "code" value
- * @method string  getName()    Returns the current record's "name" value
- * @method integer getAreaId()  Returns the current record's "area_id" value
- * @method boolean getState()   Returns the current record's "state" value
- * @method Area    getArea()    Returns the current record's "Area" value
- * @method State   getStates()  Returns the current record's "States" value
- * @method City    getCities()  Returns the current record's "Cities" value
- * @method Address getAddress() Returns the current record's "Address" value
- * @method Country setId()      Sets the current record's "id" value
- * @method Country setCode()    Sets the current record's "code" value
- * @method Country setName()    Sets the current record's "name" value
- * @method Country setAreaId()  Sets the current record's "area_id" value
- * @method Country setState()   Sets the current record's "state" value
- * @method Country setArea()    Sets the current record's "Area" value
- * @method Country setStates()  Sets the current record's "States" value
- * @method Country setCities()  Sets the current record's "Cities" value
- * @method Country setAddress() Sets the current record's "Address" value
+ * @method integer   getId()        Returns the current record's "id" value
+ * @method string    getCode()      Returns the current record's "code" value
+ * @method string    getName()      Returns the current record's "name" value
+ * @method integer   getAreaId()    Returns the current record's "area_id" value
+ * @method boolean   getState()     Returns the current record's "state" value
+ * @method Area      getArea()      Returns the current record's "Area" value
+ * @method State     getStates()    Returns the current record's "States" value
+ * @method City      getCities()    Returns the current record's "Cities" value
+ * @method Address   getAddress()   Returns the current record's "Address" value
+ * @method Historic  getHistoric()  Returns the current record's "Historic" value
+ * @method IpMapping getIpMapping() Returns the current record's "IpMapping" value
+ * @method Country   setId()        Sets the current record's "id" value
+ * @method Country   setCode()      Sets the current record's "code" value
+ * @method Country   setName()      Sets the current record's "name" value
+ * @method Country   setAreaId()    Sets the current record's "area_id" value
+ * @method Country   setState()     Sets the current record's "state" value
+ * @method Country   setArea()      Sets the current record's "Area" value
+ * @method Country   setStates()    Sets the current record's "States" value
+ * @method Country   setCities()    Sets the current record's "Cities" value
+ * @method Country   setAddress()   Sets the current record's "Address" value
+ * @method Country   setHistoric()  Sets the current record's "Historic" value
+ * @method Country   setIpMapping() Sets the current record's "IpMapping" value
  * 
  * @package    hyplexdemo
  * @subpackage model
@@ -97,6 +103,14 @@ abstract class BaseCountry extends sfDoctrineRecord
              'foreign' => 'country_id'));
 
         $this->hasOne('Address', array(
+             'local' => 'id',
+             'foreign' => 'country_id'));
+
+        $this->hasOne('Historic', array(
+             'local' => 'id',
+             'foreign' => 'country_id'));
+
+        $this->hasOne('IpMapping', array(
              'local' => 'id',
              'foreign' => 'country_id'));
 

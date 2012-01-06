@@ -48,9 +48,13 @@ abstract class PlexRequest{
 
             //build the xml
             $this->xml = $this->buildXML();
-
-            $client = new SoapClient(null,array('location'=>$this->location,'uri'=>$this->uri,'trace'=>1));
-            $response = $client->__doRequest($this->xml, $this->url, 'doAuthorization', 1);
+            
+            try{
+                $client = new SoapClient(null,array('location'=>$this->location,'uri'=>$this->uri,'trace'=>1));
+                $response = $client->__doRequest($this->xml, $this->url, 'doAuthorization', 1);
+            }  catch (Exception $e){
+                echo $e->getMessage();
+            }
 
             //Retreive info from the request (header, user ...)
             $header = $this->getHeader($client->__getLastResponseHeaders());

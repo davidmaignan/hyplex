@@ -9,7 +9,11 @@ class Utils {
 
     static $language = array('en_US' => 'english', 'fr_FR' => 'francais', 'zh_CN' => '中文');
     static $languageBackend = array('en' => 'english', 'fr' => 'français', 'zh_CN' => '中文');
-
+	
+    /**
+     * Replage non word chararacters with a -
+     * @param string $text
+     */
     static public function slugify($text) {
 
         if (empty($text)) {
@@ -30,7 +34,6 @@ class Utils {
      * @param $string Format expected: Date: Fri, 25 Mar 2011 17:31:23 GMT
      * @return date format 'Y-m-d H:i:s'
      */
-
     static public function formatDateResponse($string) {
         $string = trim(substr($string, strpos($string, ' '), - strpos($string, ' ') + 1));
         $date = new DateTime($string);
@@ -42,7 +45,6 @@ class Utils {
      * @param $string Format expected: $750 to $1750
      * @return array(price1, price2)
      */
-
     static public function retrievePriceFromSlider($string) {
         $data = explode('$', $string);
         unset($data[0]);
@@ -55,7 +57,6 @@ class Utils {
      * @param $string format expected: 6:00 - 21:00
      * @return array(array('hour'=>value, 'min'=>value),array('hour'=>value, 'min'=>value))
      */
-
     static public function retrieveTimeFromSlider($string) {
         //Format expected: 6:00 - 21:00
         $data = explode('-', $string);
@@ -71,7 +72,6 @@ class Utils {
      * @param $string format expected 2011-04-01 06:30
      * @return array('hour'=>value, 'min'=>value)
      */
-
     static public function getArrayTimeFromSegments($string) {
         //2011-04-01 06:30 -> // mktime is as follows (hour, minute, second, month, day, year)
 
@@ -86,7 +86,6 @@ class Utils {
      * @param $string format expected 2011-04-01 06:30
      * @return array('year'=>value, 'month'=>value,'day'=>value)
      */
-
     static public function getArrayDateFromSegments($string) {
         //2011-04-01 06:30 -> // mktime is as follows (hour, minute, second, month, day, year)
         $data = explode(' ', $string);
@@ -102,7 +101,6 @@ class Utils {
      * @param time2 array('hour','min')
      * @return bool true if time2 > time1
      */
-
     static public function comparingTimes($time1, $time2) {
         $time1 = mktime($time1['hour'], $time1['min']);
         $time2 = mktime($time2['hour'], $time2['min']);
@@ -115,7 +113,6 @@ class Utils {
      * @param time2 format expected: 2011-04-01 08:26
      * @return bool true if time2 > time1
      */
-
     static public function getMinutesBetweenDates($time1, $time2) {
         //2011-04-01 06:30
         //2011-04-01 08:26
@@ -145,7 +142,6 @@ class Utils {
      *
      * @return nothing
      */
-
     static public function retreivePrevSearch(sfUser $user) {
 
         $value = $user->getAttribute('prevSearch');
@@ -189,7 +185,6 @@ class Utils {
      * Open file request, look for the lines where it is saved and unserialize the object
      * @return paramFactory object containing the parameters
      */
-
     static public function retreiveParameters($filename) {
         $array = explode('/', $filename);
 
@@ -221,7 +216,6 @@ class Utils {
      * Create an array for 24 hours
      * @return array with 24 keys and 24:00 values
      */
-
     static public function generateTimeArray() {
         $keys = range(0, 24);
         $values = range(0, 24);
@@ -240,7 +234,6 @@ class Utils {
      * @return format_number_choice to handle 1 and more day (plural and multilangual version)
      * see I18n file for other languages
      */
-
     static public function calculateNbrDays($date1, $date2) {
 
         $sStartDate = date("Y-m-d", strtotime($date1));
@@ -296,7 +289,6 @@ class Utils {
      * @param $minutes int
      * @return paramFactory object containing the parameters
      */
-
     static public function getHourMinutes($minutes) {
         if ($minutes > 60) {
             $hours = floor($minutes / 60);
@@ -315,7 +307,6 @@ class Utils {
      * @param $key a two letter code specific for each airline, $name optional with name under the icon
      * @return image if file exist or the 2 keys if no airline image
      */
-
     static public function getAirlineIcon($key, $name = false) {
 
         if ($name) {
@@ -375,7 +366,6 @@ class Utils {
      * return string
      *
      */
-
     static public function getMatrixAirlinePriceLink($data) {
         //var_dump($data);
 
@@ -427,7 +417,11 @@ class Utils {
             return $airlines;
         }
     }
-
+	
+    /**
+     * Create a global array for meal preference
+     * @param string $culture
+     */
     static public function createMealPreferenceArray($culture = 'en_US'){
 
 
@@ -441,8 +435,11 @@ class Utils {
         return $meals[$culture];
         
     }
-
-        static public function createSpecialServicesArray($culture = 'en_US'){
+	/**
+	 * Create a global array for special services
+	 * @param string $culture
+	 */
+    static public function createSpecialServicesArray($culture = 'en_US'){
 
 
         if(isset($GLOBALS['specialServices'])){
@@ -455,7 +452,10 @@ class Utils {
         return $array[$culture];
 
     }
-
+	
+    /**
+     * Create a global array for hotel chains
+     */
     static public function createHotelchainArray() {
 
         if (isset($GLOBALS['hotelchain'])) {
@@ -494,14 +494,10 @@ class Utils {
         }
     }
 
-    /*
+    /**
      * Create a javascript file with an array containing the airport info for the autocomplete
-     * @param $culture one of the available culture
-     *
-     * @return nothing
-     *
+     * @param string $culture one of the available culture
      */
-
     static public function createAirportJavascriptFile($culture, $filename) {
         Doctrine::getConnectionByTableName('City');
 
@@ -544,9 +540,12 @@ class Utils {
          *
          */
     }
-
+	
+    /**
+     * Create javascript array and a file to contains the airlines 
+     * @param string $file path for a file to be created
+     */
     static public function createAirlineJavascriptFile($file) {
-
 
         $airlines = sfYaml::load(sfConfig::get('sf_data_dir') . DIRECTORY_SEPARATOR . 'airline' . DIRECTORY_SEPARATOR . 'airlines.yml');
 
@@ -575,23 +574,21 @@ class Utils {
         chmod($file, 0777);
     }
 
-    /*
+    /**
      * Create a global array for the airlines
      * Check if global array exist if not check if cache file airlines.yml exits
      * if not query the db to create the file and then the global array
      * @return image if file exist or the 2 keys if no airline image
      */
-
     static public function createAirportArray() {
         
     }
 
-    /*
+    /**
      * Get User infos from the request
      * @param $request sfWebRequest
      * @return array(ip,culture,userAgent,date,folder)
      */
-
     static function retreiveUserInfos($request) {
         $path = $request->getHttpHeader('info', 'path');
         $path = explode('/', $path);
@@ -607,12 +604,11 @@ class Utils {
         return $tmp;
     }
 
-    /*
+    /**
      * Get header from plex response
      * @param $filename raw response from Plex
      * @return array(code, date, server, raw)
      */
-
     static function getHeader($filename) {
 
         //Check the header response and choose the action depending on the status of the response.
@@ -661,15 +657,21 @@ class Utils {
         return $str;
     }
 
-    /*
+    /**
      * Function to return green check mark on yes and red cross on No
      */
-
     static function getIconCheckCross($value) {
         $string = ($value == 'Yes') ? '24-em-check.png' : '24-em-cross.png';
         return image_tag('icons/' . $string, array('alt' => $value));
     }
-
+	
+    /**
+     * Check credit card number
+     * @param $cardnumber
+     * @param $cardname
+     * @param $errornumber
+     * @param $errortext
+     */
     static function checkCreditCard($cardnumber, $cardname, &$errornumber, &$errortext) {
 
         // Define the cards we support. You may add additional card types.
@@ -911,7 +913,7 @@ class Utils {
     }
 
     /**
-     *
+     * 
      * @param array 
      * @param <type> $separator
      * @return <type>
@@ -965,7 +967,6 @@ class Utils {
 
 
     static function getChildrenInfantsStringForFlight($ar){
-
 
         if(isset($ar['children'])){
 
@@ -1027,17 +1028,17 @@ class Utils {
      * @param float $amount
      * @return string
      */
-    static function getPrice($amount){
-
-        
+    static function getPrice($amount){        
         $currency = sfConfig::get('app_currency');
         return format_currency($amount, $currency);
-
     }
     
-    
+    /**
+     * Create pagination list links
+     * @param int $total
+     * @param int $page
+     */
     static function getPagination($total, $page){
-        
         
         $jeton = 0;
         $totalPerPage = sfConfig::get('totalPerPage');
@@ -1104,6 +1105,175 @@ class Utils {
         $string .= '</ul>';
         return $string;
         
+    }
+    
+    /**
+     * Return formatted user-agent info from $_REQUEST['user_agent']
+     * @param type $string 
+     * return array(OS,Browser,Version)
+     */
+    static function getUserAgent($string = ''){
+        
+        $ar = array();
+        
+        //echo $string;
+        
+        //OS
+        switch(true){
+            
+            case preg_match('#Macintosh#i', $string)>0:
+                $ar['os'] = 'Macintosh';
+                break;
+            
+            case preg_match('#Linux#i', $string)>0:
+                $ar['os'] = 'Linux';
+                break;
+            
+            case preg_match('#Windows#i', $string)>0:
+                $ar['os'] = 'Windows';
+                break;
+            
+            default:
+                $ar['os'] = 'undefined';
+                break;
+            
+        }
+        
+        switch(true){
+            
+            case preg_match('#MSIE#i', $string)>0:
+                $ar['browser'] = 'MSIE';
+                break;
+            
+            case preg_match('#Firefox#i', $string)>0:
+                $ar['browser'] = 'Firefox';
+                break;
+            
+            case preg_match('#Chrome#i', $string)>0:
+                $ar['browser'] = 'Chrome';
+                break;
+            
+            case preg_match('#Opera#i', $string)>0:
+                $ar['browser'] = 'Opera';
+                break;
+            
+            case preg_match('#Safari#i', $string)>0:
+                $ar['browser'] = 'Safari';
+                break;
+            
+            default:
+                $ar['browser'] = 'undefined';
+                break;
+            
+        }
+        
+        //Browser + version
+        $matchesarray = array();
+        switch (true) {
+            case preg_match('#MSIE#', $string):
+                preg_match_all('#MSIE[0-9. ]+#', $string, $matchesarray);
+                $ar['version'] = trim(substr($matchesarray[0][0], 5));
+                break;
+            
+            case preg_match('#Firefox#', $string):
+                preg_match_all('#Firefox\/[0-9. ]+#', $string, $matchesarray);
+                $ar['version'] = trim(substr($matchesarray[0][0], 8));
+                break;
+            
+            case preg_match('#Chrome#', $string):
+                preg_match_all('#Chrome\/[0-9. ]+#', $string, $matchesarray);
+                $ar['version'] = trim(substr($matchesarray[0][0], 8));
+                break;
+            
+            case preg_match('#Safari#', $string):
+                preg_match_all('#Version\/[0-9. ]+#', $string, $matchesarray);
+                $ar['version'] = trim(substr($matchesarray[0][0], 8));
+                break;
+            
+            case preg_match('#Opera#', $string):
+                preg_match_all('#Version\/[0-9. ]+#', $string, $matchesarray);
+                $ar['version'] = trim(substr($matchesarray[0][0], 8));
+                break;
+
+            default:
+                break;
+        }
+        
+        return $ar;
+    }
+    
+    /**
+     * Return language from a uri
+     * @param $string
+     */
+    static function getLanguage($string){
+        
+        $value = '';
+        
+        switch ($string) {
+            case preg_match('#en_US#', $string)>0:
+                $value = 'en_US';
+                break;
+            
+            case preg_match('#fr_FR#', $string)>0:
+                $value = 'fr_FR';
+                break;
+            
+            case preg_match('#zh_CN#', $string)>0:
+                $value = 'zh_CN';
+                break;
+
+            default:
+                break;
+        }
+        
+        
+        return $value;
+        
+    }
+    
+    /**
+     * Return number of seconds for a dateInterval
+     * @param type $dateInterval
+     * @return type 
+     */
+    static function getDateIntervalValue($dateInterval){
+        
+        return ($dateInterval->y * 365 * 24 * 60 * 60) +
+               ($dateInterval->m * 30 * 24 * 60 * 60) +
+               ($dateInterval->d * 24 * 60 * 60) +
+               ($dateInterval->h * 60 *60) +
+                $dateInterval->i*60 +
+               $dateInterval->s;
+        
+    }
+    
+    /**
+     * Return minute seconds from a total of seconds
+     * @param unknown_type $time
+     */
+    static function getMinutesSeconds($time){
+        
+        $m = '';
+        
+        if($time > 60){
+            $m = floor($time/60).' min ';
+            $time = $time%60;
+        }
+        
+        return $m.$time.'s';
+        
+        
+    }
+ 
+    /**
+     * Convert ip address in it's numeric value (from xx.xx.xx.xx to xxxxxxxx)
+     * @param string $ip
+     */
+    static function convertIpToNumeric($ip){
+    	//1.2.3.4 = 4 + (3 * 256) + (2 * 256 * 256) + (1 * 256 * 256 * 256)
+    	$ar = explode('.', $ip);
+    	return $ar[0]*pow(256, 3)+$ar[1]*pow(256, 2)+$ar[2]*256+$ar[3];
     }
 
 }

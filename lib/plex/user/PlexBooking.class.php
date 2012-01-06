@@ -104,7 +104,17 @@ class PlexBooking {
         
         
     }
-  
+  	
+	public function getTotal(){
+		
+		$total = 0;
+		
+		$total = (float)($this->getFlight()->TotalPrice);
+		$total += $this->getHotel()->getTotalPrice();
+		
+		return $total;
+		
+	}
 
 }
 

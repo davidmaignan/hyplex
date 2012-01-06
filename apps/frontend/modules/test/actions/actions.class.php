@@ -17,20 +17,116 @@ class testActions extends sfActions
   */
   public function executeIndex(sfWebRequest $request)
   {
-    //$this->forward('default', 'module');
-      //$request->setRequestFormat('iphone');
-      //$this->setLayout('iphone');
-      //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->findAll()->toArray();
-      //$this->promotionalBanners = json_encode($promotionalBanners);
-      //echo htmlentities($this->promotionalBanners);
-      //break;
+  	/*
+    echo 'here';
+    
+    $codesCountry = Doctrine_Query::create()
+    					->from('Country a')
+    					->select('a.id, a.code')
+    					->execute()
+    					->toKeyValueArray('code', 'id');
 
-     
-      
-      //$promotionalBanners = Doctrine::getTable('PromotionalBanner')->getActivePromotions($this->getUser()->getCulture())->execute()->toArray();
-      
-      //$this->promotionalBanners = json_encode($promotionalBanners);
-
+    //var_dump($codesCountry);
+    //exit;
+    
+    $file = sfConfig::get('sf_data_dir').'/backup/IpToCountry.csv';
+    
+    $handle = fopen($file, 'rb');
+    
+    $i = 0;
+    $j = $i+30000;
+    
+    while(!feof($handle) || $i<$j){
+    	    	
+    	$content = fgetcsv($handle);
+    	
+    	$ipMapping = new IpMapping();
+    	$ipMapping->setIpFrom($content[0]);
+    	$ipMapping->setIpTo($content[1]);
+    	$countryId = $codesCountry[$content[4]];
+    	$ipMapping->setCountryId($countryId);
+    	$ipMapping->save();
+    	//var_dump($content);
+    	//echo 'country id: '. $countryId.'<br />';
+    	$i++;
+    }
+    
+    fclose($handle);
+    
+    echo 'done';
+    
+    exit;
+    
+  	
+  	$country = Doctrine_Query::create()
+  					->select('a.id as id, t.name as name')
+  					->from('Country a')
+  					->leftJoin('a.Translation t')
+  					->where('t.lang = ?','en_US')
+  					->execute()
+  					->toKeyValueArray('name', 'id');
+  					
+  	echo "<pre>";			
+  	print_r($country);
+  	$country['China'] = 26;
+  	$country['Palestinian'] = 157;
+  	$country['Falkland Islands Malvinas'] = 183;
+  	$country['Myanmar'] = 197;
+  	$country['Virgin Islands British'] = 73;
+  	$country['Bosnia And Herzegovina'] = 89;
+  	$country['Brunei Darussalam'] = 191;
+  	$country['Islamic Republic Of Iran'] = 150;
+  	$country['Republic Of Korea'] = 39;
+  	$country['Cote D-ivoire'] = 223;
+  	$coutry['Kiribati'] = 170;
+  	$country['Russian Federation'] = 121;
+  	$country['Sao Tome And Principe'] = 18;
+  	$country['Viet Nam'] = 236;
+  	$country['Puerto Rico'] = 65;
+  	$country['Guinea-bissau'] = 222;
+  	$country['Syrian Arab Republic'] = 160;
+  	$country['Trinidad And Tobago'] = 71;
+  	$country['Macedonia'] = 111;
+  	$country['United Republic Of Tanzania'] = 82;
+  	$country['United States'] = 235;
+  	$country['Serbia And Montenegro'] = 123;
+ 	
+  	$file = sfConfig::get('sf_data_dir').'/backup/countryfromip/CountryIPDatabase6of5.txt';
+  	$fileError = sfConfig::get('sf_data_dir').'/backup/countryfromip/CountryIPDatabaseErrors.txt';
+  	$stringError = '';
+  	$handle = fopen($file, 'rb');
+  	$handle2 = fopen($fileError, 'a');
+  	
+  	while(!feof($handle)){
+  		
+  		$content = fgetcsv($handle);
+  		
+  		$IpMapping = new IpMapping();
+  		$IpMapping->setIpFrom((int)$content[0]);
+  		$IpMapping->setIpTo((int)$content[1]);
+  		$countryName = ucwords(strtolower($content[2]))	;
+  		$countryID = (int)($country[$countryName]);
+  		
+  		if($countryID == 0){
+  			//var_dump($countryName);
+  			//$stringError .= serialize($content)."\n";
+  			fwrite($handle2, serialize($content)."\n");
+  		}else{
+  			$IpMapping->setCountryId($countryID);
+  			//$IpMapping->save();
+  		}
+  		
+  		//var_dump($countryID);
+  	}
+  	
+  	//file_put_contents($fileError, $stringError);
+  	
+  	var_dump(file_exists($file));
+  	
+  	
+  	exit;
+  	*/
+  	
   }
 
   public function executeTest(sfWebRequest $request)

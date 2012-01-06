@@ -8,3 +8,5 @@ all:
 
   cookie:
     duration: 260000
+
+  currency: USD

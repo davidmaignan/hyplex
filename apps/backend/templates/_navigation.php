@@ -25,6 +25,14 @@
                 <li><?php echo link_to(__('Plex Error log'), 'plex_error_log'); ?></li>
                 <li><?php echo link_to(__('Error log'), 'sf_error_log'); ?></li>
             </ul>
+        </li>
+        <li><?php echo link_to(__('Stats'), '@historic'); ?>
+            <ul>
+                <li><?php echo link_to(__('Stats/day'), '@historic_day'); ?></li>
+                <li><?php echo link_to(__('Daily report'), '@historic_daily'); ?></li>
+                <li><?php echo link_to(__('Move to DB'), '@historic_moveToDB'); ?></li>
+            </ul>
+        </li>
         <li><?php echo link_to(__('Users'), '@sf_guard_user'); ?>
             <ul>
                 <li><?php echo link_to(__('Groups'), '@sf_guard_group'); ?></li>

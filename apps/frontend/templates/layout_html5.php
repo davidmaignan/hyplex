@@ -54,7 +54,7 @@
 
         <section id="header">
             <div class="span-12">
-                <a href="<?php echo url_for('@homepage') ?>" title="#"><h2 id="logo">Logo</h2></a>
+                <a href="<?php echo url_for('@localized_homepage') ?>" title="#"><h2 id="logo">Logo</h2></a>
             </div>
             
             <div class="span-6 last">

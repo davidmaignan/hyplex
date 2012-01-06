@@ -54,7 +54,7 @@ all:
 
   plexSession:
 #    duration: 900
-    duration: 300
+    duration: 600
 
   layout:
     template: test

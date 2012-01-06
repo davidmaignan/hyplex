@@ -1,3 +1,43 @@
+browserPieChart:
+  url: /:sf_culture/stats/browser
+  param: { module: historic, action: browserPieChart }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+hourlyChart:
+  url: /:sf_culture/stats/hourly
+  param: { module: historic, action: hourlyChart }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+historic_daily_user:
+  url: /:sf_culture/stats/daily/user-activity
+  param: {module: historic, action: dailyUser }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+historic_daily:
+  url: /:sf_culture/stats/daily
+  param: {module: historic, action: daily }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+historic_moveToDB:
+  url:   /:sf_culture/stats-move-to-db
+  param: { module: historic, action: moveToDB }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+historic_day:
+  url:   /:sf_culture/stats-per-day
+  param: { module: historic, action: statsPerDay }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+historic:
+  class: sfDoctrineRouteCollection
+  options:
+    model:                Historic
+    module:               historic
+    prefix_path:          /:sf_culture/stats
+    column:               id
+    with_wildcard_routes: true
+    requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
 promotional_banner:
   class: sfDoctrineRouteCollection
   options:

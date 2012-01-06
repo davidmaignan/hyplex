@@ -1,211 +1,268 @@
-/* 
-    Document   : admin
-    Created on : Apr 27, 2011, 9:25:21 PM
-    Author     : david
-    Description:
-        Purpose of the stylesheet follows.
-*/
+/*
+ Document   : admin
+ Created on : Apr 27, 2011, 9:25:21 PM
+ Author     : david
+ Description:
+ Purpose of the stylesheet follows.
+ */
 
-/* 
-   TODO customize this sample style
-   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
-*/
+/*
+ TODO customize this sample style
+ Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+ */
 
-body{margin: 0; padding:0;}
-
-a{text-decoration: none;}
-
-
-#content{
-    padding: 20px;
+body {
+	margin: 0;
+	padding: 0;
 }
-
-root { 
-    display: block;
+a {
+	text-decoration: none;
 }
-
-input, textarea{
-    padding:4px;
+#content {
+	padding: 20px;
 }
-
-select{
-    padding: 2px 4px;
+root {
+	display: block;
 }
-
-.large{
-    min-width: 450px;
+input, textarea {
+	padding: 4px;
 }
-
-.medium{
-    min-width: 250px;
-    min-height: 200px;
+select {
+	padding: 2px 4px;
 }
-
-#header{
-    height: 50px;
-    display: block;
-    background: white;
-    position: relative;
-    padding-left: 20px;
-    border-bottom: 1px solid #0c4878;
+.large {
+	min-width: 450px;
 }
-
-#user{
-    float: right;
-    margin: 12px 10px 0 10px;
-    color: #444444;
-    font-weight: bold;
+.medium {
+	min-width: 250px;
+	min-height: 200px;
 }
-
+#header {
+	height: 50px;
+	display: block;
+	background: white;
+	position: relative;
+	padding-left: 20px;
+	border-bottom: 1px solid #0c4878;
+}
+#user {
+	float: right;
+	margin: 12px 10px 0 10px;
+	color: #444444;
+	font-weight: bold;
+}
 /* LANGUAGE DROP MENU */
 
-#language-container{
-    float: right;
+#language-container {
+	float: right;
+}
+#other-language li {
+	display: inline;
+}
+#other-language li img {
+	margin-right: 4px;
+}
+#navigation {
+	background-color: #0c4878;
+	margin: 0;
+	padding: 0;
+	border-bottom: 1px solid #0c4878;
+	overflow: hidden;
+	color: white;
+}
+#navigation li {
+	display: inline;
+}
+#navigation li a {
+	padding: 5px 10px;
+	display: block;
+	float: left;
+	aborder-right: 1px solid #beddf8;
+	color: white;
+	background: url('../images/generic/bg_main_nav_btn.png') right top repeat-y;
+}
+#navigation a:hover {
+
+	background: none;
+	background-color: #a3b9cb;
+	color: #0c4878;
+}
+#sf_admin_container {
+	position: relative;
+	overflow: hidden;
+	border: 0px solid red;
+	width: 101%;
+	min-height: 800px;
+}
+#sf_admin_bar {
+	position: absolute;
+	right: -600px;
+	display: none;
+	-moz-box-shadow: 0px 1px 3px #888;
+	-webkit-box-shadow: 0px 1px 3px #888;
+	box-shadow: 0px 1px 3px #888;
+}
+#filter {
+	float: right;
+}
+ul.inline {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	margin-bottom: 20px;
+}
+ul.inline li {
+	margin-right: 10px;
+	display: inline;
+}
+a.add-note {
+	background: url("../sfDoctrinePlugin/images/note_add.png") no-repeat scroll 0 0 transparent;
+	padding-left: 20px;
+	height: 17px;
+	padding-bottom: 3px;
+}
+a.add-question {
+	background: url("../sfDoctrinePlugin/images/help.png") no-repeat scroll 0 0 transparent;
+	padding-left: 20px;
+	height: 17px;
+	padding-bottom: 3px;
+}
+a.delete {
+	background: url("../sfDoctrinePlugin/images/delete.png") no-repeat scroll 0 0 transparent;
+	padding-left: 20px;
+	height: 17px;
+	padding-bottom: 3px;
+}
+a.edit {
+	background: url("../sfDoctrinePlugin/images/edit.png") no-repeat scroll 0 0 transparent;
+	padding-left: 20px;
+	height: 17px;
+	padding-bottom: 3px;
+}
+a.add-answer {
+	background: url("../sfDoctrinePlugin/images/email_go.png") no-repeat scroll 0 0 transparent;
+	padding-left: 20px;
+	height: 17px;
+	padding-bottom: 3px;
+}
+#clarifications-table {
+	width: 100%;
+}
+.clarification-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.clarification-list li {
+	list-style: none;
+	margin-bottom: 5px;
+}
+ul.plain {
+	margin: 0;
+	padding: 0;
+}
+ul.plain li {
+	list-style: none;
+	list-style-position: inside;
+}
+ul.plain li img {
+	margin: 0 3px 0 0;
+	list-style: none;
+	list-style-position: inside;
+}
+a.pms-doc-link {
+	font-size: 80%;
+}
+table {
+	border: none;
 }
 
-#other-language li{
-    display: inline;
+hr.space{
+	height: 5px;
+	border: none;
+}
+/* Tabs --------------------------------------------------------------------------------------- */
+
+#tab-viewing {
+	border-bottom: 1px solid #CECECE;
+	height: 35px;
+	line-height: 35px;
+	width: 100%;
+}
+#tab-viewing, #tab-viewing li {
+	list-style: none;
+	display: inline;
+}
+#tab-viewing a {
+	background-color: #F8F8F6;
+	border: 1px solid #CECECE;
+	border-bottom: none;
+	display: block;
+	float: left;
+	height: 34px;
+	margin-right: 5px;
+	padding: 0 15px;
+}
+#tab-viewing #backToResults {
+	background: none repeat scroll 0 0 transparent;
+	border: medium none;
+	display: none;
+	float: right;
+	font-weight: bold;
+}
+#tab-viewing a.selected {
+	background-color: white;
+	border-bottom: 1px solid white;
+}
+/* Daily report page */
+
+
+#navigation2 {
+	position: fixed;
+	left: 0;
+	width: 200px;
+	padding-left:10px;
+}
+#mainContent {
+	margin-left:170px;
+	margin-top:30px;
 }
 
-#other-language li img{
-    margin-right: 4px;
+#mainContent h2{
+	margin-top: 0;
+	border-bottom: 1px solid #DDDDDD;
+	color: #333;
+	padding-bottom: 5px;
 }
 
-#navigation{
-    background-color: #0c4878;
-    margin:0;
-    padding:0;
-    border-bottom: 1px solid #0c4878;
-    overflow: hidden;
-    color: white;
-
+table.data{
+	width: 300px;
+	float: left;
+	margin-right: 20px;
 }
 
-#navigation li{
-    display: inline;
-    
+table.data th
+{
+  background-color: #e7eef6;
+  white-space: nowrap;
 }
 
-#navigation li a{
-    padding:5px 10px;
-    display: block;
-    float: left;
-    aborder-right: 1px solid #beddf8;
-    color: white;
-    background: url('../images/generic/bg_main_nav_btn.png') right top repeat-y;
+table.data td, table.data th
+{
+  border: 0;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  text-align: left;
+  vertical-align: top;
 }
 
-#navigation a:hover{
-    
-    background: none;
-    background-color: #a3b9cb;
-    color: #0c4878;
+table.data tr
+{
+  background-color: #fff;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
 }
 
-#sf_admin_container{
-    position: relative;
-    overflow: hidden;
-    border: 0px solid red;
-    width: 101%;
-    min-height: 800px;
-}
-
-#sf_admin_bar{
-    position: absolute;
-    right: -600px;
-    display: none;
-    -moz-box-shadow: 0px 1px 3px #888;
-    -webkit-box-shadow: 0px 1px 3px #888;
-    box-shadow: 0px 1px 3px #888;
-}
-
-#filter{
-    float: right;
-}
-
-ul.inline{
-    list-style: none;
-    margin:0;
-    padding:0;
-    margin-bottom: 20px;
-}
-
-ul.inline li{
-    margin-right: 10px;
-    display: inline;
-}
-
-a.add-note{
-    background: url("../sfDoctrinePlugin/images/note_add.png") no-repeat scroll 0 0 transparent;
-    padding-left: 20px;
-    height: 17px;
-    padding-bottom: 3px;
-}
-
-a.add-question{
-    background: url("../sfDoctrinePlugin/images/help.png") no-repeat scroll 0 0 transparent;
-    padding-left: 20px;
-    height: 17px;
-    padding-bottom: 3px;
-}
-
-a.delete{
-    background: url("../sfDoctrinePlugin/images/delete.png") no-repeat scroll 0 0 transparent;
-    padding-left: 20px;
-    height: 17px;
-    padding-bottom: 3px;
-}
-
-a.edit{
-    background: url("../sfDoctrinePlugin/images/edit.png") no-repeat scroll 0 0 transparent;
-    padding-left: 20px;
-    height: 17px;
-    padding-bottom: 3px;
-}
-
-a.add-answer{
-    background: url("../sfDoctrinePlugin/images/email_go.png") no-repeat scroll 0 0 transparent;
-    padding-left: 20px;
-    height: 17px;
-    padding-bottom: 3px;
-}
-
-#clarifications-table{
-    width: 100%;
-}
-
-.clarification-list{
-    margin:0;
-    padding:0;
-    list-style: none;
-}
-
-.clarification-list li{
-    list-style: none;
-    margin-bottom: 5px;
-}
-
-ul.plain{
-    margin:0;
-    padding:0;
-}
-
-ul.plain li{
-    list-style: none;
-    list-style-position: inside;
-}
-
-ul.plain li img{
-    margin: 0 3px 0 0;
-    list-style: none;
-    list-style-position: inside;
-}
-
-a.pms-doc-link{
-    font-size: 80%;
-}
-
-
-table{
-    border: none;
+table.data td.text-center, th.text-center{
+	text-align: center;
 }
