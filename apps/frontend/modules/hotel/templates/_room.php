@@ -1,6 +1,5 @@
 <div class="span-17 last" id="hotel-rooms-content">
-
-    <h3 class="fontface blue1">Rooms & rates</h3>
+    <h2 class="fontface blue1 title"><?php echo __('Rooms & rates') ?></h2>
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
     <table class="rates">
         <thead>

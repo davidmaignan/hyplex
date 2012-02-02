@@ -113,7 +113,8 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
                     if (!array_key_exists($value->arAirlines[0], $this->arAirlines)) {
                         $this->arAirlines[$value->arAirlines[0]][0] = $tmp;
                     } else {
-                        array_push($this->arAirlines[$value->arAirlines[0]], $tmp);
+                    	$this->arAirlines[$value->arAirlines[0]][0] = Utils::compareArrays($this->arAirlines[$value->arAirlines[0]][0], $tmp, 'price');
+                        //array_push($this->arAirlines[$value->arAirlines[0]], $tmp);
                     }
 
                     break;
@@ -125,9 +126,10 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
                     $tmp['price'] = $value->TotalPrice;
                     $tmp['UniqueReferenceId'] = $value->UniqueReferenceId;
                     if (!array_key_exists('multi', $this->arAirlines)) {
-                        $this->arAirlines['multi'][] = $tmp;
+                        $this->arAirlines['multi'][0] = $tmp;
                     } else {
-                        array_push($this->arAirlines['multi'], $tmp);
+                    	$this->arAirlines['multi'][0] = Utils::compareArrays($this->arAirlines['multi'][0], $tmp, 'price');
+                        //array_push($this->arAirlines['multi'], $tmp);
                     }
 
                     break;
@@ -432,6 +434,8 @@ class PlexFilterFlightReturn extends PlexFilterFlight implements PlexFilterInter
                             </ul>
                         </div>
          */
+        
+        $frmStr .= '</form>';
         
         return $frmStr;
     }

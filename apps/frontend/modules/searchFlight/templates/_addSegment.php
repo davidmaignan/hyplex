@@ -10,11 +10,11 @@
     </tr>
     <tr>
         <td style="font-size: 80%; vertical-align: middle;"><?php echo __('Segment') ?>: <?php //echo $num; ?></td>
-        <td><?php echo $form['newSegments'][$num]['origin'] ?></td>
+        <td><?php echo $form['newSegments'][$num]['origin']->render(array('class'=>'text span-5')) ?></td>
         <td style="vertical-align: middle;"><a href="<?php echo url_for('multidestination'); ?>" id="origin-<?php echo $num; ?>" onclick="return false;" class="multidestination-popup" ><?php echo image_tag('icons/world.png'); ?></a></td>
-        <td><?php echo $form['newSegments'][$num]['destination'] ?></td>
+        <td><?php echo $form['newSegments'][$num]['destination']->render(array('class'=>'text span-5')) ?></td>
         <td style="vertical-align: middle;"><a href="<?php echo url_for('multidestination'); ?>" id="origin-<?php echo $num; ?>" onclick="return false;" class="multidestination-popup" ><?php echo image_tag('icons/world.png'); ?></a></td>
-        <td><?php echo $form['newSegments'][$num]['depart_date'] ?></td>
+        <td><?php echo $form['newSegments'][$num]['depart_date']->render(array('class'=>'text span-3')) ?></td>
         <td style="width: 90px; vertical-align: middle;">
             <a href="#" class="remove-segment remove-small" id="<?php echo $num; ?>" onclick="do_delete(this)"><?php echo __('remove'); ?></a>
         </td>

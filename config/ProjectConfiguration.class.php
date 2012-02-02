@@ -11,6 +11,10 @@ class ProjectConfiguration extends sfProjectConfiguration
     $this->enablePlugins('sfDoctrineGuardPlugin');
     $this->enablePlugins('sfDoctrineErrorLoggerPlugin');
     $this->enablePlugins('sfFormExtraPlugin');
+    
+    
+    sfConfig::set('sf_font_folder', sfConfig::get('sf_web_dir').DIRECTORY_SEPARATOR.'fonts');
+    
   }
 
   /**

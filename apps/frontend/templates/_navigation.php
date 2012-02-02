@@ -1,10 +1,9 @@
-<ul id="main-nav" class="append-bottom">
-    <li><a href="<?php echo url_for('@homepage') ?>"><?php echo __('Home'); ?></a></li>
-    <li><a href="<?php echo url_for('search_flight') ?>"><?php echo __('Flight'); ?></a></li>
-    <li><a href="<?php echo url_for('search_hotel') ?>"><?php echo __('Hotel'); ?></a></li>
-    <li><a href="<?php echo url_for('search_car') ?>"><?php echo __('Car'); ?></a></li>
-    <li><a href="<?php echo url_for('search_package') ?>"><?php echo __('Package'); ?></a></li>
-    <li><a href="#"><?php echo __('Activities');?></a></li>
-    <li class="right"><a href="<?php echo url_for('@basket') ?>"><?php echo __('my basket');?></a></li>
-    <li class="right"><a href="<?php echo url_for('@basket') ?>"><?php echo __('my account');?></a></li>
-</ul>
+<nav id="main-nav">
+	<h2>Main navigation</h2>
+	<?php echo link_to(__('Flight'), 'search_flight') ?>
+	<?php echo link_to(__('Hotel'), 'search_hotel') ?>
+	<?php echo link_to(__('Car'), 'search_car') ?>
+	<?php echo link_to(__('Package'), 'search_package') ?>
+	<?php echo link_to(__('Basket'), 'basket', array(), array('class'=>'right')) ?>
+	<?php echo link_to(__('Account'), 'account', array(), array('class'=>'right')) ?>
+</nav>

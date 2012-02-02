@@ -1,0 +1,25 @@
+generator:
+  class: sfDoctrineGenerator
+  param:
+    model_class:           Historic
+    theme:                 admin
+    non_verbose_templates: true
+    with_show:             false
+    singular:              ~
+    plural:                ~
+    route_prefix:          historic
+    with_doctrine_route:   true
+    actions_base_class:    sfActions
+
+    config:
+      actions: ~
+      fields:
+      list:
+        display: [=id, date, tsop, sessionId, ip, country, folder, module, action, language, _parameters]
+        fields:
+          date: { date_format: I  }
+      filter:
+        display: [date]
+      form:    ~
+      edit:    ~
+      new:     ~

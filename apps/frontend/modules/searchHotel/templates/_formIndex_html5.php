@@ -1,3 +1,5 @@
+
+
 <?php if(in_array($sf_user->getCulture(), array('fr_FR','zh_CN'))):?>
 <?php use_javascript('culture/datepicker_'.$sf_user->getCulture().'.js') ?>
 <?php endif; ?>
@@ -5,23 +7,24 @@
 <?php use_javascript('search/searchHotel'); ?>
 
 <form action="<?php echo url_for('@search_hotel_form') ?>" method="post" id="hotel-form-index">
-    <fieldset class="type1">
+    <fieldset class="type1 noborder">
         <legend></legend>
         <h5><?php echo __('Travel details'); ?></h5>
         <p>
             <?php echo $form['wherebox']->renderLabel(); ?><br>
             <?php echo $form['wherebox']->render(array('class'=>'text')); ?>
+            <?php echo $form['wherebox']->renderError(); ?>
         </p>
         <table class="form">
             <tr>
                 <td>
-                    <?php echo $form['checkin_date']->renderLabel(); ?><br>
-                    <?php echo $form['checkin_date']->render(array('class'=>'text span-3')) ?>
-                    
-                </td>
+               		<?php echo $form['checkin_date']->renderLabel(); ?><br />
+                	<?php echo $form['checkin_date']->render(array('class'=>'text span-3')) ?><br><br>
+                	<?php echo $form['checkin_date']->renderError(); ?>
                 <td>
                     <?php echo $form['checkout_date']->renderLabel(); ?><br>
-                    <?php echo $form['checkout_date']->render(array('class'=>'text span-3')) ?>
+                    <?php echo $form['checkout_date']->render(array('class'=>'text span-3')) ?><br><br>
+                    <?php echo $form['checkout_date']->renderError(); ?>
                 </td>
             </tr>
         </table>
@@ -31,7 +34,7 @@
         </div>
         <h5><?php echo __('Room details'); ?></h5>
         <?php foreach ($form['newRooms'] as $key => $f): ?>
-            <?php include_partial('searchHotel/room_html5', array('f'=>$f, 'form'=>$form));?>
+            <?php include_partial('searchHotel/room_html5', array('f'=>$f, 'form'=>$form, 'num'=>0));?>
         <?php endforeach; ?>
         <div id="extrarooms" ></div>
         

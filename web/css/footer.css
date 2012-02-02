@@ -37,6 +37,8 @@ footer#main-footer h2.section{
     color: white;
     font-size: 127%;
     margin-bottom: 8px;
+    font-family: 'Telex', Arial, sans-serif;
+    font-weight: normal;
 }
 
 footer#main-footer h2{
@@ -62,8 +64,8 @@ footer section#footer-deals article{
 
 footer#main-footer .price{text-align: right;}
 
-article.foot-deal{margin-bottom: 18px;}
+article.foot-deal{margin-bottom: 18px; overflow: hidden;}
 article.foot-deal .img{width: 70px; margin-right:7px; float: left;}
 article.foot-deal img{width: 70px; margin:0;}
-article.foot-deal .desc{width: 170px; float: left;margin:0;}
-article.foot-deal .price{width: 50px; float: right; font-size: 110%;margin:0; color: white;}
+article.foot-deal .desc{width: 170px; float: left; margin:0;}
+article.foot-deal .price{width: 80px; float: right; font-size: 110%;margin:0; color: white;}

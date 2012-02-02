@@ -32,8 +32,6 @@ class CityTable extends Doctrine_Table {
                     ->set('rank','rank + 1')
                     ->where('code = ?', $value)
                     ->execute();
-
-
         }
 
     }
@@ -171,11 +169,12 @@ class CityTable extends Doctrine_Table {
      */
 
     public static function getListAirportByCode($codes) {
-
+		
         $languages = sfConfig::get('app_languages_available');
 
-        $q = Doctrine_Query::create()
-                        ->from('City a')
+
+        $q = Doctrine::getTable('City')
+                        ->createQuery('a')
                         ->whereIn('a.code', $codes)
                         ->leftJoin('a.Translation')
                         ->leftJoin('a.Country b')
@@ -184,12 +183,15 @@ class CityTable extends Doctrine_Table {
                         ->leftJoin('a.State')
                         ->execute()
                         ->toArray();
-
+		
         $ar = array();
 
         foreach ($q as $value) {
             $tmp = array();
             $tmp['city_code'] = $value['code'];
+            $tmp['latitude'] = $value['latitude'];
+            $tmp['longitude'] = $value['longitude'];
+            
             if (array_key_exists('State', $value)) {
                 $tmp['state'] = $value['State']['code'];
             } else {
@@ -197,9 +199,7 @@ class CityTable extends Doctrine_Table {
             }
 
             foreach ($languages as $language) {
-                //unset($value['Translation'][$language]['lang']);
-                //unset($value['Translation'][$language]['id']);
-                //$tmp[$language] = $value['Translation'][$language];
+
                 $tmp[$language]['name'] = $value['airport'];
                 $tmp[$language]['city_name'] = $value['Translation'][$language]['name'];
                 $tmp[$language]['country'] = $value['Country']['Translation'][$language]['name'];

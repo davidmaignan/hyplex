@@ -1,0 +1,20 @@
+/* 
+    Document   : account.css
+    Created on : Jan 31, 2012, 9:34:27 AM
+    Author     : david
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+.account-home{background: url(../images/icons/house.png) no-repeat left 2px; padding-left: 20px;}
+.account-booking{background: url(../images/icons/briefcase.png) no-repeat left 2px; padding-left: 20px;}
+.account-searches{background: url(../images/icons/magnifier.png) no-repeat left 2px; padding-left: 20px;}
+.account-reviews{background: url(../images/icons/comments.png) no-repeat left 2px; padding-left: 20px;}
+.account-preferences{background: url(../images/icons/wrench.png) no-repeat left 2px; padding-left: 20px;}
+.account-profile{background: url(../images/icons/vcard.png) no-repeat left 2px; padding-left: 20px;}
+.account-signout{background: url(../images/icons/lock_open.png) no-repeat left 2px; padding-left: 20px;}
+.account-signin{background: url(../images/icons/lock.png) no-repeat left 2px; padding-left: 20px;}

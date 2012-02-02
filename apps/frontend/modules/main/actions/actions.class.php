@@ -16,8 +16,8 @@ class mainActions extends sfActions {
      * @param sfRequest $request A request object
      */
     public function executeIndex(sfWebRequest $request) {
-
-        //throw new Exception('artificial error');
+        
+        //throw new Exception('Only for test, don\'t forget to remove it!');
 
         $this->flightForm = new SearchFlightForm();
         $this->hotelForm = new SearchHotelForm();
@@ -30,7 +30,8 @@ class mainActions extends sfActions {
 
         if($request->getRequestFormat() == 'iphone' || $request->getRequestFormat('ipad'))
         {
-            //$this->setLayout('layout');
+            $this->setLayout('layout');
+            
             //$this->form = new sfFormLanguage($this->getUser(), array('languages' => array('en', 'fr','zh')));
             //$this->flightForm = new SearchFlightIpadForm();
         }

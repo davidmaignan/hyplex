@@ -25,7 +25,7 @@
 <div class="span-15" id="form-index" >
 
     <form action="<?php echo url_for('@search_package_form') ?>" method="post" id="">
-        <fieldset>
+        <fieldset class="type1">
 
             <?php if($form->hasGlobalErrors()): ?>
             <ul class="error-global">
@@ -35,7 +35,7 @@
             </ul>
             <?php endif; ?>
 
-            <h3 class="form-index"><?php echo __('Trip details'); ?></h3>
+            <h5><?php echo __('Trip details'); ?></h5>
             <table>
                 <tr>
                     <td class="" colspan="2">
@@ -47,13 +47,13 @@
                 </tr>
                 <tr>
                     <td colspan="2">
-                        <?php echo $form['origin']; ?>
+                        <?php echo $form['origin']->render(array('class' => 'text span-5')); ?>
                         <span class="multi-icon">
                         <a href="<?php echo url_for('multidestination'); ?>" id="origin-0" onclick="return false;" class="multidestination-popup" ><?php echo image_tag('icons/world.png'); ?></a>
                     </span>
                     </td>
                     <td colspan="2">
-                        <?php echo $form['destination']; ?>
+                        <?php echo $form['destination']->render(array('class' => 'text span-5')); ?>
                         <span class="multi-icon">
                             <a href="<?php echo url_for('multidestination'); ?>" id="destination-0" onclick="return false;" class="multidestination-popup" ><?php echo image_tag('icons/world.png'); ?></a>
                         </span>
@@ -74,9 +74,9 @@
                     <td><?php echo $form['return_time']->renderLabel(); ?></td>
                 </tr>
                 <tr>
-                    <td><?php echo $form['depart_date'] ?></td>
+                    <td><?php echo $form['depart_date']->render(array('class' => 'text span-3')); ?></td>
                     <td><?php echo $form['depart_time'] ?></td>
-                    <td><?php echo $form['return_date'] ?></td>
+                    <td><?php echo $form['return_date']->render(array('class' => 'text span-3')); ?></td>
                     <td><?php echo $form['return_time'] ?></td>
                 </tr>
                 <tr>
@@ -87,7 +87,7 @@
                 </tr>
                 <tr>
                     <td colspan="4">
-                        <h3 class="form-index prepend-top"><?php echo __('Flight options'); ?></h3>
+                        <h5><?php echo __('Flight options'); ?></h5>
                     </td>
                 </tr>
                 <tr>
@@ -95,7 +95,7 @@
                         <?php echo $form['cabin']->renderLabel(); ?>
                     </td>
                     <td colspan="2">
-                        <?php //echo $form['airline']->renderLabel(); ?>
+                        
                     </td>
                 </tr>
                 <tr>
@@ -117,43 +117,10 @@
                 
             </table>
 
-              <hr class="space2"/>
-        <h3 class="form-index"><?php echo __('Room details'); ?></h3>
+   
+        <h5 class="form-index"><?php echo __('Room details'); ?></h5>
         <?php foreach ($form['newRooms'] as $key => $f): ?>
-            <div id="room-container-<?php echo $key ?>" class="room-container <?php echo ($key != 1)? 'bordered': ''; ?>">
-                <table id="room-1" class="hotel-form-table">
-                    <tr>
-                        <td style="vertical-align: top; padding-top: 25px;  width: 50px;" class="label">Room:</td>
-                        <td style="vertical-align: top; width: 80px;">
-                            <ul>
-                                <li><?php echo $f['number_adults']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_adults']; ?></li>
-                            </ul>
-                        </td>
-                        <td style="vertical-align: top; padding-left: 10px;">
-                            <ul>
-                                <li><?php echo $f['number_children']->renderLabel(); ?></li>
-                                <li><?php echo $f['number_children']->render(array('class'=>'package-children-age medium')); ?></li>
-                            </ul>
-                        </td>
-                        <td style="width: 250px;">
-                            <div id="child-container-<?php echo $key; ?>">
-                            <?php foreach ($form['childrenAge'] as $k => $f): ?>
-                            <?php if ($k[0] == $key): ?>
-                            <?php include_partial('searchPackage/addChildAge', array('form' => $form, 'roomNumber' => $k[0], 'i' => $k[2])) ?>
-                            <?php endif; ?>
-                            <?php endforeach; ?>
-                            </div>
-
-                        </td>
-                        <td style="vertical-align: middle; width: 70px;">
-                            <?php if($key != 1): ?>
-                            <a href="#" id="room-delete-<?php echo $key ?>" onclick="do_delete(this);" class="remove-small"><?php echo __('remove'); ?></a>
-                            <?php endif; ?>
-                        </td>
-                        </tr>
-                    </table>
-                </div>
+           <?php include_partial('searchHotel/room_html5', array('key'=>$key, 'f' => $f, 'form'=>$form)); ?>
         <?php endforeach; ?>
 
         <div id="packageExtraRooms" ></div>
@@ -161,7 +128,7 @@
         <button id="addPackageRoom" type="button" class="info">More rooms</button>
 
         <div class="span-8 last right">
-            <input type="submit" value="<?php echo __('search'); ?>" class="blue right" />
+            <input type="submit" value="<?php echo __('search'); ?>" class="blue bigger right" />
         </div>
         <?php echo $form['type']; ?>
         <?php echo $form['_csrf_token']; ?>

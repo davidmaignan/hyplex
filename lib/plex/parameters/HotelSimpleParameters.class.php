@@ -129,9 +129,29 @@ class HotelSimpleParameters extends PlexHotelParameters {
 
     public function getPassengers(){
 
-
-
         return null;
         
+    }
+    
+    public function displayParamsStats(){
+    	
+    	$string  = $this->getWhereBoxCode();
+    	$string .= ' - ';
+    	
+    	$string .= ($this->getCheckinDate() != '')?format_date($this->getCheckinDate(), 'p'):'';
+        $string .= ' - ';
+        //$string .= format_date($this->getCheckoutDate(), 'p');
+        $string .= ' - ';
+        foreach($this->arRooms as $key=>$room){
+        	$string .= 'Room'.++$key.': ';
+        	$string .= Utils::getAdultChildInfantString(
+                    $room['number_adults'],
+                    $room['number_children'],0); 
+            $string .= ' - ';
+            //$string .= Utils::getChildrenAgeString($room['children_age']);
+        }
+
+        return $string;
+    	
     }
 }

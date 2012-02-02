@@ -46,7 +46,7 @@ class PassengerAdultForm extends BasePassengerForm
                 'required' => 'Choose a gender')));
 
 
-     $this->setWidget('dob', new sfWidgetFormInputText(array(),array('class'=>'dob span-3','value'=>'1970-10-10')));
+     $this->setWidget('dob', new sfWidgetFormInputText(array(),array('class'=>'dob span-3',)));
      $this->setWidget('airline_code', new sfWidgetFormInputText(array(),array('class'=>'airline_code')));     
 
      $this->setWidget('meal_preference', new sfWidgetFormSelect(array(
@@ -74,8 +74,8 @@ class PassengerAdultForm extends BasePassengerForm
 
      $this->validatorSchema->setOption('allow_extra_fields', true);
      $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
-     $this->setWidget('first_name', new sfWidgetFormInput(array(), array('value'=>'Tomi')));
-     $this->setWidget('last_name', new sfWidgetFormInput(array(), array('value'=>'Klemm')));
+     $this->setWidget('first_name', new sfWidgetFormInput(array(), array()));
+     $this->setWidget('last_name', new sfWidgetFormInput(array(), array()));
 
   }
 

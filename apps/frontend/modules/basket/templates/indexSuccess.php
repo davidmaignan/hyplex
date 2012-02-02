@@ -9,12 +9,21 @@
 <?php include_component('basket', 'checkOut') ?>
 
 <div class="span-17 prepend-1 last">
+    
+    <?php if($sf_user->hasFlash('notice')): ?>
+    <div class="notice append-bottom2">
+        <?php echo $sf_user->getFlash('notice'); ?>
+    </div>
 
+    <?php endif; ?>
+    
+    <hr class="space" />
+    
     <?php include_partial('summary',array('parameters'=>$parameters)); ?>
     <hr class="space" />
     <?php if(isset($flight)): ?>
     <div id="flight" class="basket-data-container">
-        <h2 class="title"><?php echo __('Flight'); ?></h2>
+        <h2 class="fontface title blue1"><?php echo __('Flight'); ?></h2>
         
         <div class="span-17 bg-grey flight-box-details">
             <div class="padded">
@@ -44,7 +53,7 @@
     <?php if(isset($hotel)): ?>
 
     <div id="hotel" class="basket-data-container">
-        <h2 class="hotel"><?php echo __('Hotel'); ?></h2>
+        <h2 class="fontface title blue1"><?php echo __('Hotel'); ?></h2>
             <?php include_partial('hotelDescription', array('result'=>$hotel)); ?>
             <?php include_partial('hotelRoom',array('hotel'=>$hotel)); ?>
         <div class="smaller">
@@ -61,7 +70,7 @@
 
     <?php if(isset($extras)): ?>
     <div id="extras" class="basket-data-container hide">
-        <h2 class="title extras"><?php echo __('Extras'); ?></h2>
+        <h2 class="fontface title blue1"><?php echo __('Extras'); ?></h2>
     </div>
     <hr class="space" />
     <?php endif; ?>
@@ -71,7 +80,7 @@
     <?php if(isset($car)): ?>
     <div id="car" class="basket-data-container">
         
-        <h2 class="title car"><?php echo __('Car'); ?></h2>
+       <h2 class="fontface title blue1"><?php echo __('Car'); ?></h2>
        
     </div>
     <?php endif; ?>
@@ -81,7 +90,7 @@
     <?php if(isset($excursions)): ?>
     <div id="excursions" class="basket-data-container">
        
-        <h2 class="title excursions"><?php echo __('Excursions'); ?></h2>
+        <h2 class="fontface title blue1"><?php echo __('Excursions'); ?></h2>
        
         
     </div>

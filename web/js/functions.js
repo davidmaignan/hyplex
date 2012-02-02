@@ -68,8 +68,6 @@ function highlight2( data, search ){
 
     var values = search.split(' ');
 
-    //alert(search);
-
     for(var i in values){
         if(values[i] != ''){
             values[i] = values[i].toLowerCase();
@@ -101,7 +99,6 @@ String.prototype.capitalize = function() {
 }
 
 
-
 function tripDuration(secs)
 {
     var hours = Math.floor(secs / (60));
@@ -117,10 +114,8 @@ function secondsToTime(secs, bool)
 {
 
     var hours = Math.floor(secs / (60 * 60));
-
     var divisor_for_minutes = secs % (60 * 60);
     var minutes = Math.floor(divisor_for_minutes / 60);
-
     var jeton;
 
     if(minutes == 0){
@@ -198,8 +193,6 @@ function formatAirportString(row)
 function formatAirportStringNoComma(row)
 {
     var str = '';
-
-
 
     for(var i in row){
         //ADS.log.write(row[i]);
@@ -287,6 +280,7 @@ function sendFilterRequest(target){
 
         }else{
             url = form.attr('action');
+            showHideHotelDivs(0);
         }
 
         var classes = target.attr('class');
@@ -295,11 +289,14 @@ function sendFilterRequest(target){
         if(classes.search(/(hotelNameDetailAjaxLink2)/) > -1 || classes.search(/(hotelNameDetailAjaxLink)/) > -1){
             divHotelTarget = "#hotelDetailsResult";
             showHideHotelDivs(2);
+        }else{
+            showHideHotelDivs(0);
         }
 
        
         if(url == '' || url == undefined){
             url = $('#filterForm').attr('action');
+            showHideHotelDivs(0);
         }
 
         datas += '&class='+ classes.split(' ').join('_');
@@ -348,6 +345,8 @@ function onRequest2Success(msg){
     activatePagination();
     activateFilterBox();  //Yellow box filter
     hotelShowMap();
+    
+    divHotelTarget = "#Results";
     //ADS.log.write('onRequest2Success');
 }
 
@@ -511,7 +510,6 @@ function activateHotelFilteringCheckboxes(){
             break;
             
         }
-        
         
         sendFilterRequest($(this));
     });
@@ -836,7 +834,7 @@ function showGmapForOneHotel(bool, marker, zoom){
         mapInitialized = true; // global var declared in hotelResultSuccess.php line 111;
 
         var markerCluster = new MarkerClusterer(gMapResultPage, markers,{
-            maxZoom: 8
+            maxZoom: 14
         });
 
         
@@ -927,7 +925,7 @@ function initializeGmapHotels(bool){
     gMapResultPage.fitBounds(gMapBounds);
 
     var markerCluster = new MarkerClusterer(gMapResultPage, markers,{
-        maxZoom: 13
+        maxZoom: 14
     });
     
     google.maps.event.addListener(gMapResultPage, 'click', function() {
@@ -1502,4 +1500,50 @@ function basketTabulation(value){
         }
 
     
+}
+
+//Function for tabs
+jQuery.fn.plexTabs = function(tab){
+	
+	if(tab != null || tab!= undefined){
+		
+		$('.tab').removeClass('selected');
+		$('.tab-container').hide();
+		var tabName = '.view-'+tab;
+		var containerName = '.'+tab+'-container';
+		$(tabName).addClass('selected');
+		$(containerName).show();
+		
+	}
+
+	// Loop over each hottie.
+	this.each(function(){
+	 
+		$(this).bind('click', function(){
+			
+			$('.tab').removeClass('selected');
+			var classes = $(this).attr('class');
+
+			$('.tab-container').hide();
+
+			//Retreive the name
+			var start = classes.indexOf('view-');
+			var length = classes.length;
+			//alert(length);
+			var name = classes.slice(start+5, length);
+			//alert(name);
+			
+			var toShow = '.'+name+'-container';
+			$(toShow).show();
+			$(this).addClass('selected');
+
+			
+			//alert(classes);
+		});
+			
+	 
+	});
+
+	return false;
+
 }

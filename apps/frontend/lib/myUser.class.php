@@ -2,7 +2,7 @@
 
 class myUser extends sfGuardSecurityUser
 {
-
+    
     public function  initialize(sfEventDispatcher $dispatcher, sfStorage $storage, $options = array()) {
 
         parent::initialize($dispatcher, $storage, $options);
@@ -12,6 +12,7 @@ class myUser extends sfGuardSecurityUser
 
         //First request - create attribute to keep the searches
     }
+   
 
     public function isFirstRequest($boolean = null)
     {
@@ -104,11 +105,47 @@ class myUser extends sfGuardSecurityUser
 
 
     public function getLastFilename(){
+    	
+    	$request = sfContext::getInstance()->getRequest();
+    	
+    	$module = $request->getParameter('module');
+    	$action = $request->getParameter('action');
+    	
+    	//if($action == 'selected' || $action == 'flightResult'){
+    		$prevSearch = $this->getAttribute('prevSearch');
 
-        $prevSearch = $this->getAttribute('prevSearch');
+        	$filename =  is_array($prevSearch)? end($prevSearch):null;
+		
+        	return $filename['filename'];
+        	
+    	//}
+    		
+    	return null;
 
-        return is_array($prevSearch)? end($prevSearch):null;
-
+    }
+    
+    /**
+     * Return filename for historic filter purpose
+     * return a value after a search or a item added to basket
+     */
+    public function getFilename(){
+    	
+    	$request = sfContext::getInstance()->getRequest();
+    	
+    	$module = $request->getParameter('module');
+    	$action = $request->getParameter('action');
+    	
+    	var_dump($module, $action);
+    	
+    	
+    	if($action == 'selected'){
+    		
+    		$filename = $this->getLastFilename();
+    		  		
+    	}
+    	
+    	return  $filename['filename'];
+    	exit;
     }
 
 
@@ -145,6 +182,53 @@ class myUser extends sfGuardSecurityUser
         }
 
     }
+    
+    
+    public function createAccount(sfEvent $event){
+        
+        
+        $booking = $event['booking'];
+        
+        $email = $booking->getEmail();
+        $password = $booking->getPassword();
+        
 
+        try{
+            $user = new sfGuardUser();
+            $user->setEmailAddress($email);
+            $user->setUsername($email);
+            $user->setPassword($password);
+            $user->save();
+            
+            //Need to login the user. 
+            sfContext::getInstance()->getUser()->signin($user, false);
+            
+           
+            
+        }catch (Doctrine_Exception $e){
+
+            
+
+        }
+        
+        
+    }
+    
+    public function getId(){
+        
+        if($this->isAuthenticated()){
+        
+            $username = sfContext::getInstance()->getUser()->getGuardUser()->getUsername();
+            $user = Doctrine::getTable('sfGuardUser')->findOneBy('username', $username);
+            return $user->getId();
+            
+        }else{
+            
+            return null;
+            
+        }
+        
+    }
 
 }
+ 

@@ -57,6 +57,7 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
      * @return string
      */
     public function getAirportFormatInput($ar, $culture) {
+    	
         $string = $ar[$culture]['name'] . '';
         $string .= isset($ar[$culture]['state']) ? ' [' . $ar[$culture]['state']['code'] . ']' : '';
         $string .= ', ' . $ar[$culture]['country'] . ', ';
@@ -199,6 +200,38 @@ abstract class PlexHotelParameters extends PlexParameters implements ParametersI
         return $tmp;
     }
     
+    /**
+     * Validate parameters 
+     * @return array of errors or true
+     */
+    public function isValid(){
+    	
+    	$parameters = $this->getParametersArray();
+
+    	$form = new SearchHotelForm();
+    	$form->bind($parameters);
+    	
+    	
+    	if(!$form->isValid()){
+    		
+    		$return = '';
+    		//var_dump($form->getGlobalErrors());
+    		$errors = $form->getErrorSchema()->getErrors();
+    		foreach($errors as $error){
+    			if(!preg_match('#CSRF#i', $error)){
+    				$return .= '<span class="label important">'.$error.'</span>';
+    			}
+
+    		}
+
+    		
+    	}
+    	
+    	return $return;
+    	
+    	exit;
+    	
+    }
 
 }
 

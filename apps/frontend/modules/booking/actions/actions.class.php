@@ -24,6 +24,14 @@ class bookingActions extends sfActions
 
     $numbAdults = $plexBasket->getAdults();
     $numbChildren = $plexBasket->getChildren();
+    
+    
+    
+    //forward to basket index page if no passengers
+    if(!$numbAdults){
+        $this->getUser()->setFlash('notice', "You must book a flight or a hotel before checking out");
+        $this->forward('basket', 'index');
+    }
 
     $this->form = new BookingPassengersForm();
     
@@ -165,29 +173,24 @@ class bookingActions extends sfActions
         $this->booking = PlexParsing::getBookingData($this->bookingId);
 
         $address = $this->booking->getAddress();
-
-        try{
-            $user = new sfGuardUser();
-            $user->setEmailAddress($address['email']);
-            $user->setUsername($address['email']);
-            $user->setPassword($address['password']);
-            $user->save();
-        }catch (Doctrine_Exception $e){
-            $user = Doctrine::getTable('sfGuardUser')->findOneBy('email_address', $address['email']);            
+        
+        if(!$this->getUser()->isAuthenticated()){
+            
+           $event = new sfEvent($this, 'user.create_account', array('booking' => $this->booking));      
+           sfContext::getInstance()->getEventDispatcher()->notify($event);     
         }
-
-
-        $userId = $user->getId();
-
+        
         $booking = new Booking();
-        $booking->saveBooking($this->booking, $userId);
+        $booking->saveBooking($this->booking, $this->getUser()->getId());
 
         //exit;
         $plexBasket = PlexBasket::getInstance();
         $this->getLogger()->alert('PlexBasket reset called in executeConfirmed in booking module');
         $plexBasket->reset();
 
-
+        
+        
+       
     }
 
     

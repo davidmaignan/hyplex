@@ -355,3 +355,43 @@ Booking:
       type: one
       foreignType: one
 
+Historic:
+  actAs: { Timestampable: ~ }
+  columns:
+    date: { type: timestamp, notnull: true }
+    tsop: { type: integer }
+    ip: { type: string(255), notnull: true }
+    country_id: { type: integer }
+    folder: { type: string(255), notnull: true }
+    language: { type: string(5), notnull: true }
+    sTId: { type: string(255) }
+    agent: { type: string(255), notnull: true }
+    os: {type: string(255) }
+    browser: {type: string(255) }
+    version: {type: string(255) }
+    uri: { type: string(255), notnull: true }
+    module: { type: string(255), notnull: true }
+    action: { type: string(255), notnull: true }
+    filename: { type: string(255) }
+    parameters: { type: array, notnull: true }
+    scrubbed: { type: boolean, default: false }
+    session_id: { type: string(255), notnull: true }
+  relations:
+    Country:
+      local: country_id
+      foreign: id
+      type: one
+      foreignType: one
+
+IpMapping:
+  columns:
+    ip_from: { type: integer }
+    ip_to:   { type: integer }
+    country_id: { type: integer }
+    country_code: { type: string(2) }
+  relations:
+    Country:
+      local: country_id
+      foreign: id
+      type: one
+      foreignType: one

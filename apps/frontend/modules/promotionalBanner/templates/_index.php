@@ -12,27 +12,27 @@
             <ul class="ad-thumb-list">
                 <li>
                     <a href="/uploads/promotionalBanner/1.jpg">
-                        <img src="#" class="image0" title="Las Vegas" alt="" >
+                        <img src="#" class="image0" title="" alt="" >
                     </a>
                 </li>
                 <li>
                     <a href="/uploads/promotionalBanner/2.jpg">
-                        <img src="#" title="Paris" alt="" class="image1">
+                        <img src="#" title="" alt="" class="image1">
                     </a>
                 </li>
                 <li>
                     <a href="/uploads/promotionalBanner/3.jpg">
-                        <img src="#" title="A title for 11.jpg" longdesc="http://coffeescripter.com" alt="This is a nice, and incredibly descriptive, description of the image 11.jpg" class="image2">
+                        <img src="#" title="" longdesc="" alt="" class="image2">
                     </a>
                 </li>
                 <li>
                     <a href="/uploads/promotionalBanner/4.jpg">
-                        <img src="#" title="A title for 12.jpg" alt="This is a nice, and incredibly descriptive, description of the image 12.jpg" class="image3">
+                        <img src="#" title="" alt="" class="image3">
                     </a>
                 </li>
                 <li>
                     <a href="/uploads/promotionalBanner/5.jpg">
-                        <img src="#" title="A title for 13.jpg" alt="This is a nice, and incredibly descriptive, description of the image 13.jpg" class="image4">
+                        <img src="#" title="" alt="" class="image4">
                     </a>
                 </li>
             </ul>

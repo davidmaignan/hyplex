@@ -11,6 +11,7 @@ class frontendConfiguration extends sfApplicationConfiguration {
         $this->dispatcher->connect('php.throw_error', array('sfErrorLogger','phpError'));
         $this->dispatcher->connect('plex.responsexml_error', array('sfErrorLogger','plexError'));
         $this->dispatcher->connect('plex.response_success', array('PlexLogger','logResponse'));
+        $this->dispatcher->connect('user.create_account', array('myUser','createAccount'));
 
         sfConfig::set('plex_ipm', 2);
        
@@ -25,7 +26,9 @@ class frontendConfiguration extends sfApplicationConfiguration {
         } else if (preg_match('#iPad.+Mobile/.+Safari#i', $request->getHttpHeader('User-Agent'))) {
             $request->setRequestFormat('ipad');
         }
-
+        
+        //$request->setRequestFormat('ipad');
+        
         return $parameters;
     }
 

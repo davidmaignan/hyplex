@@ -12,6 +12,6 @@
     <b><?php echo format_date($parameters->getReturnDate(), 'P') ?></b>
     <?php echo __('for')?> :
     <?php echo Utils::getAdultChildInfantString($parameters->getAdults(), $parameters->getChildren(), $parameters->getInfants()) ?>
-    <a href="#" class="change" id="changeSearch"><?php echo __('Change search') ?></a>
+    <a href="#" class="change bold" id="changeSearch"><?php echo __('Change search') ?></a>
 </p>
 

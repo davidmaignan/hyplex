@@ -133,7 +133,7 @@ article.featureDeals span.price{
     float: right;
     font-size: 110%;
     color: #ed145b;
-    width: 60px;
+    width: 80px;
     margin: 0;
 }
 
@@ -204,3 +204,7 @@ article.featureDeals span.price{
 #newsletter-signup table td{
     vertical-align: top;
 }
+
+
+/* Top destination page */
+

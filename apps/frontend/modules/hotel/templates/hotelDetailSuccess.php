@@ -65,7 +65,7 @@
 
         <div id="hotel-information-content">
 
-            <h3 class="fontface blue1">Information</h3>
+            <h2 class="fontface blue1 title"><?php echo __('Information') ?></h2>
 
             <div class="span-17 hotel-information last">
 
@@ -149,11 +149,12 @@
             <hr class="space" />
 
             <?php include_partial('room', array('hotel' => $hotel)) ?>
+            
+            <input type="submit" value="<?php echo __('Book now') ?>" class="big right blue"/>
 
 
             <div class="span-17 last">
-
-                <h3 class="fontface blue1">Hotel Policies & Fees</h3>
+                <h2 class="fontface blue1 title"><?php echo __('Hotel Policies & Fees') ?></h2>
                 <p>The following fees and deposits are charged by the property at time of service, check-in, or check-out.</p>
                 <table>
                     <tr class="dotted2">
@@ -258,11 +259,9 @@
 
 <div class="span-17 last hide" id="hotel-map-content">
     <h3 class="fontface blue1">Area map</h3>
-    <div id="gMapHotels_canvas">
+    <div id="map_canvas" style="width: 100%; height: 400px; display: block;"></div>
 
-    </div>
-
-    <h4 class="title blue1 bold">Nearby Activities & Points of Interest</h4>
+    <h4 class="title blue1 bold prepend-top">Nearby Activities & Points of Interest</h4>
 
     <div class="span-6">
         <h6>Less than 0.5 miles</h6>
@@ -470,32 +469,28 @@
 </div>
 
 <?php //echo $sf_data->get('hotelCoordinates', ESC_RAW);  ?>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
-<script type="text/javascript">
 
+<script type="text/javascript">
+	
     var hotelCoordinates = <?php echo $sf_data->get('hotelCoordinates', ESC_RAW); ?>
 
     var hotelLatitude = parseFloat(hotelCoordinates.latitude);
     var hotelLongitude = parseFloat(hotelCoordinates.longitude);
-    var zoomLevel = 14;
-    //parseFloat(hotelCoordinates.zoomlevel);
+    var zoomLevel = 14;  
 
-    var mapInitializedHotelDetail = false;
+    
+    function initialize2() {
+        
 
-    function initialize() {
+       /*   
+       var myOptions = {
+                zoom: zoomLevel,
+                center: new google.maps.LatLng(hotelLatitude, hotelLongitude),
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+              };
+       map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
+       */
         
-        var myOptions = {
-          zoom: 8,
-          center: new google.maps.LatLng(-34.397, 150.644),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        };
-        var map = new google.maps.Map(document.getElementById('gMapHotels_canvas'),
-            myOptions);
-            
-            
-        alert('here');
-        
-        /*
         mapInitializedHotelDetail = true;
 
         var latlng = new google.maps.LatLng((hotelLatitude), hotelLongitude);
@@ -506,7 +501,7 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             scrollwheel: false
         };
-        var map = new google.maps.Map(document.getElementById("gMapHotels_canvas"), myOptions);
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         
         
 
@@ -554,11 +549,8 @@
             var panorama = new  google.maps.StreetViewPanorama(document.getElementById("gMapHotels_canvas"),panoramaOptions);
             map.setStreetView(panorama);
 
-
         });
 
-        
-        */
     };
 
     
@@ -598,9 +590,9 @@
                     $('#hotel-map-content').show();
                     $('#hotel-reviews-content').hide();
 
-                    if(mapInitializedHotelDetail == false){
-                        initialize();
-                    }
+                    //if(mapInitializedHotelDetail == false){
+                    initialize2();
+                    //}
 
                     break;
 

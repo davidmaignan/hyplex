@@ -1,3 +1,5 @@
+<?php require_once sfConfig::get('sf_web_dir') . DIRECTORY_SEPARATOR . 'js' . DIRECTORY_SEPARATOR . 'search' . DIRECTORY_SEPARATOR . 'variables.php'; ?>
+
 <?php //use_javascript('jquery-1.5.1.min.js'); ?>
 <?php //use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
 <?php //use_javascript('myScript'); ?>
@@ -24,8 +26,6 @@
 
 <script type="text/javascript">
 
-    
-
     var pics = <?php print_r($form['newSegments']->count()) ?>;
 
     function addPic(num) {
@@ -38,12 +38,14 @@
     }
 
     $('document').ready(function() {
+        
         $('button#add_picture').click(function() {
             $("#extrapictures").append(addPic(pics));
             $( ".datepicker").datepicker({
                 dateFormat: "yy-mm-dd",
             });
 
+			/*
             $(".autocomplete").autocomplete(airports, {
                 minChars: 0,
                 width: 250,
@@ -59,6 +61,7 @@
                     return formatAirportString(row);
                 }
             });
+            */
 
             pics = pics + 1;
         });

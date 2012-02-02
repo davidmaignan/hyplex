@@ -54,7 +54,7 @@
 <div id="page_wrapper">
     <ul id="header"  class="bg-light">
         <li><?php echo image_tag('iphone/logo_min.png', array('alt' => 'H', 'id' => 'logo')); ?></li>
-        <li class="title">Flight search</span</li>
+        <li class="title">Flight search</span></li>
         <li><a href="<?php echo url_for('homepage'); ?>" title="history" class="home">Home</a></li>
     </ul>
 

@@ -5,7 +5,7 @@
 </style>
 
 <form action="<?php echo url_for('@search_car_form') ?>" method="post" id="car-form-index">
-    <fieldset class="type1">
+    <fieldset class="type1 noborder">
 
         <h5><?php echo __('Car details'); ?></h5>
         <table class="form">

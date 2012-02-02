@@ -111,13 +111,20 @@ class PlexBookingResponse extends PlexResponse implements PlexResponseInterface 
         
         if($bookingId == ''){
 
-            echo 'PlexBookingRespons analyseResponse to complete line 117';
-            exit;
-
-            //$event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
-            //sfContext::getInstance()->getEventDispatcher()->notify($event);
-            //sfContext::getInstance()->getController()->forward('error', 'plexError');
+            //echo 'PlexBookingRespons analyseResponse to complete line 117';
             //exit;
+            
+            $infos = array();
+            $infos['message'] = 'Error during booking response analyse: no booking Id returned by plex ';
+            $infos['code'] = null;
+            $infos['filename'] = null;
+            $infos['parameters'] = null;
+            $infos['response'] = $responseData;
+            
+            $event = new sfEvent($this, 'plex.responsexml_error', array('infos' => $infos));
+            sfContext::getInstance()->getEventDispatcher()->notify($event);
+            sfContext::getInstance()->getController()->forward('error', 'plexError');
+            
         }
 
         

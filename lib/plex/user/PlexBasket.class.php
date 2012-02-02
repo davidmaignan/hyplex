@@ -369,10 +369,10 @@ class PlexBasket {
      * @param <type> $values
      *
      * create an array
-           room level - 1 =>
-                          array
-                            'uniqueReferenceId' => string 'qdlbu138g7qc95jqt55hsb1l0c' (length=26)
-                            'adults' => array(0, 2, 3...) {keys of the passenger from arBookingPassengers['adults']
+     *      room level - 1 =>
+      *                    array
+       **                     'uniqueReferenceId' => string 'qdlbu138g7qc95jqt55hsb1l0c' (length=26)
+         *                   'adults' => array(0, 2, 3...) {keys of the passenger from arBookingPassengers['adults']
      *                      'children'=> array(0, 2, 3...), {keys of the passenger from arBookingPassengers['children']
      *     room level - 2 => ....
      *

@@ -1,5 +1,5 @@
 <ul id="nav-left">
-    <li class="current">Flights</a</li>
+    <li class="current">Flights</li>
     <li><a href="">Hotels</a></li>
     <li><a href="">Cars</a></li>
     <li><a href="">Packages</a></li>

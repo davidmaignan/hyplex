@@ -51,7 +51,7 @@ if ($form->hasGlobalErrors()) {
         <div class="span-6 last">
             <p class="label-block">
                 <?php echo $form['cabin']->renderLabel(); ?>
-                <?php echo $form['cabin']->render(); ?><br
+                <?php echo $form['cabin']->render(); ?><br />
             </p>
             
        

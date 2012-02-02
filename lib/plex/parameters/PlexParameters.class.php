@@ -29,6 +29,8 @@ abstract class PlexParameters {
         foreach ($params as $key => $value) {
             $this->$key = $value;
         }
+        
+        
 
     }
 

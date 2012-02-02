@@ -19,6 +19,36 @@ class prevSearchComponents extends sfComponents
   {
     $this->prevSearches = PlexParsing::retreivePrevSearches();
   }
+  
+  public function executeAccount(sfWebRequest $request){
+  	
+  	$prevSearches = PlexParsing::retreivePrevSearches();
+  	
+  	$this->prevSearches = array('flight'=>array(),'hotel'=>array());
+  	
+  	foreach($prevSearches as $prevSearch){
+  		
+  		$values = PlexParsing::retreiveFilterDatas($prevSearch['file'], $prevSearch['type']);
+  		$prevSearch['filterDatas'] = $values;
+  		
+  		switch($prevSearch['type']){
+  			
+  			case 'flightReturn':
+  				array_push($this->prevSearches['flight'], $prevSearch);
+  				break;
+  			case 'flightSimple':
+  				array_push($this->prevSearches['flight'], $prevSearch);
+  				break;
+  			case 'hotelSimple':
+  				array_push($this->prevSearches['hotel'], $prevSearch);
+  				break;
+  			
+  		}
+  		
+  	}
+  	
+  	
+  }
 
   /**
   * Executes flight action - Return previous flight searches

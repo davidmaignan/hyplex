@@ -10,6 +10,8 @@
  */
 class AddressForm extends BaseAddressForm
 {
+    
+  private $user;
 
   public static $arCards = array('Mastercard', 'Visa', 'American Express');
   //public static $arCards = array('Mastercard', 'Visa', 'American Express');
@@ -24,7 +26,11 @@ class AddressForm extends BaseAddressForm
 
   public function configure()
   {
-
+     
+     $this->user = sfContext::getInstance()->getUser();
+     
+     
+      
      unset($this['id']);
 
      $arCards = self::getCreditCardsArray();
@@ -59,13 +65,24 @@ class AddressForm extends BaseAddressForm
                 'default'=>0), array(
                 'class' => 'inline')));
 
-     $this->setWidget('address_1', new sfWidgetFormInputText(array('default'=>'lorem ipsum'), array()));
-     $this->setWidget('address_2', new sfWidgetFormInputText(array('default'=>'lorem ipsum'), array()));
-     $this->setWidget('city', new sfWidgetFormInputText(array('default'=>'lorem ipsum'), array()));
-     $this->setWidget('postcode', new sfWidgetFormInputText(array('default'=>'lorem'), array()));
+     $this->setWidget('address_1', new sfWidgetFormInputText(array(), array()));
+     $this->setWidget('address_2', new sfWidgetFormInputText(array(), array()));
+     $this->setWidget('city', new sfWidgetFormInputText(array(), array()));
+     $this->setWidget('postcode', new sfWidgetFormInputText(array(), array()));
 
+     $this->setWidget('country', new sfWidgetFormInputText(array(), array('id'=>'country')));
+     $this->setWidget('state', new sfWidgetFormInputText(array(), array('id'=>'state')));
+
+     $this->setWidget('country_id', new sfWidgetFormInputHidden(array(), array()));
+
+     $this->setWidget('expiration_date',new sfWidgetFormDate(
+             array( 'format' => '%month% / %year%',
+                    'years' => $years)
+     ));
      
      
+     $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
+     $this->widgetSchema->setNameFormat('address[%s]');
 
      /* VALIDATORS ------------------------------------------------------- */
 
@@ -74,15 +91,16 @@ class AddressForm extends BaseAddressForm
                 'choices' => array_keys($arCards)), array(
                 'required' => 'Choose one type of card')));
 
+     
+     /*credit card number*/
+     $this->setValidator('credit_card_number', new sfValidatorString(array(), array()));
+     
      /*Email*/
      $this->setValidator('email', new sfValidatorEmail(array(), array()));
 
      /*Telephone*/
      $this->setValidator('telephone', new sfValidatorString(array(), array()));
-
-     /*credit card number*/
-     $this->setValidator('credit_card_number', new sfValidatorString(array(), array()));
-
+     
      $this->setValidator('password', new sfValidatorString(array(), array()));
 
 
@@ -93,18 +111,6 @@ class AddressForm extends BaseAddressForm
         )), array(), array());
 
      
- 
-     
-     $this->setWidget('country', new sfWidgetFormInputText(array('default'=>'lorem'), array('id'=>'country')));
-     $this->setWidget('state', new sfWidgetFormInputText(array('default'=>'lorem'), array('id'=>'state')));
-
-     $this->setWidget('country_id', new sfWidgetFormInputHidden(array('default'=>210), array()));
-
-     $this->setWidget('expiration_date',new sfWidgetFormDate(
-             array( 'format' => '%month% / %year%',
-                    'years' => $years)
-     ));
-
      $this->setValidator('expiration_date', new creditCardValidator(array(
          'month'=> range(1,12),
          'year'=>$years
@@ -113,14 +119,20 @@ class AddressForm extends BaseAddressForm
          'invalid' => '%value% is not valid or incomplete'
      )));
 
-     $this->widgetSchema->setNameFormat('address[%s]');
+     
      $this->setValidator('country', new sfValidatorString(array(), array()));
-     $this->widgetSchema->getFormFormatter()->setTranslationCatalogue('contact_form');
+     
      $this->validatorSchema->setOption('allow_extra_fields', true);
+     
+     if($this->user->isAuthenticated()){
+         unset($this['email'], $this['email_again'], $this['telephone'], $this['password'], $this['password_confirm']);
+     }
   }
 
 
    public function checkPasswordConfirm($validator, $value) {
+       
+       if(!$this->user->isAuthenticated()){
 
         $values = $this->getTaintedValues();
 
@@ -131,10 +143,14 @@ class AddressForm extends BaseAddressForm
         }
 
         return $values;
+        
+       }
     
     }
 
     public function checkEmailConfirm($validator, $value) {
+        
+        if(!$this->user->isAuthenticated()){
 
         $values = $this->getTaintedValues();
 
@@ -147,6 +163,8 @@ class AddressForm extends BaseAddressForm
         }
 
         return $values;
+        
+        }
 
 
     }

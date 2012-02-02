@@ -3,6 +3,7 @@ all:
     class: sfDoctrineDatabase
     param:
       #dsn: 'mysql:host=localhost;dbname=hyplexdemo;unix_socket=/Applications/MAMP/tmp/mysql/mysql.sock'
-      dsn: 'mysql:host=localhost;dbname=hyplexdemo;'
+      dsn: 'mysql:host=localhost;dbname=hyplexdemo;unix_socket=/tmp/mysql.sock'
+      #dsn: 'mysql:host=localhost;dbname=hyplexdemo;unix_socket=/opt/local/var/run/mysql5/mysqld.sock'
       username: david
       password: camper

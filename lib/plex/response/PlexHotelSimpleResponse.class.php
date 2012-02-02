@@ -253,8 +253,8 @@ class PlexHotelSimpleResponse extends PlexResponse implements PlexResponseInterf
                 $arPrices['max'] = max($arPrices['max'], $value->maxPrice);
             }
         }
-
-        ksort($arStars);
+        
+        $arStars = Utils::sortArrayByArray($arStars, array('0','0_5','1','1_5','2','2_5','3','3_5','4','4_5','5'));
         ksort($arChains);
         ksort($arLocations);
 

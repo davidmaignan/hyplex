@@ -7,7 +7,7 @@
 //Update: April 12th, 10: Fixed compat issue with jquery 1.4x
 
 //Specify full URL to down and right arrow images (23 is padding-right to add to top level LIs with drop downs):
-var arrowimages={down:['downarrowclass', 'http://hypertech-booking/images/icons/bullet_arrow_down.png', 23], right:['rightarrowclass', 'right.gif']}
+var arrowimages={down:['downarrowclass', 'http://hyplexdemo/images/icons/bullet_arrow_down.png', 23], right:['rightarrowclass', 'right.gif']}
 
 var jqueryslidemenu={
 

@@ -38,9 +38,12 @@ class folderFilter extends sfFilter {
             $response->setcookie('hypertech_culture', null, time()-3600);
             $cookieCulture = null;
         }
-
+        
+        //var_dump(session_id());
+        
+        
         if ($this->isFirstCall()) {
-
+            
             if ($cookie) {
 
                 $log->warning('folder Filter has detected the cookie');
@@ -69,9 +72,6 @@ class folderFilter extends sfFilter {
         }
 
         //check if sf_culture is on
-        //Special case for sfForm language action
-        //if (!$request->getParameter('sf_culture') && $request->getParameter('module') != 'language') {
-
         if (!$request->getParameter('sf_culture') && $request->getParameter('module') != 'language') {
 
             $log->alert('no culture in url');
@@ -139,4 +139,3 @@ class folderFilter extends sfFilter {
 
 }
 
-?>

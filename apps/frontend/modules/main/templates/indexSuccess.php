@@ -1,5 +1,4 @@
 <?php use_javascript('index') ?>
-
 <?php use_javascript('fancybox/jquery.fancybox-1.3.4.pack.js') ?>
 <?php use_stylesheet('fancybox/jquery.fancybox-1.3.4.css') ?>
 
@@ -12,7 +11,7 @@
 
 <div class="span-9">
 
-    <section class="span-9">
+    <section class="span-9" id="search-forms">
         <h2 class="hide">Search</h2>
         <ul id="tabs-form">
             <li><a href="#" class="selected form-tab" id="flight-tab"><?php echo __('Flight'); ?></a></li>
@@ -32,10 +31,9 @@
         <div id="package-form" class="hide">
             <?php //include_partial('searchPackage/formIndex',array('form'=>$packageForm)); ?>
         </div>
-
     </section>
 
-    <section class="span-9">
+    <section class="span-9 prepend-top">
         <?php include_component('prevSearch', 'index'); ?>
     </section>
 
@@ -46,7 +44,5 @@
     <div class="span-15 last"  style=" width: 610px; margin-left:10px;">
         <?php include_component('promotionalBanner', 'featureDealsIndex'); ?>
         <?php include_component('promotionalBanner', 'specialInterestIndex') ?>
-
     </div>
-
 </div>
