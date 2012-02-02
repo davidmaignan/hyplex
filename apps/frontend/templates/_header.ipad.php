@@ -1,20 +1,16 @@
-<div class="span-6" id="logo">
-    <?php echo link_to(image_tag('generic/logo_beta.gif', array('alt' => 'Hypertech Solutions')), 'homepage'); ?>
-</div>
+<nav>
+        <ul id="main-nav" class="clearfix">
+            <li class="second"><a href="<?php echo url_for('homepage'); ?>"><?php echo __('News') ?></a></li>
+            <li class="second"><a href=""><?php echo __('Feature deals') ?></a></li>
+            <li class="second"><a href=""><?php echo __('Top destinations') ?></a></li>
+            <li class="second"><a href="<?php //echo url_for1('search_flight')  ?>"><?php echo __('Vacations by interest') ?></a></li>
+            <?php if ($sf_user->isAuthenticated()): ?>
+                <li class="second"><a href="<?php echo url_for('signout'); ?>"><?php echo __('Log out') ?></a></li>
+            <?php else: ?>
+                <li class="second"><a href="<?php echo url_for('signin'); ?>"><?php echo __('Sign in') ?></a></li>
+            <?php endif; ?>
+        </ul>
+        <!-- /#main-nav --> 
+</nav>
 
-<div class="span-9">
-    <ul  id="top-nav">
-        <li class="second"><a href="<?php echo url_for('homepage'); ?>"><?php echo __('Home') ?></a></li>
-        <li class="second"><a href=""><?php echo __('About us') ?></a></li>
-        <li class="second"><a href=""><?php echo __('Booking infos') ?></a></li>
-        <li class="second"><a href="<?php echo url_for1('search_flight') ?>"><?php echo __('Search Flight') ?></a></li>
-        <?php if($sf_user->isAuthenticated()): ?>
-            <li class="second"><a href="<?php echo url_for('sf_guard_signout'); ?>"><?php echo __('Log out') ?></a></li>
-        <?php endif; ?>
-    </ul>
-</div>
-<div class="span-3 last">
-    <?php include_partial('global/language'); ?>
-
-</div>
-
+    

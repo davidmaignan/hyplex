@@ -19,7 +19,7 @@
         </ul>
     <?php endif; ?>
 
-    <form action="#" method="post">
+    <form action="<?php echo url_for('@search_hotel_form') ?>" method="post">
         <fieldset class="type1">
             <legend></legend>
             <h5>Travel details</h5>
@@ -51,8 +51,9 @@
             
             <h5><?php echo __('Room details'); ?></h5>
             
+            <?php $num = 1; ?>
             <?php foreach ($form['newRooms'] as $key => $f): ?>
-                <?php include_partial('searchHotel/room_html5', array('key'=>$key, 'f' => $f, 'form'=>$form)); ?>
+                <?php include_partial('searchHotel/room_html5', array('key'=>$key, 'f' => $f, 'form'=>$form, 'num'=>$num++)); ?>
             <?php endforeach; ?>
             
             <div id="extrarooms" ></div>

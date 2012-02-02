@@ -1,5 +1,7 @@
 <section class="prepend-top append-bottom" id="featureDeals">
-    <h2 class="title2"><?php echo __('Feature deals'); ?><a href="#" id="featureDeals-rss">RSS</a></h2>
+    <h2 class="title2"><?php echo __('Feature deals'); ?>
+        <a id="featureDeals-rss" href="<?php echo url_for('@feature_deals_xml') ?>">RSS</a>
+    </h2>
     <?php echo image_tag('tmp/feature_deals.jpg', array('width' => '300px')); ?>
     <select name="featureDeals" class="append-bottom">
         <option>Hypertech selection</option>
@@ -12,7 +14,7 @@
         <div id="featureDeals-container">
             <article class="featureDeals" id="featureDeals-1">
                 <div class="title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Sheraton Waikiki resort</h3>
                     </span>
                     <span class="span-2 price">
@@ -28,10 +30,10 @@
             </article>
             <article class="featureDeals" id="featureDeals-2">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Discover South America</h3>
                     </span>
-                    <span class="span-2 price">
+                    <span class="span-3 price">
                         <?php echo Utils::getPrice(rand(199, 1999)) ?>
                     </span>
                 </div>
@@ -45,7 +47,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-3">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Surfing in Hawai</h3>
                     </span>
                     <span class="span-2 price">
@@ -62,7 +64,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-4">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Europe - Italy</h3>
                     </span>
                     <span class="span-2 price">
@@ -78,7 +80,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-5">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Discover China</h3>
                     </span>
                     <span class="span-2 price">
@@ -95,7 +97,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-6">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Hotels in New York</h3>
                     </span>
                     <span class="span-2 price">
@@ -112,7 +114,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-7">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>All-Inclusive Deals</h3>
                     </span>
                     <span class="span-2 price">
@@ -129,7 +131,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-8">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Stay 4 nights, save 50%</h3>
                     </span>
                     <span class="span-2 price">
@@ -146,7 +148,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-9">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Cruise Sale!</h3>
                     </span>
                     <span class="span-2 price">
@@ -163,7 +165,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-10">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Last-Minute Vegas</h3>
                     </span>
                     <span class="span-2 price">
@@ -180,7 +182,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-11">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Last-Minute Vegas</h3>
                     </span>
                     <span class="span-2 price">
@@ -197,7 +199,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-12">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Last-Minute Vegas</h3>
                     </span>
                     <span class="span-2 price">
@@ -214,7 +216,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-13">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Last-Minute Vegas</h3>
                     </span>
                     <span class="span-2 price">
@@ -231,7 +233,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-14">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Last-Minute Vegas</h3>
                     </span>
                     <span class="span-2 price">
@@ -248,7 +250,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-15">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Last-Minute Vegas</h3>
                     </span>
                     <span class="span-2 price">
@@ -265,7 +267,7 @@
             </article>
             <article class="featureDeals" id="featureDeals-16">
                 <div class="span-7_5 title">
-                    <span class="span-6">
+                    <span class="span-5">
                         <h3>Last-Minute Vegas</h3>
                     </span>
                     <span class="span-2 price">

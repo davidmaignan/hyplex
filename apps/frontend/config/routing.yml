@@ -1,6 +1,60 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+my_preferences:
+  url: /:sf_culture/my-preferences
+  param: { module: account, action: listPreferences}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+sf_guard_forgot_password:
+  url:   /request_password
+  param: { module: sfGuardAuth, action: password }
+
+change_password:
+  url: /:sf_culture/change-password/
+  param: { module: account, action: changePassword}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+create_account:
+  url: /:sf_culture/create-account
+  param: { module: account, action: createAccount }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+account:
+  url: /:sf_culture/my-account/
+  param: { module: account, action: index}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+my_previous_searches_account:
+  url: /:sf_culture/my-previous-searches/
+  param: { module: account, action: prevSearches}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+my_booking:
+  url: /:sf_culture/my-bookings
+  param: { module: account, action: listOfBookings }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+signin:
+  url: /:sf_culture/signin
+  param: { module: account, action: signin }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
+signout:
+  url: /:sf_culture/signout
+  param: { module: sfGuardAuth, action: signout}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+
+forgot_password:
+  url: /:sf_culture/forgot-password
+  param: { module: account, action: forgotPassword }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+ 
+forgot_password:
+  url: /:sf_culture/forgot-password
+  param: { module: account, action: forgotPassword }
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
+  
 vacation_interest_country:
   url: /:sf_culture/vacations-interest/country
   param: { module: vacationInterest, action: country }
@@ -11,9 +65,14 @@ vacation_interest:
   param: { module: vacationInterest, action: index }
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
+feature_deals_xml:
+  url: /:sf_culture/feature-deals.xml
+  param: { module: topDestination, action: index, sf_format: xml}
+  requirements: { sf_culture: (?:en_US|fr_FR|zh_CN), sf_format: (?:rss|xml|html) }
+  
 feature_deals:
   url: /:sf_culture/feature-deals
-  param: { module: topDestination, action: index }
+  param: { module: topDestination, action: index, sf_format: html}
   requirements: { sf_culture: (?:en_US|fr_FR|zh_CN) }
 
 promotionalBanner:

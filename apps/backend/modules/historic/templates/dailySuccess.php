@@ -29,7 +29,11 @@ google.load('visualization', '1.0', {'packages':['corechart', 'geochart']});
 	</tr>
 	<tr>
 		<td>Time (s) / page</td>
-		<td><?php echo Utils::getMinutesSeconds($statsSummary['time_per_visitor']/$statsSummary['page_visitors']) ?></td>
+		<td><?php echo ($statsSummary['page_visitors'] !=0)?
+					 Utils::getMinutesSeconds($statsSummary['time_per_visitor']/$statsSummary['page_visitors']):
+					 0;
+			 ?>
+		</td>
 	</tr>
 </table>
 
@@ -64,7 +68,11 @@ foreach($languages['values'] as $key=>$language){
 	<tr>
 		<td><?php echo $key;?></td>
 		<td class="text-center"><?php echo $language; ?></td>
-		<td class="text-center"><?php echo round(($language/$totalPageViewed)*100,2)?></td>
+		<td class="text-center">
+		<?php 
+			echo ($totalPageViewed != 0)? round(($language/$totalPageViewed)*100,2): 0;
+		?>
+		</td>
 	</tr>
 	<?php endforeach;?>
 </table>

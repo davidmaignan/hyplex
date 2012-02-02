@@ -28,6 +28,28 @@ class Utils {
 
         return $text;
     }
+    
+    /**
+     * Sort an array based on another array
+     * @param unknown_type $array
+     * @param unknown_type $orderArray
+     */
+    static public function sortArrayByArray($array, $orderArray){
+    	
+    	$return = array();
+    	
+    	foreach($orderArray as $order){
+    		
+    		if(array_key_exists($order, $array)){
+    			$return[$order] = $array[$order];
+    			unset($array[$order]);
+    		}
+    		
+    		
+    	}
+    	
+    	return $return + $array;
+    }
 
     /**
      * Format Date: Fri, 25 Mar 2011 17:31:23 GMT to 'Y-m-d H:i:s'
@@ -65,6 +87,14 @@ class Utils {
         $keys = array('hour', 'min');
 
         return array(array_combine($keys, $d), array_combine($keys, $d2));
+    }
+    
+    /**
+     * Return time from array(hour,min)
+     * @param unknown_type $array
+     */
+    static public function returnStringTimeFromarray($array){
+    	return $array['hour'].':'.$array['min'];
     }
 
     /**
@@ -885,14 +915,19 @@ class Utils {
         
     }
 
-    static function getAdultChildInfantString($nbrAdults, $nbrChildren, $nbrInfants, $separator = ', '){
-
+    static function getAdultChildInfantString($nbrAdults, $nbrChildren = 0, $nbrInfants = 0, $separator = ', '){
+		
+    	//var_dump($nbrAdults, $nbrChildren);
+    	//exit;
 
         $string = '';
 
         $string .= format_number_choice( '[0]|[1]1 adult|(1,+Inf]%1% adults',
                                          array('%1%' =>$nbrAdults), $nbrAdults);
-
+		
+        
+        
+        
         if($nbrChildren){
 
             $string .= $separator;
@@ -900,6 +935,7 @@ class Utils {
                                          array('%1%' =>$nbrChildren), $nbrChildren);
 
         }
+        
 
         if($nbrInfants){
 
@@ -965,7 +1001,10 @@ class Utils {
 
 
 
-
+	/**
+	 * Return formatted string with children and infants for flight
+	 * @param unknown_type $ar
+	 */
     static function getChildrenInfantsStringForFlight($ar){
 
         if(isset($ar['children'])){
@@ -1010,12 +1049,20 @@ class Utils {
 
         
     }
-
+	
+    /**
+     * Return formatted string with number of nights
+     * @param $nbrNights
+     */
     static function getNightString($nbrNights){
         return format_number_choice( '[0]|[1]1 night|(1,+Inf]%1% nights',
                                          array('%1%' =>$nbrNights), $nbrNights);
     }
-
+	
+    /**
+     * Return formatted string with number of rooms
+     * @param $nbrRooms
+     */
     static function getNumberRoomsString($nbrRooms){
         return format_number_choice( '[0]|[1]1 room|(1,+Inf]%1% rooms',
                                          array('%1%' =>$nbrRooms), $nbrRooms);
@@ -1044,11 +1091,15 @@ class Utils {
         $totalPerPage = sfConfig::get('totalPerPage');
         $nbrPages = ceil($total / $totalPerPage);
         
+        if($nbrPages == 1){
+            return '';
+        }
+        
         $string = '<ul class="inline right">';
         
         //Prev
         $string .= '<li>';
-        $string .= ($page == 1)?'<span class="page-link-prev">&LessLess; Prev</span>': '<a href="" class="page-link" id="prev-'.($page-1).'">&LessLess; Prev</a>';
+        $string .= ($page == 1)?'<span class="page-link-prev">Prev</span>': '<a href="" class="page-link" id="prev-'.($page-1).'">Prev</a>';
         $string .= '</li>';
         
         //Always show the first page
@@ -1081,7 +1132,7 @@ class Utils {
             $jeton ++;
         }
         
-        if($page+3 < $nbrPages){
+        if($page+4 < $nbrPages){
             $string .= '<li>';
             $string .= '<span class="page-link-prev"> ...</span>';
             $string .= '</li>';
@@ -1099,7 +1150,7 @@ class Utils {
         
         //Prev
         $string .= '<li>';
-        $string .= ($page == 1)?'<span class="page-link-next">Next &GreaterGreater;</span>': '<a href="" class="page-link" id="next-'.($page+1).'">Next &GreaterGreater;</a>';
+        $string .= ($page == $nbrPages)?'<span class="page-link-next">Next</span>': '<a href="" class="page-link" id="next-'.($page+1).'">Next</a>';
         $string .= '</li>';
         
         $string .= '</ul>';
@@ -1248,6 +1299,8 @@ class Utils {
         
     }
     
+    
+    
     /**
      * Return minute seconds from a total of seconds
      * @param unknown_type $time
@@ -1265,6 +1318,25 @@ class Utils {
         
         
     }
+    
+    /**
+     * Return a time in seconds, minutes, hours, days ...
+     * @param $delta a DateInterval
+     * @param $type to be returned
+     * ONLY SECONDS IS IMPLEMENTED - MIN, HOURS, DAYS, to do
+     */
+    static function getTimeIn(DateInterval $delta, $type = 'seconds'){
+    	
+    	$seconds = ($delta->s)
+         + ($delta->i * 60)
+         + ($delta->h * 60 * 60)
+         + ($delta->d * 60 * 60 * 24)
+         + ($delta->m * 60 * 60 * 24 * 30)
+         + ($delta->y * 60 * 60 * 24 * 365);
+    	
+         return $seconds;
+    	
+    }
  
     /**
      * Convert ip address in it's numeric value (from xx.xx.xx.xx to xxxxxxxx)
@@ -1274,6 +1346,78 @@ class Utils {
     	//1.2.3.4 = 4 + (3 * 256) + (2 * 256 * 256) + (1 * 256 * 256 * 256)
     	$ar = explode('.', $ip);
     	return $ar[0]*pow(256, 3)+$ar[1]*pow(256, 2)+$ar[2]*256+$ar[3];
+    }
+    
+    /**
+     * Return color depending on module/action
+     * @param string $module
+     * @param string $action
+     * @return string $color
+     */
+    static function getModuleActionColored($module, $action){
+    	
+    	error_reporting(E_ALL ^ E_NOTICE);
+    	
+		$colors = sfConfig::get('app_moduleaction_colors');
+		//var_dump($module, $action, $colors[$module][$action]);
+		//var_dump($colors);
+		//exit;
+		
+		return $colors[$module][$action];
+		//var_dump($colors);		
+		//exit;
+    }
+    
+    /**
+     * 
+     * Compare two associative arrays and return one depending
+     * @param $array1
+     * @param $array2
+     * @param $field
+     * @param $sort
+     */
+    static function compareArrays($array1, $array2, $field, $sort = 'min'){
+    	
+    	if($array1[$field] <= $array2[$field]){
+    		
+    		if($sort == 'min'){
+    			return $array1;
+    		}else{
+    			return $array2;
+    		}    		
+    	}
+    }
+    
+    /**
+     * return crsf_token value
+     * @param sfForm $form
+     * @param string $session_id 
+     */
+    static public function getCSRFToken(sfForm $form, $session_id){
+        $secret = sfConfig::get('sf_csrf_secret');
+        $csrf_token = md5($secret.$session_id.get_class($form));
+        return $csrf_token;
+    }
+    
+    
+    /**
+     * Return select menu from an associative array
+     * @param $array
+     * @param $name
+     */
+    static function getSelectMenu($array, $name){
+    	
+    	$return = "<select name='$name' id='$name'>";
+    	
+    	foreach($array as $key=>$value){
+    		$return .= "<option value='$key'>$value</options>";
+    	}
+    	
+    	$return .= "</select>";
+    	
+    	return $return;
+    	
+    	
     }
 
 }

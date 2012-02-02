@@ -10,3 +10,27 @@ all:
     duration: 260000
 
   currency: USD
+  
+  moduleaction:
+    colors:
+      searchFlight:
+        searchAgain: blue
+        create: blue
+      searchHotel:
+        searchAgain: blue
+        create: blue
+      basket:
+        add: green
+        remove: red
+      flight:
+        filterFlight: grey2
+        flightResult: yellow
+        selected: green
+      hotel:
+        filterHotel: grey2
+        hotelResult: yellow
+        selected: green
+      main:
+        index: grey
+      session:
+        renewStid: purple

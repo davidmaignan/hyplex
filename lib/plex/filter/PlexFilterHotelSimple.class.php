@@ -547,7 +547,7 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         $frmStr .= '<h4 id="star_rating">'. __('Star rating') . '<a href="" class="remove-small right reset-star hide">reset</a></h4>';
         
         $frmStr .= '<div class="box-content">';
-        $frmStr .= '<ul>';
+        $frmStr .= '<ul style="font-size: 90%">';
         $frmStr .= '<li><span class="span-3 last"></span>';
         $frmStr .= '<span class="max bold">' . __('max') . '</span>';
         $frmStr .= '<span class="min bold">' . __('min') . '</span></li>';
@@ -582,13 +582,13 @@ class PlexFilterHotelSimple extends PlexFilterHotel {
         //Is our pick
         $frmStr .= '<h4 id="is_our_pick">'. __('Is our pick') . '<a href="" class="remove-small right reset-pick hide">reset</a></h4>';
         $frmStr .= '<div class="box-content">';
-        $frmStr .= '<ul>';
+        $frmStr .= '<ul style="font-size: 90%">';
         $frmStr .= '<li><span class="span-3 last"></span>';
         $frmStr .= '<span class="max bold">' . __('max') . '</span>';
         $frmStr .= '<span class="min bold">' . __('min') . '</span></li>';
         $frmStr .= '<li><span class="span-3 last">';
         $frmStr .= $frm->addInput('checkbox', 'is Our pick', 1, array('class' => 'filterHotelCheckbox isOurPickCheckbox', 'id' => 'isOurPick'));
-        $frmStr .= '<label for="isOurPick">Our selection</label>';
+        $frmStr .= '<label for="isOurPick">Our selection</label></span>';
         //$frmStr .= '<span class="total">' . count($arFilterDatas['isOurPick']['list']) . ' ' . __('hotels') . '</span>';
         $frmStr .= '<span class="max">' .
                 $this->getLinkAccordingToNumberOfResponse($value['max']) .

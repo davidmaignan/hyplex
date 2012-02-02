@@ -33,12 +33,12 @@
         <?php endif; ?>
         <?php include_partial('form', array('form' => $form)) ?>
     </div>
-    <div class="span-9 last">
+    <div class="span-9 prepend-1 last">
         <?php include_component('prevSearch', 'flight'); ?>
     </div>
 </div>
 
-<hr class="space3" />
+<hr class="space" />
 
 <script type="text/javascript">
 

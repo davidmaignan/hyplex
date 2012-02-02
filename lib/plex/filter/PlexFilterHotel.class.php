@@ -36,9 +36,13 @@ class PlexFilterHotel implements PlexFilterInterface{
         
         
     }
-
+	
+    /**
+     * 
+     * Return the filename path depending on the context (plex, filters, markers, raw, xml ...)
+     * @param $type
+     */
     public function getFilameFullPath($type = ''){
-
 
         switch ($type) {
             case 'plex':

@@ -12,18 +12,20 @@
 class PlexSearchFlightStat implements PlexSearchStatInterface {
 
     public $arOrigin = array();
-    private $arDestination = array();
-    private $arOriginDestination = array();
-    private $arDepartDate = array();
-    private $arDepartTime = array();
-    private $arReturnTime = array();
-    private $arReturnDate = array();
-    private $arCabin = array();
-    private $arTypes = array('return'=>0, 'oneway'=>0);
-    private $arPassengers = array('adults'=>0,'children'=>0,'infants'=>0);
+    public $arDestination = array();
+    public $arOriginDestination = array();
+    public $arDepartDate = array();
+    public $arDepartTime = array();
+    public $arReturnTime = array();
+    public $arReturnDate = array();
+    public $arCabin = array();
+    public $arTypes = array('return'=>0, 'oneway'=>0);
+    public $arPassengers = array();
+    public $arAirport = array();
+    public $arNbrDays = array();
 
     public function __construct(){
-        
+        sfProjectConfiguration::getActive()->loadHelpers(array('Number', 'Date','Text', 'Url', 'I18n'));
     }
 	
     /**
@@ -31,22 +33,30 @@ class PlexSearchFlightStat implements PlexSearchStatInterface {
      * @see plex/stats/PlexSearchStatInterface::parseData()
      */
     public function  parseData($data) {
+    	    	
+    	if(array_key_exists('search_flight',$data['parameters'])){
+    		$this->parseParameters($data['parameters']['search_flight']);
+    		$this->getNbrDaysBetweenSearchDateAndTravelDate($data['date'], $data['parameters']['search_flight']['depart_date']);
+    	}
+		
+    	return true;
     	
-    	//var_dump($data);
-    	//exit;
-
-        switch ($data['action']) {
-            case 'create':
-                $this->parseParameters($data['parameters']['search_flight']);
-                break;
-			
-            case 'searchAgain':
-            	$this->parseParameters($data['parameters']['search_flight']);
-                break;
-            default:
-                break;
-        }
-
+    }
+    
+    private function getNbrDaysBetweenSearchDateAndTravelDate($date1, $date2){
+    	
+    	$date1 = new DateTime($date1);
+    	$date2 = new DateTime($date2);
+    	$interval = $date1->diff($date2);
+    	
+    	$nbrDays = ($interval->format('%a'));
+    	if(!array_key_exists($nbrDays, $this->arNbrDays)){
+    		$this->arNbrDays[$nbrDays] = 1;
+    	}else{
+    		$this->arNbrDays[$nbrDays]++;
+    	}
+    	
+    	
     }
 	
 	/**
@@ -54,20 +64,23 @@ class PlexSearchFlightStat implements PlexSearchStatInterface {
 	* @param $params 
 	*/
     private function parseParameters($params){
+    	
+    	if($params['origin'] == '' || $params['destination'] == ''){
+    		return false;
+    	}
 
         //Type of flight
         $this->addType($params['oneway']);
         $this->addOrigin($params['origin']);
+        
         $this->addDestination($params['destination']);
         $this->addOriginDestination($params['origin'],$params['destination']);
-        $this->addDepartDate($params['depart_date']);
+        $this->addDepartDate($params['depart_date'], $params['destination']);
         $this->addReturnDate($params['return_date']);
         $this->addDepartTime($params['depart_time']);
         $this->addReturnTime($params['return_time']);
         $this->addCabin($params['cabin']);
-        $this->addPassengers($params['number_adults'],'adults');
-        $this->addPassengers($params['number_children'],'children');
-        $this->addPassengers($params['number_infants'],'infants');
+        $this->addPassengers($params['number_adults'],$params['number_children'],$params['number_infants'] );
         //var_dump($this);
         //var_dump($params);
         //exit;
@@ -75,11 +88,20 @@ class PlexSearchFlightStat implements PlexSearchStatInterface {
 	
     /**
      * Add passengers to arPassengers
-     * @param $data
-     * @param $type
+     * @param $adults
+     * @param $children
+     * @param $infants
      */
-	private function addPassengers($data, $type){
-		$this->arPassengers[$type] = $this->arPassengers[$type] + (int)$data;
+	private function addPassengers($adults, $children, $infants){
+		
+		$type = $adults.'|'.$children.'|'.$infants;
+		
+		if(!array_key_exists($type, $this->arPassengers)){
+			$this->arPassengers[$type] = 1;
+		}else{
+			$this->arPassengers[$type]++;
+		}
+		
 	}
 	
 	/**
@@ -134,13 +156,24 @@ class PlexSearchFlightStat implements PlexSearchStatInterface {
             $this->arOriginDestination[$value] = 1;
         }
     }
+    
+    /**
+     * Get 3 letters code from the string
+     * @param $data string
+     */
+    static public function getCode($data){
+    	$pattern = '#\([A-Z]+\)#';
+        preg_match_all($pattern, $data, $matchesarray);
+
+        return substr($matchesarray[0][0], 1, -1);
+    }
 	
     /**
      * Add origin code to arOrigin
      * @param $data
      */
     public function addOrigin($data){
-
+		
         $pattern = '#\([A-Z]+\)#';
         preg_match_all($pattern, $data, $matchesarray);
 
@@ -181,12 +214,18 @@ class PlexSearchFlightStat implements PlexSearchStatInterface {
      * Add departure date ot arDepartDate
      * @param $value
      */
-    public function addDepartDate($value){
+    public function addDepartDate($value, $destination){
+    	
+    	$destination = self::getCode($destination);
 
-        if(array_key_exists($value, $this->arDepartDate)){
-            $this->arDepartDate[$value]++;
+        if(!array_key_exists($value, $this->arDepartDate)){
+            $this->arDepartDate[$value] = array();
+        }
+        
+        if(!array_key_exists($destination, $this->arDepartDate[$value])){
+        	$this->arDepartDate[$value][$destination] = 1;
         }else{
-            $this->arDepartDate[$value] = 1;
+        	$this->arDepartDate[$value][$destination]++;
         }
 
     }
@@ -277,6 +316,175 @@ class PlexSearchFlightStat implements PlexSearchStatInterface {
 		return (array_merge($keys1, $keys2));
 	}
     
+	public function getAirportNames(){
+		
+		//var_dump($this);
+		//exit;
+		arsort($this->arDestination);
+		arsort($this->arOrigin);
+		arsort($this->arOriginDestination);
+		krsort($this->arNbrDays);
+		
+		$codes = $this->getCodes();
+		if(empty($codes)){
+			return null;
+		}
+		$this->arAirport = Doctrine::getTable('City')->getListAirportByCode($codes);
+		
+	}
+	
+	public function getAirportFullName($code, $culture = 'en_US'){
+		//echo "<pre>";
+		//echo print_r($this->arAirports[$code]);
+		//exit;
+		
+		$string = $code;
+		if($this->arAirport[$code][$culture]['name']){
+        	$string = $this->arAirport[$code][$culture]['name']. '<br />';
+		}
+        $string .= '<span class="small blue1 bold"> ('.$this->arAirport[$code][$culture]['city_name'];
+        if($this->arAirport[$code]['state'] != ''){
+            $string .= ' ['.$this->arAirport[$code]['state'] .']';
+        }
+        $string .=  ' - '.$this->arAirport[$code][$culture]['country'].')</span>';
+        return $string;
+		
+	}
+	
+	public function getOriginByDestination($code){
+		$string = '';
+		
+		//var_dump($this->arOriginDestination, $code);
+		foreach($this->arOriginDestination as $key=>$value){
+			
+			$jeton = explode('|', $key);
+			//var_dump($jeton);
+			if($code == $jeton[0]){
+				$string .= '<div class="top-search-origin"><div class="left">'. end($jeton).'<br />';
+				$string .= $this->getAirportFullName(end($jeton)).'</div><div class="right">'.$value.'</div><div style="clear: both;"></div>';
+				$string .= '</div>';
+			}
+			
+			
+		}
 
+		
+		return $string;
+	}
+	
+	public function getDestinationByOrigin($code){
+		
+		$string = '';
+		
+		//var_dump($this->arOriginDestination, $code);
+		foreach($this->arOriginDestination as $key=>$value){
+			
+			$jeton = explode('|', $key);
+			//var_dump($jeton);
+			if($code == end($jeton)){
+				$string .= '<div class="top-search-origin"><div class="left">'. $jeton[0].'<br />';
+				$string .= $this->getAirportFullName($jeton[0]).'</div><div class="right">'.$value.'</div><div style="clear: both;"></div>';
+				$string .= '</div>';
+			}
+			
+			
+		}
+
+		
+		return $string;
+		
+	}
+	
+	/**
+	 * Return values for Pie chart
+	 */
+	public function getArPassengersPieValues(){
+		
+		$return = array();
+		
+		foreach($this->arPassengers as $key=>$value){
+			
+			$passengers = explode('|', $key);
+			
+			$string = Utils::getAdultChildInfantString($passengers[0], $passengers[1], $passengers[2]);
+			
+			$return[$string] = $value;
+			
+			
+		}
+		
+		ksort($return);
+		
+		return $return;
+		
+		return $this->arPassengers;
+		
+	}
+	
+	
+	
+	public function getGmapDatas(){
+		
+		//var_dump($this->arAirport);
+		//exit;
+		
+		$return = array();
+		
+		foreach($this->arOriginDestination as $key=>$value){
+			
+			$airPorts = explode('|',$key);
+			
+			$origin = $airPorts[0];
+			$destination = $airPorts[1];
+			
+			if(!array_key_exists($origin, $return)){
+				
+				
+				
+				$tmp = array(
+					'latitude'=>$this->arAirport[$origin]['latitude'],
+					'longitude'=>$this->arAirport[$origin]['longitude'],
+					'info'=>$this->arAirport[$origin]['en_US'],
+				'destination' => array(
+					$destination => array(
+						'latitude'=>$this->arAirport[$destination]['latitude'],
+						'longitude'=>$this->arAirport[$destination]['longitude'],
+						'info'=>$this->arAirport[$destination]['en_US'],
+						'total'=>$value)
+				));
+				
+				$return[$origin] = $tmp;
+				
+			}else{
+				
+				if(!array_key_exists($destination, $return[$origin]['destination'])){
+					
+					$tmp = array(
+						'latitude'=>$this->arAirport[$destination]['latitude'],
+						'longitude'=>$this->arAirport[$destination]['longitude'],
+						'info'=>$this->arAirport[$destination]['en_US'],
+						'total'=>$value);
+					
+					$return[$origin]['destination'][$destination] = $tmp;
+					
+					
+				}else{
+					
+					$return[$origin]['destination'][$destination]['total'] += $value;
+					
+					
+					
+				}
+				
+				
+				
+			}
+			
+		}
+		
+		return $return;
+		
+		
+	}
 }
 

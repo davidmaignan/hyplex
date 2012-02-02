@@ -52,13 +52,13 @@
 
     <div class="span-17 prepend-1 last">
 
-        <h2 class="flight fontface"><?php echo __('Passengers information') ?></h2>
+        <h2 class="title blue1 fontface"><?php echo __('Passengers information') ?></h2>
         <p class="">
            <?php echo __('All traveler information must match exactly what is on the government-issued ID you use when traveling.') ?>
         </p>
-
+                
                 <?php if ($form->hasGlobalErrors()): ?>
-                    <ul class="error-global">
+                    <ul class="error-global error">
                     <?php foreach ($form->getGlobalErrors() as $name => $error): ?>
                         <li class=""><?php echo $error ?></li>
                     <?php endforeach; ?>
@@ -68,7 +68,7 @@
                 <form action="<?php echo url_for('@booking_passenger') ?>" method="post">
 
                 <?php if(isset($form['adults'])):?>
-                <h2 class="title"><?php echo __('Adults') ?></h2>
+                <h3 class="title"><?php echo __('Adults') ?></h2>
                 <?php foreach ($form['adults'] as $key => $f): ?>
                 <?php include_partial('formPassenger',array('f'=>$f, 'key'=>$key, 'type'=>'adult')); ?>
                 <?php endforeach; ?>
@@ -76,7 +76,7 @@
                 <hr class="space2" />
                 
                 <?php if(count($form['children'])>0):?>
-                <h2 class="title prepend-top"><?php echo __('Children') ?></h2>
+                <h3 class="title prepend-top"><?php echo __('Children') ?></h2>
                 <?php foreach ($form['children'] as $key => $f): ?>
                 <?php include_partial('formPassenger',array('f'=>$f, 'key'=>$key,'type'=>'child')); ?>
                 <?php endforeach; ?>

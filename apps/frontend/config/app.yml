@@ -48,6 +48,21 @@ all:
 
   currency:
     available: [USD, GDB, EURO, CAD, CHF]
+    
+  currencies:
+    array:
+      USD: American dollar (USD)
+      EURO: Euro (EUR)
+      GBP: British Pound (GBP)
+      AUD: Australian dollar (AUD)
+      CAD: Canadian dollar (CAD)
+      YEN: Japanese Yen (YEN)
+      
+  langues:
+    array:
+      en_US: English (US)
+      fr_FR: Francais (Fr)
+      zh_CN: Chinese (Zh)
 
   cookie:
     duration: 260000

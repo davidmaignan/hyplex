@@ -42,8 +42,8 @@
                 </td>
             </tr>
             <tr>
-                 <td colspan="2"><?php echo $form['location1']->render(array('class'=>'text span-5')); ?></td>
-                 <td colspan="2"><?php echo $form['location2']->render(array('class'=>'text span-5')); ?></td>
+                 <td colspan="2"><?php echo $form['location1']->render(array('class'=>'text span-6')); ?></td>
+                 <td colspan="2"><?php echo $form['location2']->render(array('class'=>'text span-6')); ?></td>
             </tr>
             <tr>
                 <td colspan="2"><?php echo $form['location1']->renderError(); ?></td>
@@ -51,6 +51,8 @@
                 <td colspan="2"><?php echo $form['location2']->renderError(); ?></td>
                
             </tr>
+        </table>
+        <table>
             <tr>
                 <td>
                     <?php echo $form['pickup_date']->renderLabel(); ?><br />
@@ -77,7 +79,7 @@
             </tr>
             
         </table>
-        <hr class="space2"/>
+        <hr class="space"/>
 
         <div class="span-8 last right">
             <input type="submit" value="<?php echo __('search'); ?>" class="blue right bigger" />

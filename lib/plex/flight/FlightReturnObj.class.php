@@ -171,16 +171,65 @@ class FlightReturnObj extends FlightGenericObj {
         $this->nbrStopsInbound = $this->getNumberStops($data);
         //$this->nbrStopsInbound = count($this->Segments['inbound']) - 1;
     }
+    
+    
+    
+    public function displayParamsBookingTable(){
+    	
+    	$codeFrom = $this->SegmentOutbound->DepartureFrom;
+    	$codeTo = $this->SegmentOutbound->ArrivalTo;
+    	
+    	$string = '<tr><td>';
+    	$string .= '<span class="">Flight</span>';
+    	$string .= '</td><td class="info">';
+    	$string .= 'From:<br />To:</td><td style="width: 100px;">';
+    	$string .= $codeFrom.'<br />'.$codeTo;
+    	$string .= '</td><td class="info">';
+    	$string .= 'Depart:<br />Return:';
+    	$string .= '</td><td>';
+    	$string .= $this->SegmentOutbound->Departs .'<br />'. $this->SegmentInbound->Departs;
+    	$string .= '</td><td class="info">';
+    	$string .= 'Airline:<br />Stops:';
+    	$string .= '</td><td>';
+    	$string .= $this->arAirlines[0].'<br />'.$this->nbrStopsOutbound;
+    	$string .= '</td><td class="info">';
+    	$string .= 'Price:';
+    	$string .= '</td><td class="">';
+    	$string .= $this->TotalPrice;
+    	$string .= '</td></tr>';
+    	
+    	return $string;
+    }
+    
+    /**
+     * Display flight summary for statistical view
+     * @return string $string
+     */
+    public function displayParamsStats(){
+    	
+    	//var_dump($this);
+    	//exit;
+    	
+    	$codeFrom = $this->SegmentOutbound->DepartureFrom;
+    	$codeTo = $this->SegmentOutbound->ArrivalTo;
+    	$string =  __('Round trip from %1% to %2%',array('%1%'=> $codeFrom,'%2%'=> $codeTo)). ' &bull; ';
+    	$string .= 'Price: '.format_currency($this->TotalPrice, '$'). ' &bull; ';
+    	$string .= 'Airline: '.$this->arAirlines[0]. ' &bull; ';
+    	$string .= 'Stop: '.$this->nbrStopsOutbound. ' &bull; ';
+    	$string .= 'Depart: '.$this->SegmentOutbound->Departs. ' &bull; ';
+    	$string .= 'Return: '.$this->SegmentInbound->Departs. ' &bull; ';
+    	
+    	return $string;
+    	
+    }
 
-
-   
+    
     /**
      * Return Origin and Destination in a formatted string.
      * @param string $culture
      * @return string
      */
     public function displayConfirmationTitle($culture = 'en_US'){
-
 
         $codeFrom = $this->SegmentOutbound->DepartureFrom;
         $codeTo = $this->SegmentOutbound->ArrivalTo;
@@ -198,11 +247,8 @@ class FlightReturnObj extends FlightGenericObj {
         $to .= isset($this->arAirport[$codeTo]['state'])? ' ['.$this->arAirport[$codeTo]['state'].'], ': '';
 
         $to .= $this->arAirport[$codeTo][$culture]['country'];
-
-
         
         return __('Round trip from %1% to %2%',array('%1%'=> $from,'%2%'=> $to));
-
     }
 
     /**
@@ -230,9 +276,6 @@ class FlightReturnObj extends FlightGenericObj {
             return $value[1];
         }
 
-
-        
-        
     }
 
 

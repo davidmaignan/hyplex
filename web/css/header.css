@@ -17,7 +17,7 @@ div#top-header{
     box-shadow: -3px 0px 3px #333;
     border-bottom: 1px solid white;
     background: #0c4878;
-    abackground-image: -moz-linear-gradient(0% 100% 90deg, #0c4878, #186cb4);
+    /*background-image: -moz-linear-gradient(0% 100% 90deg, #0c4878, #186cb4);*/
     color: white;
 }
 
@@ -88,14 +88,14 @@ h2#logo{
     width: 300px;
     height: 50px;
     display: block;
-    background: url('http://hyplexdemo/images/generic/logo_beta_265.png') no-repeat left top;
+    background: url('../images/generic/logo_beta_265.png') no-repeat left top;
 }
 
 div#phoneInfo #phoneBox{
     width: 136px;
     height: 36px;
     display: block;
-    background: url('http://hyplexdemo/images/generic/telephone.png') no-repeat left top;
+    background: url('../images/generic/telephone.png') no-repeat left top;
     padding: 3px 0 0 60px;
     font-size: 18.3px;
     font-weight: bold;
@@ -110,13 +110,13 @@ div#phoneInfo #phoneBox{
 nav#main-nav{
     height: 35px;
     border: 1px solid white;
-    -moz-border-radius: 2px;
+    /*-moz-border-radius: 2px;
     -webkit-border-radius: 2px;
-    border-radius: 3px;
+    border-radius: 3px;*/
     box-shadow: 0 0 2px #777777;
     margin: 0;
     background-color: #0c4878;
-    background-image: -moz-linear-gradient(25% 100% 90deg, #0c4878, #186cb4);
+    /*background-image: -moz-linear-gradient(25% 100% 90deg, #0c4878, #186cb4);*/
     padding:0;
 }
 

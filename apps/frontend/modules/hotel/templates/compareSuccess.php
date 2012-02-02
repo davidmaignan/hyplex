@@ -5,13 +5,13 @@
         <tr>
             <td></td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td><?php echo image_tag($hotel->getBaseLinkImage()); ?></td>
+            <td class="center"><?php echo image_tag($hotel->getBaseLinkImage()); ?></td>
             <?php endforeach; ?>
         </tr>
         <tr class="odd">
             <td></td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td>
+            <td class="center bigger blue2">
                 <?php
                 echo link_to2($hotel->getName(), 'hotel_detail',
                         array('slug' => Utils::slugify($hotel->getName())),
@@ -23,37 +23,37 @@
          <tr>
             <td></td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td><?php echo html_entity_decode(HotelGenericObj::getStarRating($hotel->starRating)); ?></td>
+            <td class="center"><?php echo html_entity_decode(HotelGenericObj::getStarRating($hotel->starRating)); ?></td>
         <?php endforeach; ?>
         </tr>
          <tr class="odd">
-            <td>Restaurant</td>
+            <td class="middle">Restaurant</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Parking']) ?></td>
+            <td class="center"><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Parking']) ?></td>
             <?php endforeach; ?>
         </tr>
          <tr>
-             <td>Pool</td>
+             <td class="middle">Pool</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Pool']) ?></td>
+            <td class="center"><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Pool']) ?></td>
         <?php endforeach; ?>
         </tr>
         <tr class="odd">
-             <td>Internet</td>
+             <td class="middle">Internet</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Internet Access']) ?></td>
+            <td class="center"><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Internet Access']) ?></td>
         <?php endforeach; ?>
         </tr>
          <tr>
-             <td>Parking</td>
+             <td class="middle">Parking</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Parking']) ?></td>
+            <td class="center"><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Parking']) ?></td>
         <?php endforeach; ?>
         </tr>
         <tr class="odd">
-             <td>Fitness center</td>
+             <td class="middle">Fitness center</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Fitness Center']) ?></td>
+            <td class="center"><?php echo Utils::getIconCheckCross($hotel->hotelFacilities['Fitness Center']) ?></td>
         <?php endforeach; ?>
         </tr>
 
@@ -62,23 +62,23 @@
         <?php foreach($arHotels[0]->numRooms as $key=>$room): ?>
 
         <tr class="<?php echo (fmod($jeton, 2) == 0)? 'odd': ''; $jeton++;?>">
-            <td>
+            <td class="middle">
                 <?php echo $room; ?>
             </td>
 
             <?php foreach ($arHotels as $hotel): ?>
-                <td style="padding: 0;">
+                <td style="padding: 0;" class="center">
                     <table class="prices">
                         <tr>
-                            <td class="style1">min</td>
-                            <td class="style2">
+                            <td class="style1 middle">min</td>
+                            <td class="bigger">
                                 <?php echo Utils::getPrice($hotel->arMinMaxPrice[$room]['min']); ?>
                             </td>
                             <td class="style1"></td>
                         </tr>
                          <tr>
-                             <td class="style1">max</td>
-                             <td class="style2">
+                             <td class="style1 middle">max</td>
+                             <td class="bigger">
                                 <?php echo Utils::getPrice($hotel->arMinMaxPrice[$room]['max']); ?>
                             </td>
                             <td class="style1"></td>
@@ -92,21 +92,21 @@
 
 
         <tr class="<?php echo (fmod($jeton, 2) == 0)? 'odd': ''; $jeton++;?>">
-            <td>Number of rates offered</td>
+            <td class="middle">Number of rates offered</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td class="style2 bordered"><?php echo $hotel->getNumberRates(); ?></td>
+            <td class="bigger blue center"><?php echo $hotel->getNumberRates(); ?></td>
         <?php endforeach; ?>
         </tr>
         <tr class="<?php echo (fmod($jeton, 2) == 0)? 'odd': ''; $jeton++;?>">
-            <td>Review score</td>
+            <td class="middle">Review score</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td class="style3"><?php echo rand(55, 85)/10; ?></td>
+            <td class="biggest blue1 center bold"><?php echo rand(55, 85)/10; ?></td>
         <?php endforeach; ?>
         </tr>
         <tr class="<?php echo (fmod($jeton, 2) == 0)? 'odd': ''; $jeton++;?>">
-            <td>Number of review</td>
+            <td class="middle">Number of review</td>
             <?php foreach ($arHotels as $hotel): ?>
-            <td class="style4"><?php echo rand(555, 855); ?> reviews</td>
+            <td class="big blue1 center"><?php echo rand(555, 855); ?> reviews</td>
         <?php endforeach; ?>
         </tr>
 

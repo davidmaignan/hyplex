@@ -1,82 +1,88 @@
-<?php use_stylesheet('grid.css'); ?>
-<?php use_stylesheet('typography.css'); ?>
-<?php use_stylesheet('ipad.css'); ?>
+<section class="promotionalBanner clearfix" style="">
 
-<?php use_javascript('jquery-1.5.1.min.js'); ?>
-<?php use_javascript('jquery-ui-1.8.11.custom.min.js'); ?>
-<?php use_javascript('myScript'); ?>
-<?php use_javascript('functions.js'); ?>
+    <?php echo image_tag('../uploads/promotionalBanner/ipad/1_1.jpg'); ?>
 
-<?php use_stylesheet('custom-theme/jquery-ui-1.8.11.custom.css'); ?>
+</section>
 
-<?php use_helper('Date', 'Number','I18n'); ?>
+<div id="content">
 
-<div class="span-6 append-bottom">
+    <div class="search-flight">
 
-    <div class="span-6 shadow bg-white append-bottom" id="form-index">
-        <div style="margin:1px; overflow: hidden;">
-            <ul id="tabs-form">
-                <li><a href="#" class="selected"><?php echo __('Flight'); ?></a></li>
-                <li><a href="#"><?php echo __('Hotel'); ?></a></li>
-                <li><a href="#"><?php echo __('Car'); ?></a></li>
-                <li><a href="#"><?php echo __('Package'); ?></a></li>
-            </ul>
-            <?php include_partial('searchFlight/form_index', array('form' => $flightForm)); ?>
-            <div class="span-9">
-                <div class="padded">
-                    <h4 class="telephone"><?php echo __('Call our travel advisor'); ?></h4>
-                    <p class="telephone">1-800-456-7890</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        
 
-
-</div>
-
-<div class="span-13 last append-bottom">
-
-    <?php include_component('promotionalBanner', 'index'); ?>
-
-            <div class="span-13">
-                <?php include_component('topdestination', 'index'); ?>
-
-        <div class="span-6 shadow bg-white last" id="tweet">
-            <div class="box-1">
-                <h2>Latest tweet <?php echo image_tag('generic/twitter_icon.png', array('style' => 'float:right;')); ?></h2>
-            </div>
-
-            <div class="box-2">
-                <div id="tweet-pic">
-                    <?php echo image_tag('generic/Z23_normal.jpg'); ?>
-                </div>
-                <div id="tweet-body">
-                    <span id="tweet-title">Lorem ipsum</span> dolor sit amet<br />
-                    Contrary to popular belief, Lorem Ipsum is not simply random text.
-                    It has roots in a piece of classical Latin literature from 45 BC, making.
-                </div>
-                <hr class="space2" />
-                <div id="tweet-pic">
-                    <?php echo image_tag('generic/Z23_normal.jpg'); ?>
-                </div>
-                <div id="tweet-body">
-                    <span id="tweet-title">Lorem ipsum</span>
-                    Contrary to popular belief, Lorem Ipsum is not simply random text.
-                    It has roots in a piece of classical Latin literature from 45 BC, making.
-                </div>
-                <hr class="space3" />
-
-            </div>
-
-        </div>
+        
 
     </div>
 
-        <?php include_component('basket', 'index'); ?>
 
 
+
+
+
+</section>
+
+<article class="post clearfix">
+
+    <header>
+        <h1 class="post-title"><a href="#">Just a Post Title</a></h1>
+
+        <p class="post-meta"><time class="post-date" datetime="2011-05-08" pubdate>May 8, 2011</time> <em>in</em> <a href="#">Category</a></p>
+    </header>
+    <figure class="post-image"> 
+        <img src="images/sample-image.jpg" /> 
+    </figure>
+    <p>Fusce ut sem est. In eu sagittis felis. In gravida arcu ut neque ornare vitae rutrum turpis vehicula. Nunc ultrices sem mollis metus rutrum non malesuada metus fermentum. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Pellentesque interdum rutrum quam, a pharetra est pulvinar ac. Vestibulum congue nisl magna. Ut vulputate odio id dui convallis in adipiscing libero condimentum. Nunc et pharetra enim. Praesent pharetra, neque et luctus tempor, leo sapien faucibus leo, a dignissim turpis ipsum sed libero. Sed sed luctus purus. Aliquam faucibus turpis at libero consectetur euismod. Nam nunc lectus, congue non egestas quis, condimentum ut arcu. Nulla placerat, tortor non egestas rutrum, mi turpis adipiscing dui, et mollis turpis tortor vel orci. Cras a fringilla nunc. Suspendisse volutpat, eros congue scelerisque iaculis, magna odio sodales dui, vitae vulputate elit metus ac arcu. Mauris consequat rhoncus dolor id sagittis. Cras tortor elit, aliquet quis tincidunt eget, dignissim non tortor.</p>
+
+    <h3>Vimeo Video</h3>
+    <div class="video">
+        <iframe src="http://player.vimeo.com/video/6284199" width="550" height="400" frameborder="0"></iframe>
+    </div>
+    <!-- /.video -->
+
+    <h3>YouTube</h3>
+    <div class="video">
+
+        <object width="500" height="400">
+            <param name="movie" value="http://www.youtube.com/v/NmRTreaCJXs?version=3">
+            </param>
+            <param name="allowFullScreen" value="true">
+            </param>
+            <param name="allowscriptaccess" value="always">
+            </param>
+            <param name="wmode" value="transparent">
+            </param>
+
+            <embed wmode="transparent"  src="http://www.youtube.com/v/NmRTreaCJXs?version=3" type="application/x-shockwave-flash" width="600" height="420" allowscriptaccess="always" allowfullscreen="true"></embed>
+        </object>
+    </div>
+    <!-- /.video -->
+
+</article>
+<!-- /.post -->
 
 </div>
+<!-- /#content --> 
 
 
+<aside id="sidebar">
 
+    <section class="widget">
+        <h4 class="widgettitle">Sidebar</h4>
+        <ul>
+            <li><a href="#">WordPress</a> (3)</li>
+            <li><a href="#">Design</a> (23)</li>
+
+            <li><a href="#">Design </a>(18)</li>
+        </ul>
+    </section>
+    <!-- /.widget -->
+
+    <section class="widget clearfix">
+        <h4 class="widgettitle">Flickr</h4>
+
+        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=8.&display=latest&size=s&layout=x&source=user&user=52839779@N02"></script> 
+    </section>
+    <!-- /.widget -->
+
+</aside>
+<!-- /#sidebar -->

@@ -5,7 +5,7 @@
 <?php use_javascript('search/searchFlight'); ?>
 
 <form action="<?php echo url_for('@search_flight_form') ?>" method="post" name="flight_search_form_1" id="fligh_search_form_1">
-    <fieldset class="type1">
+    <fieldset class="type1 noborder">
         <legend></legend>
         <h5><?php echo __('Trip details'); ?></h5>
         <table  class="form">
@@ -17,12 +17,16 @@
         <p>
             <?php echo $form['origin']->renderLabel(); ?><br>
             <?php echo $form['origin']->render(array('class'=>'text span-7')) ?>
-            <a class="dest-pop-up" href="#"><?php echo image_tag('icons/world.png', array('alt'=>'S'))?></a><br />
+            <a class="dest-pop-up multidestination-popup" id="origin-0" href="<?php echo url_for('multidestination'); ?>">
+            <?php echo image_tag('icons/world.png', array('alt'=>'S'))?></a>
+            <br />
         </p>
         <p>
             <?php echo $form['destination']->renderLabel(); ?><br>
             <?php echo $form['destination']->render(array('class'=>'text  span-7')) ?>
-            <a class="dest-pop-up" href="#"><?php echo image_tag('icons/world.png', array('alt'=>'S'))?></a><br /><br />
+            <a class="dest-pop-up multidestination-popup"  href="<?php echo url_for('multidestination'); ?>">
+            	<?php echo image_tag('icons/world.png', array('alt'=>'S'))?></a>
+            	<br /><br />
         </p>
         <table class="form">
             <tr>
@@ -85,3 +89,7 @@
 
     </fieldset>
 </form>
+
+<script>
+    var flightSearchType = 'simple';
+</script>

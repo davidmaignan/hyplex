@@ -40,4 +40,52 @@ class BookingTable extends Doctrine_Table
         return $q;
         
     }
+    
+    public function getBookingsPerUser($userId){
+    	
+    	$q = Doctrine_Query::create()
+    			->from('booking a')
+    			->where('a.user_id = ?', $userId)
+    			->execute();
+    			
+    	return $q;
+    	
+    }
+    
+    public function retrieveInfos($userId){
+    	
+    	$q = Doctrine::getTable('booking')
+    			->createQuery('a')
+    			->where('a.user_id = ?', $userId)
+    			->limit(1)
+    			->orderBy('a.created_at DESC')
+    			->fetchArray();
+    			
+    	
+    	
+    	if($q){
+    		$booking = ($q[0]['object']);
+    		
+    		
+    	}else{
+    		return null;
+    	}
+    	
+    	$return = array();
+    	
+    	$return['address'] = $booking->getAddress();
+    	$return['country'] = $booking->getCountry();
+    	$return ['telephone'] = $booking->getTelephone();
+    	
+    	
+    	//var_dump($return);
+    	
+    	//exit;
+    	
+    	return $return;
+    	
+    	exit;
+    	
+    	
+    }
 }

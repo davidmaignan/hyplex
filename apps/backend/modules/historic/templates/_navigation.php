@@ -1,18 +1,35 @@
 <div id="navigation2">
 <h2>Today</h2>
-<ul>
-	<li><a href="<?php echo url_for('@historic_daily')?>">Hourly activity</a></li>
-	<li><a href="<?php echo url_for('@historic_daily_user')?>">User Activity</a></li>
-	<li><a href="">Top searches</a></li>
-	<li><a href="">Bookings</a></li>
-</ul>
-
-<ul>
-	<li><a href="">Erasmus Darwin</a></li>
-	<li><a href="">Lamarck</a></li>
-	<li><a href="">Charles Darwin</a></li>
-	<li><a href="">Fisher</a></li>
-	<li><a href="">Dawkins</a></li>
-</ul>
-
+	<?php include_partial('historic/navigationLinks'); ?>
 </div>
+
+<style type="text/css">
+
+#navigation2{
+	border: 1px solid #aaa;
+	width: 150px;
+	margin:0;
+	padding:0;
+	background-color: white;
+	border-left:none;
+}
+
+
+
+#navigation2 ul, #navigation2 ul li{
+	list-style: none;
+	margin: 0;
+}
+
+#navigation2 h2, #navigation2 li{
+	font-size: 100%;
+	font-weight: normal;
+	margin: 0;
+	padding:5px 10px;	
+}
+
+#navigation2 li{
+	border-top: 1px solid #aaa;
+}
+
+</style>

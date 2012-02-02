@@ -16,8 +16,8 @@ class PlexParametersFactory {
 
     public static function &factory($type, $params, $culture)
     {
-        if(!is_object(self::$factory))
-        {
+        //if(!is_object(self::$factory))
+        //{
             switch ($type) {
                 case 'flightReturn':
 
@@ -40,7 +40,7 @@ class PlexParametersFactory {
 
             return self::$factory;
 
-        }
+       // }
     }
 
 }

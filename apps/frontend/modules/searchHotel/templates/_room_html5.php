@@ -10,7 +10,7 @@
             <?php echo $f['number_children']->render(array('class' => 'span-2 hotel-children-age')); ?>
         </td>
         <td class="span-2 bottom">
-            <?php if (isset($num)): ?>
+            <?php if (($num) > 1): ?>
                 <a href="#" class="remove right" onclick="do_delete(this);">Remove</a>
             <?php endif; ?>
         </td>

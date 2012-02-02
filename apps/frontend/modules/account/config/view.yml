@@ -1,0 +1,21 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        Hypertech Solutions - Demo site
+    description:  This is a demo site for Plex travel API
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  #stylesheets:    [main.css, frontend_temp.css, typography.css]
+  stylesheets:    [screen, custom, header, footer, promotionalBanner, jquery.gritter.css, font/arvo-fontfacekit/stylesheet, custom-theme/jquery-ui-1.8.16.custom.css, jquery.ad-gallery.css, account.css]
+
+  javascripts:    [jquery-1.5.1.min.js, jquery-ui-1.8.16.custom.min.js, generic, functions, jquery.gritter.min.js, jquery.ad-gallery.js]
+
+  has_layout:     true
+  layout:         layout_html5

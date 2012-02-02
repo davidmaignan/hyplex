@@ -25,9 +25,15 @@
         <fieldset class="type1">
             <legend></legend>
             <h5>Trip details</h5>
-            <?php echo $form['oneway']; ?>
-            <br />
-            <table class="form">
+             <table class="form">
+	             <tr>
+	             	<td colspan="2"><?php echo $form['oneway']; ?></td>
+	             	<td class="right" colspan="4"><a class="multiple-destination" href="<?php echo url_for('multipleDestination') ?>">
+	             	<?php echo __('Multiple destinations'); ?></a><br />
+	             	</td>
+	           	</tr>
+	         </table>
+	         <table class="form">
                 <tr>
                     <td class="span-7" colspan="2">
                         <?php echo $form['origin']->renderLabel(); ?><br>
@@ -48,6 +54,8 @@
                         <?php echo $form['destination']->renderError(); ?>
                     </td>
                 </tr>
+                </table>
+                <table class="form">
                 <tr>
                     <td class="span-4">
                         <?php echo $form['depart_date']->renderLabel(); ?><br>

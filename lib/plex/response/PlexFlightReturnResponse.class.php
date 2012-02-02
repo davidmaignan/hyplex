@@ -196,7 +196,102 @@ class PlexFlightReturnResponse extends PlexResponse implements PlexResponseInter
         $event = new sfEvent($this, 'plex.response_success', array('this' => $this));
         sfContext::getInstance()->getEventDispatcher()->notify($event);
 
+		//Create filter file
+		$arStops = array();
+		$arAirlines = array();
+		$arPrice = array();
+		
+		$arFilterTmp = array();
+		$arFilterTmp['minPrice'] = $this->arObjs[0]->TotalPrice;
+        $arFilterTmp['maxPrice'] = $this->arObjs[0]->TotalPrice;
+        $arFilterTmp['takeoffDepMin'] = Utils::getArrayTimeFromSegments($this->arObjs[0]->SegmentOutbound->Departs);
+        $arFilterTmp['takeoffDepMax'] = Utils::getArrayTimeFromSegments($this->arObjs[0]->SegmentOutbound->Departs);
+        $arFilterTmp['takeoffRetMin'] = Utils::getArrayTimeFromSegments($this->arObjs[0]->SegmentInbound->Departs);
+        $arFilterTmp['takeoffRetMax'] = Utils::getArrayTimeFromSegments($this->arObjs[0]->SegmentInbound->Departs);
+        $arFilterTmp['minDuration'] = ($this->arObjs[0]->SegmentOutbound->FlightDuration + $this->arObjs[0]->SegmentInbound->FlightDuration);
+        $arFilterTmp['maxDuration'] = ($this->arObjs[0]->SegmentOutbound->FlightDuration + $this->arObjs[0]->SegmentInbound->FlightDuration);
+        
+        //var_dump($arFilterTmp);
 
+        foreach ($this->arObjs as $value) {
+        	 
+        	$arFilterTmp['minPrice'] = min($value->TotalPrice, $arFilterTmp['minPrice']);
+        	$arFilterTmp['maxPrice'] = max($value->TotalPrice, $arFilterTmp['maxPrice']);
+        	$arFilterTmp['takeoffDepMin'] = min(Utils::getArrayTimeFromSegments($value->SegmentOutbound->Departs), $arFilterTmp['takeoffDepMin']);
+        	$arFilterTmp['takeoffDepMax'] = max(Utils::getArrayTimeFromSegments($value->SegmentOutbound->Departs), $arFilterTmp['takeoffDepMax']);
+        	$arFilterTmp['takeoffRetMin'] = min(Utils::getArrayTimeFromSegments($value->SegmentInbound->Departs), $arFilterTmp['takeoffRetMin']);
+        	$arFilterTmp['takeoffRetMax'] = max(Utils::getArrayTimeFromSegments($value->SegmentInbound->Departs), $arFilterTmp['takeoffRetMax']);
+        	$arFilterTmp['minDuration'] = min($value->SegmentOutbound->FlightDuration + $value->SegmentInbound->FlightDuration, $arFilterTmp['minDuration']);
+        	$arFilterTmp['maxDuration'] = max($value->SegmentOutbound->FlightDuration + $value->SegmentInbound->FlightDuration, $arFilterTmp['maxDuration']);
+        	
+        	
+        	//Stops
+        	 $nbrStops = max($value->nbrStopsOutbound, $value->nbrStopsInbound);
+        	 if (!array_key_exists($nbrStops, $arStops)) {
+        	 	$arStops[$nbrStops] = $value->TotalPrice;
+        	 	
+        	 }else{
+        	 	$arStops[$nbrStops] = min($arStops[$nbrStops], $value->TotalPrice);
+        	 }
+        	
+        	 
+        	 //Airline
+	        switch (count($value->arAirlines)) {
+	                case 1:
+	                    $tmp = array();
+	                    $tmp['stops'] = $nbrStops;
+	                    $tmp['price'] = $value->TotalPrice;
+	                    $tmp['UniqueReferenceId'] = $value->UniqueReferenceId;
+	                    //$tmp['']
+	                    //If not in array add it as a new entry
+	                    if (!array_key_exists($value->arAirlines[0], $arAirlines)) {
+	                        $arAirlines[$value->arAirlines[0]][0] = $tmp;
+	                    } else {
+	                    	//$arAirlines[$value->arAirlines[0]][0] = Utils::compareArrays( $arAirlines[$value->arAirlines[0]][0], $tmp, 'price');
+	                       //array_push($arAirlines[$value->arAirlines[0]], $tmp);
+	                    }
+	
+	                    break;
+	
+	                default:
+	                    $tmp = array();
+	                    $tmp['airlines'] = $value->arAirlines;
+	                    $tmp['stops'] = $nbrStops;
+	                    $tmp['price'] = $value->TotalPrice;
+	                    $tmp['UniqueReferenceId'] = $value->UniqueReferenceId;
+	                    if (!array_key_exists('multi', $arAirlines)) {
+	                        $arAirlines['multi'][] = $tmp;
+	                    } else {
+	                    	$arAirlines['multi'][0] = Utils::compareArrays($arAirlines['multi'][0], $tmp, 'price');
+	                    	
+	                    	
+	                    	//array_push($arAirlines['multi'], $tmp);
+	                    }
+
+	                    break;
+	        }
+
+        }
+        
+        echo "<pre>";
+        ksort($arStops);
+       	//var_dump(($arStops));
+        //print_r($arAirlines);
+        
+        //print_r($arFilterTmp);
+        
+        $arFilters = array();
+        $arFilters['total'] = count($this->arObjs);
+        $arFilters['stop'] = $arStops;
+        $arFilters['airlines'] = $arAirlines;
+        $arFilters['price'] = array('min'=>$arFilterTmp['minPrice'],'max'=>$arFilterTmp['maxPrice']);
+        $arFilters['takeoffDep'] = array('min'=>$arFilterTmp['takeoffDepMin'], 'max'=>$arFilterTmp['takeoffDepMax']);
+        $arFilters['takeoffRet'] = array('min'=>$arFilterTmp['takeoffRetMin'], 'max'=>$arFilterTmp['takeoffRetMax']);
+        $arFilters['duration'] = array('min'=>$arFilterTmp['minDuration'], 'max'=>$arFilterTmp['maxDuration']);
+        
+        //Save filters in file
+        file_put_contents($this->getFilename('filters'), serialize($arFilters));
+        chmod($this->getFilename('filters'), 0777);
 
     }
 

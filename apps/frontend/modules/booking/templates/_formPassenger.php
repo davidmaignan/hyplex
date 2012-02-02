@@ -8,17 +8,17 @@
             <td class="third"><?php echo $f['salutation']->renderError(); ?></td>
         </tr>
         <tr>
-            <td><?php echo $f['first_name']->renderLabel(); ?></td>
+            <td class="first"><?php echo $f['first_name']->renderLabel(); ?></td>
             <td><?php echo $f['first_name']->render(array('class'=>'text span-4')); ?></td>
             <td><?php echo $f['first_name']->renderError(); ?></td>
         </tr>
         <tr>
-            <td><?php echo $f['middle_name']->renderLabel(); ?></td>
+            <td class="first"><?php echo $f['middle_name']->renderLabel(); ?></td>
             <td><?php echo $f['middle_name']->render(array('class'=>'text span-4')); ?></td>
             <td><?php echo $f['middle_name']->renderError(); ?></td>
         </tr>
         <tr>
-            <td><?php echo $f['last_name']->renderLabel(); ?></td>
+            <td class="first"><?php echo $f['last_name']->renderLabel(); ?></td>
             <td><?php echo $f['last_name']->render(array('class'=>'text span-4')); ?></td>
             <td><?php echo $f['last_name']->renderError(); ?></td>
         </tr>
@@ -28,8 +28,8 @@
             <td><?php echo $f['gender']->renderError(); ?></td>
         </tr>
         <tr>
-            <td><?php echo $f['dob']->renderLabel(); ?></td>
-            <td><?php echo $f['dob']->render(array('class'=>'text span-3')); ?></td>
+            <td class="first"><?php echo $f['dob']->renderLabel(); ?></td>
+            <td><?php echo $f['dob']->render(array('class'=>'text span-3 dob')); ?></td>
             <td><?php echo $f['dob']->renderError(); ?></td>
         </tr>
     </table>
@@ -46,7 +46,7 @@
         <tr>
             <td>
                 <?php echo $f['airline_code']->renderLabel(); ?><br />
-                <?php echo $f['airline_code']->render(array('class'=>'text span-4')); ?>
+                <?php echo $f['airline_code']->render(array('class'=>'text span-4 airline_code')); ?>
             </td>
         </tr>
         <tr>

@@ -276,7 +276,9 @@ abstract class PlexStats {
                 $parameters = unserialize($datas[7]);
                 
                 
-                
+                if(!array_key_exists('module', $parameters)){
+                	continue;
+                }
                 
                 if($key < $total){
                     $nextEntry = $entries[++$key];
@@ -291,8 +293,8 @@ abstract class PlexStats {
                 $historic->setDate($date1->format('Y-m-d H:i:s'));
                 $historic->setTsop($tsop);
                 if($datas[1] == '127.0.0.1'){
-                	//$historic->setIp('173.230.162.100');
-                	$historic->setIp(self::$arIps[rand(0,count(self::$arIps)-1)]);
+                	$historic->setIp('173.230.162.100');
+                	//$historic->setIp(self::$arIps[rand(0,count(self::$arIps)-1)]);
                 }else{
                 	$historic->setIp($datas[1]);
                 }
@@ -318,10 +320,10 @@ abstract class PlexStats {
                 
                 $historic->setUri($datas[4]);
                 $historic->setSTId($datas[5]);
-                $historic->setFilename($datas[6]);
+                $historic->setFilename(serialize($datas[6]));
                 $historic->setParameters(unserialize($datas[7]));
                 $historic->setScrubbed(false);
-                $historic->setSessionId($datas[8]);
+                $historic->setSessionId(trim($datas[8]));
                 $historic->save();
                 
                 

@@ -49,7 +49,7 @@ abstract class PlexFlightParameters extends PlexParameters {
 
     }
 
-    /*
+    /**
      * @param $ar array with info: name, state, country, state code
      * @param $culture the $sf_user->getCulture();
      *
@@ -80,7 +80,7 @@ abstract class PlexFlightParameters extends PlexParameters {
 
     }
 
-    /*
+    /**
      * Return the destination value and
      * create arDestination with all info about the airport in all languages
      * @return string 3 uppercase letter 
@@ -107,13 +107,13 @@ abstract class PlexFlightParameters extends PlexParameters {
         return substr($matchesarray[0][0], 1, -1);
 
     }
-    /*
+    
+    /**
      * Return array with all the search parameters to be used for searchFlight form
      * @param sfUser->getCulture
      * @return array with all the input fields values
      *
      */
-
     public function getParametersArray($culture = 'en_US') {
 
         $ar = array();
@@ -135,12 +135,18 @@ abstract class PlexFlightParameters extends PlexParameters {
     }
 
 
-    /*
+    /**
      * Return a string formatted city_name [state], country, airport_name (airport_code)
      * e.q: London, United Kingdom, Heathrow (LHR)
      * @return string
      */
     public function getAirportFormatInput($ar, $culture) {
+    	
+    	if(empty($ar)){
+    		return '';
+    	}
+    	
+    	
         $string = $ar[$culture]['name'] . '';
         $string .= isset($ar[$culture]['state']) ? ' [' . $ar[$culture]['state']['code'] . ']' : '';
         $string .= ', ' . $ar[$culture]['country'] . ', ';
@@ -343,13 +349,49 @@ abstract class PlexFlightParameters extends PlexParameters {
         return $this->arOrigin[$culture]['name'] . ' (' .$this->arOrigin['code'] . ') <br />' .
                $this->arDestination[$culture]['name'] . ' (' .$this->arDestination['code'] . ')';
         
-
         
     }
 
     public function getPassengers(){
         $passengers = (int)$this->getAdults() + (int)$this->getChildren() + (int)$this->getInfants();
         return $passengers;
+    }
+    
+    /**
+     * Validate parameters 
+     * @return array of errors or true
+     */
+    public function isValid(){
+    	
+    	$return = '';
+    	
+    	//var_dump($this->getParametersArray('en_US'));
+    	$parameters = $this->getParametersArray('en_US');
+    	
+    	//var_dump($parameters);
+    	
+    	$form = new SearchFlightForm();
+    	$form->disableLocalCSRFProtection();
+    	$form->disableCSRFProtection();
+    	$form->bind($parameters);
+    	
+    	if(!$form->isValid()){
+    		$return = '';
+    		//var_dump($form->getGlobalErrors());
+    		$errors = $form->getErrorSchema()->getErrors();
+    		foreach($errors as $error){
+    			
+    			$return = '<span class="label important">'.$error.'</span>';
+    			
+    		}
+    		
+    	}
+    	
+    	return $return;
+    	
+    	//var_dump($this);
+    	//exit;
+    	
     }
 
 }

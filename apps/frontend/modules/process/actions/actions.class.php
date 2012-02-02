@@ -85,7 +85,7 @@ class processActions extends sfActions
 
       }else{
           
-          $filename = sfConfig::get('sf_data_dir').'/rawplexresponse/flightOneWay.xml';
+          $filename = sfConfig::get('sf_data_dir').'/rawplexresponse/flight.xml';
           $response = file_get_contents($filename);
       }
 

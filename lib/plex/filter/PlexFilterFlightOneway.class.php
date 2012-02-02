@@ -392,6 +392,8 @@ class PlexFilterFlightOneway extends PlexFilterFlight implements PlexFilterInter
             $frmStr .= "</div>";
         }
         
+        
+        $frmStr .= '</form>';
         return $frmStr;
     }
 

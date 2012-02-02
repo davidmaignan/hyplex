@@ -33,6 +33,8 @@
 
 PlexStats::saveInDB();
 
+sfContext::getInstance()->getController()->redirect('historic/daily');
+
 
 /*
 $arAgent = array();

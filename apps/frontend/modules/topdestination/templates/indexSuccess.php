@@ -4,30 +4,27 @@
 
 <div class="span-26 last append-bottom">
 
-    <div class="span-26 append-bottom">
+    <div class="span-26 append-bottom" id="top-destination2">
 
         <div class="span-10 last bg-2 right">
             <?php echo image_tag('tmp/topDestination_top.jpg'); ?>
         </div>
         <div class="span-4 right" style="margin: 35px 20px 15px 10px; width: 180px; padding: 8px; font-size: 110%; text-align: right; border:1px solid #c2dae9; background-color: #eff7fd;">
-            <ul>
-                <li>
-                    <span class="from smallest">from</span>
-                    <span class="price biggest bold color2"><?php echo format_currency(rand(487, 1130), sfConfig::get('app_currency')) ?></span>
-                </li>
-                <li class="smallest prepend-top">
-                    <span class="date">starts <span class="bold"><?php echo format_date(date('Y-m-d'), 'top-destination') ?></span></span>
-                </li>
-                <li class="prepend-top append-bottom">
+            <p class="price">
+                <span class="from smallest">from</span><br />
+                <span class="price biggest bold color2"><?php echo format_currency(rand(1487, 6030), sfConfig::get('app_currency')) ?></span>
+            </p>
+            <p class="minMargin">
+                <span class="date">starts <span class="bold"><?php echo format_date(date('Y-m-d'), 'top-destination') ?></span></span>
+            </p>
+            <p class="minMargin">
                     <a class="button action blue">Book now</a>
-                </li>
-            </ul>
-            
+            </p>
         </div>
         
-        <h1 class="biggest">I love NY</h1>
+        <h1 class="biggest fontface">I love NY</h1>
         <p>There's nothing like fall in New York City. The crisp autumn air, changing colors, romantic restaurants, nonstop nightlife, and all that shopping. Stay 3 or more nights and experience all that the Big Apple has to offer with these special rates.</p>
-        <ul class="bullet smaller prepend-1">
+        <ul class="bullet prepend-1">
             <li>What's included:</li>
             <li>Return flight in economy class</li>
             <li>1 room for 2 persons in a 3 stars hotel in Manhattan</li>
@@ -51,17 +48,17 @@
 </div>
 
 
-<div class="span-26 last bg1 append-bottom">
-    <hr class="space3" />
-    <h2 class="title">More deals</h2>
+<div class="span-26 last append-bottom">
+    <hr class="space" />
+    <h2 class="title fontface">More deals</h2>
     <?php for($i=1;$i<count($arTopDestination); $i++): ?>
     <div class="top-destination2" <?php echo ($i % 3 == 0 && $i != 0)? 'style="margin-right: 0px"': ''; ?> >
         <div class="bg">
             <?php echo image_tag('tmp/topDestination'.($i).'.jpg', array('width'=>'304px', 'height' => '155px')) ?>
         </div>
-        <a class="button action blue">Search</a>
+        <a class="button action blue" style="padding: 2px 22px;"><?php echo __('search') ?></a>
         <h4><?php echo $arTopDestination[$i]; ?></h4>
-        <p><span class="from left">from</span>
+        <p><span class="">from</span>
             <span class="price"><?php echo format_currency(rand(487, 1130), sfConfig::get('app_currency')) ?></span>
             <span class="date">starting <span class="bold"><?php echo format_date(date('Y-m-d'), 'top-destination') ?></span></span>
         </p>
@@ -70,27 +67,23 @@
     </div>
     <?php endfor; ?>
 </div>
-<div class="span-26 last prepend-top append-bottom center">
-    <ul class="paginator">
-        <li><a href="#" class="selected"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#"></a></li>
-        <li><a href="#" class="next">Last</a></li>
-        <li><a href="#" class="prev">First</a></li>
-    </ul>
-</div>
+
 
 <hr class="space3" />
 
 
 <style>
+    
+    p.price{
+        margin: 0;
+    }
+    
     .top-destination2{
         width: 304px;
-        height: 280px;
+        height: 300px;
         margin-right: 0;
         border-right: 0px solid red;
-        margin-right: 44px;
+        margin-right: 34px;
         position: relative;
         float: left;
         margin-top: 0;

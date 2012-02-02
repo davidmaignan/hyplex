@@ -42,7 +42,7 @@
 <div class="span-18 prepend-1 last">
     <div class="span-15 append-bottom ">
         <div id="form" class="hide">
-            <?php //include_partial('searchFlight/form', array('form' => $form, 'parameters' => $parameters)); ?>
+            <?php include_partial('searchFlight/form', array('form' => $form, 'parameters' => $parameters)); ?>
         </div>
     </div>
 

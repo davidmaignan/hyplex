@@ -16,9 +16,8 @@ class HotelSimpleObj extends HotelGenericObj {
     
     public $class = 'bg-1';
 
-
     private $arSimpleFields = array('HotelId','HotelName','HotelChain','Location','DisplayPriority',
-                                'IsOurPick','PropertyType','HotelDescription');
+                                	'IsOurPick','PropertyType','HotelDescription');
 
     private $arListFacilities = array(  'general'=>array('desk','disabled','elevator','storage','smoking'),
                                         'services'=>array('service','cleaning','breakfast','concierge','ticket','room'),
@@ -150,29 +149,90 @@ class HotelSimpleObj extends HotelGenericObj {
                     $this->location .'</td><td>'.
                     $this->chain.'</td></tr>';
 
-        /*
-        $string .= '<tr>';
-
-        foreach ($this->arRoomsType as $key => $value) {
-
-            $value = (array)$value;
-
-            foreach($value['arRates'] as $rate){
-                $string .= '<td>'.$rate['room1']['AvgPricePerNight'].' - </td>';
-            }
-
-            
-
-        }
-
-        $string .= '<tr>';
-        */
-
-        //echo "<pre>";
-        //print_r($this->arRoomsType);
 
         return $string;
     }
+    
+ 	/**
+     * Display hotel summary for statistical view
+     * @return string $string
+     */
+    public function displayParamsStats(){
+    	
+    	$args = func_get_args();
+    	
+    	$string = '';
+    	
+    	//Argument rate is passed so need to display the rates infos
+    	if(!empty($args)){
+    		
+    		$rates = $args[0];
+    		
+    		foreach($rates as $key=>$rate){
+    			
+    			$string .= $key. ': ';
+    			$string .= $this->getRoomPrice($key, $rate, array('RateType','TotalPrice'));
+    			
+    		}
+    		
+    		return $string;
+    		
+    		echo $string;
+    		exit;
+    	}
+
+    		
+    	$string =  $this->name. ' &bull; ';
+    	$string .= HotelGenericObj::getStarRating($this->starRating). ' &bull; ';
+    	$string .= 'minPrice: '.format_currency($this->minPrice, '$'). ' &bull; ';
+    	$string .= 'maxPrice: '.format_currency($this->maxPrice, '$'). ' &bull; ';
+    	$string .= $this->location . ' &bull; ';
+    	$string .= $this->chain.' &bull; ';
+    	
+    	return $string;
+    	
+    }
+    
+    public function displayParamsBookingTable($rooms){
+    	
+    	$string = '<tr>';
+    	
+    	$string .= '<td>Hotel</td>';
+    	
+    	$string .= '<td class="info" >Name:</td>';
+    	
+    	$string.= '<td style="width: 100px;">'.$this->name.'</td>';
+    	
+    	$string .= '<td class="info">';
+    	
+    	$totalRoom = count($rooms);
+    	for($i=1;$i<=$totalRoom;$i++){
+    		$string .= $i.'<br />';
+    	}
+    	$string .='</td>';
+    	
+    	$string .= '<td>';
+    	
+    	$i=0;
+    	foreach($rooms as $key=>$room){
+    		$string .= $this->getPrice($i).'<br />';
+    		++$i;
+    	}
+    	
+    	$string .= '</td>';
+    	$string .= '<td>';
+    	
+    	$string .= '</td>';
+    	$string .= '</tr>';
+    	
+    	return $string;
+    	
+    }
+    
+    /**
+     * Set filename
+     * @param $filename
+     */
 
     public function setFilename($filename){
         $this->filename = $filename;
@@ -421,12 +481,9 @@ class HotelSimpleObj extends HotelGenericObj {
     public function setCoordinates($datas){
 
         foreach((array)$datas as $key=>$value){
-            
             $this->arCoordinates[strtolower($key)] = $value;
-
         }
 
-        
     }
 
     public function getImageFullPath(){
@@ -568,6 +625,45 @@ class HotelSimpleObj extends HotelGenericObj {
 
     public function getInfos(){
         return $this->id .' | '.$this->name;
+    }
+    
+    /**
+     * Return all the info about a rate from a uniqueReferenceId
+     * @param $roomId
+     * @param $uniqueReferenceId
+     * @param array containing all the fields to return
+     */
+    public function getRoomPrice($roomId, $uniqueReferenceId, $values = array('TotalPrice')){
+    	
+    	foreach($this->arRooms[$roomId] as $hotelRoom){
+    		
+    		foreach($hotelRoom->arRates as $rate){
+    			
+    			if($rate['UniqueReferenceId'] == $uniqueReferenceId){
+    				
+    				//var_dump($rate);
+    				
+    				$string = '';
+    				foreach($values as $value){
+    					
+    					$string .= $value.': '.$rate[$value].' - ';
+    					
+    				}
+    				
+    				return $string;
+    				
+    				return $rate['TotalPrice'];
+    				
+    			}
+    			
+    			
+    		}
+    		
+    		
+    		
+    	}
+    	
+    	
     }
 
 }

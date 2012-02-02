@@ -29,7 +29,9 @@
         <li><?php echo link_to(__('Stats'), '@historic'); ?>
             <ul>
                 <li><?php echo link_to(__('Stats/day'), '@historic_day'); ?></li>
-                <li><?php echo link_to(__('Daily report'), '@historic_daily'); ?></li>
+                <li><?php echo link_to(__('Daily report'), '@historic_daily'); ?>
+	                <?php include_partial('historic/navigationLinks')?>
+                </li>
                 <li><?php echo link_to(__('Move to DB'), '@historic_moveToDB'); ?></li>
             </ul>
         </li>
